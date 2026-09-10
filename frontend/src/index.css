@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Cinzel:wght@600;800&family=Space+Mono:wght@400;700&family=Dancing+Script:wght@700&display=swap');
 @import "tailwindcss";
 
 @layer base {
@@ -238,3 +239,91 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
 ::-webkit-scrollbar-thumb:hover {
   background: #6C4CFF;
 }
+
+/* Custom Font Utilities for Card Customizer Studio */
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-cinzel { font-family: 'Cinzel', serif; }
+.font-spacemono { font-family: 'Space Mono', monospace; }
+.font-script { font-family: 'Dancing Script', cursive; }
+
+/* 3D Card Engine Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Shimmer Light Reflection Animation */
+@keyframes cardShimmer {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  50% {
+    transform: translateX(150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(150%) rotate(25deg);
+  }
+}
+
+.animate-card-shimmer {
+  animation: cardShimmer 6s infinite ease-in-out;
+}
+
+/* Metallic Grain & Texture Effects */
+.bg-metallic-black {
+  background: radial-gradient(circle at 50% 0%, #2A2A2E 0%, #121215 60%, #08080A 100%);
+}
+
+.bg-metallic-gold {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+}
+
+.bg-metallic-silver {
+  background: linear-gradient(135deg, #E0E0E0 0%, #F5F5F5 25%, #9E9E9E 50%, #EAEAEA 75%, #757575 100%);
+}
+
+.bg-metallic-rosegold {
+  background: linear-gradient(135deg, #E8B4B8 0%, #F9E7E7 30%, #D49A9E 60%, #B87375 100%);
+}
+
+.bg-metallic-emerald {
+  background: linear-gradient(135deg, #0D3B2E 0%, #1C5A48 35%, #062018 70%, #020F0B 100%);
+}
+
+.bg-organic-wood {
+  background: linear-gradient(135deg, #3D261A 0%, #5A3A29 40%, #281810 75%, #180D08 100%);
+}
+
+/* Engraving Metallic Text Shadow Inlays */
+.text-inlay-gold {
+  color: #F3E5AB;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+.text-inlay-silver {
+  color: #E2E8F0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.text-inlay-white {
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.text-inlay-stealth {
+  color: #111115;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
