@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, ChevronDown, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ScrollReveal, StaggerContainer, StaggerItem } from './AnimatedComponents';
+import { ContactHelpSection } from './ContactHelpSection';
 
 export const TestimonialsAndFaqSection = () => {
   const [openFaq, setOpenFaq] = useState(0);
@@ -53,95 +56,45 @@ export const TestimonialsAndFaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-[#F7F7F5] dark:bg-[#090909] relative transition-colors duration-300">
+    <section id="faq" className="py-24 bg-[#FAFAFA] relative transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Testimonials Sub-section */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-white dark:bg-[#111111] border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
+        <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <div className="inline-block px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-800 text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
             Verified Customer Reviews
           </div>
-          <h2 className="section-h2 text-slate-900 dark:text-white">
+          <h2 className="section-h2 text-slate-900">
             Loved by Executives & Teams
           </h2>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 font-inter">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 font-inter">
           {testimonials.map((t, i) => (
-            <div key={i} className="p-8 rounded-3xl bg-white dark:bg-[#111111] border border-slate-200 dark:border-slate-800 shadow-xl space-y-4 flex flex-col justify-between">
-              <div className="space-y-3">
-                <div className="flex space-x-1 text-amber-400">
-                  {[...Array(t.rating)].map((_, r) => (
-                    <Star key={r} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
+            <StaggerItem key={i}>
+              <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-4 flex flex-col justify-between h-full card-hover-elevation">
+                <div className="space-y-3">
+                  <div className="flex space-x-1 text-amber-400">
+                    {[...Array(t.rating)].map((_, r) => (
+                      <Star key={r} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-slate-600 italic leading-relaxed">"{t.text}"</p>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed">"{t.text}"</p>
-              </div>
-              <div className="flex items-center space-x-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-[#6C4CFF]/40" />
-                <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white text-sm font-manrope">{t.name}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{t.role}</p>
+                <div className="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                  <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-[#6C4CFF]/40" />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm font-manrope">{t.name}</h4>
+                    <p className="text-xs text-slate-500">{t.role}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        {/* FAQ Accordion Sub-section */}
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center space-y-4 mb-12">
-            <h3 className="section-h2 text-slate-900 dark:text-white">
-              Frequently Asked Questions
-            </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 font-inter">Everything you need to know about aikulb smart identity platform.</p>
-          </div>
-
-          <div className="space-y-4 font-inter">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <div key={i} className="rounded-3xl bg-white dark:bg-[#111111] border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm transition">
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="w-full p-6 text-left flex justify-between items-center text-slate-900 dark:text-white font-bold text-base font-manrope focus:outline-none hover:text-[#6C4CFF] transition"
-                  >
-                    <span>{faq.q}</span>
-                    {isOpen ? <ChevronUp className="w-5 h-5 text-[#6C4CFF]" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
-                  </button>
-                  {isOpen && (
-                    <div className="px-6 pb-6 text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-4 animate-in fade-in duration-200">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Final CTA Box */}
-        <div className="mt-24 p-12 rounded-3xl aikulb-gradient-bg text-center text-white space-y-6 shadow-2xl relative overflow-hidden font-manrope">
-          <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Ready to Upgrade Your Identity?
-          </h2>
-          <p className="text-base text-purple-100 max-w-xl mx-auto font-inter">
-            Order your custom engraved aikulb NFC card today and start connecting smarter in seconds.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
-            <Link
-              to="/create-profile"
-              className="px-8 py-4 rounded-full bg-white text-[#090909] hover:bg-slate-100 font-extrabold text-sm transition shadow-lg"
-            >
-              Create Your Digital Profile
-            </Link>
-            <Link
-              to="/store"
-              className="px-8 py-4 rounded-full bg-black/20 hover:bg-black/30 text-white font-bold text-sm border border-white/30 transition"
-            >
-              Explore aikulb Cards
-            </Link>
-          </div>
+        {/* Full Interactive Contact & Help Center Section (TapMo Inspired with DB Sync) */}
+        <div className="mt-16 border-t border-slate-200 pt-16">
+          <ContactHelpSection />
         </div>
       </div>
     </section>

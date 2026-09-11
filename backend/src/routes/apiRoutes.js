@@ -7,6 +7,7 @@ import { OrderController } from '../controllers/orderController.js';
 import { TeamController } from '../controllers/teamController.js';
 import { AdminController } from '../controllers/adminController.js';
 import { AiController } from '../controllers/aiController.js';
+import { QrController } from '../controllers/qrController.js';
 import { authenticateToken, optionalAuth, requireRole } from '../middleware/authMiddleware.js';
 
 const router = Router();
@@ -19,6 +20,7 @@ const orderCtrl = new OrderController();
 const teamCtrl = new TeamController();
 const adminCtrl = new AdminController();
 const aiCtrl = new AiController();
+const qrCtrl = new QrController();
 
 // Auth Routes
 router.post('/auth/register', (req, res) => authCtrl.register(req, res));
@@ -37,6 +39,15 @@ router.get('/profile/:username', (req, res) => profCtrl.getPublicProfile(req, re
 router.put('/profile/update', authenticateToken, (req, res) => profCtrl.updateProfile(req, res));
 router.post('/profile/track', (req, res) => profCtrl.trackInteraction(req, res));
 router.get('/profile/vcf/:username', (req, res) => profCtrl.downloadVcf(req, res));
+
+// Dedicated QR Code Generation & DB Scan Analytics Routes
+router.get('/qr/generate', (req, res) => qrCtrl.generateQr(req, res));
+router.post('/qr/generate', (req, res) => qrCtrl.generateQr(req, res));
+router.get('/qr/profile/:username', (req, res) => qrCtrl.getProfileQr(req, res));
+router.get('/qr/card/:cardId', (req, res) => qrCtrl.getCardQr(req, res));
+router.get('/qr/vcard/:username', (req, res) => qrCtrl.getVCardQr(req, res));
+router.post('/qr/scan', (req, res) => qrCtrl.recordScan(req, res));
+router.get('/qr/scan/:code', (req, res) => qrCtrl.recordScan(req, res));
 
 // Lead Capture & CRM Routes
 router.post('/leads', (req, res) => leadCtrl.captureLead(req, res));

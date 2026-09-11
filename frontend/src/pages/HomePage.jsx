@@ -5,6 +5,7 @@ import { HeroSection } from '../components/HeroSection';
 import { TrustMarquee } from '../components/TrustMarquee';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
+import { ProductPortfolioSection } from '../components/ProductPortfolioSection';
 import { ProductCategoriesSection } from '../components/ProductCategoriesSection';
 import { CustomCardDesignerSection } from '../components/CustomCardDesignerSection';
 import { DigitalProfileDemoSection } from '../components/DigitalProfileDemoSection';
@@ -19,19 +20,20 @@ import { CartDrawer } from '../components/CartDrawer';
 
 export const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 flex flex-col font-sans">
       {/* Fixed Top Header Container with AnnouncementBar & Navbar */}
       <header className="fixed top-0 left-0 right-0 z-50">
         <AnnouncementBar />
         <Navbar />
       </header>
 
-      {/* Main Homepage Content Assembly */}
-      <main className="flex-grow pt-14">
+      {/* Main Homepage Content Assembly with Proper Top Padding (pt-28 sm:pt-32 to prevent header clipping) */}
+      <main className="flex-grow pt-28 sm:pt-32">
         <HeroSection />
         <TrustMarquee />
         <ValueProp />
         <HowItWorks />
+        <ProductPortfolioSection />
         <ProductCategoriesSection />
         <CustomCardDesignerSection />
         <DigitalProfileDemoSection />

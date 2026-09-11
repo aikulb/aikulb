@@ -3,11 +3,11 @@
 
 @layer base {
   :root {
-    --bg-primary: #F7F7F5;
+    --bg-primary: #FAFAFA;
     --bg-card: #FFFFFF;
-    --border-color: #E5E5E5;
-    --text-primary: #111111;
-    --text-secondary: #6B6B6B;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
     --accent-violet: #6C4CFF;
     --accent-violet-secondary: #8B5CF6;
     --accent-blue: #3B82F6;
@@ -18,13 +18,13 @@
   }
 
   .dark {
-    --bg-primary: #090909;
-    --bg-card: #111111;
-    --border-color: #262626;
-    --text-primary: #F5F5F5;
-    --text-secondary: #A3A3A3;
-    --dot-color: rgba(255, 255, 255, 0.07);
-    --grid-color: rgba(255, 255, 255, 0.04);
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --dot-color: rgba(0, 0, 0, 0.08);
+    --grid-color: rgba(0, 0, 0, 0.04);
   }
 }
 
@@ -71,6 +71,31 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
     linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* Subtle Animated Grain Noise Background (Requirement 3) */
+.bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Slow Animated Gradient Orbs (Requirement 3) */
+@keyframes orbSlowFloat {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.08);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-orb-slow {
+  animation: orbSlowFloat 14s ease-in-out infinite alternate;
 }
 
 /* aikulb Accent Gradient */
@@ -210,19 +235,17 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
   box-shadow: 0 14px 30px -4px rgba(108, 76, 255, 0.5);
 }
 
-/* Card Hover Elevation */
+/* Card Hover Elevation (Requirement 6) */
 .card-hover-elevation {
   border-radius: 24px;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
 }
 
-.card-hover-elevation:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
-}
-
-.dark .card-hover-elevation:hover {
-  box-shadow: 0 20px 40px -15px rgba(108, 76, 255, 0.15);
+@media (hover: hover) and (pointer: fine) {
+  .card-hover-elevation:hover {
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 20px 45px -15px rgba(108, 76, 255, 0.18);
+  }
 }
 
 /* Custom Scrollbar */
@@ -327,3 +350,12 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
+/* Reduced Motion Override (Requirement 28) */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

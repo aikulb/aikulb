@@ -14,17 +14,17 @@ export const SmartStandSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#F7F7F5] dark:bg-[#090909] border-t border-slate-200 dark:border-slate-800/80 relative transition-colors duration-300">
+    <section className="py-24 bg-[#F8F9FA] border-t border-slate-200 relative transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-block px-3.5 py-1 rounded-full bg-[#6C4CFF]/10 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider">
+            <div className="inline-block px-3.5 py-1 rounded-full bg-[#6C4CFF]/10 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
               Smart Countertop Hardware
             </div>
-            <h2 className="section-h2 text-slate-900 dark:text-white">
+            <h2 className="section-h2 text-slate-900 font-extrabold">
               aikulb Smart Standee
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-inter">
+            <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
               Clear crystal acrylic desk stands embedded with dual NFC microchip + high resolution QR code for business receptions, retail counters, and venues.
             </p>
 
@@ -32,12 +32,12 @@ export const SmartStandSection = () => {
               {useCases.map((u, i) => {
                 const IconComp = u.icon;
                 return (
-                  <div key={i} className="p-4 rounded-2xl bg-white dark:bg-[#111111] border border-slate-200 dark:border-slate-800 space-y-1">
+                  <div key={i} className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-1">
                     <div className="flex items-center space-x-2 text-[#6C4CFF]">
                       <IconComp className="w-4 h-4" />
-                      <span className="font-bold text-slate-900 dark:text-white text-xs font-manrope">{u.title}</span>
+                      <span className="font-bold text-slate-900 text-xs font-manrope">{u.title}</span>
                     </div>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">{u.desc}</p>
+                    <p className="text-[11px] text-slate-600 font-medium">{u.desc}</p>
                   </div>
                 );
               })}

@@ -4,9 +4,9 @@ import { BaseController } from './baseController.js';
 export class LeadController extends BaseController {
   async captureLead(req, res) {
     try {
-      const { profile_id, name, email, phone, company, message, source = 'NFC Profile Tap' } = req.body;
-      if (!profile_id || !name || !email) {
-        return res.status(400).json({ success: false, message: 'Profile ID, Name, and Email are required' });
+      const { profile_id = 'support-hq', name, email, phone, company, message, source = 'NFC Profile Tap' } = req.body;
+      if (!name || !email) {
+        return res.status(400).json({ success: false, message: 'Name and Email are required' });
       }
 
       const id = 'lead-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6);

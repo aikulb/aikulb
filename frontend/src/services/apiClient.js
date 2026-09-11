@@ -50,6 +50,13 @@ export const api = {
   generateAiBio: (data) => fetchJson('/ai/bio', { method: 'POST', body: JSON.stringify(data) }),
   getAiInsights: () => fetchJson('/ai/insights'),
 
+  // Dedicated QR Code APIs
+  generateQr: (text, width = 300, format = 'json') => fetchJson(`/qr/generate?text=${encodeURIComponent(text)}&width=${width}&format=${format}`),
+  getProfileQr: (username, format = 'json') => fetchJson(`/qr/profile/${username}?format=${format}`),
+  getCardQr: (cardId, format = 'json') => fetchJson(`/qr/card/${cardId}?format=${format}`),
+  getVCardQr: (username) => fetchJson(`/qr/vcard/${username}`),
+  recordQrScan: (identifier) => fetchJson('/qr/scan', { method: 'POST', body: JSON.stringify({ identifier }) }),
+
   // Admin
   getAdminStats: () => fetchJson('/admin/stats'),
   createAdminProduct: (data) => fetchJson('/admin/products', { method: 'POST', body: JSON.stringify(data) }),

@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { api } from '../services/apiClient';
 import { User, Eye, Users, Zap, QrCode, BarChart2, CheckCircle2, Phone, Mail, Sparkles, Building2, ShoppingBag, Layout, Download, FileText, Globe, ArrowRight, Bot } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { SkeletonLoader, ScrollReveal } from '../components/AnimatedComponents';
 
 export const UserDashboardPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -102,6 +103,14 @@ export const UserDashboardPage = () => {
     setAiLoading(false);
   };
 
+  const handleSimulateQrScan = async () => {
+    if (!profile) return;
+    const res = await api.recordQrScan(profile.username);
+    if (res.success) {
+      fetchDashboardData();
+    }
+  };
+
   const analyticsData = [
     { day: 'Mon', views: 240, taps: 120 },
     { day: 'Tue', views: 380, taps: 190 },
@@ -112,10 +121,22 @@ export const UserDashboardPage = () => {
     { day: 'Sun', views: 300, taps: 150 },
   ];
 
+  /* Skeleton Loading State (Requirement 22: Replace plain "Loading..." text with skeleton loaders) */
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FFFFFF] flex items-center justify-center text-neutral-900 font-manrope">
-        <div className="animate-spin w-8 h-8 border-4 border-[#FF3838] border-t-transparent rounded-full"></div>
+      <div className="min-h-screen bg-[#FFFFFF] flex flex-col font-sans">
+        <Navbar />
+        <div className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-6">
+          <SkeletonLoader className="h-16 w-1/2 rounded-2xl" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <SkeletonLoader className="h-28 w-full rounded-3xl" />
+            <SkeletonLoader className="h-28 w-full rounded-3xl" />
+            <SkeletonLoader className="h-28 w-full rounded-3xl" />
+            <SkeletonLoader className="h-28 w-full rounded-3xl" />
+          </div>
+          <SkeletonLoader className="h-64 w-full rounded-3xl" />
+        </div>
+        <Footer />
       </div>
     );
   }
@@ -126,20 +147,20 @@ export const UserDashboardPage = () => {
 
       <main className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Top Header & Dashboard Mode Switcher */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-6 border-b border-neutral-200 gap-4">
+        <ScrollReveal className="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-6 border-b border-neutral-200 gap-4">
           <div>
             <div className="flex items-center space-x-3 mb-1">
               <h1 className="text-3xl font-black text-neutral-900 font-manrope">
                 {user ? user.name : 'aikulb Member'}
               </h1>
               <span className={`px-3.5 py-1 rounded-full text-xs font-mono font-bold ${
-                dashboardMode === 'new' ? 'bg-[#FF3838]/10 text-[#FF3838] border border-[#FF3838]/30' : 'bg-neutral-100 text-neutral-700 border border-neutral-300'
+                dashboardMode === 'new' ? 'bg-[#6C4CFF]/10 text-[#6C4CFF] border border-[#6C4CFF]/30' : 'bg-neutral-100 text-neutral-700 border border-neutral-300'
               }`}>
                 {dashboardMode === 'new' ? '✨ NEW AI DASHBOARD' : 'CLASSIC DASHBOARD'}
               </span>
             </div>
             <p className="text-xs text-neutral-500 font-mono">
-              Public Identity URL: <span className="text-[#FF3838] font-bold">/profile/{profile ? profile.username : 'user'}</span>
+              Public Identity URL: <span className="text-[#6C4CFF] font-bold">/profile/{profile ? profile.username : 'user'}</span>
             </p>
           </div>
 
@@ -163,14 +184,14 @@ export const UserDashboardPage = () => {
                 setSearchParams({ mode: 'new' });
               }}
               className={`px-4 py-2 rounded-full text-xs font-bold font-manrope transition flex items-center space-x-1.5 ${
-                dashboardMode === 'new' ? 'bg-[#FF3838] text-white shadow-md' : 'text-neutral-500 hover:text-neutral-900'
+                dashboardMode === 'new' ? 'bg-[#6C4CFF] text-white shadow-md' : 'text-neutral-500 hover:text-neutral-900'
               }`}
             >
               <Zap className="w-3.5 h-3.5" />
               <span>New AI Dashboard</span>
             </button>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* ========================================================================= */}
         {/* MODE 1: CLASSIC DASHBOARD VIEW */}
@@ -186,7 +207,7 @@ export const UserDashboardPage = () => {
                 <a
                   href={`/api/profile/vcf/${profile.username}`}
                   download
-                  className="px-5 py-2.5 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-bold text-xs flex items-center space-x-1 font-manrope shadow-md transition"
+                  className="px-5 py-2.5 rounded-full btn-pill-coral text-white font-bold text-xs flex items-center space-x-1 font-manrope shadow-md transition"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download VCF Card</span>
@@ -207,7 +228,7 @@ export const UserDashboardPage = () => {
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-bold focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-bold focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
                 <div>
@@ -216,7 +237,7 @@ export const UserDashboardPage = () => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
                 <div>
@@ -225,7 +246,7 @@ export const UserDashboardPage = () => {
                     type="text"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
                 <div>
@@ -234,7 +255,7 @@ export const UserDashboardPage = () => {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
                 <div>
@@ -243,7 +264,7 @@ export const UserDashboardPage = () => {
                     type="tel"
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
                 <div>
@@ -252,7 +273,7 @@ export const UserDashboardPage = () => {
                     type="url"
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
-                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                    className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                   />
                 </div>
               </div>
@@ -263,13 +284,13 @@ export const UserDashboardPage = () => {
                   rows={3}
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                  className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                  className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="px-8 py-3.5 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-extrabold text-xs font-manrope shadow-md transition cursor-pointer"
+                className="px-8 py-3.5 rounded-full btn-pill-coral text-white font-extrabold text-xs font-manrope shadow-md transition cursor-pointer"
               >
                 Save Classic Profile
               </button>
@@ -284,6 +305,7 @@ export const UserDashboardPage = () => {
             <div className="flex space-x-2 border-b border-neutral-200 pb-2 overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview & Analytics', icon: BarChart2 },
+                { id: 'qr_api', label: 'QR API & Card Sync', icon: QrCode },
                 { id: 'edit_profile', label: 'Edit Profile & AI Bio', icon: User },
                 { id: 'leads', label: `Captured Leads (${leads.length})`, icon: Users },
                 { id: 'orders', label: `My Orders (${orders.length})`, icon: ShoppingBag },
@@ -296,7 +318,7 @@ export const UserDashboardPage = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`px-4 py-2.5 rounded-full text-xs font-bold font-manrope flex items-center space-x-2 whitespace-nowrap transition ${
                       activeTab === tab.id
-                        ? 'bg-[#FF3838] text-white shadow-md'
+                        ? 'bg-[#6C4CFF] text-white shadow-md'
                         : 'bg-white text-neutral-700 border border-neutral-300 hover:bg-neutral-100'
                     }`}
                   >
@@ -312,7 +334,7 @@ export const UserDashboardPage = () => {
               <div className="space-y-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className="p-6 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
-                    <div className="flex justify-between items-center text-[#FF3838] mb-2">
+                    <div className="flex justify-between items-center text-[#6C4CFF] mb-2">
                       <span className="text-xs font-mono font-bold uppercase">Total Views</span>
                       <Eye className="w-5 h-5" />
                     </div>
@@ -356,16 +378,202 @@ export const UserDashboardPage = () => {
                       <AreaChart data={analyticsData}>
                         <defs>
                           <linearGradient id="colorViews" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#FF3838" stopOpacity={0.3} />
-                            <stop offset="95%" stopColor="#FF3838" stopOpacity={0} />
+                            <stop offset="5%" stopColor="#6C4CFF" stopOpacity={0.3} />
+                            <stop offset="95%" stopColor="#6C4CFF" stopOpacity={0} />
                           </linearGradient>
                         </defs>
                         <XAxis dataKey="day" stroke="#64748B" />
                         <YAxis stroke="#64748B" />
                         <Tooltip contentStyle={{ backgroundColor: '#FFFFFF', borderColor: '#E2E8F0', color: '#000' }} />
-                        <Area type="monotone" dataKey="views" stroke="#FF3838" fillOpacity={1} fill="url(#colorViews)" />
+                        <Area type="monotone" dataKey="views" stroke="#6C4CFF" fillOpacity={1} fill="url(#colorViews)" />
                       </AreaChart>
                     </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* QR API & CARD SYNC TAB */}
+            {activeTab === 'qr_api' && (
+              <div className="space-y-8">
+                {/* Header overview */}
+                <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-neutral-200 pb-4">
+                    <div>
+                      <h3 className="text-xl font-extrabold text-neutral-900 font-manrope flex items-center space-x-2">
+                        <QrCode className="w-5 h-5 text-[#6C4CFF]" />
+                        <span>Smart Card QR APIs & Database Sync</span>
+                      </h3>
+                      <p className="text-xs text-neutral-500 font-inter mt-1">
+                        Generate vector SVG, PNG, or vCard QR codes for physical smart cards with real-time scan analytics sync.
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleSimulateQrScan}
+                      className="px-5 py-2.5 rounded-full bg-[#6C4CFF] hover:bg-[#5B3BE5] text-white font-bold text-xs font-manrope shadow-md transition flex items-center space-x-2 shrink-0 cursor-pointer"
+                    >
+                      <Zap className="w-4 h-4" />
+                      <span>Simulate Live QR Scan (+1 Scan DB Sync)</span>
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                    {/* Card 1: Profile Web QR */}
+                    <div className="p-6 rounded-2xl bg-white border border-neutral-200 space-y-4 shadow-xs text-center flex flex-col items-center">
+                      <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-[10px] font-mono font-bold uppercase">
+                        Web Profile Redirect
+                      </span>
+                      <h4 className="font-extrabold text-neutral-900 text-sm font-manrope">Digital Profile QR</h4>
+                      <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-200 shadow-inner">
+                        <img
+                          src={`/api/qr/profile/${profile ? profile.username : 'user'}?format=png`}
+                          alt="Profile QR Code"
+                          className="w-40 h-40 object-contain rounded-lg"
+                        />
+                      </div>
+                      <p className="text-[11px] text-neutral-500 font-mono break-all">
+                        /api/qr/profile/{profile ? profile.username : 'user'}
+                      </p>
+                      <div className="flex space-x-2 w-full pt-2">
+                        <a
+                          href={`/api/qr/profile/${profile ? profile.username : 'user'}?format=png`}
+                          download={`qr_profile_${profile ? profile.username : 'user'}.png`}
+                          className="flex-1 py-2 rounded-full bg-neutral-900 text-white font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-800 transition"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>PNG</span>
+                        </a>
+                        <a
+                          href={`/api/qr/profile/${profile ? profile.username : 'user'}?format=svg`}
+                          download={`qr_profile_${profile ? profile.username : 'user'}.svg`}
+                          className="flex-1 py-2 rounded-full bg-white border border-neutral-300 text-neutral-900 font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-100 transition"
+                        >
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>SVG</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Card 2: vCard Direct Contact QR */}
+                    <div className="p-6 rounded-2xl bg-white border border-neutral-200 space-y-4 shadow-xs text-center flex flex-col items-center">
+                      <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-mono font-bold uppercase">
+                        1-Tap Contact Save
+                      </span>
+                      <h4 className="font-extrabold text-neutral-900 text-sm font-manrope">vCard Direct Contact QR</h4>
+                      <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-200 shadow-inner">
+                        <img
+                          src={`/api/qr/vcard/${profile ? profile.username : 'user'}?format=png`}
+                          alt="vCard QR Code"
+                          className="w-40 h-40 object-contain rounded-lg"
+                        />
+                      </div>
+                      <p className="text-[11px] text-neutral-500 font-mono break-all">
+                        /api/qr/vcard/{profile ? profile.username : 'user'}
+                      </p>
+                      <div className="flex space-x-2 w-full pt-2">
+                        <a
+                          href={`/api/qr/vcard/${profile ? profile.username : 'user'}?format=png`}
+                          download={`qr_vcard_${profile ? profile.username : 'user'}.png`}
+                          className="flex-1 py-2 rounded-full bg-neutral-900 text-white font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-800 transition"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>PNG</span>
+                        </a>
+                        <a
+                          href={`/api/qr/vcard/${profile ? profile.username : 'user'}?format=svg`}
+                          download={`qr_vcard_${profile ? profile.username : 'user'}.svg`}
+                          className="flex-1 py-2 rounded-full bg-white border border-neutral-300 text-neutral-900 font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-100 transition"
+                        >
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>SVG</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Card 3: Physical Smart Card QR */}
+                    <div className="p-6 rounded-2xl bg-white border border-neutral-200 space-y-4 shadow-xs text-center flex flex-col items-center">
+                      <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-mono font-bold uppercase">
+                        Hardware NFC Sync
+                      </span>
+                      <h4 className="font-extrabold text-neutral-900 text-sm font-manrope">Smart Card Payload QR</h4>
+                      <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-200 shadow-inner">
+                        <img
+                          src={`/api/qr/card/CARD-DEMO-8849?format=png`}
+                          alt="Smart Card QR Code"
+                          className="w-40 h-40 object-contain rounded-lg"
+                        />
+                      </div>
+                      <p className="text-[11px] text-neutral-500 font-mono break-all">
+                        /api/qr/card/CARD-DEMO-8849
+                      </p>
+                      <div className="flex space-x-2 w-full pt-2">
+                        <a
+                          href={`/api/qr/card/CARD-DEMO-8849?format=png`}
+                          download="qr_card_demo.png"
+                          className="flex-1 py-2 rounded-full bg-neutral-900 text-white font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-800 transition"
+                        >
+                          <Download className="w-3.5 h-3.5" />
+                          <span>PNG</span>
+                        </a>
+                        <a
+                          href={`/api/qr/card/CARD-DEMO-8849?format=svg`}
+                          download="qr_card_demo.svg"
+                          className="flex-1 py-2 rounded-full bg-white border border-neutral-300 text-neutral-900 font-bold text-xs font-manrope flex items-center justify-center space-x-1 hover:bg-neutral-100 transition"
+                        >
+                          <FileText className="w-3.5 h-3.5" />
+                          <span>SVG</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* API Developer Reference Documentation */}
+                <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs font-inter">
+                  <h3 className="text-lg font-extrabold text-neutral-900 font-manrope flex items-center space-x-2">
+                    <Globe className="w-5 h-5 text-neutral-700" />
+                    <span>REST QR API Reference Endpoints</span>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+                    <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">GET</span>
+                        <span className="text-[#6C4CFF] font-bold">/api/qr/generate</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-600 font-sans">
+                        Universal QR generator. Pass <code className="bg-neutral-100 px-1 py-0.5 rounded">text</code> query parameter. Returns image buffer or JSON dataURL.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">GET</span>
+                        <span className="text-[#6C4CFF] font-bold">/api/qr/profile/:username</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-600 font-sans">
+                        Generates branded web profile QR code redirecting directly to user digital identity.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">GET</span>
+                        <span className="text-[#6C4CFF] font-bold">/api/qr/vcard/:username</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-600 font-sans">
+                        Encodes standard vCard 3.0 string into QR code for instant offline contact saving on iOS/Android.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-2">
+                      <div className="flex items-center space-x-2">
+                        <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold text-[10px]">POST</span>
+                        <span className="text-[#6C4CFF] font-bold">/api/qr/scan</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-600 font-sans">
+                        Records a QR scan event into SQLite database, incrementing <code className="bg-neutral-100 px-1 py-0.5 rounded">qr_scans</code> and logging scan history analytics.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -387,7 +595,7 @@ export const UserDashboardPage = () => {
                         type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-bold focus:outline-none focus:border-[#FF3838]"
+                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-bold focus:outline-none focus:border-[#6C4CFF]"
                       />
                     </div>
                     <div>
@@ -396,7 +604,7 @@ export const UserDashboardPage = () => {
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                       />
                     </div>
                     <div>
@@ -405,7 +613,7 @@ export const UserDashboardPage = () => {
                         type="text"
                         value={company}
                         onChange={(e) => setCompany(e.target.value)}
-                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                       />
                     </div>
                     <div>
@@ -414,7 +622,7 @@ export const UserDashboardPage = () => {
                         type="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                        className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                       />
                     </div>
                   </div>
@@ -426,7 +634,7 @@ export const UserDashboardPage = () => {
                         type="button"
                         onClick={handleGenerateAiBio}
                         disabled={aiLoading}
-                        className="text-[11px] text-[#FF3838] hover:text-[#E02828] font-bold flex items-center space-x-1 font-manrope"
+                        className="text-[11px] text-[#6C4CFF] hover:text-[#8B5CF6] font-bold flex items-center space-x-1 font-manrope cursor-pointer"
                       >
                         <Bot className="w-3.5 h-3.5" />
                         <span>{aiLoading ? 'Generating...' : '✨ Generate Bio with AI'}</span>
@@ -436,13 +644,13 @@ export const UserDashboardPage = () => {
                       rows={3}
                       value={bio}
                       onChange={(e) => setBio(e.target.value)}
-                      className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#FF3838]"
+                      className="w-full p-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 focus:outline-none focus:border-[#6C4CFF]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="px-8 py-3.5 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-bold text-xs font-manrope shadow-md transition"
+                    className="px-8 py-3.5 rounded-full btn-pill-gradient text-white font-bold text-xs font-manrope shadow-md transition cursor-pointer"
                   >
                     Save Changes
                   </button>
@@ -450,7 +658,7 @@ export const UserDashboardPage = () => {
 
                 <div className="lg:col-span-4 p-6 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 text-xs shadow-xs font-inter">
                   <h4 className="font-extrabold text-neutral-900 text-base font-manrope">Public Link</h4>
-                  <div className="p-3.5 rounded-2xl bg-white border border-neutral-300 font-mono text-[#FF3838] text-[11px] break-all font-bold">
+                  <div className="p-3.5 rounded-2xl bg-white border border-neutral-300 font-mono text-[#6C4CFF] text-[11px] break-all font-bold">
                     /profile/{profile ? profile.username : 'user'}
                   </div>
                   {profile && (
@@ -532,7 +740,7 @@ export const UserDashboardPage = () => {
                           <div className="text-neutral-500 text-[11px]">{new Date(o.created_at).toLocaleDateString()}</div>
                         </div>
                         <div className="text-right">
-                          <div className="font-bold text-[#FF3838] font-mono text-sm">₹{o.total_amount}</div>
+                          <div className="font-bold text-[#6C4CFF] font-mono text-sm">₹{o.total_amount}</div>
                           <div className="text-emerald-600 font-mono text-[10px] font-bold">{o.status} ({o.payment_status})</div>
                         </div>
                       </div>
