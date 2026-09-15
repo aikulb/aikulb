@@ -97,49 +97,89 @@ export const StorePage = () => {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow pt-32 pb-24 w-full">
-        {/* Store Header & View Mode Switcher */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-8">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-[#6C4CFF]/10 border border-[#6C4CFF]/20 text-[#6C4CFF] text-xs font-manrope font-bold uppercase tracking-wider">
-              Official Smart Hardware Catalog
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-manrope tracking-tight">
-              aikulb Smart Cards & Hardware
-            </h1>
-            <p className="text-base sm:text-lg text-slate-600 font-inter">
-              Explore aerospace metal, natural wood, waterproof PVC smart cards, and countertop NFC standees.
-            </p>
-          </ScrollReveal>
+      <main className="flex-grow pt-0 pb-24 w-full">
+        {/* Store Catalog Hero Section with Executive Photographic Background (Inspired by Reference Image 1) */}
+        <section className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
+          {/* Executive Photographic Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+            style={{ backgroundImage: `url('/assets/store_hero_bg.jpg')` }}
+          />
 
-          {/* Catalog View Toggle Buttons */}
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex p-1.5 rounded-full bg-slate-100 border border-slate-200 shadow-sm">
-              <button
-                onClick={() => setViewMode('portfolio')}
-                className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
-                  viewMode === 'portfolio'
-                    ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Rich Portfolio Catalog</span>
-              </button>
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
-                  viewMode === 'grid'
-                    ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <LayoutGrid className="w-4 h-4" />
-                <span>Compact Grid View</span>
-              </button>
-            </div>
+          {/* Multi-layer Dark Gradient & Vignette Overlay for High Contrast Text */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0D]/95 via-[#0A0A0D]/75 to-[#0A0A0D]/90 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0D]/40 via-transparent to-[#0A0A0D]" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <ScrollReveal className="max-w-4xl mx-auto space-y-6">
+              {/* Tagline Badge matching Image 1 */}
+              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-300 text-xs font-manrope font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+                <span>Tap to share. Tap to impress.</span>
+              </div>
+
+              {/* Main Headline matching Image 1 */}
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-[1.08] drop-shadow-md">
+                The Ultimate Smart Metal Business Card In Luxurious Metal
+              </h1>
+
+              {/* Subheadline */}
+              <p className="text-base sm:text-lg lg:text-xl text-slate-300 font-inter max-w-2xl mx-auto leading-relaxed drop-shadow">
+                Explore aerospace metal, natural wood, waterproof PVC smart cards, and countertop NFC standees.
+              </p>
+
+              {/* Action Buttons matching Image 1 */}
+              <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
+                <Link
+                  to="/customize"
+                  className="btn-pill-coral text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-2xl transition hover:scale-105 font-manrope uppercase tracking-wider inline-flex items-center space-x-2 cursor-pointer"
+                >
+                  <span>GET FREE DESIGN PREVIEW</span>
+                </Link>
+
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('catalog-content');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="btn-pill-outline-white text-xs sm:text-sm px-7 py-3 rounded-full font-manrope uppercase tracking-wider transition hover:bg-white hover:text-black cursor-pointer"
+                >
+                  EXPLORE CATALOG
+                </button>
+              </div>
+
+              {/* Catalog View Toggle Buttons */}
+              <div className="pt-8 flex justify-center">
+                <div className="inline-flex p-1.5 rounded-full bg-slate-900/80 border border-neutral-700/80 backdrop-blur-xl shadow-2xl">
+                  <button
+                    onClick={() => setViewMode('portfolio')}
+                    className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
+                      viewMode === 'portfolio'
+                        ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>Rich Portfolio Catalog</span>
+                  </button>
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
+                      viewMode === 'grid'
+                        ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <LayoutGrid className="w-4 h-4" />
+                    <span>Compact Grid View</span>
+                  </button>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
-        </div>
+        </section>
+
+        <div id="catalog-content">
 
         {/* View Mode 1: Rich Portfolio Catalog (TapMo Inspired Layout with specs & 3D tilt) */}
         {viewMode === 'portfolio' ? (
@@ -318,6 +358,7 @@ export const StorePage = () => {
             )}
           </div>
         )}
+        </div>
       </main>
 
       <CartDrawer />

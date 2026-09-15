@@ -44,6 +44,37 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
   font-family: 'Inter', sans-serif;
 }
 
+/* Premium Card & Smart Hardware Typography */
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-space-grotesk {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-jakarta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-card-title {
+  font-family: 'Syne', 'Outfit', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.font-card-sub {
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  letter-spacing: 0.05em;
+}
+
 /* Fluid Responsive Typography */
 .hero-h1 {
   font-family: 'Manrope', sans-serif;
@@ -302,6 +333,27 @@ h1, h2, h3, h4, h5, h6, .font-heading, .font-manrope {
 
 .animate-card-shimmer {
   animation: cardShimmer 6s infinite ease-in-out;
+}
+
+/* Auto-Scrolling Continuous Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Metallic Grain & Texture Effects */

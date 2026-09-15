@@ -19,6 +19,9 @@ async function fetchJson(endpoint, options = {}) {
 }
 
 export const api = {
+  // Auth
+  forgotPassword: (email) => fetchJson('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) }),
+
   // Products
   getProducts: (params = '') => fetchJson(`/products${params}`),
   getProductById: (id) => fetchJson(`/products/${id}`),

@@ -77,6 +77,7 @@ async function migrate() {
       custom_links_json TEXT,
       services_json TEXT,
       portfolio_json TEXT,
+      address TEXT,
       is_active BOOLEAN DEFAULT 1,
       views_count INTEGER DEFAULT 0,
       nfc_taps INTEGER DEFAULT 0,
@@ -84,6 +85,12 @@ async function migrate() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  try {
+    await db.execute(`ALTER TABLE profiles ADD COLUMN address TEXT;`);
+  } catch (e) {
+    // Column may already exist
+  }
 
   // 5. Leads Table
   await db.execute(`
@@ -485,7 +492,19 @@ async function migrate() {
       connections: "1M+",
       teams: "500+",
       reliability: "99.9%"
-    }
+    },
+    trustedBrands: [
+      { name: 'Nexa Global', tag: 'AI Systems', code: 'Ne' },
+      { name: 'Vertex Ventures', tag: 'Venture Capital', code: 'Ve' },
+      { name: 'Orbit Labs', tag: 'Smart Hardware', code: 'Or' },
+      { name: 'NovaTech', tag: 'Cloud Infra', code: 'No' },
+      { name: 'CloudGrid', tag: 'Enterprise Data', code: 'Cl' },
+      { name: 'Apex Capital', tag: 'FinTech', code: 'Ap' },
+      { name: 'Elevate Health', tag: 'Biotech', code: 'El' },
+      { name: 'CoreLabs', tag: 'Software', code: 'Co' },
+      { name: 'Quantum Tech', tag: 'Deep Learning', code: 'Qu' },
+      { name: 'Pulse Robotics', tag: 'Robotics', code: 'Pu' }
+    ]
   };
 
   await db.execute({
@@ -496,6 +515,11 @@ async function migrate() {
   await db.execute({
     sql: `INSERT OR REPLACE INTO homepage_content (key, value_json) VALUES (?, ?)`,
     args: ['platform_stats', JSON.stringify(homepageContent.platformStats)],
+  });
+
+  await db.execute({
+    sql: `INSERT OR REPLACE INTO homepage_content (key, value_json) VALUES (?, ?)`,
+    args: ['trusted_brands', JSON.stringify(homepageContent.trustedBrands)],
   });
 
   console.log('🎉 AIKULB Database Migration & Seeding Complete!');

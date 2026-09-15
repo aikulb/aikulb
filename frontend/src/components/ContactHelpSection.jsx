@@ -485,7 +485,7 @@ export const ContactHelpSection = () => {
                 <h4 className="font-extrabold text-slate-900 font-manrope text-base">Delhi NCR (Sales & Operations)</h4>
               </div>
               <p className="text-xs text-slate-600 leading-relaxed font-inter pl-7">
-                aikulb India Pvt. Ltd. (TapMo Ops), H-143 Sector 63, Noida, Uttar Pradesh 201301, India.
+                aikulb India Pvt. Ltd. (aikulb Operations), H-143 Sector 63, Noida, Uttar Pradesh 201301, India.
               </p>
             </div>
 

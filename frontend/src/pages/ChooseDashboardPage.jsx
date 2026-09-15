@@ -9,18 +9,20 @@ export const ChooseDashboardPage = () => {
   const navigate = useNavigate();
   const { user, loginAsDemoUser } = useAuth();
 
-  const handleSelectClassic = async () => {
+  const handleSelectClassic = () => {
     if (!user) {
-      await loginAsDemoUser();
+      navigate('/auth?mode=login');
+    } else {
+      navigate('/dashboard?mode=classic');
     }
-    navigate('/dashboard?mode=classic');
   };
 
-  const handleSelectNew = async () => {
+  const handleSelectNew = () => {
     if (!user) {
-      await loginAsDemoUser();
+      navigate('/auth?mode=login');
+    } else {
+      navigate('/dashboard?mode=new');
     }
-    navigate('/dashboard?mode=new');
   };
 
   return (

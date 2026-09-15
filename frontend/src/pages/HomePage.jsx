@@ -6,6 +6,7 @@ import { TrustMarquee } from '../components/TrustMarquee';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
 import { ProductPortfolioSection } from '../components/ProductPortfolioSection';
+import { MetalCardSection } from '../components/MetalCardSection';
 import { ProductCategoriesSection } from '../components/ProductCategoriesSection';
 import { CustomCardDesignerSection } from '../components/CustomCardDesignerSection';
 import { DigitalProfileDemoSection } from '../components/DigitalProfileDemoSection';
@@ -34,6 +35,7 @@ export const HomePage = () => {
         <ValueProp />
         <HowItWorks />
         <ProductPortfolioSection />
+        <MetalCardSection />
         <ProductCategoriesSection />
         <CustomCardDesignerSection />
         <DigitalProfileDemoSection />

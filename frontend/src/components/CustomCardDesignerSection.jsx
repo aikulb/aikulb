@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import confetti from 'canvas-confetti';
+import { api } from '../services/apiClient';
 import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual } from './ProductVisuals';
 
 export const CustomCardDesignerSection = () => {
@@ -20,7 +21,7 @@ export const CustomCardDesignerSection = () => {
   
   // Customization Options State
   const [material, setMaterial] = useState('black_metal');
-  const [fontStyle, setFontStyle] = useState('manrope');
+  const [fontStyle, setFontStyle] = useState('syne');
   const [inlayColor, setInlayColor] = useState('gold');
   const [chipFinish, setChipFinish] = useState('gold');
   
@@ -195,10 +196,14 @@ export const CustomCardDesignerSection = () => {
 
   // Font Styles Dataset
   const fonts = [
+    { id: 'syne', name: 'Syne Modern Bold', fontClass: 'font-syne', sample: 'Aa' },
+    { id: 'outfit', name: 'Outfit Executive', fontClass: 'font-outfit', sample: 'Aa' },
+    { id: 'spacegrotesk', name: 'Space Grotesk Tech', fontClass: 'font-space-grotesk', sample: 'Aa' },
+    { id: 'cinzel', name: 'Cinzel Luxury Serif', fontClass: 'font-cinzel', sample: 'Aa' },
+    { id: 'jakarta', name: 'Plus Jakarta Sans', fontClass: 'font-jakarta', sample: 'Aa' },
     { id: 'manrope', name: 'Manrope Sans', fontClass: 'font-manrope', sample: 'Aa' },
     { id: 'playfair', name: 'Luxury Serif', fontClass: 'font-playfair', sample: 'Aa' },
-    { id: 'spacemono', name: 'Tech Mono', fontClass: 'font-spacemono', sample: 'Aa' },
-    { id: 'script', name: 'Signature Script', fontClass: 'font-script', sample: 'Aa' }
+    { id: 'spacemono', name: 'Tech Mono', fontClass: 'font-spacemono', sample: 'Aa' }
   ];
 
   // Laser Inlay Colors
@@ -322,8 +327,8 @@ export const CustomCardDesignerSection = () => {
     setTilt({ x: 0, y: 0 });
   };
 
-  // Add Custom Card to Cart
-  const handleAddToCart = () => {
+  // Add Custom Card to Cart & Sync with Database
+  const handleAddToCart = async () => {
     const customProduct = {
       id: `custom-card-${material}-${Date.now()}`,
       name: `Custom aikulb ${currentMat.name}`,
@@ -344,6 +349,21 @@ export const CustomCardDesignerSection = () => {
         addons: addons.map(id => addonOptions.find(a => a.id === id)?.name)
       }
     };
+
+    try {
+      await api.saveCustomDesign({
+        card_name: customProduct.name,
+        material: currentMat.name,
+        color: currentMat.glowColor,
+        text_line1: name,
+        text_line2: `${title} - ${company}`,
+        logo_url: customLogoUrl || '',
+        qr_position: qrPosition,
+        social_icons: addons
+      });
+    } catch (err) {
+      console.warn('Syncing custom card design (local state active):', err);
+    }
 
     addToCart(customProduct, 1, customProduct.custom_specs);
 
@@ -385,38 +405,51 @@ export const CustomCardDesignerSection = () => {
   };
 
   return (
-    <section id="customizer" className="py-20 bg-[#F8F9FA] text-slate-900 border-t border-slate-200 relative transition-colors duration-300 overflow-hidden">
+    <section id="customizer" className="bg-[#FAFAFA] text-slate-900 relative transition-colors duration-300 overflow-hidden">
       {/* Background Dynamic Ambient Glow reflecting current material */}
       <div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[140px] opacity-15 pointer-events-none transition-all duration-700"
         style={{ background: currentMat.glowColor }}
       ></div>
 
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Studio Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#6C4CFF]/10 border border-[#6C4CFF]/20 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-            <Sparkles className="w-4 h-4 animate-spin-slow" />
+      {/* Full-width Studio Hero Header Banner attached directly to dark Navbar */}
+      <div className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
+        {/* Executive Photographic Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+          style={{ backgroundImage: `url('/assets/store_hero_bg.jpg')` }}
+        />
+
+        {/* Multi-layer Dark Gradient & Vignette Overlay for High Contrast Text */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0D]/95 via-[#0A0A0D]/80 to-[#0A0A0D]/90 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0D]/50 via-transparent to-[#0A0A0D]" />
+
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
+            <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" />
             <span>Interactive Hardware Studio 3.0</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 font-manrope tracking-tight">
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-tight drop-shadow-md">
             Design Your Custom aikulb Smart Card
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
+
+          <p className="text-base sm:text-lg text-slate-300 font-inter font-medium max-w-2xl mx-auto leading-relaxed drop-shadow">
             Live laser engraving engine. Customize materials, fonts, metallic foil inlays, microchips & dynamic QR code.
           </p>
 
-          {/* Quick Presets Bar */}
-          <div className="pt-3 flex flex-wrap justify-center gap-2 text-xs font-manrope font-bold">
-            <span className="text-slate-500 self-center mr-1 text-[11px] uppercase tracking-wider">Quick Presets:</span>
-            <button onClick={() => applyPreset('ceo')} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-300 text-slate-800 hover:bg-[#6C4CFF] hover:text-white shadow-sm transition">Executive CEO</button>
-            <button onClick={() => applyPreset('tech')} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-300 text-slate-800 hover:bg-[#6C4CFF] hover:text-white shadow-sm transition">Tech Founder</button>
-            <button onClick={() => applyPreset('creative')} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-300 text-slate-800 hover:bg-[#6C4CFF] hover:text-white shadow-sm transition">Creative Director</button>
-            <button onClick={() => applyPreset('doctor')} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-300 text-slate-800 hover:bg-[#6C4CFF] hover:text-white shadow-sm transition">Professional</button>
+          {/* Quick Presets Bar with Glassmorphic Buttons */}
+          <div className="pt-4 flex flex-wrap justify-center items-center gap-2.5 text-xs font-manrope font-bold">
+            <span className="text-slate-400 self-center mr-1 text-[11px] font-mono font-bold uppercase tracking-wider">Quick Presets:</span>
+            <button onClick={() => applyPreset('ceo')} className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#6C4CFF] border border-white/20 text-white shadow-md transition cursor-pointer backdrop-blur-md">Executive CEO</button>
+            <button onClick={() => applyPreset('tech')} className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#6C4CFF] border border-white/20 text-white shadow-md transition cursor-pointer backdrop-blur-md">Tech Founder</button>
+            <button onClick={() => applyPreset('creative')} className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#6C4CFF] border border-white/20 text-white shadow-md transition cursor-pointer backdrop-blur-md">Creative Director</button>
+            <button onClick={() => applyPreset('doctor')} className="px-4 py-2 rounded-full bg-white/10 hover:bg-[#6C4CFF] border border-white/20 text-white shadow-md transition cursor-pointer backdrop-blur-md">Professional</button>
           </div>
         </div>
+      </div>
 
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
         {/* Main 2-Column Grid Studio */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 

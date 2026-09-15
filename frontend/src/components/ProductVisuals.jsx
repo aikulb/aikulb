@@ -101,10 +101,10 @@ export const BlackMetalCardVisual = ({ name = "JOHN DOE", title = "FOUNDER & CEO
       <div className="absolute top-0 right-0 w-32 h-32 bg-[#6C4CFF]/15 rounded-full blur-2xl pointer-events-none" />
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <div className="w-7 h-7 rounded bg-gradient-to-br from-[#6C4CFF] to-[#3B82F6] flex items-center justify-center text-xs font-black text-white font-manrope">ak</div>
-          <span className="font-extrabold text-white tracking-tight text-sm font-manrope lowercase">aikulb</span>
+          <div className="w-7 h-7 rounded bg-gradient-to-br from-[#6C4CFF] to-[#3B82F6] flex items-center justify-center text-xs font-black text-white font-syne">ak</div>
+          <span className="font-extrabold text-white tracking-tight text-sm font-syne lowercase">aikulb</span>
         </div>
-        <div className="text-purple-300 font-mono text-[9px] font-bold tracking-widest border border-purple-500/30 px-2 py-0.5 rounded">BLACK METAL</div>
+        <div className="text-purple-300 font-space-grotesk text-[9px] font-bold tracking-widest border border-purple-500/30 px-2 py-0.5 rounded">BLACK METAL</div>
       </div>
       <div className="my-2 flex justify-between items-center">
         <CardChip />
@@ -115,8 +115,8 @@ export const BlackMetalCardVisual = ({ name = "JOHN DOE", title = "FOUNDER & CEO
         </div>
       </div>
       <div className="border-t border-white/10 pt-2">
-        <div className="text-white font-bold text-sm tracking-wider uppercase font-manrope">{name}</div>
-        <div className="text-[11px] text-slate-400 uppercase tracking-widest font-inter">{title}</div>
+        <div className="text-white font-extrabold text-base tracking-wide uppercase font-syne">{name}</div>
+        <div className="text-[11px] text-slate-300 uppercase tracking-widest font-space-grotesk font-semibold">{title}</div>
       </div>
     </div>
   </Card3DTilt>
@@ -128,17 +128,17 @@ export const GoldMetalCardVisual = ({ name = "EXECUTIVE MEMBER" }) => (
       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <div className="w-7 h-7 rounded bg-gradient-to-br from-amber-300 to-yellow-600 flex items-center justify-center text-xs font-black text-black font-manrope">ak</div>
-          <span className="font-extrabold text-amber-200 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+          <div className="w-7 h-7 rounded bg-gradient-to-br from-amber-300 to-yellow-600 flex items-center justify-center text-xs font-black text-black font-syne">ak</div>
+          <span className="font-extrabold text-amber-200 tracking-tight text-sm font-syne lowercase">aikulb</span>
         </div>
-        <div className="text-amber-300 font-mono text-[9px] font-bold tracking-widest border border-amber-500/40 px-2 py-0.5 rounded">24K GOLD</div>
+        <div className="text-amber-300 font-space-grotesk text-[9px] font-bold tracking-widest border border-amber-500/40 px-2 py-0.5 rounded">24K GOLD</div>
       </div>
       <div className="my-2 flex justify-between items-center">
         <CardChip />
       </div>
       <div className="border-t border-amber-500/20 pt-2">
-        <div className="text-amber-100 font-bold text-sm tracking-wider uppercase font-manrope">{name}</div>
-        <div className="text-[11px] text-amber-400/80 uppercase tracking-widest font-inter">24K Mirror Gold Finish</div>
+        <div className="text-amber-100 font-extrabold text-base tracking-wide uppercase font-syne">{name}</div>
+        <div className="text-[11px] text-amber-400/90 uppercase tracking-widest font-space-grotesk font-semibold">24K Mirror Gold Finish</div>
       </div>
     </div>
   </Card3DTilt>
@@ -149,17 +149,17 @@ export const SilverMetalCardVisual = ({ name = "SILVER EDITION" }) => (
     <div className="relative w-full aspect-[1.586] rounded-2xl p-5 bg-gradient-to-br from-[#2D3748] via-[#1A202C] to-[#0D1117] border border-slate-400/50 shadow-2xl flex flex-col justify-between overflow-hidden select-none">
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <div className="w-7 h-7 rounded bg-gradient-to-br from-slate-200 to-slate-400 flex items-center justify-center text-xs font-black text-slate-900 font-manrope">ak</div>
-          <span className="font-extrabold text-slate-100 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+          <div className="w-7 h-7 rounded bg-gradient-to-br from-slate-200 to-slate-400 flex items-center justify-center text-xs font-black text-slate-900 font-syne">ak</div>
+          <span className="font-extrabold text-slate-100 tracking-tight text-sm font-syne lowercase">aikulb</span>
         </div>
-        <div className="text-slate-300 font-mono text-[9px] font-bold tracking-widest border border-slate-400/40 px-2 py-0.5 rounded">BRUSHED STEEL</div>
+        <div className="text-slate-300 font-space-grotesk text-[9px] font-bold tracking-widest border border-slate-400/40 px-2 py-0.5 rounded">BRUSHED STEEL</div>
       </div>
       <div className="my-2 flex justify-between items-center">
         <CardChip />
       </div>
       <div className="border-t border-slate-500/30 pt-2">
-        <div className="text-slate-100 font-bold text-sm tracking-wider uppercase font-manrope">{name}</div>
-        <div className="text-[11px] text-slate-400 uppercase tracking-widest font-inter">Brushed Silver Stainless Steel</div>
+        <div className="text-slate-100 font-extrabold text-base tracking-wide uppercase font-syne">{name}</div>
+        <div className="text-[11px] text-slate-300 uppercase tracking-widest font-space-grotesk font-semibold">Brushed Silver Stainless Steel</div>
       </div>
     </div>
   </Card3DTilt>
@@ -170,10 +170,10 @@ export const WoodCardVisual = ({ name = "NATURAL WALNUT" }) => (
     <div className="relative w-full aspect-[1.586] rounded-2xl p-5 bg-gradient-to-br from-[#3D261A] via-[#24150D] to-[#120A06] border border-amber-800/60 shadow-2xl flex flex-col justify-between overflow-hidden select-none">
       <div className="flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <div className="w-7 h-7 rounded bg-amber-700 flex items-center justify-center text-xs font-black text-amber-100 font-manrope">ak</div>
-          <span className="font-extrabold text-amber-200 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+          <div className="w-7 h-7 rounded bg-amber-700 flex items-center justify-center text-xs font-black text-amber-100 font-syne">ak</div>
+          <span className="font-extrabold text-amber-200 tracking-tight text-sm font-syne lowercase">aikulb</span>
         </div>
-        <div className="text-amber-400 font-mono text-[9px] font-bold tracking-widest border border-amber-700/50 px-2 py-0.5 rounded">ORGANIC WOOD</div>
+        <div className="text-amber-400 font-space-grotesk text-[9px] font-bold tracking-widest border border-amber-700/50 px-2 py-0.5 rounded">ORGANIC WOOD</div>
       </div>
       <div className="my-2 flex justify-between items-center">
         <CardChip />
@@ -274,12 +274,12 @@ export const HandTappingCardPhoneVisual = () => (
       </div>
     </div>
 
-    {/* Hand Holding Card Floating over Tapping Area */}
-    <div className="absolute -top-10 -right-4 sm:right-2 z-40 transform rotate-[-10deg]">
+    {/* Natural & Professional Floating Smart NFC Metal Card */}
+    <div className="absolute -top-12 -right-6 sm:-right-4 z-40 transform rotate-[-8deg]">
       <motion.div
         animate={{
-          y: [0, -12, 0],
-          rotate: [-10, -8, -10],
+          y: [0, -10, 0],
+          rotate: [-8, -6, -8],
         }}
         transition={{
           duration: 5,
@@ -288,28 +288,51 @@ export const HandTappingCardPhoneVisual = () => (
         }}
         className="relative"
       >
-        {/* Hand Illustration Overlay */}
-        <svg className="w-36 sm:w-44 h-auto text-[#E5C3A6] drop-shadow-2xl absolute -top-8 -right-6 z-10 pointer-events-none" viewBox="0 0 160 160" fill="none">
-          <path d="M120 160 C120 120 130 90 110 70 C100 60 85 65 75 75 C70 80 65 90 60 100 C50 120 40 140 30 160 Z" fill="#D8B48F" opacity="0.9" />
-          <path d="M105 72 C115 55 105 40 90 35 C75 30 65 42 60 52 C55 62 50 75 45 90 Z" fill="#C9A078" />
-        </svg>
+        {/* Photorealistic Matte Black Metal Smart Card */}
+        <Card3DTilt maxRotateX={5} maxRotateY={7}>
+          <div className="relative w-56 sm:w-64 h-36 rounded-2xl bg-gradient-to-br from-[#28282C] via-[#161618] to-[#0B0B0D] border border-neutral-700/80 shadow-[0_25px_60px_rgba(0,0,0,0.85)] p-4 flex flex-col justify-between z-20 overflow-hidden group select-none">
+            {/* Shimmer Light Reflection Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-card-shimmer pointer-events-none" />
 
-        {/* Custom Matte Black Floating Card */}
-        <Card3DTilt maxRotateX={4} maxRotateY={6}>
-          <div className="relative w-52 sm:w-60 h-32 rounded-2xl bg-gradient-to-br from-[#1F1F1F] via-[#111111] to-[#050505] border border-[#6C4CFF]/50 p-4 shadow-[0_20px_50px_rgba(108,76,255,0.3)] flex flex-col justify-between z-20">
-            {/* Card Top Row */}
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-1.5">
-                <div className="w-6 h-6 rounded aikulb-gradient-bg flex items-center justify-center text-[10px] font-black text-white font-manrope">ak</div>
-                <span className="font-black text-white text-xs font-manrope lowercase tracking-tight">aikulb</span>
+            {/* Subtle Metallic Grain & Glow */}
+            <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#6C4CFF]/20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-12 -right-12 w-28 h-28 bg-[#3B82F6]/15 rounded-full blur-2xl pointer-events-none" />
+
+            {/* Card Header Row */}
+            <div className="flex justify-between items-center z-10">
+              <div className="flex items-center space-x-2">
+                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-[#6C4CFF] to-[#3B82F6] flex items-center justify-center text-[10px] font-black text-white font-manrope shadow-xs">
+                  ak
+                </div>
+                <span className="font-extrabold text-white text-xs font-manrope lowercase tracking-tight">aikulb</span>
               </div>
-              <NfcIcon className="w-4 h-4 text-[#22D3EE] animate-pulse" />
+              <div className="flex items-center space-x-1.5 text-cyan-400">
+                <span className="text-[8px] font-mono font-bold tracking-widest text-cyan-300/80 uppercase">NFC ACTIVE</span>
+                <NfcIcon className="w-3.5 h-3.5 animate-pulse" />
+              </div>
             </div>
 
-            {/* Card Name */}
-            <div className="border-t border-neutral-800 pt-2">
-              <p className="font-extrabold text-white text-xs font-manrope uppercase tracking-wider">Nicholas Perry</p>
-              <p className="text-[9px] text-[#8B5CF6] font-mono tracking-widest uppercase font-bold">SMART NFC PASS</p>
+            {/* Middle Row: Gold NFC Microchip */}
+            <div className="my-1 flex items-center justify-between z-10">
+              <CardChip className="w-9 h-7 shadow-xs" />
+              <div className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[8px] font-mono text-slate-300 font-bold tracking-widest">
+                VERIFIED PASS
+              </div>
+            </div>
+
+            {/* Card Engraved Footer Details */}
+            <div className="border-t border-white/10 pt-2 z-10 flex justify-between items-end">
+              <div>
+                <p className="font-extrabold text-white text-xs font-manrope uppercase tracking-wider text-inlay-white">
+                  Nicholas Perry
+                </p>
+                <p className="text-[9px] text-purple-300/90 font-medium font-inter tracking-tight">
+                  Designer @ aikulb
+                </p>
+              </div>
+              <span className="text-[8px] text-purple-400 font-mono font-bold tracking-widest uppercase">
+                SMART NFC PASS
+              </span>
             </div>
           </div>
         </Card3DTilt>

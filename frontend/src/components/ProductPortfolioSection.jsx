@@ -445,14 +445,22 @@ export const ProductPortfolioSection = () => {
                   <div className={`lg:col-span-5 flex justify-center items-center ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div className="w-full max-w-md">
                       <Card3DTilt maxRotateX={4} maxRotateY={6}>
-                        <div className="p-4 rounded-3xl bg-slate-50 border border-slate-200 backdrop-blur-md shadow-xl relative">
+                        <div className="p-4 rounded-3xl bg-slate-50 border border-slate-200 backdrop-blur-md shadow-xl relative flex flex-col justify-between">
                           {renderVisual(item)}
 
-                          {/* Floating Price Tag */}
-                          <div className="absolute top-6 left-6 bg-slate-900/90 backdrop-blur-md border border-slate-700 text-white px-3.5 py-1.5 rounded-full font-manrope font-bold text-xs shadow-lg flex items-center space-x-1.5">
-                            <span className="text-[#8B5CF6]">₹{item.price}</span>
+                          {/* Clean Non-Overlapping Price & Savings Bar below the Card Visual */}
+                          <div className="mt-3.5 px-4 py-2.5 rounded-2xl bg-[#0F0F12] border border-neutral-800 backdrop-blur-md text-white flex items-center justify-between shadow-md select-none">
+                            <div className="flex items-center space-x-2">
+                              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">PRICE:</span>
+                              <span className="text-sm font-black font-manrope text-[#8B5CF6]">₹{item.price}</span>
+                              {item.originalPrice && (
+                                <span className="text-xs text-slate-400 line-through font-mono">₹{item.originalPrice}</span>
+                              )}
+                            </div>
                             {item.originalPrice && (
-                              <span className="text-[10px] text-slate-400 line-through font-mono">₹{item.originalPrice}</span>
+                              <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wide">
+                                {Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100)}% OFF
+                              </span>
                             )}
                           </div>
                         </div>

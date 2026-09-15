@@ -25,6 +25,7 @@ const qrCtrl = new QrController();
 // Auth Routes
 router.post('/auth/register', (req, res) => authCtrl.register(req, res));
 router.post('/auth/login', (req, res) => authCtrl.login(req, res));
+router.post('/auth/forgot-password', (req, res) => authCtrl.forgotPassword(req, res));
 router.get('/auth/me', authenticateToken, (req, res) => authCtrl.me(req, res));
 
 // Products & Store Routes

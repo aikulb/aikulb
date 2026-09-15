@@ -10,17 +10,18 @@ import { AuthPages } from './pages/AuthPages';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ChooseDashboardPage } from './pages/ChooseDashboardPage';
 import { ContactPage } from './pages/ContactPage';
+import { MetalCardPage } from './pages/MetalCardPage';
 import { CustomCardDesignerSection } from './components/CustomCardDesignerSection';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 
 function CustomizerStandalone() {
   return (
-    <div className="min-h-screen bg-[#F8F9FA] text-slate-900 flex flex-col font-sans relative">
+    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 flex flex-col font-sans relative">
       <Navbar />
-      <div className="pt-28 sm:pt-32 flex-grow">
+      <main className="pt-0 flex-grow w-full">
         <CustomCardDesignerSection />
-      </div>
+      </main>
       <Footer />
     </div>
   );
@@ -31,6 +32,8 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/store" element={<StorePage />} />
+      <Route path="/metal-card" element={<MetalCardPage />} />
+      <Route path="/metal-business-card" element={<MetalCardPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/product/:id" element={<ProductDetailPage />} />
       <Route path="/customize" element={<CustomizerStandalone />} />
