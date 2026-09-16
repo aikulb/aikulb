@@ -129,7 +129,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Floating WhatsApp Help Widget */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center space-x-2.5">
+      <div className="fixed bottom-6 right-6 z-40 flex items-center space-x-2.5">
         <div className="hidden sm:block bg-slate-900 text-white font-semibold text-xs py-2 px-3.5 rounded-lg shadow-2xl border border-slate-700 font-manrope">
           Need any Help? Chat with us
         </div>

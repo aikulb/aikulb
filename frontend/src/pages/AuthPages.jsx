@@ -12,8 +12,8 @@ export const AuthPages = () => {
   const [isRegister, setIsRegister] = useState(initialMode === 'register');
 
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('john@aikulb.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [infoMsg, setInfoMsg] = useState('');
@@ -209,12 +209,18 @@ export const AuthPages = () => {
           </form>
 
           {/* Switch Auth Mode */}
-          <div className="text-center text-xs text-neutral-600 font-inter pt-2">
+          <div className="text-center text-xs text-neutral-600 font-inter pt-2 space-y-2">
             {isRegister ? (
-              <span>Already have an account? <button onClick={() => setIsRegister(false)} className="text-[#FF3838] font-bold hover:underline cursor-pointer">Login</button></span>
+              <div>Already have an account? <button type="button" onClick={() => setIsRegister(false)} className="text-[#FF3838] font-bold hover:underline cursor-pointer">Login</button></div>
             ) : (
-              <span>New to aikulb? <button onClick={() => navigate('/create-profile')} className="text-[#FF3838] font-bold hover:underline cursor-pointer">Create Profile</button></span>
+              <div>New to aikulb? <button type="button" onClick={() => navigate('/create-profile')} className="text-[#FF3838] font-bold hover:underline cursor-pointer">Create Profile</button></div>
             )}
+            <div className="pt-2 border-t border-neutral-200">
+              <Link to="/create-profile" className="inline-flex items-center space-x-1.5 text-xs text-[#FF3838] font-extrabold hover:underline font-manrope">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Or use Full Interactive Profile Builder →</span>
+              </Link>
+            </div>
           </div>
         </div>
       </main>

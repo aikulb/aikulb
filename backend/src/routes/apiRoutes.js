@@ -8,6 +8,7 @@ import { TeamController } from '../controllers/teamController.js';
 import { AdminController } from '../controllers/adminController.js';
 import { AiController } from '../controllers/aiController.js';
 import { QrController } from '../controllers/qrController.js';
+import { CartController } from '../controllers/cartController.js';
 import { authenticateToken, optionalAuth, requireRole } from '../middleware/authMiddleware.js';
 
 const router = Router();
@@ -21,6 +22,12 @@ const teamCtrl = new TeamController();
 const adminCtrl = new AdminController();
 const aiCtrl = new AiController();
 const qrCtrl = new QrController();
+const cartCtrl = new CartController();
+
+// Cart Database Sync Routes
+router.get('/cart', optionalAuth, (req, res) => cartCtrl.getCart(req, res));
+router.post('/cart/sync', authenticateToken, (req, res) => cartCtrl.syncCart(req, res));
+router.delete('/cart', authenticateToken, (req, res) => cartCtrl.clearCart(req, res));
 
 // Auth Routes
 router.post('/auth/register', (req, res) => authCtrl.register(req, res));
@@ -35,6 +42,8 @@ router.get('/categories', (req, res) => prodCtrl.getCategories(req, res));
 router.post('/products/custom-design', optionalAuth, (req, res) => prodCtrl.saveCustomDesign(req, res));
 
 // Digital Profile Routes
+router.post('/profile/create', (req, res) => profCtrl.createFullProfile(req, res));
+router.get('/profile/check-username/:username', (req, res) => profCtrl.checkUsername(req, res));
 router.get('/profile/my', authenticateToken, (req, res) => profCtrl.getMyProfile(req, res));
 router.get('/profile/:username', (req, res) => profCtrl.getPublicProfile(req, res));
 router.put('/profile/update', authenticateToken, (req, res) => profCtrl.updateProfile(req, res));

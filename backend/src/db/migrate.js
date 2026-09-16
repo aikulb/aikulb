@@ -201,6 +201,15 @@ async function migrate() {
     );
   `);
 
+  // 12. User Carts Table for Database Synchronization
+  await db.execute(`
+    CREATE TABLE IF NOT EXISTS user_carts (
+      user_id TEXT PRIMARY KEY,
+      items_json TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
   console.log('✅ Tables created successfully!');
 
   // Seed Categories

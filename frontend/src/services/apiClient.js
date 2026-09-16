@@ -29,6 +29,8 @@ export const api = {
   saveCustomDesign: (designData) => fetchJson('/products/custom-design', { method: 'POST', body: JSON.stringify(designData) }),
 
   // Profiles
+  createProfile: (data) => fetchJson('/profile/create', { method: 'POST', body: JSON.stringify(data) }),
+  checkUsername: (username) => fetchJson(`/profile/check-username/${username}`),
   getPublicProfile: (username) => fetchJson(`/profile/${username}`),
   getMyProfile: () => fetchJson('/profile/my'),
   updateProfile: (data) => fetchJson('/profile/update', { method: 'PUT', body: JSON.stringify(data) }),
@@ -38,6 +40,11 @@ export const api = {
   captureLead: (leadData) => fetchJson('/leads', { method: 'POST', body: JSON.stringify(leadData) }),
   getMyLeads: () => fetchJson('/leads/my'),
   updateLeadStatus: (id, status) => fetchJson(`/leads/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }),
+
+  // Cart Database Sync
+  getCart: () => fetchJson('/cart'),
+  syncCart: (items) => fetchJson('/cart/sync', { method: 'POST', body: JSON.stringify({ items }) }),
+  clearCartDb: () => fetchJson('/cart', { method: 'DELETE' }),
 
   // Orders & Coupons
   createOrder: (orderData) => fetchJson('/orders', { method: 'POST', body: JSON.stringify(orderData) }),

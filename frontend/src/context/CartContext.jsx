@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import { api } from '../services/apiClient';
 
 const CartContext = createContext();
 
@@ -13,10 +14,68 @@ export const CartProvider = ({ children }) => {
   });
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const isInitialSyncDone = useRef(false);
 
+  // Sync state to LocalStorage & Database
   useEffect(() => {
-    localStorage.setItem('aikulb_cart', JSON.stringify(cartItems));
+    try {
+      localStorage.setItem('aikulb_cart', JSON.stringify(cartItems));
+    } catch (e) {
+      console.error('LocalStorage write error:', e);
+    }
+
+    const token = localStorage.getItem('aikulb_token');
+    if (token) {
+      // Async sync with database
+      api.syncCart(cartItems).catch(err => {
+        console.error('Failed to sync cart with database:', err);
+      });
+    }
   }, [cartItems]);
+
+  // Load / Merge cart from Database when user logs in or page reloads with token
+  useEffect(() => {
+    const fetchDbCart = async () => {
+      const token = localStorage.getItem('aikulb_token');
+      if (!token || isInitialSyncDone.current) return;
+
+      isInitialSyncDone.current = true;
+      const res = await api.getCart();
+      if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+        setCartItems(prevLocal => {
+          const mergedMap = new Map();
+
+          // Add DB items first
+          res.data.forEach(item => {
+            if (item && item.itemKey) {
+              mergedMap.set(item.itemKey, item);
+            }
+          });
+
+          // Merge local items if they exist
+          prevLocal.forEach(localItem => {
+            if (localItem && localItem.itemKey) {
+              if (mergedMap.has(localItem.itemKey)) {
+                const dbItem = mergedMap.get(localItem.itemKey);
+                mergedMap.set(localItem.itemKey, {
+                  ...dbItem,
+                  quantity: Math.max(dbItem.quantity, localItem.quantity)
+                });
+              } else {
+                mergedMap.set(localItem.itemKey, localItem);
+              }
+            }
+          });
+
+          const mergedArray = Array.from(mergedMap.values());
+          api.syncCart(mergedArray);
+          return mergedArray;
+        });
+      }
+    };
+
+    fetchDbCart();
+  }, []);
 
   const addToCart = (product, quantity = 1, customConfig = null) => {
     setCartItems(prev => {
@@ -65,6 +124,10 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
+    const token = localStorage.getItem('aikulb_token');
+    if (token) {
+      api.clearCartDb().catch(err => console.error('Failed to clear cart in DB:', err));
+    }
   };
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);

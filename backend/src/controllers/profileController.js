@@ -1,7 +1,111 @@
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import { executeQuery } from '../db/connection.js';
+import { config } from '../config/unifiedConfig.js';
 import { BaseController } from './baseController.js';
 
 export class ProfileController extends BaseController {
+  async checkUsername(req, res) {
+    try {
+      const { username } = req.params;
+      if (!username) {
+        return res.status(400).json({ success: false, message: 'Username parameter required' });
+      }
+      const cleanUser = username.toLowerCase().trim().replace(/[^a-z0-9_-]/g, '');
+      const result = await executeQuery('SELECT id FROM profiles WHERE username = ?', [cleanUser]);
+      const isAvailable = result.rows.length === 0;
+
+      return this.handleSuccess(res, { username: cleanUser, available: isAvailable }, isAvailable ? 'Username available' : 'Username taken');
+    } catch (error) {
+      return this.handleError(res, error, 'CheckUsername');
+    }
+  }
+
+  async createFullProfile(req, res) {
+    try {
+      const {
+        full_name, email, password, username, title, company, bio,
+        avatar_url, banner_url, theme = 'dark-electric',
+        phone, whatsapp, website, address,
+        linkedin, instagram, youtube, github,
+        custom_links, services, portfolio
+      } = req.body;
+
+      if (!full_name || !email || !password) {
+        return res.status(400).json({ success: false, message: 'Full name, email, and password are required' });
+      }
+
+      const cleanEmail = email.toLowerCase().trim();
+      let cleanUsername = username ? username.toLowerCase().trim().replace(/[^a-z0-9_-]/g, '') : '';
+      if (!cleanUsername) {
+        cleanUsername = full_name.toLowerCase().replace(/[^a-z0-9]/g, '') || cleanEmail.split('@')[0].replace(/[^a-z0-9]/g, '');
+      }
+
+      // 1. Check user email
+      const userCheck = await executeQuery('SELECT id FROM users WHERE email = ?', [cleanEmail]);
+      if (userCheck.rows.length > 0) {
+        return res.status(400).json({ success: false, message: 'Email address is already registered. Please login instead.' });
+      }
+
+      // 2. Check username handle and auto-suffix if taken
+      const usernameCheck = await executeQuery('SELECT id FROM profiles WHERE username = ?', [cleanUsername]);
+      if (usernameCheck.rows.length > 0) {
+        cleanUsername = `${cleanUsername}${Math.floor(10 + Math.random() * 90)}`;
+      }
+
+      // 3. Create User in users table
+      const salt = await bcrypt.genSalt(10);
+      const passwordHash = await bcrypt.hash(password, salt);
+      const userId = 'usr-' + Date.now() + '-' + Math.random().toString(36).substring(2, 7);
+
+      await executeQuery(
+        'INSERT INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)',
+        [userId, full_name, cleanEmail, passwordHash, 'customer']
+      );
+
+      // 4. Generate VCF data
+      const vcfData = `BEGIN:VCARD\nVERSION:3.0\nN:;${full_name};;;\nFN:${full_name}\nORG:${company || ''}\nTITLE:${title || ''}\nTEL;TYPE=CELL:${phone || ''}\nEMAIL:${cleanEmail}\nURL:${website || ''}\nADR:;;${address || ''};;;;\nEND:VCARD`;
+
+      // 5. Create Profile in profiles table
+      const profileId = 'prof-' + userId;
+      const defaultAvatar = avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400';
+      const defaultBanner = banner_url || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200';
+
+      await executeQuery(
+        `INSERT INTO profiles (
+          id, user_id, username, full_name, title, company, bio,
+          avatar_url, banner_url, theme, phone, email, whatsapp, website, address,
+          linkedin, instagram, youtube, github, vcf_data,
+          custom_links_json, services_json, portfolio_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          profileId, userId, cleanUsername, full_name, title || 'Digital Identity', company || '', bio || '',
+          defaultAvatar, defaultBanner, theme, phone || '', cleanEmail, whatsapp || '', website || '', address || '',
+          linkedin || '', instagram || '', youtube || '', github || '', vcfData,
+          custom_links ? JSON.stringify(custom_links) : '[]',
+          services ? JSON.stringify(services) : '[]',
+          portfolio ? JSON.stringify(portfolio) : '[]'
+        ]
+      );
+
+      // 6. Generate JWT Token
+      const token = jwt.sign(
+        { id: userId, name: full_name, email: cleanEmail, role: 'customer', username: cleanUsername },
+        config.jwt.secret,
+        { expiresIn: config.jwt.expiresIn }
+      );
+
+      return this.handleSuccess(res, {
+        user: { id: userId, name: full_name, email: cleanEmail, role: 'customer', username: cleanUsername, avatar_url: defaultAvatar },
+        profile: { id: profileId, username: cleanUsername, full_name, title, company, theme },
+        token
+      }, 'Digital Profile created successfully!', 201);
+
+    } catch (error) {
+      return this.handleError(res, error, 'CreateFullProfile');
+    }
+  }
+
   async getPublicProfile(req, res) {
     try {
       const { username } = req.params;
