@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = (import.meta.env?.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 
 async function fetchJson(endpoint, options = {}) {
   const token = localStorage.getItem('aikulb_token');
@@ -8,8 +8,10 @@ async function fetchJson(endpoint, options = {}) {
     ...options.headers,
   };
 
+  const targetUrl = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
+
   try {
-    const res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
+    const res = await fetch(targetUrl, { ...options, headers });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -17,6 +19,7 @@ async function fetchJson(endpoint, options = {}) {
     return { success: false, message: error.message };
   }
 }
+
 
 export const api = {
   // Auth

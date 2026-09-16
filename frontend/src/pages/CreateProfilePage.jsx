@@ -208,13 +208,13 @@ export const CreateProfilePage = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6 text-xs font-inter">
+            <form onSubmit={handleSubmit} autoComplete="off" className="space-y-6 text-xs font-inter">
 
               {/* STEP 1: Account Credentials & Handle */}
               {step === 1 && (
                 <div className="space-y-5 animate-in fade-in duration-200">
                   <h3 className="text-lg font-extrabold text-neutral-900 font-manrope border-b border-neutral-200 pb-3">
-                    Step 1: Account & Profile URL
+                    Step 1: Account Setup
                   </h3>
 
                   <div>
@@ -223,6 +223,8 @@ export const CreateProfilePage = () => {
                       <User className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                       <input
                         type="text"
+                        name="create_profile_name"
+                        autoComplete="off"
                         required
                         placeholder="E.g. Alexander Vance"
                         value={formData.full_name}
@@ -239,6 +241,8 @@ export const CreateProfilePage = () => {
                         <Mail className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                         <input
                           type="email"
+                          name="create_profile_email"
+                          autoComplete="off"
                           required
                           placeholder="alex@company.com"
                           value={formData.email}
@@ -253,6 +257,8 @@ export const CreateProfilePage = () => {
                         <Lock className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
                         <input
                           type={showPassword ? 'text' : 'password'}
+                          name="create_profile_password"
+                          autoComplete="new-password"
                           required
                           placeholder="••••••••"
                           value={formData.password}
