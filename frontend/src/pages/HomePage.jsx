@@ -21,15 +21,15 @@ import { CartDrawer } from '../components/CartDrawer';
 
 export const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans">
       {/* Fixed Top Header Container with AnnouncementBar & Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#070A0F]">
         <AnnouncementBar />
         <Navbar />
       </header>
 
-      {/* Main Homepage Content Assembly with Proper Top Padding (pt-28 sm:pt-32 to prevent header clipping) */}
-      <main className="flex-grow pt-28 sm:pt-32">
+      {/* Main Homepage Content Assembly */}
+      <main className="flex-grow pt-24 sm:pt-28">
         <HeroSection />
         <TrustMarquee />
         <ValueProp />

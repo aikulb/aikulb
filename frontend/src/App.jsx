@@ -19,7 +19,7 @@ import { CartDrawer } from './components/CartDrawer';
 
 function CustomizerStandalone() {
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 flex flex-col font-sans relative">
+    <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans relative">
       <Navbar />
       <main className="pt-0 flex-grow w-full">
         <CustomCardDesignerSection />

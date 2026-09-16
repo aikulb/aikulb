@@ -87,7 +87,7 @@ export const StorePage = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white border border-[#6C4CFF]/50 px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center space-x-2.5 font-manrope text-sm font-bold"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white border border-[#10B981]/50 px-5 py-3 rounded-2xl shadow-2xl backdrop-blur-xl flex items-center space-x-2.5 font-manrope text-sm font-bold"
           >
             <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs">
               <Check className="w-3.5 h-3.5" />
@@ -197,7 +197,7 @@ export const StorePage = () => {
                     placeholder="Search products by name, material, SKU..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#6C4CFF] shadow-sm font-inter"
+                    className="w-full pl-12 pr-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-[#10B981] shadow-sm font-inter"
                   />
                 </div>
 
@@ -205,7 +205,7 @@ export const StorePage = () => {
                 <select
                   value={selectedMaterial}
                   onChange={(e) => setSelectedMaterial(e.target.value)}
-                  className="px-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 text-sm font-medium focus:outline-none focus:border-[#6C4CFF] shadow-sm font-inter"
+                  className="px-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 text-sm font-medium focus:outline-none focus:border-[#10B981] shadow-sm font-inter"
                 >
                   <option value="">All Materials</option>
                   <option value="Steel">Stainless Steel</option>
@@ -219,7 +219,7 @@ export const StorePage = () => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 text-sm font-medium focus:outline-none focus:border-[#6C4CFF] shadow-sm font-inter"
+                  className="px-4 py-3 rounded-2xl bg-[#F8F9FA] border border-slate-200 text-slate-900 text-sm font-medium focus:outline-none focus:border-[#10B981] shadow-sm font-inter"
                 >
                   <option value="featured">Featured First</option>
                   <option value="price_asc">Price: Low to High</option>
@@ -233,7 +233,7 @@ export const StorePage = () => {
                 <button
                   onClick={() => setSearchParams({})}
                   className={`px-4 py-2 rounded-full text-xs font-bold font-manrope transition ${
-                    !currentCat ? 'bg-[#6C4CFF] text-white shadow-md' : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'
+                    !currentCat ? 'bg-[#10B981] text-white shadow-md' : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'
                   }`}
                 >
                   All Categories
@@ -243,7 +243,7 @@ export const StorePage = () => {
                     key={cat.id}
                     onClick={() => setSearchParams({ cat: cat.slug })}
                     className={`px-4 py-2 rounded-full text-xs font-bold font-manrope transition ${
-                      currentCat === cat.slug ? 'bg-[#6C4CFF] text-white shadow-md' : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'
+                      currentCat === cat.slug ? 'bg-[#10B981] text-white shadow-md' : 'bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200'
                     }`}
                   >
                     {cat.name}
@@ -270,7 +270,7 @@ export const StorePage = () => {
                     setSelectedMaterial('');
                     setSearchParams({});
                   }}
-                  className="px-6 py-2.5 rounded-full bg-[#6C4CFF] text-white text-sm font-bold font-manrope hover:bg-[#5b3ee0] transition"
+                  className="px-6 py-2.5 rounded-full bg-[#10B981] text-white text-sm font-bold font-manrope hover:bg-[#5b3ee0] transition"
                 >
                   Reset Filters
                 </button>
@@ -281,7 +281,7 @@ export const StorePage = () => {
                   const inWish = isInWishlist(p.id);
                   return (
                     <StaggerItem key={p.id}>
-                      <div className="group rounded-3xl bg-white border border-slate-200 hover:border-[#6C4CFF] p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl flex flex-col justify-between h-full">
+                      <div className="group rounded-3xl bg-white border border-slate-200 hover:border-[#10B981] p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl flex flex-col justify-between h-full">
                         <div>
                           {/* Visual Render Header */}
                           <div className="relative mb-6 rounded-2xl overflow-hidden p-2 bg-[#F8F9FA] border border-slate-200 transition-transform duration-300 group-hover:scale-[1.02]">
@@ -305,7 +305,7 @@ export const StorePage = () => {
 
                           {/* Details */}
                           <div className="flex justify-between items-start mb-2">
-                            <Link to={`/product/${p.slug}`} className="font-extrabold text-lg text-slate-900 font-manrope hover:text-[#6C4CFF] transition line-clamp-1">
+                            <Link to={`/product/${p.slug}`} className="font-extrabold text-lg text-slate-900 font-manrope hover:text-[#10B981] transition line-clamp-1">
                               {p.name}
                             </Link>
                             <div className="flex items-center space-x-1 text-amber-500 text-xs font-bold font-mono">
@@ -343,10 +343,10 @@ export const StorePage = () => {
                               whileHover={{ y: -2, scale: 1.02 }}
                               whileTap={{ scale: 0.95 }}
                               onClick={() => handleAddToCartWithToast(p)}
-                              className="px-5 py-2.5 rounded-full btn-pill-coral text-white font-bold text-xs font-manrope flex items-center space-x-1.5 shadow-md transition cursor-pointer"
+                              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-extrabold text-xs font-manrope flex items-center space-x-1.5 shadow-md shadow-[#10B981]/25 transition cursor-pointer"
                             >
-                              <ShoppingBag className="w-4 h-4" />
-                              <span>Add</span>
+                              <ShoppingBag className="w-4 h-4 text-black" />
+                              <span>ADD</span>
                             </motion.button>
                           </div>
                         </div>

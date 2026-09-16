@@ -392,14 +392,21 @@ export const CustomCardDesignerSection = () => {
     if (logoType === 'custom' && customLogoUrl) {
       return <img src={customLogoUrl} alt="Custom Logo" className="w-7 h-7 object-contain rounded" />;
     }
+    if (logoType === 'ak') {
+      return (
+        <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
+          <img src="/assets/logo.png" alt="Official Aikulb Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+        </div>
+      );
+    }
     const iconObj = presetIcons.find(i => i.id === logoType);
     if (iconObj && iconObj.icon) {
       const IconComponent = iconObj.icon;
       return <IconComponent className="w-6 h-6 text-current" />;
     }
     return (
-      <div className="w-7 h-7 rounded-lg aikulb-gradient-bg flex items-center justify-center font-black text-white text-xs font-manrope shadow">
-        ak
+      <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
+        <img src="/assets/logo.png" alt="Official Aikulb Logo" className="w-full h-full object-contain" />
       </div>
     );
   };
@@ -474,7 +481,7 @@ export const CustomCardDesignerSection = () => {
               onMouseLeave={handleMouseLeave}
             >
               <div 
-                className="w-full h-full relative transform-style-3d transition-transform duration-700 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.5)] border border-white/20 overflow-hidden"
+                className="w-full h-full relative transform-style-3d transition-transform duration-700 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
                 style={{
                   transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y + (isFlipped ? 180 : 0)}deg)`
                 }}
@@ -486,7 +493,7 @@ export const CustomCardDesignerSection = () => {
                 </div>
 
                 {/* FRONT SIDE VIEW */}
-                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rounded-3xl border ${currentMat.textureBorder}`}>
+                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden`}>
                   
                   {/* Top Header Row: Logo & Material Label */}
                   <div className="flex justify-between items-center z-10">
@@ -521,37 +528,50 @@ export const CustomCardDesignerSection = () => {
                     </svg>
 
                     <div className="flex items-center space-x-1.5 text-white/90 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-                      <Zap className="w-3.5 h-3.5 text-[#22D3EE] animate-pulse" />
-                      <span className="text-[9px] font-mono font-bold tracking-widest text-cyan-300">NTAG216 NFC</span>
+                      <Zap className="w-3.5 h-3.5 text-[#00DC82] animate-pulse" />
+                      <span className="text-[9px] font-mono font-bold tracking-widest text-emerald-300">NTAG216 NFC</span>
                     </div>
                   </div>
 
                   {/* Bottom Laser Engraving Area */}
                   <div className="border-t border-white/20 pt-3 z-10 space-y-0.5">
-                    <h3 className={`font-extrabold text-lg sm:text-xl tracking-wider uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300`}>
+                    <h3 className={`font-black text-base sm:text-lg tracking-tight uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300 leading-snug`}>
                       {name || 'YOUR NAME HERE'}
                     </h3>
-                    <p className={`text-xs font-medium tracking-wide uppercase text-white/90 font-inter`}>
+                    <p className="text-xs font-medium tracking-normal uppercase text-white/90 font-inter">
                       {title || 'TITLE'} • {company || 'COMPANY'}
                     </p>
                   </div>
                 </div>
 
                 {/* BACK SIDE VIEW (Flipped 180deg) */}
-                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rotate-y-180 rounded-3xl border ${currentMat.textureBorder}`}>
+                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rotate-y-180 rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden`}>
                   
-                  {/* Top Bar */}
-                  <div className="flex justify-between items-center text-[10px] font-mono text-white/80 uppercase tracking-widest font-bold">
-                    <span>aikulb DYNAMIC PASS</span>
-                    <span className="text-cyan-300">SCAN / TAP PHONE</span>
+                  {/* Top Bar: Official Logo & NFC Pass Label */}
+                  <div className="flex justify-between items-center text-[10px] font-mono text-white/90 uppercase tracking-widest font-bold z-10">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 rounded-md bg-[#070A0F] border border-[#10B981]/50 p-0.5 flex items-center justify-center">
+                        <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                      </div>
+                      <span className="font-extrabold text-white text-xs font-manrope lowercase">aikulb</span>
+                    </div>
+                    <span className="text-emerald-400 bg-black/40 px-2 py-0.5 rounded border border-emerald-900/40 font-mono text-[9px]">TAP / SCAN PHONE</span>
                   </div>
 
-                  {/* Center QR Code Container */}
-                  <div className={`w-full flex-1 flex ${qrPosition === 'center' ? 'items-center justify-center' : qrPosition === 'top-right' ? 'items-start justify-end' : qrPosition === 'bottom-center' ? 'items-end justify-center' : 'items-end justify-end'} my-2`}>
-                    <div className="p-3 bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center">
+                  {/* Dynamic QR Code Container */}
+                  <div className={`w-full flex-1 flex ${
+                    qrPosition === 'full-center' || qrPosition === 'center'
+                      ? 'items-center justify-center'
+                      : qrPosition === 'top-right'
+                      ? 'items-start justify-end'
+                      : qrPosition === 'bottom-center'
+                      ? 'items-end justify-center'
+                      : 'items-end justify-end'
+                  } my-2 z-10`}>
+                    <div className="p-2.5 bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center group/qr relative">
                       <QRCodeSVG 
-                        value={`https://aikulb.com/p/${qrHandle.toLowerCase().replace(/\s+/g, '-')}`}
-                        size={88}
+                        value="https://aikulb.com"
+                        size={84}
                         level="H"
                         includeMargin={false}
                       />
@@ -559,8 +579,8 @@ export const CustomCardDesignerSection = () => {
                   </div>
 
                   {/* Tagline Footer */}
-                  <div className="text-center text-[10px] font-mono text-white/90 uppercase tracking-wider font-bold border-t border-white/15 pt-2">
-                    {tagline}
+                  <div className="text-center text-[10px] font-mono text-white/90 uppercase tracking-wider font-bold border-t border-white/15 pt-2 z-10">
+                    {tagline || 'TAP OR SCAN TO CONNECT'}
                   </div>
                 </div>
 
@@ -861,25 +881,7 @@ export const CustomCardDesignerSection = () => {
             {/* TAB 3: Back & QR Customization */}
             {activeTab === 'backside' && (
               <div className="space-y-5 animate-in fade-in duration-200">
-                <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
-                    Dynamic Digital Profile Handle / URL
-                  </label>
-                  <div className="flex items-center">
-                    <span className="px-3 py-3 rounded-l-2xl bg-neutral-800 text-slate-300 text-xs font-mono border border-r-0 border-neutral-700">
-                      aikulb.com/p/
-                    </span>
-                    <input
-                      type="text"
-                      value={qrHandle}
-                      onChange={(e) => setQrHandle(e.target.value.toLowerCase().replace(/\s+/g, '-'))}
-                      className="w-full px-4 py-3 rounded-r-2xl bg-[#14141A] border border-neutral-700 text-white font-mono text-xs focus:outline-none focus:border-[#6C4CFF] focus:ring-1 focus:ring-[#6C4CFF]"
-                    />
-                  </div>
-                  <p className="text-[11px] text-slate-400 mt-1.5 font-inter">
-                    Tapping the NFC chip or scanning the QR code redirects straight to this profile.
-                  </p>
-                </div>
+
 
                 <div>
                   <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">

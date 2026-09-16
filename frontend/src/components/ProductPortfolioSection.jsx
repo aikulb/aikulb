@@ -449,16 +449,16 @@ export const ProductPortfolioSection = () => {
                           {renderVisual(item)}
 
                           {/* Clean Non-Overlapping Price & Savings Bar below the Card Visual */}
-                          <div className="mt-3.5 px-4 py-2.5 rounded-2xl bg-[#0F0F12] border border-neutral-800 backdrop-blur-md text-white flex items-center justify-between shadow-md select-none">
+                          <div className="mt-3.5 px-4 py-2.5 rounded-2xl bg-[#070A0F] border border-emerald-900/60 backdrop-blur-md text-white flex items-center justify-between shadow-md select-none">
                             <div className="flex items-center space-x-2">
                               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">PRICE:</span>
-                              <span className="text-sm font-black font-manrope text-[#8B5CF6]">₹{item.price}</span>
+                              <span className="text-sm font-black font-manrope text-[#00DC82]">₹{item.price}</span>
                               {item.originalPrice && (
                                 <span className="text-xs text-slate-400 line-through font-mono">₹{item.originalPrice}</span>
                               )}
                             </div>
                             {item.originalPrice && (
-                              <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wide">
+                              <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-[#00DC82] border border-emerald-500/30 uppercase tracking-wide">
                                 {Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100)}% OFF
                               </span>
                             )}
@@ -486,7 +486,7 @@ export const ProductPortfolioSection = () => {
                       <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-manrope tracking-tight">
                         {item.name}
                       </h3>
-                      <div className="mt-2 text-xl font-extrabold text-[#6C4CFF] font-manrope">
+                      <div className="mt-2 text-xl font-extrabold text-[#10B981] font-manrope">
                         Price: ₹{item.price} <span className="text-xs text-slate-500 font-inter font-normal">(Inclusive of custom engraving & digital cloud features)</span>
                       </div>
                     </div>
@@ -498,13 +498,13 @@ export const ProductPortfolioSection = () => {
 
                     {/* Printing & Material Specifications */}
                     <div className="p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3 font-inter">
-                      <h4 className="text-xs font-mono uppercase font-bold text-[#6C4CFF] tracking-wider border-b border-slate-200 pb-2">
+                      <h4 className="text-xs font-mono uppercase font-bold text-[#10B981] tracking-wider border-b border-slate-200 pb-2">
                         Material & Printing Specifications
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-medium">
                         {item.specs.map((spec, sIdx) => (
                           <div key={sIdx} className="flex items-center space-x-2 text-slate-700">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#6C4CFF]" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
                             <span className="font-bold text-slate-900">{spec.label}:</span>
                             <span className="text-slate-600">{spec.val}</span>
                           </div>
@@ -538,7 +538,7 @@ export const ProductPortfolioSection = () => {
                             material: item.specs[1].val,
                             image_url: ''
                           })}
-                          className="btn-pill-coral w-full sm:w-auto flex items-center justify-center space-x-2 shadow-xl cursor-pointer"
+                          className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-extrabold text-xs px-7 py-3.5 rounded-full shadow-lg shadow-[#10B981]/25 transition-all cursor-pointer uppercase tracking-wider"
                         >
                           <ShoppingBag className="w-4 h-4" />
                           <span>Add to Cart (₹{item.price})</span>
@@ -548,9 +548,9 @@ export const ProductPortfolioSection = () => {
                       <MagneticButton strength={3} className="w-full sm:w-auto">
                         <button
                           onClick={() => navigate('/customize')}
-                          className="w-full sm:w-auto flex items-center justify-center space-x-2 cursor-pointer bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-6 py-3 rounded-full shadow-md transition-all"
+                          className="w-full sm:w-auto flex items-center justify-center space-x-2 cursor-pointer bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-6 py-3.5 rounded-full shadow-md transition-all"
                         >
-                          <Sparkles className="w-4 h-4 text-purple-300" />
+                          <Sparkles className="w-4 h-4 text-[#00DC82]" />
                           <span>Get Free Design Preview</span>
                         </button>
                       </MagneticButton>
