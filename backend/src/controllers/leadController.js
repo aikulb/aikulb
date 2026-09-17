@@ -5,15 +5,16 @@ export class LeadController extends BaseController {
   async captureLead(req, res) {
     try {
       const { profile_id = 'support-hq', name, email, phone, company, message, source = 'NFC Profile Tap' } = req.body;
-      if (!name || !email) {
-        return res.status(400).json({ success: false, message: 'Name and Email are required' });
+      const finalEmail = email || (phone ? `${phone.replace(/[^0-9]/g, '')}@lead.aikulb.com` : '');
+      if (!name || !finalEmail) {
+        return res.status(400).json({ success: false, message: 'Name and Email or Phone are required' });
       }
 
       const id = 'lead-' + Date.now() + '-' + Math.random().toString(36).substring(2, 6);
       await executeQuery(
         `INSERT INTO leads (id, profile_id, name, email, phone, company, message, status, source)
          VALUES (?, ?, ?, ?, ?, ?, ?, 'New', ?)`,
-        [id, profile_id, name, email, phone || '', company || '', message || '', source]
+        [id, profile_id, name, finalEmail, phone || '', company || '', message || '', source]
       );
 
       return this.handleSuccess(res, { id, name, status: 'New' }, 'Lead captured successfully!', 201);

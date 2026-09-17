@@ -16,6 +16,7 @@ import { CustomCardDesignerSection } from './components/CustomCardDesignerSectio
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
+import { FloatingChatWidget } from './components/FloatingChatWidget';
 
 function CustomizerStandalone() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <>
       <CartDrawer />
+      <FloatingChatWidget />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/store" element={<StorePage />} />

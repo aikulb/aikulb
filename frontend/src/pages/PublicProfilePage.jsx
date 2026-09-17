@@ -66,7 +66,7 @@ export const PublicProfilePage = () => {
     return (
       <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col items-center justify-center p-4 font-manrope">
         <h2 className="text-2xl font-bold mb-2">Profile Not Found</h2>
-        <p className="text-sm text-neutral-600 mb-4">The aikulb profile "/profile/{username}" does not exist.</p>
+        <p className="text-sm text-neutral-600 mb-4">The requested aikulb digital profile does not exist.</p>
         <Link to="/" className="px-6 py-3 rounded-xl bg-[#FF3838] hover:bg-[#e62e2e] text-white font-bold transition">Go to aikulb Home</Link>
       </div>
     );

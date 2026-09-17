@@ -363,15 +363,15 @@ export const ProductPortfolioSection = () => {
   const renderVisual = (item) => {
     switch (item.visualType) {
       case 'gold_metal':
-        return <GoldMetalCardVisual name={item.name} />;
+        return <GoldMetalCardVisual name={item.name} cardId={item.id} />;
       case 'silver_metal':
-        return <SilverMetalCardVisual name={item.name} />;
+        return <SilverMetalCardVisual name={item.name} cardId={item.id} />;
       case 'wood':
-        return <WoodCardVisual name={item.name} />;
+        return <WoodCardVisual name={item.name} cardId={item.id} />;
       case 'smart_stand':
-        return <SmartStandVisual />;
+        return <SmartStandVisual cardId={item.id} />;
       default:
-        return <BlackMetalCardVisual name={item.name} />;
+        return <BlackMetalCardVisual name={item.name} cardId={item.id} />;
     }
   };
 

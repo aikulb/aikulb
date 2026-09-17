@@ -344,6 +344,17 @@ export const UserDashboardPage = () => {
               </button>
             </div>
 
+            {(user?.email === 'admin@aikulb.com' || user?.role === 'admin') && (
+              <button
+                onClick={() => navigate('/admin')}
+                className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-black text-xs font-manrope flex items-center space-x-1.5 transition shadow-md shadow-[#00DC82]/20 cursor-pointer"
+                title="Open Admin Card Manager"
+              >
+                <ShieldCheck className="w-4 h-4 text-black stroke-[2.5]" />
+                <span>Admin Panel (Add Cards)</span>
+              </button>
+            )}
+
             <button
               type="button"
               onClick={() => {
@@ -389,18 +400,6 @@ export const UserDashboardPage = () => {
               >
                 <CreditCard className="w-4 h-4" />
                 <span>Card Type Switcher</span>
-              </button>
-
-              <button
-                onClick={() => setClassicSubTab('auth')}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold font-manrope flex items-center space-x-2 transition ${
-                  classicSubTab === 'auth'
-                    ? 'bg-neutral-900 text-white shadow-md'
-                    : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
-                }`}
-              >
-                <Lock className="w-4 h-4" />
-                <span>Portal Login & Security</span>
               </button>
             </div>
 
@@ -487,89 +486,10 @@ export const UserDashboardPage = () => {
 
             {/* Main Grid: Form Left, Preview Right */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              {/* Left Column (8 cols): Identity Form or Auth Form */}
+              {/* Left Column (8 cols): Identity Form */}
               <div className="lg:col-span-7 space-y-6">
-                {classicSubTab === 'auth' || !user ? (
-                  /* Standalone Portal Login Card matching Image 2 */
-                  <div className="w-full max-w-md mx-auto p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-6 shadow-xl relative font-sans">
-                    <div className="text-center space-y-2">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#FF3838] to-[#FF6B6B] p-0.5 mx-auto shadow-md shadow-[#FF3838]/20">
-                        <div className="w-full h-full bg-[#000000] rounded-[14px] flex items-center justify-center font-black text-[#FF3838] text-base font-manrope">
-                          ak
-                        </div>
-                      </div>
-                      <h2 className="text-2xl font-extrabold text-neutral-900 font-manrope">
-                        Sign in to aikulb
-                      </h2>
-                      <p className="text-xs text-neutral-500 font-inter">Your Identity. One Tap.</p>
-                    </div>
-
-                    {loginToast && (
-                      <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold flex items-center space-x-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>{loginToast}</span>
-                      </div>
-                    )}
-
-                    <form onSubmit={handleAuthSubmit} className="space-y-4 text-xs font-inter">
-                      <div>
-                        <label className="text-neutral-700 font-bold block mb-1 font-manrope">Email Address</label>
-                        <div className="relative">
-                          <Mail className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
-                          <input
-                            type="email"
-                            required
-                            placeholder="john@aikulb.com"
-                            value={authEmail}
-                            onChange={(e) => setAuthEmail(e.target.value)}
-                            className="w-full pl-10 pr-4 py-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-medium focus:outline-none focus:border-[#FF3838]"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between items-center mb-1">
-                          <label className="text-neutral-700 font-bold font-manrope">Password</label>
-                          <button
-                            type="button"
-                            onClick={() => setShowForgotModal(true)}
-                            className="text-[#FF3838] font-bold text-[11px] hover:underline cursor-pointer"
-                          >
-                            Forgot Password?
-                          </button>
-                        </div>
-                        <div className="relative">
-                          <Lock className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
-                          <input
-                            type={showPassword ? 'text' : 'password'}
-                            required
-                            placeholder="••••••••"
-                            value={authPassword}
-                            onChange={(e) => setAuthPassword(e.target.value)}
-                            className="w-full pl-10 pr-12 py-3 rounded-2xl bg-white border border-neutral-300 text-neutral-900 font-medium focus:outline-none focus:border-[#FF3838]"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3.5 top-3 p-1 rounded-lg text-neutral-400 hover:text-neutral-800 transition cursor-pointer"
-                            title={showPassword ? 'Hide Password' : 'Show Password'}
-                          >
-                            {showPassword ? <EyeOff className="w-4 h-4 text-[#FF3838]" /> : <Eye className="w-4 h-4" />}
-                          </button>
-                        </div>
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full py-3.5 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-extrabold text-xs font-manrope uppercase tracking-wider shadow-md shadow-[#FF3838]/20 transition cursor-pointer flex items-center justify-center space-x-2"
-                      >
-                        <span>Login</span>
-                      </button>
-                    </form>
-                  </div>
-                ) : (
-                  /* Classic Contact Information Form */
-                  <form onSubmit={handleProfileSave} className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-6 shadow-xs">
+                {/* Classic Contact Information Form */}
+                <form onSubmit={handleProfileSave} className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-6 shadow-xs">
                     <div className="flex justify-between items-center border-b border-neutral-200 pb-4">
                       <div>
                         <h3 className="text-lg font-extrabold text-neutral-900 font-manrope">Classic Contact Information</h3>
@@ -707,7 +627,7 @@ export const UserDashboardPage = () => {
                     <button
                       type="submit"
                       disabled={isSavingProfile}
-                      className="px-8 py-4 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-extrabold text-xs font-manrope uppercase tracking-wider shadow-md transition cursor-pointer flex items-center space-x-2 disabled:opacity-70"
+                      className="px-8 py-4 rounded-full bg-[#FF3838] hover:bg-[#E02828] text-white font-extrabold text-xs font-manrope uppercase tracking-wider shadow-md transition cursor-pointer flex items-center justify-center space-x-2 disabled:opacity-70"
                     >
                       {isSavingProfile ? (
                         <RefreshCw className="w-4 h-4 animate-spin" />
@@ -717,7 +637,6 @@ export const UserDashboardPage = () => {
                       <span>{isSavingProfile ? 'Saving to Database...' : 'Save Classic Profile to Database'}</span>
                     </button>
                   </form>
-                )}
               </div>
 
               {/* Right Column (5 cols): Live Physical Card Preview & Sync Utilities */}
@@ -813,11 +732,11 @@ export const UserDashboardPage = () => {
                           <span className="text-[10px] font-mono font-bold opacity-70">MAGNETIC CARD BACK</span>
                         </div>
 
-                        <div className="bg-black/90 text-white p-3 rounded-xl flex items-center justify-between my-auto">
-                          <div className="w-20 h-20 bg-white p-1 rounded-lg shrink-0 flex items-center justify-center shadow-md">
+                        <div className="bg-black/90 text-white p-2.5 rounded-xl flex items-center justify-between my-auto">
+                          <div className="w-15 h-15 bg-white p-1 rounded-lg shrink-0 flex items-center justify-center shadow-md">
                             <QRCodeSVG
-                              value={`${window.location.origin}/profile/${profile ? profile.username : 'user'}`}
-                              size={72}
+                              value={`${window.location.origin}/profile/${profile ? profile.username : (user ? user.username : 'john')}`}
+                              size={54}
                               level="H"
                               includeMargin={false}
                             />
@@ -950,6 +869,9 @@ export const UserDashboardPage = () => {
             <div className="flex space-x-2 border-b border-neutral-200 pb-2 overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview & Analytics', icon: BarChart2 },
+                ...((user?.email === 'admin@aikulb.com' || user?.role === 'admin')
+                  ? [{ id: 'admin_cards', label: '⚡ Add & Manage Cards (Admin)', icon: ShieldCheck }]
+                  : []),
                 { id: 'qr_api', label: 'QR API & Card Sync', icon: QrCode },
                 { id: 'edit_profile', label: 'Edit Profile & AI Bio', icon: User },
                 { id: 'leads', label: `Captured Leads (${leads.length})`, icon: Users },
@@ -1038,6 +960,84 @@ export const UserDashboardPage = () => {
               </div>
             )}
 
+            {/* ADMIN CARDS & HARDWARE INVENTORY TAB */}
+            {activeTab === 'admin_cards' && (
+              <div className="p-8 rounded-3xl bg-neutral-900 text-white space-y-6 shadow-2xl border border-emerald-900/60 font-sans">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-emerald-900/40">
+                  <div>
+                    <div className="inline-flex items-center space-x-2 text-xs font-mono font-bold text-[#00DC82] uppercase bg-[#00DC82]/10 px-3 py-1 rounded-full border border-[#00DC82]/20 mb-2">
+                      <ShieldCheck className="w-4 h-4 text-[#00DC82]" />
+                      <span>Card Inventory & Hardware Manager</span>
+                    </div>
+                    <h3 className="text-2xl font-black text-white font-heading">
+                      Add & Manage Hardware Cards
+                    </h3>
+                    <p className="text-xs text-slate-400 mt-1 font-inter">
+                      Add new custom smart cards, manage live catalog prices, and sync inventory with SQLite DB.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => navigate('/admin')}
+                    className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-black text-xs uppercase tracking-wider flex items-center space-x-2 shadow-lg shadow-emerald-900/30 transition cursor-pointer shrink-0"
+                  >
+                    <Plus className="w-4 h-4 stroke-[3]" />
+                    <span>Open Full Add Card Studio (/admin)</span>
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                  <div className="p-6 rounded-2xl bg-[#070A0F] border border-emerald-900/60 space-y-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#00DC82]/10 border border-[#00DC82]/30 flex items-center justify-center text-[#00DC82]">
+                      <Plus className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-extrabold text-white text-base font-heading">Add Custom Card</h4>
+                    <p className="text-xs text-slate-400 font-inter">
+                      Create cards with custom materials (Matte Steel, 24K Gold, Walnut Wood, PVC, Acrylic Stand) and set prices.
+                    </p>
+                    <button
+                      onClick={() => navigate('/admin')}
+                      className="w-full py-2.5 rounded-xl bg-[#00DC82] text-black font-extrabold text-xs uppercase tracking-wider hover:brightness-110 transition cursor-pointer"
+                    >
+                      + Add New Product
+                    </button>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-[#070A0F] border border-emerald-900/60 space-y-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                      <Star className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-extrabold text-white text-base font-heading">Homepage Showcase</h4>
+                    <p className="text-xs text-slate-400 font-inter">
+                      Toggle featured cards live on the homepage portfolio showcase with 1-click database update.
+                    </p>
+                    <button
+                      onClick={() => navigate('/admin')}
+                      className="w-full py-2.5 rounded-xl bg-[#0D121B] border border-emerald-900/60 text-slate-200 font-bold text-xs hover:border-[#00DC82] transition cursor-pointer"
+                    >
+                      Manage Featured Cards
+                    </button>
+                  </div>
+
+                  <div className="p-6 rounded-2xl bg-[#070A0F] border border-emerald-900/60 space-y-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+                      <Layers className="w-5 h-5" />
+                    </div>
+                    <h4 className="font-extrabold text-white text-base font-heading">Real-Time DB Sync</h4>
+                    <p className="text-xs text-slate-400 font-inter">
+                      All new hardware cards sync live across `/store`, `/product/:id`, and custom card designer.
+                    </p>
+                    <button
+                      onClick={() => navigate('/admin')}
+                      className="w-full py-2.5 rounded-xl bg-[#0D121B] border border-emerald-900/60 text-slate-200 font-bold text-xs hover:border-[#00DC82] transition cursor-pointer"
+                    >
+                      View Live Catalog
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* QR API & CARD SYNC TAB */}
             {activeTab === 'qr_api' && (
               <div className="space-y-8">
@@ -1077,9 +1077,9 @@ export const UserDashboardPage = () => {
                           includeMargin={false}
                         />
                       </div>
-                      <p className="text-[11px] text-neutral-500 font-mono break-all">
-                        /profile/{profile ? profile.username : 'user'}
-                      </p>
+                      <div className="text-[10px] font-mono text-purple-600 font-bold bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+                        ✓ Web Profile Redirect Ready
+                      </div>
                       <div className="flex space-x-2 w-full pt-2">
                         <a
                           href={`/api/qr/profile/${profile ? profile.username : 'user'}?format=png`}
@@ -1114,9 +1114,9 @@ export const UserDashboardPage = () => {
                           includeMargin={false}
                         />
                       </div>
-                      <p className="text-[11px] text-neutral-500 font-mono break-all">
-                        /api/qr/vcard/{profile ? profile.username : 'user'}
-                      </p>
+                      <div className="text-[10px] font-mono text-blue-600 font-bold bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                        ✓ Standard vCard 3.0 Payload
+                      </div>
                       <div className="flex space-x-2 w-full pt-2">
                         <a
                           href={`/api/qr/vcard/${profile ? profile.username : 'user'}?format=png`}
@@ -1151,9 +1151,9 @@ export const UserDashboardPage = () => {
                           includeMargin={false}
                         />
                       </div>
-                      <p className="text-[11px] text-neutral-500 font-mono break-all">
-                        /api/qr/card/CARD-DEMO-8849
-                      </p>
+                      <div className="text-[10px] font-mono text-emerald-600 font-bold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                        ✓ Hardware NFC Chip Data
+                      </div>
                       <div className="flex space-x-2 w-full pt-2">
                         <a
                           href={`/api/qr/card/CARD-DEMO-8849?format=png`}
@@ -1305,20 +1305,32 @@ export const UserDashboardPage = () => {
                 </form>
 
                 <div className="lg:col-span-4 p-6 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 text-xs shadow-xs font-inter">
-                  <h4 className="font-extrabold text-neutral-900 text-base font-manrope">Public Link</h4>
-                  <div className="p-3.5 rounded-2xl bg-white border border-neutral-300 font-mono text-[#6C4CFF] text-[11px] break-all font-bold">
-                    /profile/{profile ? profile.username : 'user'}
+                  <div className="flex items-center space-x-2">
+                    <Globe className="w-5 h-5 text-[#6C4CFF]" />
+                    <h4 className="font-extrabold text-neutral-900 text-base font-manrope">Digital Profile Showcase</h4>
                   </div>
-                  {profile && (
+                  <p className="text-xs text-neutral-600 font-medium leading-relaxed">
+                    Your dynamic NFC digital identity is live and accessible. Share it via tap or instant profile link.
+                  </p>
+                  <div className="space-y-2.5 pt-2">
+                    <button
+                      type="button"
+                      onClick={handleCopyLink}
+                      className="w-full py-3 rounded-full bg-[#6C4CFF] hover:bg-[#5B3BE5] text-white font-bold text-center flex items-center justify-center space-x-2 font-manrope transition shadow-md cursor-pointer"
+                    >
+                      <Copy className="w-4 h-4" />
+                      <span>{copySuccess ? '✓ Link Copied!' : 'Copy Digital Profile Link'}</span>
+                    </button>
                     <a
-                      href={`/profile/${profile.username}`}
+                      href={`/profile/${profile?.username || user?.username || 'john'}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="w-full py-3 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-center block font-manrope transition"
+                      className="w-full py-3 rounded-full bg-neutral-900 hover:bg-black text-white font-bold text-center flex items-center justify-center space-x-2 font-manrope transition cursor-pointer"
                     >
-                      Preview Live Profile
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Preview Live Digital Card</span>
                     </a>
-                  )}
+                  </div>
                 </div>
               </div>
             )}

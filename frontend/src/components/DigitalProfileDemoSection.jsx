@@ -50,7 +50,7 @@ export const DigitalProfileDemoSection = () => {
                 target="_blank"
                 className="btn-pill-gradient inline-flex items-center space-x-2 shadow-xl hover:scale-105 transition-transform"
               >
-                <span>View Demo Public Profile (/profile/john)</span>
+                <span>View Demo Public Profile</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

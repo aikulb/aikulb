@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
-import { ShoppingCart, ChevronDown, User, Menu, X, LogOut } from 'lucide-react';
+import { ShoppingCart, ChevronDown, User, Menu, X, LogOut, ShieldCheck } from 'lucide-react';
 import { ScrollProgress } from './AnimatedComponents';
 import { AikulbLogo } from './AikulbLogo';
 
@@ -236,6 +236,16 @@ export const Navbar = () => {
             {/* User Auth state */}
             {user ? (
               <div className="flex items-center space-x-2.5">
+                {(user.email === 'admin@aikulb.com' || user.role === 'admin') && (
+                  <Link
+                    to="/admin"
+                    className="px-4 py-2 rounded-full bg-[#00DC82] text-black hover:brightness-110 transition text-xs font-black font-manrope flex items-center space-x-1.5 shadow-md shadow-[#00DC82]/20"
+                  >
+                    <ShieldCheck className="w-3.5 h-3.5 text-black stroke-[2.5]" />
+                    <span>Admin Panel</span>
+                  </Link>
+                )}
+
                 <Link
                   to="/dashboard"
                   className="px-4 py-2 rounded-full bg-[#0D121B] border border-emerald-900/60 text-white hover:border-[#00DC82] hover:bg-[#161F2E] transition text-xs font-bold font-manrope flex items-center space-x-1.5 shadow-md"

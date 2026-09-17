@@ -568,10 +568,10 @@ export const CustomCardDesignerSection = () => {
                       ? 'items-end justify-center'
                       : 'items-end justify-end'
                   } my-2 z-10`}>
-                    <div className="p-2.5 bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col items-center group/qr relative">
+                    <div className="p-1.5 bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col items-center group/qr relative">
                       <QRCodeSVG 
-                        value="https://aikulb.com"
-                        size={84}
+                        value={`${window.location.origin}/profile/${qrHandle || 'custom-card'}`}
+                        size={60}
                         level="H"
                         includeMargin={false}
                       />
@@ -1225,19 +1225,6 @@ export const CustomCardDesignerSection = () => {
         </div>
 
       </div>
-
-      {/* 4. FLOATING CHAT HELP WIDGET */}
-      <a
-        href="https://wa.me/917042015887?text=Hi%20aikulb!%20I%20need%20help%20customizing%20my%20smart%20card."
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-slate-900 border border-slate-700 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 font-manrope text-xs font-extrabold hover:scale-105 transition duration-300 cursor-pointer group"
-      >
-        <div className="w-7 h-7 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-md group-hover:rotate-12 transition">
-          <MessageCircle className="w-4 h-4 fill-white text-[#25D366]" />
-        </div>
-        <span className="tracking-tight">Need any Help? Chat with us</span>
-      </a>
     </section>
   );
 };

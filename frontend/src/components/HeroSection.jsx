@@ -127,22 +127,6 @@ export const HeroSection = () => {
           <HandTappingCardPhoneVisual />
         </motion.div>
       </div>
-
-      {/* Floating WhatsApp Help Widget */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center space-x-2.5">
-        <div className="hidden sm:block bg-[#0D121B] text-white font-semibold text-xs py-2 px-3.5 rounded-lg shadow-2xl border border-emerald-900/60 font-manrope">
-          Need any Help? Chat with us
-        </div>
-        <a
-          href="https://wa.me/919999999999?text=Hi%20aikulb%20Team!%20I%20have%20a%20question%20about%20smart%20cards."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-2xl transition-transform duration-200 hover:scale-110 cursor-pointer"
-          title="Chat with us on WhatsApp"
-        >
-          <MessageCircle className="w-6 h-6 fill-white text-[#25D366]" />
-        </a>
-      </div>
     </section>
   );
 
