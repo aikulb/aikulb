@@ -1,4 +1,9 @@
-const API_BASE = (import.meta.env?.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
+const getApiBaseUrl = () => {
+  if (import.meta.env?.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+  }
+  return '/api';
+};
 
 async function fetchJson(endpoint, options = {}) {
   const token = localStorage.getItem('aikulb_token');
@@ -8,21 +13,38 @@ async function fetchJson(endpoint, options = {}) {
     ...options.headers,
   };
 
+  const API_BASE = getApiBaseUrl();
   const targetUrl = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
 
   try {
     const res = await fetch(targetUrl, { ...options, headers });
-    const data = await res.json();
-    return data;
+    const contentType = res.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+      const data = await res.json();
+      return data;
+    }
+
+    // Handle non-JSON responses (e.g. Netlify HTML fallback / 404 pages) gracefully
+    const text = await res.text();
+    console.warn(`Non-JSON response for ${endpoint} (Status ${res.status}). Live fallback active.`);
+    return {
+      success: false,
+      isHtmlFallback: true,
+      status: res.status,
+      message: `API endpoint ${endpoint} returned non-JSON response.`
+    };
   } catch (error) {
-    console.error(`API Error on ${endpoint}:`, error);
-    return { success: false, message: error.message };
+    console.warn(`API network error on ${endpoint}:`, error);
+    return { success: false, message: error.message || 'Network request failed' };
   }
 }
 
-
 export const api = {
   // Auth
+  login: (email, password) => fetchJson('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }),
+  register: (data) => fetchJson('/auth/register', { method: 'POST', body: JSON.stringify(data) }),
+  me: () => fetchJson('/auth/me'),
   forgotPassword: (email) => fetchJson('/auth/forgot-password', { method: 'POST', body: JSON.stringify({ email }) }),
 
   // Products

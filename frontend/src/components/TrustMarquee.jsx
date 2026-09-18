@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { api } from '../services/apiClient';
 
 const DEFAULT_BRANDS = [
   { name: 'Nexa Global', tag: 'AI Systems', code: 'Ne' },
@@ -29,18 +30,15 @@ export const TrustMarquee = () => {
     let isMounted = true;
     const fetchHomepageData = async () => {
       try {
-        const response = await fetch('/api/admin/content');
-        if (response.ok) {
-          const data = await response.json();
-          if (data && data.success && data.data && isMounted) {
-            if (data.data.trusted_brands) {
-              setBrands(data.data.trusted_brands);
-            }
-            if (data.data.platform_stats) {
-              setStats(data.data.platform_stats);
-            }
-            setIsDbSynced(true);
+        const data = await api.getHomepageContent();
+        if (data && data.success && data.data && isMounted) {
+          if (data.data.trusted_brands) {
+            setBrands(data.data.trusted_brands);
           }
+          if (data.data.platform_stats) {
+            setStats(data.data.platform_stats);
+          }
+          setIsDbSynced(true);
         }
       } catch (err) {
         console.warn('Syncing default marquee content (Database API offline fallback):', err.message);

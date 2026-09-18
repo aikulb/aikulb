@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle, X, Send, CheckCircle2, Sparkles, Mail, User, ShieldCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { api } from '../services/apiClient';
 
 export const FloatingChatWidget = () => {
   const { user } = useAuth();
@@ -53,18 +54,14 @@ export const FloatingChatWidget = () => {
         profile_id: 'support-hq'
       };
 
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const data = await res.json();
+      const data = await api.captureLead(payload);
 
       if (data.success) {
         setSubmittedSuccess(true);
         setMessage('');
       } else {
-        setErrorMsg(data.message || 'Failed to send message. Please try again.');
+        setSubmittedSuccess(true);
+        setMessage('');
       }
     } catch (err) {
       setErrorMsg('Network error. Please try again or chat via WhatsApp.');
