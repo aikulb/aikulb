@@ -1,5 +1,5 @@
 import React from 'react';
-import { Share2, QrCode, MessageSquare, UserPlus, Users, BarChart3, ArrowUpRight } from 'lucide-react';
+import { Share2, QrCode, MessageSquare, UserPlus, Users, BarChart3 } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem, AnimatedCounter } from './AnimatedComponents';
 
 export const ValueProp = () => {
@@ -47,9 +47,6 @@ export const ValueProp = () => {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-white border border-slate-200 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-            All-In-One Networking Engine
-          </div>
           <h2 className="section-h2 text-slate-900">
             More Than a Business Card.
           </h2>
@@ -58,7 +55,7 @@ export const ValueProp = () => {
           </p>
         </ScrollReveal>
 
-        {/* 6 Feature Cards Grid with Sequential Stagger (Requirement 5) */}
+        {/* 6 Feature Cards Grid without Explore Feature button row */}
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" staggerDelay={0.08}>
           {features.map((f, i) => {
             const IconComponent = f.icon;
@@ -82,18 +79,13 @@ export const ValueProp = () => {
                       {f.description}
                     </p>
                   </div>
-
-                  <div className="mt-8 pt-4 border-t border-slate-100 flex items-center text-xs font-bold font-manrope text-[#6C4CFF] group-hover:translate-x-1.5 transition-transform duration-250">
-                    <span>Explore Feature</span>
-                    <ArrowUpRight className="w-4 h-4 ml-1" />
-                  </div>
                 </div>
               </StaggerItem>
             );
           })}
         </StaggerContainer>
 
-        {/* Animated Key Statistics Counter Strip (Requirement 11) */}
+        {/* Animated Key Statistics Counter Strip */}
         <ScrollReveal yOffset={25} className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-xl grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
             <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope aikulb-gradient-text">

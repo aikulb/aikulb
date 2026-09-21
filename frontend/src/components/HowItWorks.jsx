@@ -10,9 +10,6 @@ export const HowItWorks = () => {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header with Scroll Reveal */}
         <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-20">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-[#6C4CFF]/10 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider">
-            Simple 3-Step Process
-          </div>
           <h2 className="section-h2 text-slate-900 font-extrabold">
             How aikulb Works
           </h2>

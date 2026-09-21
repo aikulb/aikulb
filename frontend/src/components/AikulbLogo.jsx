@@ -47,7 +47,6 @@ export const AikulbLogo = ({
         <div className="flex items-center">
           <span className={`font-black tracking-tight ${darkText ? 'text-slate-900' : 'text-white'} font-manrope lowercase ${currentSize.text} leading-none`}>
             aikulb
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#00DC82] ml-0.5 animate-pulse"></span>
           </span>
         </div>
       )}

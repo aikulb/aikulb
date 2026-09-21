@@ -432,11 +432,6 @@ export const CustomCardDesignerSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0D]/50 via-transparent to-[#0A0A0D]" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
-            <Sparkles className="w-4 h-4 text-cyan-300 animate-pulse" />
-            <span>Interactive Hardware Studio 3.0</span>
-          </div>
-
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-tight drop-shadow-md">
             Design Your Custom aikulb Smart Card
           </h2>
@@ -466,7 +461,7 @@ export const CustomCardDesignerSection = () => {
             {/* Live Indicator & View Mode */}
             <div className="w-full flex items-center justify-between px-2 text-xs font-mono font-bold uppercase tracking-widest text-[#8B5CF6]">
               <div className="flex items-center space-x-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#6C4CFF] animate-ping"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#6C4CFF]"></span>
                 <span>REAL-TIME 3D PREVIEW</span>
               </div>
               <div className="text-slate-400 text-[11px] capitalize">
@@ -528,7 +523,7 @@ export const CustomCardDesignerSection = () => {
                     </svg>
 
                     <div className="flex items-center space-x-1.5 text-white/90 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-                      <Zap className="w-3.5 h-3.5 text-[#00DC82] animate-pulse" />
+                      <Zap className="w-3.5 h-3.5 text-[#00DC82]" />
                       <span className="text-[9px] font-mono font-bold tracking-widest text-emerald-300">NTAG216 NFC</span>
                     </div>
                   </div>
@@ -1091,7 +1086,7 @@ export const CustomCardDesignerSection = () => {
               <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#ECFDF5] via-[#F8FAFC] to-white border-2 border-emerald-500/30 p-5 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 relative overflow-hidden">
                 <div className="relative flex items-center justify-center">
                   <Smartphone className="w-28 h-28 text-slate-800" />
-                  <Zap className="w-10 h-10 text-[#6C4CFF] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-ping" />
+                  <Zap className="w-10 h-10 text-[#6C4CFF] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                 </div>
               </div>
               <div className="space-y-3 max-w-sm">

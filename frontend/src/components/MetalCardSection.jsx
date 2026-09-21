@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Sparkles, ShieldCheck, Zap, Cpu, Check, ShoppingBag, 
-  ArrowRight, Layers, Award, Star, MessageCircle, ChevronDown, Sliders
+  ArrowRight, Layers, Award, Star, MessageCircle, ChevronDown, Sliders,
+  Volume2, VolumeX
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { api } from '../services/apiClient';
@@ -16,6 +17,40 @@ export const MetalCardSection = () => {
   const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState('');
   const [openFaq, setOpenFaq] = useState(0);
+  const [reelsMuted, setReelsMuted] = useState(true);
+
+  const reelsData = [
+    {
+      id: 'reel-unboxing',
+      title: 'Luxury Box Unboxing',
+      subtitle: 'Most people forget standard paper cards. AIKULB Metal leaves an indelible impression.',
+      badge: 'LUXURY UNBOXING',
+      badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+      videoUrl: '/videos/Untitled_Scene_09-21_08_58_48_20260921143742.mp4',
+      posterImg: '/assets/store_hero_bg.jpg',
+      tagline: 'PREMIUM MAGNETIC BOX',
+    },
+    {
+      id: 'reel-nfc',
+      title: '1-Tap NFC & Fiber Laser Etch',
+      subtitle: 'Aerospace-grade 316L stainless steel carved with high-precision fiber laser.',
+      badge: 'TACTILE ENGRAVING',
+      badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+      videoUrl: '/videos/Hand_tapping_smartphone_with_card_20260921162344.mp4',
+      posterImg: '/assets/shipping_delivery.jpg',
+      tagline: 'INSTANT PHONE CONNECT',
+    },
+    {
+      id: 'reel-collection',
+      title: '4K Luxury Metal Collection',
+      subtitle: 'Matte Black Steel, 24K Mirror Gold, Brushed Silver, and Walnut Wood finishes.',
+      badge: 'EXECUTIVE COLLECTION',
+      badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+      videoUrl: '/videos/AIKULB_card_logo_sweep_animation_20260921164557.mp4',
+      posterImg: '/assets/store_hero_bg.jpg',
+      tagline: 'GOLD • BLACK • SILVER',
+    }
+  ];
 
   const { addToCart } = useCart();
   const navigate = useNavigate();
@@ -168,11 +203,6 @@ export const MetalCardSection = () => {
 
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
           <ScrollReveal className="max-w-4xl mx-auto space-y-5">
-            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-300 text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
-              <Award className="w-4 h-4 text-amber-300" />
-              <span>Luxurious Metal Collection 2026</span>
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-[1.08] drop-shadow-md">
               The Ultimate Smart Metal Business Card
             </h1>
@@ -341,6 +371,69 @@ export const MetalCardSection = () => {
               </div>
 
             </div>
+          </div>
+        </ScrollReveal>
+
+        {/* 3-Column Looping Video Reels Showcase Section (Attached Side-by-Side Video Wall - Matching Image 2 Reference) */}
+        <ScrollReveal className="space-y-8 py-6">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-900 border border-purple-500/40 text-purple-300 text-xs font-mono font-bold uppercase tracking-widest shadow-md">
+              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <span>LIVE IN ACTION • FULL BLEED REELS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 font-manrope tracking-tight">
+              Experience AIKULB Metal Cards in Motion
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600 font-inter max-w-2xl mx-auto">
+              Watch how AIKULB aerospace metal cards unbox, tap onto smartphones, and showcase precision laser-carved finishes.
+            </p>
+          </div>
+
+          {/* 3-Column Side-by-Side Video Reels Grid with Small Gap */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5">
+            {reelsData.map((reel) => (
+              <div 
+                key={reel.id}
+                className="relative group rounded-[28px] overflow-hidden bg-[#070A0F] border border-neutral-800 shadow-2xl h-[580px] sm:h-[640px] lg:h-[680px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.015] hover:border-[#6C4CFF]/60 hover:shadow-[#6C4CFF]/20 select-none"
+              >
+                {/* Background Full-Size Looping Video */}
+                <video
+                  autoPlay
+                  loop
+                  muted={reelsMuted}
+                  playsInline
+                  poster={reel.posterImg}
+                  className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-95 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                >
+                  <source src={reel.videoUrl} type="video/mp4" />
+                </video>
+
+                {/* Subtle Dark Gradient Overlay for Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070A0F]/95 via-black/25 to-black/40 z-10 pointer-events-none" />
+
+                {/* Top Audio Control Overlay (Badges Removed) */}
+                <div className="relative z-20 p-5 sm:p-6 flex items-center justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setReelsMuted(!reelsMuted)}
+                    className="w-9 h-9 rounded-full bg-black/70 backdrop-blur-md border border-white/25 flex items-center justify-center text-white hover:text-[#00DC82] hover:border-[#00DC82]/50 transition-all cursor-pointer shadow-xl hover:scale-110"
+                    title={reelsMuted ? 'Click to Unmute Audio' : 'Click to Mute Audio'}
+                  >
+                    {reelsMuted ? <VolumeX className="w-4.5 h-4.5" /> : <Volume2 className="w-4.5 h-4.5 text-[#00DC82]" />}
+                  </button>
+                </div>
+
+                {/* Bottom Card Info Overlay */}
+                <div className="relative z-20 p-6 sm:p-7 space-y-1.5 text-white font-manrope">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight drop-shadow-md">
+                    {reel.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-200 font-inter font-medium leading-relaxed drop-shadow-sm max-w-sm">
+                    {reel.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </ScrollReveal>
 

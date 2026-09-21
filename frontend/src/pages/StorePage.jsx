@@ -112,12 +112,6 @@ export const StorePage = () => {
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <ScrollReveal className="max-w-4xl mx-auto space-y-6">
-              {/* Tagline Badge matching Image 1 */}
-              <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-purple-300 text-xs font-manrope font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                <span>Tap to share. Tap to impress.</span>
-              </div>
-
               {/* Main Headline matching Image 1 */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-[1.08] drop-shadow-md">
                 The Ultimate Smart Metal Business Card In Luxurious Metal

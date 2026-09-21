@@ -3,7 +3,7 @@ import { Twitter, Linkedin, Facebook, Youtube, Instagram, PhoneCall, Sparkles } 
 
 export const AnnouncementBar = () => {
   return (
-    <div className="bg-[#070A0F] border-b border-emerald-950/80 text-white text-xs py-2 px-4 font-manrope font-semibold tracking-wide shadow-md">
+    <div className="bg-black border-b border-neutral-900 text-white text-xs py-2 px-4 font-manrope font-semibold tracking-wide shadow-md">
       <div className="max-w-[1320px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
         {/* Left Side: Social Media Icons */}
         <div className="flex items-center space-x-3.5 text-slate-400">

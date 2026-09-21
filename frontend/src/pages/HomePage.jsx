@@ -6,44 +6,32 @@ import { TrustMarquee } from '../components/TrustMarquee';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
 import { ProductPortfolioSection } from '../components/ProductPortfolioSection';
-import { MetalCardSection } from '../components/MetalCardSection';
-import { ProductCategoriesSection } from '../components/ProductCategoriesSection';
-import { CustomCardDesignerSection } from '../components/CustomCardDesignerSection';
 import { DigitalProfileDemoSection } from '../components/DigitalProfileDemoSection';
+import { ShippingDeliverySection } from '../components/ShippingDeliverySection';
 import { BusinessTeamsSection } from '../components/BusinessTeamsSection';
-import { SmartReviewSection } from '../components/SmartReviewSection';
-import { SmartStandSection } from '../components/SmartStandSection';
-import { IndustrySolutionsSection } from '../components/IndustrySolutionsSection';
-import { AIFeaturesSection } from '../components/AIFeaturesSection';
 import { TestimonialsAndFaqSection } from '../components/TestimonialsAndFaqSection';
 import { Footer } from '../components/Footer';
 import { CartDrawer } from '../components/CartDrawer';
 
 export const HomePage = () => {
   return (
-    <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-black text-white flex flex-col font-sans">
       {/* Fixed Top Header Container with AnnouncementBar & Navbar */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#070A0F]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black">
         <AnnouncementBar />
         <Navbar />
       </header>
 
-      {/* Main Homepage Content Assembly */}
+      {/* Dedicated Homepage Content Assembly */}
       <main className="flex-grow pt-24 sm:pt-28">
         <HeroSection />
         <TrustMarquee />
         <ValueProp />
         <HowItWorks />
         <ProductPortfolioSection />
-        <MetalCardSection />
-        <ProductCategoriesSection />
-        <CustomCardDesignerSection />
         <DigitalProfileDemoSection />
+        <ShippingDeliverySection />
         <BusinessTeamsSection />
-        <SmartReviewSection />
-        <SmartStandSection />
-        <IndustrySolutionsSection />
-        <AIFeaturesSection />
         <TestimonialsAndFaqSection />
       </main>
 

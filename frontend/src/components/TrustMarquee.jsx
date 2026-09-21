@@ -55,10 +55,6 @@ export const TrustMarquee = () => {
   return (
     <section className="py-16 bg-white border-y border-slate-200 overflow-hidden transition-colors duration-300 relative">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center flex flex-col items-center justify-center space-y-2">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[11px] font-mono font-bold uppercase tracking-wider">
-          <span className={`w-2 h-2 rounded-full ${isDbSynced ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`} />
-          <span>{isDbSynced ? 'Database Synced Enterprise Network' : 'Trusted Enterprise Partners'}</span>
-        </div>
         <h3 className="text-sm font-extrabold uppercase tracking-widest text-slate-800 font-manrope">
           Trusted by Professionals Building the Future
         </h3>

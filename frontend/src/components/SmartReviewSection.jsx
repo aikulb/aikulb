@@ -32,7 +32,7 @@ export const SmartReviewSection = () => {
                     <p className="text-xs text-slate-500">Near-field tap or QR scan on smartphone</p>
                   </div>
                 </div>
-                <Zap className="w-5 h-5 text-amber-500 animate-pulse" />
+                <Zap className="w-5 h-5 text-amber-500" />
               </div>
 
               <div className="p-4 rounded-2xl bg-[#F8F9FA] border border-slate-200 flex items-center justify-between">

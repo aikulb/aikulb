@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { StorePage } from './pages/StorePage';
 import { ProductDetailPage } from './pages/ProductDetailPage';
@@ -18,6 +18,16 @@ import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { FloatingChatWidget } from './components/FloatingChatWidget';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
 function CustomizerStandalone() {
   return (
     <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans relative">
@@ -33,6 +43,7 @@ function CustomizerStandalone() {
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <CartDrawer />
       <FloatingChatWidget />
       <Routes>

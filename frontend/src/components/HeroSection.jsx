@@ -21,22 +21,22 @@ export const HeroSection = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 25 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.1, 0.25, 1.0],
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 
   return (
-    <section className="relative min-h-[85vh] pt-8 sm:pt-14 pb-20 flex items-center justify-center bg-[#070A0F] text-white overflow-hidden pattern-tech">
-      {/* Background Animated Fintech Green Orbs */}
-      <div className="absolute top-1/4 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#10B981]/15 rounded-full blur-[140px] pointer-events-none animate-orb-slow" />
-      <div className="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[500px] h-[500px] bg-[#00DC82]/10 rounded-full blur-[140px] pointer-events-none animate-orb-slow [animation-delay:4s]" />
+    <section className="relative min-h-[85vh] pt-8 sm:pt-14 pb-20 flex items-center justify-center bg-black text-white overflow-hidden">
+      {/* Subtle Luxury Dark Grid Texture */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.05),rgba(255,255,255,0))]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370a_1px,transparent_1px),linear-gradient(to_bottom,#1f29370a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column Entrance Sequence */}
@@ -46,19 +46,11 @@ export const HeroSection = () => {
           animate="show"
           className="lg:col-span-7 space-y-6 text-center lg:text-left"
         >
-          {/* Step 1: Branding Tagline */}
-          <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#0D121B] border border-emerald-900/60 shadow-md backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-[#00DC82] animate-ping" />
-            <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider font-manrope">
-              Worldwide Delivery • Instant NFC Setup
-            </span>
-          </motion.div>
-
           {/* Step 2: Hero Headline - "Your Identity. One Tap." */}
           <motion.div variants={itemVariants}>
             <h1 className="hero-h1 font-extrabold text-white font-manrope tracking-tight leading-[1.02]">
               Your Identity. <br />
-              <span className="bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] bg-clip-text text-transparent">One Tap.</span>
+              <span className="text-[#00DC82] drop-shadow-[0_0_20px_rgba(0,220,130,0.2)] font-extrabold">One Tap.</span>
             </h1>
             <p className="mt-3 text-lg font-bold text-slate-300 font-manrope">
               The Future of Business Cards & Digital Identity
@@ -81,7 +73,7 @@ export const HeroSection = () => {
             <MagneticButton strength={4} className="w-full sm:w-auto">
               <Link
                 to="/create-profile"
-                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-extrabold text-sm px-8 py-4 rounded-full shadow-xl shadow-[#10B981]/30 transition-all font-manrope uppercase tracking-wide"
+                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-[#00DC82] hover:bg-[#00c975] text-black font-extrabold text-sm px-8 py-4 rounded-full shadow-lg transition-all font-manrope uppercase tracking-wide transform hover:scale-[1.02]"
               >
                 CREATE YOUR DIGITAL PROFILE
               </Link>
@@ -90,7 +82,7 @@ export const HeroSection = () => {
             <MagneticButton strength={4} className="w-full sm:w-auto">
               <Link
                 to="/customize"
-                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-[#0D121B] hover:bg-[#161F2E] text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg border border-emerald-900/60 hover:border-[#10B981] transition-all font-manrope uppercase tracking-wide"
+                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-white/5 hover:bg-white/10 text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg border border-white/15 hover:border-white/30 transition-all font-manrope uppercase tracking-wide backdrop-blur-md"
               >
                 DESIGN YOUR CARD
               </Link>
@@ -100,14 +92,14 @@ export const HeroSection = () => {
           {/* Step 6: Floating Analytics & Feature Badges */}
           <motion.div
             variants={itemVariants}
-            className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-inter font-medium border-t border-emerald-950"
+            className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-inter font-medium border-t border-neutral-900"
           >
             <div className="flex items-center space-x-2">
               <ShieldCheck className="w-4 h-4 text-[#00DC82]" />
               <span>100% Smartphone Compatible</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Zap className="w-4 h-4 text-[#10B981]" />
+              <Zap className="w-4 h-4 text-[#00DC82]" />
               <span>No App Download Needed</span>
             </div>
             <div className="flex items-center space-x-2">
@@ -129,5 +121,5 @@ export const HeroSection = () => {
       </div>
     </section>
   );
-
 };
+

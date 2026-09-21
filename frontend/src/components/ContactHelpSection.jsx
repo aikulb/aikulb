@@ -213,11 +213,6 @@ export const ContactHelpSection = () => {
         
         {/* Section Header (TapMo Inspired) */}
         <ScrollReveal className="text-center max-w-4xl mx-auto space-y-5">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#6C4CFF]/10 border border-[#6C4CFF]/20 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-            <HelpCircle className="w-4 h-4 text-[#6C4CFF]" />
-            <span>24/7 Dedicated Support & Assistance</span>
-          </div>
-
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 font-manrope tracking-tight leading-tight">
             How Can We Help You Today?
           </h2>

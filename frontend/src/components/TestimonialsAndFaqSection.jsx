@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronDown, Plus } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Star, ChevronDown } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './AnimatedComponents';
-import { ContactHelpSection } from './ContactHelpSection';
 
 export const TestimonialsAndFaqSection = () => {
   const [openFaq, setOpenFaq] = useState(0);
@@ -56,35 +54,35 @@ export const TestimonialsAndFaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-[#FAFAFA] relative transition-colors duration-300">
+    <section id="faq" className="py-24 bg-black text-white relative transition-colors duration-300 border-t border-neutral-900">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Testimonials Sub-section */}
-        <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-block px-3.5 py-1 rounded-full bg-white border border-slate-200 text-slate-800 text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-            Verified Customer Reviews
-          </div>
-          <h2 className="section-h2 text-slate-900">
+        <ScrollReveal className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-manrope tracking-tight">
             Loved by Executives & Teams
           </h2>
+          <p className="text-slate-400 text-base font-inter">
+            See what founders, sales leaders, and executive teams say about networking with aikulb.
+          </p>
         </ScrollReveal>
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 font-inter">
           {testimonials.map((t, i) => (
             <StaggerItem key={i}>
-              <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-4 flex flex-col justify-between h-full card-hover-elevation">
+              <div className="p-8 rounded-3xl bg-neutral-950 border border-neutral-800 shadow-xl space-y-4 flex flex-col justify-between h-full hover:border-neutral-700 transition-all duration-300">
                 <div className="space-y-3">
                   <div className="flex space-x-1 text-amber-400">
                     {[...Array(t.rating)].map((_, r) => (
                       <Star key={r} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-sm text-slate-600 italic leading-relaxed">"{t.text}"</p>
+                  <p className="text-sm text-slate-300 italic leading-relaxed">"{t.text}"</p>
                 </div>
-                <div className="flex items-center space-x-3 pt-4 border-t border-slate-100">
-                  <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-[#6C4CFF]/40" />
+                <div className="flex items-center space-x-3 pt-4 border-t border-neutral-900">
+                  <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-neutral-700" />
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm font-manrope">{t.name}</h4>
-                    <p className="text-xs text-slate-500">{t.role}</p>
+                    <h4 className="font-bold text-white text-sm font-manrope">{t.name}</h4>
+                    <p className="text-xs text-slate-400">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -92,10 +90,57 @@ export const TestimonialsAndFaqSection = () => {
           ))}
         </StaggerContainer>
 
-        {/* Full Interactive Contact & Help Center Section (TapMo Inspired with DB Sync) */}
-        <div className="mt-16 border-t border-slate-200 pt-16">
-          <ContactHelpSection />
-        </div>
+        {/* FAQ Section */}
+        <ScrollReveal className="max-w-3xl mx-auto space-y-6 pt-8 border-t border-neutral-900">
+          <div className="text-center space-y-2 mb-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-manrope tracking-tight">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-slate-400 text-sm font-inter">
+              Everything you need to know about aikulb NFC smart cards and cloud profiles.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+              return (
+                <div
+                  key={index}
+                  className="rounded-2xl bg-neutral-950 border border-neutral-800 overflow-hidden transition-colors"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : index)}
+                    className="w-full px-6 py-5 text-left font-manrope font-bold text-base text-white flex items-center justify-between gap-4 cursor-pointer hover:text-[#00DC82] transition-colors"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-slate-400 transition-transform duration-300 flex-shrink-0 ${
+                        isOpen ? 'rotate-180 text-[#00DC82]' : ''
+                      }`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-6 pb-5 pt-1 text-sm text-slate-300 font-inter leading-relaxed border-t border-neutral-900">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

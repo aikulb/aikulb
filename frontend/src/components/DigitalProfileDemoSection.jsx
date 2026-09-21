@@ -14,9 +14,6 @@ export const DigitalProfileDemoSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Text Info Column */}
           <ScrollReveal className="lg:col-span-6 space-y-6">
-            <div className="inline-block px-3.5 py-1 rounded-full bg-[#6C4CFF]/10 border border-[#6C4CFF]/20 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-              Smart Cloud Profile Engine
-            </div>
             <h2 className="section-h2 text-slate-900 font-extrabold">
               One Digital Profile.<br />
               <span className="aikulb-gradient-text">Infinite Opportunities.</span>

@@ -87,7 +87,7 @@ export const FloatingChatWidget = () => {
                 <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-[#25D366] to-[#10B981] flex items-center justify-center text-white shadow-md shadow-emerald-950/50">
                   <MessageCircle className="w-5 h-5 fill-white text-white" />
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#0D121F] rounded-full animate-pulse"></span>
+                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 border-2 border-[#0D121F] rounded-full"></span>
               </div>
               <div>
                 <h4 className="text-xs sm:text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5">
@@ -259,9 +259,8 @@ export const FloatingChatWidget = () => {
         className="w-12 h-12 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white rounded-2xl shadow-2xl backdrop-blur-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 group relative"
         title="Need any Help? Chat with us"
       >
-        {/* Active pulse indicator */}
+        {/* Active indicator */}
         <span className="absolute -top-1 -right-1 flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border border-slate-900"></span>
         </span>
 

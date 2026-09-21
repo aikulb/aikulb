@@ -707,7 +707,7 @@ export const UserDashboardPage = () => {
                           <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center font-black text-lg font-syne">
                             ak
                           </div>
-                          <Radio className="w-6 h-6 opacity-70 animate-pulse" />
+                          <Radio className="w-6 h-6 opacity-70" />
                         </div>
 
                         <div className="space-y-1">

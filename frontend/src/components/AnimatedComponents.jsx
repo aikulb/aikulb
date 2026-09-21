@@ -283,15 +283,15 @@ export const AiNodesBackground = () => {
         {/* Pulsing Nodes */}
         <g>
           <circle cx="15%" cy="20%" r="4" fill="#6C4CFF" />
-          <circle cx="15%" cy="20%" r="9" fill="none" stroke="#6C4CFF" strokeWidth="1" className="animate-ping" />
+          <circle cx="15%" cy="20%" r="9" fill="none" stroke="#6C4CFF" strokeWidth="1" opacity="0.4" />
         </g>
         <g>
           <circle cx="45%" cy="50%" r="5" fill="#22D3EE" />
-          <circle cx="45%" cy="50%" r="12" fill="none" stroke="#22D3EE" strokeWidth="1" className="animate-ping duration-1000" />
+          <circle cx="45%" cy="50%" r="12" fill="none" stroke="#22D3EE" strokeWidth="1" opacity="0.4" />
         </g>
         <g>
           <circle cx="80%" cy="30%" r="4" fill="#3B82F6" />
-          <circle cx="80%" cy="30%" r="8" fill="none" stroke="#3B82F6" strokeWidth="1" className="animate-ping duration-700" />
+          <circle cx="80%" cy="30%" r="8" fill="none" stroke="#3B82F6" strokeWidth="1" opacity="0.4" />
         </g>
         <g>
           <circle cx="70%" cy="75%" r="4" fill="#8B5CF6" />
