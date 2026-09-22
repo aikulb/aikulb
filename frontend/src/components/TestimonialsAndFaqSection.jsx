@@ -10,21 +10,21 @@ export const TestimonialsAndFaqSection = () => {
     {
       name: 'Vikram Malhotra',
       role: 'Managing Director, Vertex Capital',
-      text: 'The aikulb Black Metal card is a game changer at conferences. Every single CEO I tap with is blown away by how seamless the digital profile loads.',
+      text: 'The ai klub Black Metal card is a game changer at conferences. Every single CEO I tap with is blown away by how seamless the digital profile loads.',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
     },
     {
       name: 'Priya Sharma',
       role: 'Founder, CloudGrid Tech',
-      text: 'We deployed aikulb custom cards for our entire 45-person sales force. Our team captured over 300 qualified leads in the first month alone!',
+      text: 'We deployed ai klub custom cards for our entire 45-person sales force. Our team captured over 300 qualified leads in the first month alone!',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
     },
     {
       name: 'Dr. Rajesh Mehta',
       role: 'Chief Surgeon, Elevate Health',
-      text: 'Having the aikulb Smart Stand on our reception counter quadrupled our 5-star Google Reviews in less than 3 weeks. Incredible ROI.',
+      text: 'Having the ai klub Smart Stand on our reception counter quadrupled our 5-star Google Reviews in less than 3 weeks. Incredible ROI.',
       rating: 5,
       avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200',
     },
@@ -32,16 +32,16 @@ export const TestimonialsAndFaqSection = () => {
 
   const faqs = [
     {
-      q: 'Does the recipient need a dedicated aikulb app to view my profile?',
-      a: 'No! The recipient does NOT need any app. When they tap your aikulb NFC card or scan the QR code on their smartphone, your digital profile opens instantly in their native mobile browser.',
+      q: 'Does the recipient need a dedicated ai klub app to view my profile?',
+      a: 'No! The recipient does NOT need any app. When they tap your ai klub NFC card or scan the QR code on their smartphone, your digital profile opens instantly in their native mobile browser.',
     },
     {
-      q: 'Which smartphones are compatible with aikulb NFC smart cards?',
-      a: 'aikulb NFC cards are compatible with 99%+ of modern smartphones including iPhones (iPhone XS and newer) and all NFC-enabled Android devices (Samsung, Google Pixel, OnePlus, etc.). The dynamic QR code on the card ensures 100% fallback compatibility for older models.',
+      q: 'Which smartphones are compatible with ai klub NFC smart cards?',
+      a: 'ai klub NFC cards are compatible with 99%+ of modern smartphones including iPhones (iPhone XS and newer) and all NFC-enabled Android devices (Samsung, Google Pixel, OnePlus, etc.). The dynamic QR code on the card ensures 100% fallback compatibility for older models.',
     },
     {
       q: 'Can I update my digital profile information after ordering my card?',
-      a: 'Yes, absolutely! Your physical aikulb card links dynamically to your cloud digital profile. You can update your phone numbers, social links, portfolio, and company info anytime from your aikulb User Dashboard without needing a new card.',
+      a: 'Yes, absolutely! Your physical ai klub card links dynamically to your cloud digital profile. You can update your phone numbers, social links, portfolio, and company info anytime from your ai klub User Dashboard without needing a new card.',
     },
     {
       q: 'How does team & corporate enterprise lead capture work?',
@@ -62,7 +62,7 @@ export const TestimonialsAndFaqSection = () => {
             Loved by Executives & Teams
           </h2>
           <p className="text-slate-400 text-base font-inter">
-            See what founders, sales leaders, and executive teams say about networking with aikulb.
+            See what founders, sales leaders, and executive teams say about networking with ai klub.
           </p>
         </ScrollReveal>
 
@@ -97,7 +97,7 @@ export const TestimonialsAndFaqSection = () => {
               Frequently Asked Questions
             </h2>
             <p className="text-slate-400 text-sm font-inter">
-              Everything you need to know about aikulb NFC smart cards and cloud profiles.
+              Everything you need to know about ai klub NFC smart cards and cloud profiles.
             </p>
           </div>
 

@@ -34,41 +34,40 @@ export const ContactHelpSection = () => {
   const [meetingData, setMeetingData] = useState({ name: '', email: '', phone: '', date: '', time: '11:00 AM' });
   const [meetingSuccess, setMeetingSuccess] = useState(false);
 
-  // Department Support Cards Data (TapMo inspired layout)
+  // Department Support Cards Data (aikulb layout)
   const departments = [
+    {
+      title: 'WhatsApp Customer Support & Sales',
+      person: 'aikulb WhatsApp Helpline',
+      role: 'Official Instant WhatsApp Support',
+      phone: '+91 77995 29358',
+      email: 'support@aikulb.com',
+      whatsapp: 'https://wa.me/917799529358?text=Hello%20aikulb!%20I%20have%20a%20query%20regarding%20NFC%20smart%20cards%20and%20digital%20profiles.',
+      timing: 'Mon - Sun: 24/7 WhatsApp Support',
+      color: 'from-emerald-50 via-white to-emerald-50/40',
+      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+    },
     {
       title: 'Sales & Enterprise Bulk Orders',
       person: 'Gaurav Singh',
       role: 'Head of Sales & Operations',
-      phone: '+91 99714 20130',
+      phone: '+91 77995 29358',
       email: 'hello@aikulb.com',
-      whatsapp: 'https://wa.me/919971420130?text=Hi%20Gaurav,%20I%20want%20to%20inquire%20about%20aikulb%20NFC%20cards.',
+      whatsapp: 'https://wa.me/917799529358?text=Hi!%20I%20want%20to%20inquire%20about%20aikulb%20NFC%20cards.',
       timing: 'Mon - Sat: 9:30 AM - 7:30 PM',
       color: 'from-purple-50 via-white to-purple-50/40',
       badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
     },
     {
-      title: 'Technical Support & Profile Setup',
-      person: 'Rakhi Jha',
-      role: 'Lead Tech Support Specialist',
-      phone: '+91 70420 15887',
-      email: 'support@aikulb.com',
-      whatsapp: 'https://wa.me/917042015887?text=Hi%20Rakhi,%20I%20need%20technical%20assistance%20with%20my%20aikulb%20profile.',
+      title: 'Technical Support & Order Status',
+      person: 'aikulb Tech Desk',
+      role: 'Lead Support Specialist',
+      phone: '+91 77995 29358',
+      email: 'tracking@aikulb.com',
+      whatsapp: 'https://wa.me/917799529358?text=Hi!%20I%20need%20assistance%20with%20my%20order%20or%20profile.',
       timing: 'Mon - Sun: 9:00 AM - 9:00 PM',
       color: 'from-blue-50 via-white to-blue-50/40',
       badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
-    },
-    {
-      title: 'Courier, Fulfillment & Order Status',
-      person: 'Navneet Shrivastava',
-      role: 'Logistics & Dispatch Manager',
-      phone: '+91 85278 11831',
-      altPhone: '+91 96671 06603',
-      email: 'tracking@aikulb.com',
-      whatsapp: 'https://wa.me/918527811831?text=Hi%20Navneet,%20I%20want%20to%20check%20my%20order%20dispatch%20status.',
-      timing: 'Mon - Sat: 10:00 AM - 6:30 PM',
-      color: 'from-emerald-50 via-white to-emerald-50/40',
-      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
     },
   ];
 
@@ -211,7 +210,7 @@ export const ContactHelpSection = () => {
 
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-24">
         
-        {/* Section Header (TapMo Inspired) */}
+        {/* Section Header (aikulb Inspired) */}
         <ScrollReveal className="text-center max-w-4xl mx-auto space-y-5">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 font-manrope tracking-tight leading-tight">
             How Can We Help You Today?
@@ -251,7 +250,7 @@ export const ContactHelpSection = () => {
           </div>
         </ScrollReveal>
 
-        {/* 1. Multi-Department Support Team Contact Cards (TapMo layout) */}
+        {/* 1. Multi-Department Support Team Contact Cards (aikulb layout) */}
         <div className="space-y-8">
           <ScrollReveal className="text-center space-y-2">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-manrope">
@@ -471,7 +470,7 @@ export const ContactHelpSection = () => {
             )}
           </ScrollReveal>
 
-          {/* Office Info & GST Details Column (TapMo layout) */}
+          {/* Office Info & GST Details Column (aikulb layout) */}
           <ScrollReveal yOffset={30} className="lg:col-span-5 space-y-6">
             {/* Delhi NCR Office Card */}
             <div className="p-7 rounded-[32px] bg-white border border-slate-200 shadow-md space-y-3">

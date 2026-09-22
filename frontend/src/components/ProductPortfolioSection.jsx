@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Sparkles, Check, ArrowRight, ShieldCheck, Zap, QrCode, Cpu, Layers, ExternalLink, MessageCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { ScrollReveal, Card3DTilt, MagneticButton } from './AnimatedComponents';
-import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WoodCardVisual, SmartStandVisual } from './ProductVisuals';
+import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WoodCardVisual, SmartStandVisual, GoldTrishulCardVisual, SilverTrishulCardVisual, BlueWorldCardVisual, BlueTrishulCardVisual, SilverWorldCardVisual } from './ProductVisuals';
 
 export const ProductPortfolioSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -30,12 +30,137 @@ export const ProductPortfolioSection = () => {
 
   const portfolioItems = [
     {
+      id: 'port-gold-trishul',
+      category: 'metal',
+      name: 'Ai Klub 24K Gold Trishul Emblem Edition',
+      price: 1999,
+      originalPrice: 3499,
+      tag: 'Flagship 3D Engraved',
+      badgeColor: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
+      description: 'Executive 24K Gold Brushed Stainless Steel NFC card featuring the iconic 3D engraved Trishul-AK Emblem, "PEOPLE | IDEAS | TECHNOLOGY" tagline, and "TAP TO CONNECT" QR code.',
+      specs: [
+        { label: 'Printing Type', val: '3D Laser Relief & Engraving' },
+        { label: 'Material', val: 'Brushed 24K Gold Alloy' },
+        { label: 'NFC Chip', val: 'High Sensitivity NTAG216' },
+        { label: 'Features', val: 'Trishul Emblem & QR' },
+        { label: 'Durability', val: 'Scratch & Corrosion Proof' },
+      ],
+      features: [
+        '3D Engraved Trishul-AK Emblem',
+        'Built-in Dynamic QR Code with TAP TO CONNECT',
+        '1-Tap VCF Contact Download to Recipient Phone',
+        'Lifetime Backend Admin Profile Control',
+      ],
+      visualType: 'gold_trishul',
+      bgColor: 'bg-[#120F08]',
+    },
+    {
+      id: 'port-silver-trishul',
+      category: 'metal',
+      name: 'Ai Klub Platinum Silver Trishul Emblem Edition',
+      price: 1899,
+      originalPrice: 3199,
+      tag: 'Executive Choice',
+      badgeColor: 'bg-slate-200/20 text-slate-100 border-slate-300/40',
+      description: 'Ultra-sleek Platinum Silver brushed metal NFC smart card with precision 3D engraved Trishul emblem, "CONNECT / COLLABORATE / CREATE / GROW" corner accent, and high-contrast QR code.',
+      specs: [
+        { label: 'Printing Type', val: 'Tactile Engraving & UV Motif' },
+        { label: 'Material', val: 'Brushed Stainless Steel' },
+        { label: 'NFC Chip', val: 'High Sensitivity NTAG216' },
+        { label: 'Features', val: 'Connect Collaborate Create Motif' },
+        { label: 'Durability', val: '100% Solid Metal' },
+      ],
+      features: [
+        'Platinum Silver Brushed Finish',
+        'Trishul Emblem & 4-Pillar Corner Motif',
+        'Instant Tap Contact Transfer',
+        'Unlimited Profile Edits',
+      ],
+      visualType: 'silver_trishul',
+      bgColor: 'bg-[#090909]',
+    },
+    {
+      id: 'port-blue-world',
+      category: 'metal',
+      name: 'Ai Klub Sapphire Blue World Map Edition',
+      price: 2199,
+      originalPrice: 3799,
+      tag: 'Global Executive Series',
+      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      description: 'Stunning Electric Sapphire Blue brushed metal NFC card featuring an intricate Silver Dot-Matrix World Map design, 5 core pillars (People, Ideas, Technology, Opportunities, Global Network), and neon wave lines.',
+      specs: [
+        { label: 'Printing Type', val: 'Dot-Matrix Laser Etching' },
+        { label: 'Material', val: 'Electric Sapphire Blue Alloy' },
+        { label: 'NFC Chip', val: 'High Sensitivity NTAG216' },
+        { label: 'Features', val: '5 Strategic Pillars Layout' },
+        { label: 'Durability', val: 'PVD Metallic Anodized' },
+      ],
+      features: [
+        'Laser Etched Dot-Matrix World Map',
+        '5 Pillar Network Icons (People, Ideas, Tech, etc.)',
+        'TAP CONNECT GROW Footer',
+        'Integrated Lead Capture CRM',
+      ],
+      visualType: 'blue_world',
+      bgColor: 'bg-[#0B1426]',
+    },
+    {
+      id: 'port-blue-trishul',
+      category: 'metal',
+      name: 'Ai Klub Sapphire Blue Trishul Emblem Edition',
+      price: 2099,
+      originalPrice: 3599,
+      tag: 'Best Seller',
+      badgeColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40',
+      description: 'Bold Metallic Sapphire Blue NFC card accented with a polished silver chrome Trishul-AK Emblem and sharp high-definition QR code for effortless networking.',
+      specs: [
+        { label: 'Printing Type', val: 'Chrome 3D Relief' },
+        { label: 'Material', val: 'Sapphire Blue Metal Alloy' },
+        { label: 'NFC Chip', val: 'NTAG216 High Speed' },
+        { label: 'Features', val: 'Chrome Trishul Accent' },
+        { label: 'Durability', val: 'Ultra Premium Weight' },
+      ],
+      features: [
+        'Chrome Trishul-AK Emblem',
+        'Tap To Connect Dynamic QR Code',
+        'Instant Phonebook Save',
+        'Priority Technical Support',
+      ],
+      visualType: 'blue_trishul',
+      bgColor: 'bg-[#070D1A]',
+    },
+    {
+      id: 'port-silver-world',
+      category: 'metal',
+      name: 'Ai Klub Platinum Silver World Map Edition',
+      price: 1999,
+      originalPrice: 3399,
+      tag: 'World Series',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+      description: 'Pure Brushed Silver metal smart card with dot-matrix world map, centered "A SMARTER TOMORROW TOGETHER" tagline, and "TAP . CONNECT . GROW." footer.',
+      specs: [
+        { label: 'Printing Type', val: 'Laser Engraved Map & Pillars' },
+        { label: 'Material', val: 'Brushed Stainless Steel' },
+        { label: 'NFC Chip', val: 'High Sensitivity Microchip' },
+        { label: 'Features', val: 'Dot Matrix World Map' },
+        { label: 'Durability', val: 'Rust & Corrosion Free' },
+      ],
+      features: [
+        'World Map Dot Matrix Graphic',
+        'A Smarter Tomorrow Together Motif',
+        '5 Pillars Executive Layout',
+        'Lifetime Reusable Card',
+      ],
+      visualType: 'silver_world',
+      bgColor: 'bg-[#0A0D14]',
+    },
+    {
       id: 'port-black-metal',
       category: 'metal',
       name: 'Black Metal NFC Business Card',
       price: 1999,
       originalPrice: 3499,
-      tag: 'Executive CXO Choice',
+      tag: 'Stealth CXO Choice',
       badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
       description: 'Precision laser engraved aerospace-grade stainless steel matte black card. Perfect for founders, executives, and high-impact first impression networking.',
       specs: [
@@ -332,7 +457,7 @@ export const ProductPortfolioSection = () => {
     {
       id: 'port-social-tags',
       category: 'tags',
-      name: 'aikulb Smart NFC Social Tags & Keychains',
+      name: 'ai klub Smart NFC Social Tags & Keychains',
       price: 499,
       originalPrice: 899,
       tag: 'Compact Phone & Keyring Tag',
@@ -362,6 +487,16 @@ export const ProductPortfolioSection = () => {
 
   const renderVisual = (item) => {
     switch (item.visualType) {
+      case 'gold_trishul':
+        return <GoldTrishulCardVisual name={item.name} cardId={item.id} />;
+      case 'silver_trishul':
+        return <SilverTrishulCardVisual name={item.name} cardId={item.id} />;
+      case 'blue_world':
+        return <BlueWorldCardVisual name={item.name} cardId={item.id} />;
+      case 'blue_trishul':
+        return <BlueTrishulCardVisual name={item.name} cardId={item.id} />;
+      case 'silver_world':
+        return <SilverWorldCardVisual name={item.name} cardId={item.id} />;
       case 'gold_metal':
         return <GoldMetalCardVisual name={item.name} cardId={item.id} />;
       case 'silver_metal':
@@ -404,11 +539,11 @@ export const ProductPortfolioSection = () => {
           </div>
           
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 font-manrope tracking-tight leading-tight">
-            aikulb NFC Product Portfolio
+            ai klub NFC Product Portfolio
           </h2>
           
           <p className="text-base sm:text-lg text-slate-600 font-inter font-medium leading-relaxed max-w-2xl mx-auto">
-            Explore aikulb’s complete range of smart NFC business cards — from luxury aerospace metal cards for CXOs & founders to eco-friendly wooden cards and high-durability PVC cards for sales teams.
+            Explore ai klub’s complete range of smart NFC business cards — from luxury aerospace metal cards for CXOs & founders to eco-friendly wooden cards and high-durability PVC cards for sales teams.
           </p>
 
           {/* Quick Filter Pill Buttons */}
@@ -556,7 +691,7 @@ export const ProductPortfolioSection = () => {
                       </MagneticButton>
 
                       <a
-                        href={`https://wa.me/919999999999?text=Hi%20aikulb!%20I%20want%20to%20order%20the%20${encodeURIComponent(item.name)}.`}
+                        href={`https://wa.me/919999999999?text=Hi%20ai%20klub!%20I%20want%20to%20order%20the%20${encodeURIComponent(item.name)}.`}
                         target="_blank"
                         rel="noreferrer"
                         className="px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-bold flex items-center space-x-1.5 transition whitespace-nowrap"

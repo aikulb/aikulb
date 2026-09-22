@@ -22,7 +22,7 @@ export const SmartStandSection = () => {
               Smart Countertop Hardware
             </div>
             <h2 className="section-h2 text-slate-900 font-extrabold">
-              aikulb Smart Standee
+              ai klub Smart Standee
             </h2>
             <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
               Clear crystal acrylic desk stands embedded with dual NFC microchip + high resolution QR code for business receptions, retail counters, and venues.

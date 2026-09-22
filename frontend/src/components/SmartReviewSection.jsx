@@ -72,7 +72,7 @@ export const SmartReviewSection = () => {
               A Better Way to Get Google Reviews
             </h2>
             <p className="text-base sm:text-lg text-slate-600 font-inter leading-relaxed">
-              Stop typing long URLs or asking customers verbally. Hand them an aikulb Review Card or place an aikulb Smart Stand on your countertop for instant 5-star Google feedback.
+              Stop typing long URLs or asking customers verbally. Hand them an ai klub Review Card or place an ai klub Smart Stand on your countertop for instant 5-star Google feedback.
             </p>
 
             <ul className="space-y-3.5 text-sm text-slate-600 font-inter">
@@ -95,7 +95,7 @@ export const SmartReviewSection = () => {
                 to="/store?cat=cat-review"
                 className="btn-pill-gradient inline-flex items-center space-x-2 shadow-xl"
               >
-                <span>Get aikulb Review Card (₹599)</span>
+                <span>Get ai klub Review Card (₹599)</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

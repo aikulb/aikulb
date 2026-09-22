@@ -75,7 +75,7 @@ export const CheckoutPage = () => {
             </div>
             <h1 className="text-3xl font-extrabold text-neutral-900 font-manrope">Order Confirmed!</h1>
             <p className="text-sm text-neutral-600 font-inter">
-              Thank you for choosing aikulb! Your order <strong>#{placedOrder.order_number}</strong> is now being processed.
+              Thank you for choosing ai klub! Your order <strong>#{placedOrder.order_number}</strong> is now being processed.
             </p>
             <div className="p-4 rounded-2xl bg-white border border-neutral-200 text-xs font-mono space-y-1 text-left">
               <div className="flex justify-between"><span className="text-neutral-500">Total Amount:</span><span className="text-[#FF3838] font-bold">₹{placedOrder.total_amount}</span></div>
@@ -105,7 +105,7 @@ export const CheckoutPage = () => {
           <ShoppingBag className="w-16 h-16 text-neutral-400 mx-auto" />
           <h2 className="text-2xl font-bold text-neutral-900">Your Cart is Empty</h2>
           <Link to="/store" className="inline-block px-6 py-3 rounded-full bg-[#FF3838] text-white font-bold text-xs shadow-md">
-            Browse aikulb Store
+            Browse ai klub Store
           </Link>
         </main>
         <Footer />
@@ -229,7 +229,7 @@ export const CheckoutPage = () => {
               <div className="flex space-x-2">
                 <input
                   type="text"
-                  placeholder="Coupon Code (e.g. AIKULB10)"
+                  placeholder="Coupon Code (e.g. AIKLUB10)"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value)}
                   className="flex-1 px-4 py-2.5 rounded-full bg-white border border-neutral-300 text-neutral-900 text-xs font-mono uppercase focus:outline-none focus:border-[#FF3838]"

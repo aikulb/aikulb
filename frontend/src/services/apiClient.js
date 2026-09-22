@@ -74,7 +74,9 @@ export const api = {
   // Orders & Coupons
   createOrder: (orderData) => fetchJson('/orders', { method: 'POST', body: JSON.stringify(orderData) }),
   getMyOrders: () => fetchJson('/orders/my'),
+  updateOrderStatus: (id, data) => fetchJson(`/orders/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
   validateCoupon: (code) => fetchJson('/coupons/validate', { method: 'POST', body: JSON.stringify({ code }) }),
+
 
   // Teams
   getMyTeam: () => fetchJson('/teams/my'),

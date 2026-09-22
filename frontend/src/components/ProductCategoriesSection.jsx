@@ -62,7 +62,7 @@ export const ProductCategoriesSection = () => {
               Smart Hardware Store
             </div>
             <h2 className="section-h2 text-slate-900 font-extrabold">
-              Choose Your aikulb
+              Choose Your ai klub
             </h2>
           </div>
           

@@ -35,7 +35,7 @@ export class TeamController extends BaseController {
         return res.status(401).json({ success: false, message: 'Authentication required' });
       }
 
-      const { name = 'AIKULB Executive Team' } = req.body;
+      const { name = 'AI KLUB Executive Team' } = req.body;
       const teamId = 'team-' + Date.now();
 
       await executeQuery('INSERT INTO teams (id, name, owner_id) VALUES (?, ?, ?)', [teamId, name, req.user.id]);
@@ -65,7 +65,7 @@ export class TeamController extends BaseController {
       const memberId = 'tm-' + Date.now();
       await executeQuery(
         `INSERT INTO team_members (id, team_id, user_id, profile_id, card_assigned, status) VALUES (?, ?, ?, ?, ?, 'Active')`,
-        [memberId, team_id, userId, profileId, card_assigned || 'AIKULB Black Metal']
+        [memberId, team_id, userId, profileId, card_assigned || 'AI KLUB Black Metal']
       );
 
       return this.handleSuccess(res, { memberId, username, full_name }, 'Team member added successfully', 201);

@@ -134,77 +134,99 @@ export const DigitalProfileDemoSection = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-              className="w-full max-w-sm rounded-[42px] p-4 bg-[#111111] border-4 border-neutral-800 shadow-[0_25px_60px_rgba(108,76,255,0.3)] relative overflow-hidden z-10"
+              className="w-full max-w-sm rounded-[42px] p-3 bg-[#0A0A0C] border-4 border-neutral-800 shadow-[0_25px_60px_rgba(108,76,255,0.3)] relative overflow-hidden z-10 select-none text-white"
             >
               {/* Mobile Screen Header Notch */}
-              <div className="w-32 h-5 bg-[#1A1A1A] rounded-b-2xl mx-auto mb-4 border-x border-b border-neutral-800 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-black" />
+              <div className="w-28 h-4 bg-[#000000] rounded-b-xl mx-auto mb-2 border-x border-b border-neutral-800 flex items-center justify-center">
+                <div className="w-2.5 h-2.5 rounded-full bg-black" />
               </div>
 
-              {/* Profile Avatar Header */}
-              <div className="text-center space-y-3 px-4">
-                <div className="relative w-20 h-20 mx-auto rounded-full p-1 aikulb-gradient-bg">
-                  <img
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400"
-                    alt="John Doe"
-                    className="w-full h-full rounded-full object-cover"
-                  />
-                  <div className="absolute bottom-0 right-0 w-5 h-5 rounded-full bg-emerald-500 border-2 border-[#111111]" />
-                </div>
-                <div>
-                  <h3 className="font-extrabold text-white text-lg font-manrope">John Doe</h3>
-                  <p className="text-xs text-purple-300 font-medium font-inter">Founder & CEO • ABC Technologies</p>
-                </div>
-                <p className="text-[11px] text-slate-400 font-inter leading-tight">
-                  Building next-gen AI platforms and smart hardware solutions.
-                </p>
-              </div>
+              {/* Screen Container */}
+              <div className="w-full bg-[#080B11] rounded-[32px] overflow-hidden border border-neutral-800 pb-3">
+                {/* Red Curved Header Cap */}
+                <div className="h-14 w-full bg-gradient-to-r from-[#FF4D4D] via-[#FF3838] to-[#E62E2E] rounded-b-[24px] relative overflow-hidden" />
 
-              {/* Action Buttons Row */}
-              <div className="grid grid-cols-4 gap-2 my-4 px-2 font-inter">
-                <a href="tel:+1234567890" className="p-2.5 rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:border-[#6C4CFF] text-purple-300 flex flex-col items-center">
-                  <Phone className="w-4 h-4 mb-1" />
-                  <span className="text-[9px] font-bold">Call</span>
-                </a>
-                <a href="https://wa.me/15552345678" target="_blank" rel="noreferrer" className="p-2.5 rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:border-emerald-400 text-emerald-400 flex flex-col items-center">
-                  <MessageSquare className="w-4 h-4 mb-1" />
-                  <span className="text-[9px] font-bold">WhatsApp</span>
-                </a>
-                <a href="mailto:john@abctechnologies.com" className="p-2.5 rounded-2xl bg-[#1A1A1A] border border-neutral-800 hover:border-purple-400 text-purple-400 flex flex-col items-center">
-                  <Mail className="w-4 h-4 mb-1" />
-                  <span className="text-[9px] font-bold">Email</span>
-                </a>
-                <a href="/api/profile/vcf/john" download className="p-2.5 rounded-2xl aikulb-gradient-bg text-white font-bold flex flex-col items-center shadow-md">
-                  <Download className="w-4 h-4 mb-1" />
-                  <span className="text-[9px]">Save VCF</span>
-                </a>
-              </div>
-
-              {/* Links & Services Section */}
-              <div className="space-y-2 px-2 text-xs font-inter">
-                <div className="p-3 rounded-2xl bg-[#1A1A1A] border border-neutral-800 flex justify-between items-center text-slate-200">
-                  <div className="flex items-center space-x-2">
-                    <Globe className="w-4 h-4 text-cyan-400" />
-                    <span>Company Deck 2026.pdf</span>
+                {/* Split Profile Header Card */}
+                <div className="-mt-7 mx-3 rounded-2xl bg-[#0F1420] border border-neutral-800 shadow-xl overflow-hidden flex items-stretch">
+                  <div className="w-24 bg-neutral-900 relative shrink-0 overflow-hidden border-r border-neutral-800">
+                    <img
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+                      alt="Nicholas Perry"
+                      className="w-full h-full object-cover object-center"
+                    />
                   </div>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
-                </div>
-
-                <div className="p-3 rounded-2xl bg-[#1A1A1A] border border-neutral-800 flex justify-between items-center text-slate-200">
-                  <div className="flex items-center space-x-2">
-                    <Linkedin className="w-4 h-4 text-blue-400" />
-                    <span>Connect on LinkedIn</span>
+                  <div className="flex-1 p-2.5 bg-[#0B0E17] flex flex-col justify-between">
+                    <div>
+                      <h3 className="font-extrabold text-white text-sm font-manrope leading-snug">Nicholas Perry</h3>
+                      <p className="text-[10px] text-slate-300 font-inter mt-0.5">Designer @ aikulb</p>
+                    </div>
+                    <div className="pt-2">
+                      <div className="inline-flex items-center space-x-1 px-2 py-0.5 rounded bg-[#FF4D4D]/15 border border-[#FF4D4D]/30 text-[#FF4D4D] text-[9px] font-bold">
+                        <img src="/assets/logo.png" alt="aikulb" className="w-3 h-3 object-contain" />
+                        <span>aikulb</span>
+                      </div>
+                    </div>
                   </div>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
                 </div>
-              </div>
 
-              {/* Connect With Me Form Preview */}
-              <div className="mt-4 p-3.5 rounded-2xl bg-[#1A1A1A] border border-[#6C4CFF]/30 text-center font-inter">
-                <span className="text-[10px] text-purple-300 font-bold uppercase tracking-wider block mb-1 font-manrope">CONNECT WITH JOHN</span>
-                <div className="space-y-1.5">
-                  <input type="text" disabled placeholder="Your Name" className="w-full text-[10px] p-2 rounded-xl bg-black border border-neutral-800 text-slate-400" />
-                  <button className="w-full text-[10px] py-2 rounded-full aikulb-gradient-bg text-white font-bold font-manrope">Submit Contact Inquiry</button>
+                {/* Action Buttons */}
+                <div className="grid grid-cols-2 gap-2 mt-3 px-3">
+                  <a
+                    href="/api/profile/vcf/john"
+                    download
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-[#FF4D4D] to-[#FF3838] text-white font-extrabold text-[11px] font-manrope shadow flex items-center justify-center space-x-1"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Save Contact</span>
+                  </a>
+                  <Link
+                    to="/profile/john"
+                    target="_blank"
+                    className="w-full py-2 rounded-full bg-[#E2E8F0] text-[#0F172A] font-extrabold text-[11px] font-manrope shadow flex items-center justify-center space-x-1"
+                  >
+                    <Globe className="w-3.5 h-3.5 text-[#0F172A]" />
+                    <span>Share</span>
+                  </Link>
+                </div>
+
+                {/* ABOUT Section */}
+                <div className="mt-3 px-3">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1">ABOUT</span>
+                  <p className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-[10px] text-slate-300 leading-snug font-inter">
+                    With the smart business cards and digital cards, you will be able to reach your clients very easily and hassle-free.
+                  </p>
+                </div>
+
+                {/* CONTACT ME Section */}
+                <div className="mt-3 px-3 space-y-1 font-inter text-[11px]">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1">CONTACT ME</span>
+                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
+                        <Phone className="w-3 h-3" />
+                      </div>
+                      <span>149-219-4462</span>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                  </div>
+                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
+                        <Mail className="w-3 h-3" />
+                      </div>
+                      <span>nicholas@aikulb.com</span>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                  </div>
+                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
+                        <Globe className="w-3 h-3" />
+                      </div>
+                      <span>www.aikulb.com</span>
+                    </div>
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                  </div>
                 </div>
               </div>
             </motion.div>

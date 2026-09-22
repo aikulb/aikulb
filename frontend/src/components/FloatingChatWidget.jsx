@@ -70,7 +70,7 @@ export const FloatingChatWidget = () => {
     }
   };
 
-  const whatsappUrl = `https://wa.me/917042015887?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/917799529358?text=${encodeURIComponent(
     message.trim() ? `Hi aikulb! My name is ${name || 'User'}. ${message}` : 'Hi aikulb! I need help with smart cards & profiles.'
   )}`;
 
@@ -91,12 +91,12 @@ export const FloatingChatWidget = () => {
               </div>
               <div>
                 <h4 className="text-xs sm:text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5">
-                  aikulb Support
+                  aikulb WhatsApp Support
                   <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                 </h4>
                 <p className="text-[10px] sm:text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  Online • 24/7 Live Support
+                  +91 77995 29358 • Instant Chat
                 </p>
               </div>
             </div>
@@ -119,8 +119,8 @@ export const FloatingChatWidget = () => {
               rel="noopener noreferrer"
               className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-black text-xs py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md shadow-emerald-600/20 transition hover:scale-[1.01] group cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 fill-slate-950 text-[#25D366]" />
-              <span className="tracking-tight">Chat Directly on WhatsApp</span>
+              <MessageCircle className="w-4 h-4 text-slate-950 fill-slate-950" />
+              <span>Chat on WhatsApp (+91 77995 29358)</span>
             </a>
 
             <div className="relative flex items-center justify-center my-1">

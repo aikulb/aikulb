@@ -2,7 +2,7 @@ import { db } from './connection.js';
 import bcrypt from 'bcryptjs';
 
 async function migrate() {
-  console.log('🚀 Starting AIKULB Database Migration & Seeding...');
+  console.log('🚀 Starting AI KLUB Database Migration & Seeding...');
 
   // 1. Users Table
   await db.execute(`
@@ -232,9 +232,109 @@ async function migrate() {
   // Seed Initial Products
   const products = [
     {
+      id: 'prod-metal-gold-trishul',
+      name: 'Ai Klub 24K Gold Trishul Emblem Edition',
+      slug: 'aiklub-24k-gold-trishul-emblem-edition',
+      description: 'Executive 24K Gold Brushed Stainless Steel NFC card featuring the iconic 3D engraved Trishul-AK Emblem, "PEOPLE | IDEAS | TECHNOLOGY" tagline, and "TAP TO CONNECT" QR code integration.',
+      short_description: 'Brushed 24K Gold Metal with 3D Engraved Trishul Emblem & QR Code.',
+      price: 1999,
+      original_price: 3499,
+      discount: 42,
+      rating: 5.0,
+      material: 'Brushed 24K Gold Stainless Steel',
+      nfc_enabled: 1,
+      qr_enabled: 1,
+      category_id: 'cat-metal',
+      sku: 'AIK-MTL-GLD-TRISHUL',
+      stock: 100,
+      is_featured: 1,
+      image_url: '/src/cardImages/WhatsApp Image 2026-09-22 at 15.47.05 (1).jpeg',
+      images_json: JSON.stringify(['/src/cardImages/WhatsApp Image 2026-09-22 at 15.47.05 (1).jpeg']),
+    },
+    {
+      id: 'prod-metal-silver-trishul',
+      name: 'Ai Klub Platinum Silver Trishul Emblem Edition',
+      slug: 'aiklub-platinum-silver-trishul-emblem-edition',
+      description: 'Ultra-sleek Platinum Silver brushed metal NFC smart card with precision 3D engraved Trishul emblem, "CONNECT / COLLABORATE / CREATE / GROW" corner accent, and high-contrast QR code.',
+      short_description: 'Platinum Silver Brushed Metal with 3D Trishul Emblem & 4-Pillar Corner Accent.',
+      price: 1899,
+      original_price: 3199,
+      discount: 40,
+      rating: 4.9,
+      material: 'Platinum Silver Brushed Metal',
+      nfc_enabled: 1,
+      qr_enabled: 1,
+      category_id: 'cat-metal',
+      sku: 'AIK-MTL-SLV-TRISHUL',
+      stock: 120,
+      is_featured: 1,
+      image_url: '/src/cardImages/WhatsApp Image 2026-09-22 at 15.47.05.jpeg',
+      images_json: JSON.stringify(['/src/cardImages/WhatsApp Image 2026-09-22 at 15.47.05.jpeg', '/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.17.jpeg']),
+    },
+    {
+      id: 'prod-metal-blue-world',
+      name: 'Ai Klub Sapphire Blue World Map Edition',
+      slug: 'aiklub-sapphire-blue-world-map-edition',
+      description: 'Stunning Electric Sapphire Blue brushed metal NFC card featuring an intricate Silver Dot-Matrix World Map design, 5 core pillars (People, Ideas, Technology, Opportunities, Global Network), and neon wave lines.',
+      short_description: 'Electric Sapphire Blue Alloy with Etched Silver Dot-Matrix World Map & 5 Strategic Pillars.',
+      price: 2199,
+      original_price: 3799,
+      discount: 42,
+      rating: 5.0,
+      material: 'Metallic Sapphire Blue Steel',
+      nfc_enabled: 1,
+      qr_enabled: 1,
+      category_id: 'cat-metal',
+      sku: 'AIK-MTL-BLU-WORLD',
+      stock: 90,
+      is_featured: 1,
+      image_url: '/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.17 (1).jpeg',
+      images_json: JSON.stringify(['/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.17 (1).jpeg']),
+    },
+    {
+      id: 'prod-metal-blue-trishul',
+      name: 'Ai Klub Sapphire Blue Trishul Emblem Edition',
+      slug: 'aiklub-sapphire-blue-trishul-emblem-edition',
+      description: 'Bold Metallic Sapphire Blue NFC card accented with a polished silver chrome Trishul-AK Emblem and sharp high-definition QR code for effortless networking.',
+      short_description: 'Metallic Sapphire Blue with Chrome Trishul Emblem & Tap To Connect QR Code.',
+      price: 2099,
+      original_price: 3599,
+      discount: 41,
+      rating: 4.9,
+      material: 'Metallic Sapphire Blue Steel',
+      nfc_enabled: 1,
+      qr_enabled: 1,
+      category_id: 'cat-metal',
+      sku: 'AIK-MTL-BLU-TRISHUL',
+      stock: 110,
+      is_featured: 1,
+      image_url: '/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.18.jpeg',
+      images_json: JSON.stringify(['/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.18.jpeg']),
+    },
+    {
+      id: 'prod-metal-silver-world',
+      name: 'Ai Klub Platinum Silver World Map Edition',
+      slug: 'aiklub-platinum-silver-world-map-edition',
+      description: 'Pure Brushed Silver metal smart card with dot-matrix world map, centered "A SMARTER TOMORROW TOGETHER" tagline, and "TAP . CONNECT . GROW." footer.',
+      short_description: 'Brushed Platinum Silver with Etched World Map & 5 Strategic Pillar Icons.',
+      price: 1999,
+      original_price: 3399,
+      discount: 41,
+      rating: 4.9,
+      material: 'Brushed Platinum Silver Steel',
+      nfc_enabled: 1,
+      qr_enabled: 1,
+      category_id: 'cat-metal',
+      sku: 'AIK-MTL-SLV-WORLD',
+      stock: 130,
+      is_featured: 1,
+      image_url: '/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.16.jpeg',
+      images_json: JSON.stringify(['/src/cardImages/WhatsApp Image 2026-09-22 at 16.00.16.jpeg']),
+    },
+    {
       id: 'prod-metal-black',
-      name: 'AIKULB Black Metal NFC Card',
-      slug: 'aikulb-black-metal-nfc-card',
+      name: 'AI KLUB Black Metal NFC Card',
+      slug: 'aiklub-black-metal-nfc-card',
       description: 'Crafted from aerospace-grade matte black stainless steel with high-precision laser engraving. Embedded with an NTAG216 high-speed NFC microchip.',
       short_description: 'Premium black metal NFC card with high-precision laser engraving.',
       price: 1999,
@@ -253,8 +353,8 @@ async function migrate() {
     },
     {
       id: 'prod-metal-gold',
-      name: 'AIKULB Gold NFC Card',
-      slug: 'aikulb-gold-nfc-card',
+      name: 'AI KLUB Gold NFC Card',
+      slug: 'aiklub-gold-nfc-card',
       description: 'Luxurious mirror-finish 24K gold metallic smart business card. Unmatched executive elegance with instant digital identity tap sharing.',
       short_description: 'Executive gold mirror finish NFC smart business card.',
       price: 2399,
@@ -273,8 +373,8 @@ async function migrate() {
     },
     {
       id: 'prod-metal-silver',
-      name: 'AIKULB Silver Metal Card',
-      slug: 'aikulb-silver-metal-card',
+      name: 'AI KLUB Silver Metal Card',
+      slug: 'aiklub-silver-metal-card',
       description: 'Sleek brushed silver metal smart card featuring custom metallic laser etching and full dynamic profile synchronization.',
       short_description: 'Minimal silver brushed metal NFC smart business card.',
       price: 1999,
@@ -293,8 +393,8 @@ async function migrate() {
     },
     {
       id: 'prod-wood-walnut',
-      name: 'AIKULB Wooden NFC Card',
-      slug: 'aikulb-wooden-nfc-card',
+      name: 'AI KLUB Wooden NFC Card',
+      slug: 'aiklub-wooden-nfc-card',
       description: 'Handcrafted from 100% natural organic dark walnut wood. Eco-conscious networking with high-performance integrated NFC antenna.',
       short_description: 'Natural organic dark walnut wooden smart card.',
       price: 1499,
@@ -313,8 +413,8 @@ async function migrate() {
     },
     {
       id: 'prod-wood-bamboo',
-      name: 'AIKULB Bamboo NFC Card',
-      slug: 'aikulb-bamboo-nfc-card',
+      name: 'AI KLUB Bamboo NFC Card',
+      slug: 'aiklub-bamboo-nfc-card',
       description: 'Sustainably sourced light bamboo smart card with custom laser branding. Lightweight, durable, and environmentally clean.',
       short_description: 'Eco-friendly sustainable light bamboo NFC smart card.',
       price: 1399,
@@ -333,8 +433,8 @@ async function migrate() {
     },
     {
       id: 'prod-pvc-card',
-      name: 'AIKULB PVC Smart Card',
-      slug: 'aikulb-pvc-smart-card',
+      name: 'AI KLUB PVC Smart Card',
+      slug: 'aiklub-pvc-smart-card',
       description: 'Heavy-duty matte waterproof PVC card featuring vibrant edge-to-edge custom printing and built-in NFC chip.',
       short_description: 'Affordable, high-durability waterproof NFC business card.',
       price: 999,
@@ -353,8 +453,8 @@ async function migrate() {
     },
     {
       id: 'prod-smart-stand',
-      name: 'AIKULB Smart Stand',
-      slug: 'aikulb-smart-stand',
+      name: 'AI KLUB Smart Stand',
+      slug: 'aiklub-smart-stand',
       description: 'Clear acrylic counter stand embedded with dual NFC + QR technology. Perfect for restaurants, clinics, hotels, retail counters, and office receptions.',
       short_description: 'NFC-enabled desk stand for reviews, menus, and digital links.',
       price: 799,
@@ -373,8 +473,8 @@ async function migrate() {
     },
     {
       id: 'prod-google-review',
-      name: 'AIKULB Google Review Card',
-      slug: 'aikulb-google-review-card',
+      name: 'AI KLUB Google Review Card',
+      slug: 'aiklub-google-review-card',
       description: 'Boost 5-star Google customer reviews effortlessly. When customers tap this smart card, your direct Google Review page opens instantly on their phone.',
       short_description: 'Instant tap-to-review Google smart card for businesses.',
       price: 599,
@@ -408,12 +508,12 @@ async function migrate() {
 
   await db.execute({
     sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
-    args: ['user-admin-1', 'AIKULB Admin', 'admin@aikulb.com', passwordHash, 'admin'],
+    args: ['user-admin-1', 'AI KLUB Admin', 'admin@aiklub.com', passwordHash, 'admin'],
   });
 
   await db.execute({
     sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
-    args: ['user-john-1', 'John Doe', 'john@aikulb.com', passwordHash, 'customer'],
+    args: ['user-john-1', 'John Doe', 'john@aiklub.com', passwordHash, 'customer'],
   });
 
   // Seed Demo Profile `/profile/john`
@@ -452,7 +552,7 @@ async function migrate() {
         { name: 'Executive Mentorship', desc: '1-on-1 scaling guidance for tech founders.' }
       ]),
       JSON.stringify([
-        { title: 'AIKULB NFC Hardware Launch', tag: 'Smart Hardware', link: 'https://aikulb.com' },
+        { title: 'AI KLUB NFC Hardware Launch', tag: 'Smart Hardware', link: 'https://aiklub.com' },
         { title: 'Neural Engine Core', tag: 'SaaS Platform', link: 'https://abctechnologies.com' }
       ]),
       2840,
@@ -461,9 +561,53 @@ async function migrate() {
     ],
   });
 
+  // Seed Reference Profile `/profile/nicholas` matching Reference Design
+  const nicholasVcf = `BEGIN:VCARD\nVERSION:3.0\nN:Perry;Nicholas;;;\nFN:Nicholas Perry\nORG:ai klub\nTITLE:Designer @ ai klub\nTEL;TYPE=CELL:149-219-4462\nEMAIL:nicholas@aiklub.com\nURL:https://www.aiklub.com\nEND:VCARD`;
+
+  await db.execute({
+    sql: `INSERT OR REPLACE INTO profiles (
+      id, user_id, username, full_name, title, company, bio, avatar_url, banner_url, theme, phone, email, whatsapp, website, linkedin, instagram, youtube, github, vcf_data, custom_links_json, services_json, portfolio_json, views_count, nfc_taps, qr_scans
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [
+      'prof-nicholas-1',
+      'user-john-1',
+      'nicholas',
+      'Nicholas Perry',
+      'Designer @ ai klub',
+      'ai klub',
+      'With the smart business cards and digital cards, you will be able to reach your clients very easily and hassle-free.',
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200',
+      'dark-electric',
+      '149-219-4462',
+      'nicholas@aiklub.com',
+      '1492194462',
+      'https://www.aiklub.com',
+      'https://linkedin.com/in/nicholasperry',
+      'https://instagram.com/nicholasperry',
+      'https://youtube.com/@nicholasperry',
+      'https://github.com/nicholasperry',
+      nicholasVcf,
+      JSON.stringify([
+        { title: 'Portfolio 2026', url: 'https://www.aiklub.com', icon: 'Globe' },
+        { title: 'Download Business Deck', url: 'https://www.aiklub.com/deck', icon: 'FileText' }
+      ]),
+      JSON.stringify([
+        { name: 'UI/UX Design', desc: 'Crafting digital card & modern web interfaces.' },
+        { name: 'Brand Identity', desc: 'Custom luxury physical card & NFC branding.' }
+      ]),
+      JSON.stringify([
+        { title: 'Smart NFC Card Line', tag: 'Product Design', link: 'https://www.aiklub.com' }
+      ]),
+      3420,
+      1890,
+      1530
+    ],
+  });
+
   // Seed Sample Leads for John
   const sampleLeads = [
-    { id: 'lead-1', profile_id: 'prof-john-1', name: 'Sarah Jenkins', email: 'sarah@vertex.io', phone: '+1 987 654 3210', company: 'Vertex Ventures', message: 'Interested in bulk ordering AIKULB cards for our 120 executives.', status: 'Qualified' },
+    { id: 'lead-1', profile_id: 'prof-john-1', name: 'Sarah Jenkins', email: 'sarah@vertex.io', phone: '+1 987 654 3210', company: 'Vertex Ventures', message: 'Interested in bulk ordering AI KLUB cards for our 120 executives.', status: 'Qualified' },
     { id: 'lead-2', profile_id: 'prof-john-1', name: 'David Miller', email: 'david@cloudgrid.net', phone: '+1 456 789 0123', company: 'CloudGrid Systems', message: 'Would love to discuss enterprise API integration.', status: 'New' },
     { id: 'lead-3', profile_id: 'prof-john-1', name: 'Elena Rostova', email: 'elena@novatech.com', phone: '+1 312 555 0199', company: 'NovaTech Global', message: 'Sample card request and partner program inquiry.', status: 'Contacted' }
   ];
@@ -478,7 +622,7 @@ async function migrate() {
   // Seed Sample Coupons
   await db.execute({
     sql: `INSERT OR REPLACE INTO coupons (id, code, discount_percent, max_uses, current_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)`,
-    args: ['coup-1', 'AIKULB10', 10, 1000, 42, 1],
+    args: ['coup-1', 'AIKLUB10', 10, 1000, 42, 1],
   });
   await db.execute({
     sql: `INSERT OR REPLACE INTO coupons (id, code, discount_percent, max_uses, current_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)`,
@@ -531,7 +675,7 @@ async function migrate() {
     args: ['trusted_brands', JSON.stringify(homepageContent.trustedBrands)],
   });
 
-  console.log('🎉 AIKULB Database Migration & Seeding Complete!');
+  console.log('🎉 AI KLUB Database Migration & Seeding Complete!');
 }
 
 migrate().catch((err) => {

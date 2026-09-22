@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { useAuth } from '../context/AuthContext';
 import { api } from '../services/apiClient';
+
 import {
   ShieldCheck,
   Plus,
@@ -22,7 +24,13 @@ import {
   CreditCard,
   Zap,
   Check,
-  AlertTriangle
+  AlertTriangle,
+  MapPin,
+  Mail,
+  Phone,
+  MessageSquare,
+  ExternalLink,
+  UserCheck
 } from 'lucide-react';
 
 const PRESET_CARDS = [
@@ -36,9 +44,36 @@ const PRESET_CARDS = [
   { label: 'Google Review Card', material: 'Gloss Smart PVC & NFC', category_id: 'cat-review', image_url: '/assets/products/review_card.svg', defaultPrice: 599, defaultOrig: 999 },
 ];
 
+const parseOrderAddress = (rawAddress) => {
+  if (!rawAddress) return null;
+  if (typeof rawAddress === 'object') return rawAddress;
+  try {
+    const parsed = JSON.parse(rawAddress);
+    return typeof parsed === 'object' ? parsed : null;
+  } catch (e) {
+    return null;
+  }
+};
+
+const parseOrderItems = (rawItems) => {
+  if (!rawItems) return [];
+  if (Array.isArray(rawItems)) return rawItems;
+  if (typeof rawItems === 'object') return [rawItems];
+  try {
+    const parsed = JSON.parse(rawItems);
+    if (Array.isArray(parsed)) return parsed;
+    if (typeof parsed === 'object') return [parsed];
+    return [];
+  } catch (e) {
+    return [];
+  }
+};
+
 export const AdminDashboardPage = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [stats, setStats] = useState(null);
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
@@ -61,9 +96,56 @@ export const AdminDashboardPage = () => {
   const [selectedMaterialFilter, setSelectedMaterialFilter] = useState('all');
   const [editingProduct, setEditingProduct] = useState(null);
 
+  // Interactive Stat Cards & Modals state
+  const [filterMode, setFilterMode] = useState('all'); // 'all' | 'featured'
+  const [ordersModalOpen, setOrdersModalOpen] = useState(false);
+  const [profilesModalOpen, setProfilesModalOpen] = useState(false);
+  const [recentOrders, setRecentOrders] = useState([]);
+  const [recentUsers, setRecentUsers] = useState([]);
+  const [orderSearchQuery, setOrderSearchQuery] = useState('');
+  const [userSearchQuery, setUserSearchQuery] = useState('');
+
   useEffect(() => {
     fetchAdminData();
   }, []);
+
+  const handleUpdateOrderStatus = async (orderId, newStatus, newPaymentStatus) => {
+    setRecentOrders((prev) =>
+      prev.map((o) =>
+        o.id === orderId || o.order_number === orderId
+          ? { ...o, status: newStatus || o.status, payment_status: newPaymentStatus || o.payment_status }
+          : o
+      )
+    );
+
+    await api.updateOrderStatus(orderId, {
+      status: newStatus,
+      payment_status: newPaymentStatus,
+    });
+    fetchAdminData();
+  };
+
+  const filteredOrders = recentOrders.filter((ord) => {
+    if (!orderSearchQuery.trim()) return true;
+    const q = orderSearchQuery.toLowerCase();
+    const addr = parseOrderAddress(ord.shipping_address_json);
+    const ordNum = (ord.order_number || ord.id || '').toLowerCase();
+    const custName = (addr?.fullName || addr?.name || '').toLowerCase();
+    const custEmail = (addr?.email || '').toLowerCase();
+    const custPhone = (addr?.phone || '').toLowerCase();
+    return ordNum.includes(q) || custName.includes(q) || custEmail.includes(q) || custPhone.includes(q);
+  });
+
+  const filteredUsers = recentUsers.filter((usr) => {
+    if (!userSearchQuery.trim()) return true;
+    const q = userSearchQuery.toLowerCase();
+    return (
+      (usr.name || '').toLowerCase().includes(q) ||
+      (usr.email || '').toLowerCase().includes(q) ||
+      (usr.role || '').toLowerCase().includes(q)
+    );
+  });
+
 
   const fetchAdminData = async () => {
     setLoading(true);
@@ -72,8 +154,14 @@ export const AdminDashboardPage = () => {
       api.getProducts(),
     ]);
 
-    if (statsRes.success) setStats(statsRes.data.stats);
-    if (prodRes.success) setProducts(prodRes.data);
+    if (statsRes.success && statsRes.data) {
+      setStats(statsRes.data.stats);
+      setRecentOrders(statsRes.data.recentOrders || []);
+      setRecentUsers(statsRes.data.recentUsers || []);
+    }
+    if (prodRes.success && prodRes.data) {
+      setProducts(prodRes.data);
+    }
     setLoading(false);
   };
 
@@ -84,7 +172,7 @@ export const AdminDashboardPage = () => {
     setPrice(preset.defaultPrice);
     setOriginalPrice(preset.defaultOrig);
     if (!name) {
-      setName(`AIKULB ${preset.label}`);
+      setName(`AI KLUB ${preset.label}`);
     }
   };
 
@@ -180,7 +268,10 @@ export const AdminDashboardPage = () => {
         ? true
         : p.material.toLowerCase().includes(selectedMaterialFilter.toLowerCase());
 
-    return matchesSearch && matchesMaterial;
+    const matchesFeatured =
+      filterMode === 'featured' ? Boolean(p.is_featured) : true;
+
+    return matchesSearch && matchesMaterial && matchesFeatured;
   });
 
   if (loading) {
@@ -202,7 +293,7 @@ export const AdminDashboardPage = () => {
           <div>
             <div className="inline-flex items-center space-x-2 text-xs font-mono font-bold text-[#00875A] uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 mb-2">
               <ShieldCheck className="w-4 h-4 text-[#00875A]" />
-              <span>AIKULB Super Admin Panel</span>
+              <span>AI KLUB Super Admin Panel</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight font-manrope">
               Card & Product Management
@@ -223,46 +314,151 @@ export const AdminDashboardPage = () => {
           </div>
         </div>
 
-        {/* Overview Stats */}
+        {/* Overview Stats - Interactive Clickable Cards with Active Indicators & Modals */}
         {stats && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-12">
-            <div className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group">
-              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center space-x-2">
-                <Package className="w-4 h-4 text-[#00875A]" />
-                <span>Total Catalog Cards</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            
+            {/* Box 1: Total Catalog Cards */}
+            <div
+              onClick={() => setFilterMode('all')}
+              className={`p-6 rounded-3xl border shadow-sm relative overflow-hidden group cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-95 ${
+                filterMode === 'all'
+                  ? 'bg-emerald-50/80 border-[#00875A] ring-2 ring-[#00875A]/40 shadow-md'
+                  : 'bg-[#F8FAFC] border-slate-200 hover:border-emerald-300'
+              }`}
+              title="Click to view & manage all catalog cards"
+            >
+              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Package className="w-4 h-4 text-[#00875A]" />
+                  <span>Total Catalog Cards</span>
+                </div>
+                {filterMode === 'all' && (
+                  <span className="text-[10px] bg-[#00875A] text-white px-2 py-0.5 rounded-full font-sans font-bold">Active</span>
+                )}
               </div>
               <div className="text-3xl font-black text-[#00875A] font-manrope mt-2">{products.length}</div>
-              <div className="text-[11px] font-medium text-slate-500 mt-1">Live in store & portfolio</div>
+              <div className="text-[11px] font-semibold text-slate-600 mt-1 flex items-center justify-between">
+                <span>Live in store & portfolio</span>
+                <span className="text-[#00875A] font-bold">View All →</span>
+              </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group">
-              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center space-x-2">
-                <Star className="w-4 h-4 text-amber-500" />
-                <span>Featured Cards</span>
+            {/* Box 2: Featured Cards Filter */}
+            <div
+              onClick={() => setFilterMode(filterMode === 'featured' ? 'all' : 'featured')}
+              className={`p-6 rounded-3xl border shadow-sm relative overflow-hidden group cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-95 ${
+                filterMode === 'featured'
+                  ? 'bg-amber-50/80 border-amber-500 ring-2 ring-amber-500/40 shadow-md'
+                  : 'bg-[#F8FAFC] border-slate-200 hover:border-amber-300'
+              }`}
+              title="Click to filter homepage featured cards"
+            >
+              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Star className="w-4 h-4 text-amber-500" />
+                  <span>Featured Cards</span>
+                </div>
+                {filterMode === 'featured' && (
+                  <span className="text-[10px] bg-amber-500 text-white px-2 py-0.5 rounded-full font-sans font-bold">Filtered</span>
+                )}
               </div>
               <div className="text-3xl font-black text-amber-600 font-manrope mt-2">
                 {products.filter((p) => p.is_featured).length}
               </div>
-              <div className="text-[11px] font-medium text-slate-500 mt-1">Shown on Homepage</div>
+              <div className="text-[11px] font-semibold text-slate-600 mt-1 flex items-center justify-between">
+                <span>Shown on Homepage</span>
+                <span className="text-amber-600 font-bold">{filterMode === 'featured' ? 'Clear Filter' : 'Filter →'}</span>
+              </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group">
-              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center space-x-2">
-                <Zap className="w-4 h-4 text-purple-600" />
-                <span>Total Orders</span>
+            {/* Box 3: Total Orders & Revenue Dedicated Page Trigger */}
+            <div
+              onClick={() => navigate('/admin/orders')}
+              className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-95 hover:border-purple-300 hover:shadow-md hover:bg-purple-50/40"
+              title="Click to open Orders & Revenue Management Studio in a new dedicated page"
+            >
+              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Zap className="w-4 h-4 text-purple-600" />
+                  <span>Total Orders</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <span className="text-[10px] bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full font-sans font-bold">Manage Page</span>
+                  <a
+                    href="/admin/orders"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="p-1 text-slate-400 hover:text-purple-600 transition"
+                    title="Open in new browser tab"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
               <div className="text-3xl font-black text-neutral-900 font-manrope mt-2">{stats.totalOrders}</div>
-              <div className="text-[11px] font-medium text-slate-500 mt-1">Revenue: ₹{stats.totalRevenue}</div>
+              <div className="text-[11px] font-semibold text-slate-600 mt-1 flex items-center justify-between">
+                <span>Revenue: ₹{stats.totalRevenue}</span>
+                <span className="text-purple-600 font-bold flex items-center space-x-1">
+                  <span>Open Orders Page</span>
+                  <ExternalLink className="w-3 h-3 inline" />
+                </span>
+              </div>
             </div>
 
-            <div className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group">
-              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center space-x-2">
-                <Layers className="w-4 h-4 text-teal-600" />
-                <span>Registered Profiles</span>
+            {/* Box 4: Registered Profiles & Users Dedicated Page Trigger */}
+            <div
+              onClick={() => navigate('/admin/users')}
+              className="p-6 rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm relative overflow-hidden group cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-95 hover:border-teal-300 hover:shadow-md hover:bg-teal-50/40"
+              title="Click to view User Database & Registered Profiles in a new dedicated page"
+            >
+              <div className="text-xs font-mono text-slate-500 uppercase font-bold flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Layers className="w-4 h-4 text-teal-600" />
+                  <span>Registered Profiles</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <span className="text-[10px] bg-teal-100 text-teal-800 px-2 py-0.5 rounded-full font-sans font-bold">Users Page</span>
+                  <a
+                    href="/admin/users"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="p-1 text-slate-400 hover:text-teal-600 transition"
+                    title="Open in new browser tab"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
               <div className="text-3xl font-black text-neutral-900 font-manrope mt-2">{stats.totalProfiles}</div>
-              <div className="text-[11px] font-medium text-slate-500 mt-1">{stats.totalUsers} users registered</div>
+              <div className="text-[11px] font-semibold text-slate-600 mt-1 flex items-center justify-between">
+                <span>{stats.totalUsers} users registered</span>
+                <span className="text-teal-600 font-bold flex items-center space-x-1">
+                  <span>Open Users Page</span>
+                  <ExternalLink className="w-3 h-3 inline" />
+                </span>
+              </div>
             </div>
+
+
+          </div>
+        )}
+
+        {/* Active Filter Banner */}
+        {filterMode === 'featured' && (
+          <div className="mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold flex items-center justify-between animate-in fade-in duration-200">
+            <div className="flex items-center space-x-2">
+              <Star className="w-4 h-4 text-amber-600 fill-amber-500" />
+              <span>Filtering Catalog: Showing only Homepage Featured Cards ({products.filter((p) => p.is_featured).length} items)</span>
+            </div>
+            <button
+              onClick={() => setFilterMode('all')}
+              className="px-3 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition cursor-pointer"
+            >
+              Show All Products
+            </button>
           </div>
         )}
 
@@ -332,7 +528,7 @@ export const AdminDashboardPage = () => {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. AIKULB Executive Black Titanium Card"
+                    placeholder="e.g. AI KLUB Executive Black Titanium Card"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full p-3 rounded-xl bg-white border border-slate-300 text-neutral-900 font-bold placeholder:text-slate-400 focus:outline-none focus:border-[#00DC82] transition shadow-xs"
@@ -475,7 +671,7 @@ export const AdminDashboardPage = () => {
                 <div className="flex justify-between items-start z-10">
                   <div>
                     <div className="text-[10px] font-mono tracking-widest text-[#00DC82] font-extrabold uppercase">
-                      aikulb.
+                      ai klub.
                     </div>
                     <div className="text-sm font-extrabold text-white mt-1">
                       {name || 'Card Preview Title'}
@@ -781,6 +977,300 @@ export const AdminDashboardPage = () => {
           </div>
         </div>
       )}
+
+      {/* Modal 1: Interactive Orders & Revenue Management Studio */}
+      {ordersModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+            {/* Header */}
+            <div className="p-6 bg-[#0F172A] text-white flex items-center justify-between shrink-0">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-2xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-400">
+                  <Zap className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-extrabold font-manrope">Orders & Revenue Management Studio</h3>
+                  <p className="text-xs text-slate-300 font-inter">Live Customer Card Orders ({recentOrders.length} orders • ₹{stats?.totalRevenue || 0} total revenue)</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setOrdersModalOpen(false)}
+                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Filter / Search Bar */}
+            <div className="px-6 py-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between gap-4 shrink-0">
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                <input
+                  type="text"
+                  placeholder="Search orders by Order #, Customer Name, Phone, Email..."
+                  value={orderSearchQuery}
+                  onChange={(e) => setOrderSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:border-purple-500"
+                />
+              </div>
+              <span className="text-[11px] font-mono text-slate-500 font-bold hidden sm:inline">
+                DB Real-time Sync Active
+              </span>
+            </div>
+
+            {/* List */}
+            <div className="p-6 overflow-y-auto space-y-4 flex-1 custom-scrollbar">
+              {filteredOrders.length === 0 ? (
+                <div className="text-center py-12 text-slate-500 font-medium">
+                  <Package className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                  <p>No customer orders match search query.</p>
+                </div>
+              ) : (
+                filteredOrders.map((ord) => {
+                  const addr = parseOrderAddress(ord.shipping_address_json);
+                  const items = parseOrderItems(ord.items_json);
+
+                  const custName = addr?.fullName || addr?.name || addr?.recipient || 'Customer';
+                  const custEmail = addr?.email || 'N/A';
+                  const custPhone = addr?.phone || addr?.mobile || ord?.phone || '';
+                  const cleanDigits = custPhone.replace(/\D/g, '');
+                  const waTarget = cleanDigits.length >= 10
+                    ? (cleanDigits.length === 10 ? `91${cleanDigits}` : cleanDigits)
+                    : '917799529358';
+
+                  return (
+                    <div key={ord.id} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:border-purple-300 transition shadow-xs">
+                      {/* Header line */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="font-extrabold text-neutral-900 font-mono text-base">{ord.order_number || ord.id}</span>
+                            
+                            {/* Live Editable Order Status */}
+                            <select
+                              value={ord.status || 'Processing'}
+                              onChange={(e) => handleUpdateOrderStatus(ord.id, e.target.value, ord.payment_status)}
+                              className="bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold text-[11px] rounded-lg px-2.5 py-0.5 border border-purple-300 cursor-pointer focus:outline-none"
+                              title="Click to update order status in database"
+                            >
+                              <option value="Processing">Processing</option>
+                              <option value="Shipped">Shipped</option>
+                              <option value="Out for Delivery">Out for Delivery</option>
+                              <option value="Delivered">Delivered</option>
+                              <option value="Completed">Completed</option>
+                              <option value="Cancelled">Cancelled</option>
+                            </select>
+
+                            {/* Live Editable Payment Status */}
+                            <select
+                              value={ord.payment_status || 'Paid'}
+                              onChange={(e) => handleUpdateOrderStatus(ord.id, ord.status, e.target.value)}
+                              className="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-bold text-[11px] rounded-lg px-2.5 py-0.5 border border-emerald-300 cursor-pointer focus:outline-none"
+                              title="Click to update payment status in database"
+                            >
+                              <option value="Paid">Paid</option>
+                              <option value="Cash on Delivery">Cash on Delivery</option>
+                              <option value="Pending">Pending</option>
+                              <option value="Refunded">Refunded</option>
+                            </select>
+
+                          </div>
+                          <p className="text-xs text-slate-500 mt-1">Placed on {new Date(ord.created_at || Date.now()).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                        </div>
+
+                        <div className="text-right">
+                          <div className="text-xl font-black text-emerald-600 font-manrope">₹{ord.total_amount || 1999}</div>
+                          <div className="text-[10px] text-slate-400 font-mono">{ord.payment_method || 'UPI / Cash on Delivery'}</div>
+                        </div>
+                      </div>
+
+                      {/* 2-Column Details */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-inter">
+                        {/* Left Column: Customer Shipping Address */}
+                        <div>
+                          <span className="font-bold text-slate-700 block mb-1.5 flex items-center space-x-1">
+                            <MapPin className="w-3.5 h-3.5 text-purple-600" />
+                            <span>Customer Shipping Address:</span>
+                          </span>
+                          <div className="bg-white p-3.5 rounded-2xl border border-slate-200 space-y-1 text-slate-700 shadow-2xs">
+                            <div className="font-extrabold text-neutral-900 font-manrope text-xs flex items-center justify-between">
+                              <span>{custName}</span>
+                              {custPhone && (
+                                <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                                  📞 {custPhone}
+                                </span>
+                              )}
+                            </div>
+                            {custEmail !== 'N/A' && (
+                              <div className="text-slate-500 text-[11px] font-medium">✉️ {custEmail}</div>
+                            )}
+                            <div className="text-slate-600 font-medium pt-1.5 border-t border-slate-100 mt-1">
+                              📍 {[addr?.address, addr?.city, addr?.state, addr?.pincode].filter(Boolean).join(', ') || 'Express Shipping Dispatch'}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right Column: Ordered Smart Items */}
+                        <div>
+                          <span className="font-bold text-slate-700 block mb-1.5 flex items-center space-x-1">
+                            <Package className="w-3.5 h-3.5 text-purple-600" />
+                            <span>Ordered Smart Items:</span>
+                          </span>
+                          <div className="bg-white p-3.5 rounded-2xl border border-slate-200 space-y-2 text-slate-700 shadow-2xs">
+                            {items.length === 0 ? (
+                              <div>
+                                <div className="font-bold text-neutral-900">1x AI KLUB Custom NFC Business Card</div>
+                                <div className="text-[11px] text-slate-500">Matte Black Stainless Steel • NFC + QR Hardware Core</div>
+                              </div>
+                            ) : (
+                              items.map((it, idx) => (
+                                <div key={idx} className="flex items-center justify-between gap-2 pb-1.5 border-b last:border-b-0 last:pb-0 border-slate-100">
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-7 h-7 rounded-md bg-slate-900 text-[#00DC82] flex items-center justify-center font-bold text-[9px] font-mono shrink-0">
+                                      NFC
+                                    </div>
+                                    <div>
+                                      <div className="font-bold text-neutral-900 text-xs">{it.name || it.title || 'AI KLUB Smart Card'}</div>
+                                      <div className="text-[10px] text-slate-500">{it.material || it.style || 'NFC Embedded'}</div>
+                                    </div>
+                                  </div>
+                                  <div className="text-right shrink-0">
+                                    <span className="font-extrabold text-emerald-600 font-mono">{it.quantity || it.qty || 1}x ₹{it.price || (ord.total_amount || 1999)}</span>
+                                  </div>
+                                </div>
+                              ))
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer Actions */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-slate-200 text-xs">
+                        <a
+                          href={`https://wa.me/${waTarget}?text=Hi%20${encodeURIComponent(custName)},%20regarding%20your%20ai%20klub%20Order%20${encodeURIComponent(ord.order_number || ord.id)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-emerald-600 text-slate-950 font-extrabold flex items-center justify-center space-x-2 shadow-xs transition cursor-pointer"
+                        >
+                          <MessageSquare className="w-4 h-4 fill-slate-950" />
+                          <span>Chat Customer on WhatsApp ({custPhone || '+91 77995 29358'})</span>
+                        </a>
+
+                        <div className="flex items-center space-x-2 justify-end text-[11px] text-slate-500 font-mono font-bold">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                          <span>Database Synced</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+
+            <div className="p-4 bg-slate-100 border-t border-slate-200 text-right">
+              <button
+                onClick={() => setOrdersModalOpen(false)}
+                className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs cursor-pointer hover:bg-slate-800"
+              >
+                Close Orders Studio
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal 2: Interactive Registered Profiles & User Database */}
+      {profilesModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+            {/* Header */}
+            <div className="p-6 bg-[#0F172A] text-white flex items-center justify-between shrink-0">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-2xl bg-teal-500/20 border border-teal-400/40 flex items-center justify-center text-teal-400">
+                  <Layers className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-extrabold font-manrope">Registered Profiles & User Database</h3>
+                  <p className="text-xs text-slate-300 font-inter">Live Registered Profiles ({stats?.totalProfiles || 0} profiles • {stats?.totalUsers || 0} users)</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setProfilesModalOpen(false)}
+                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Filter / Search Bar */}
+            <div className="px-6 py-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between gap-4 shrink-0">
+              <div className="relative flex-1">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                <input
+                  type="text"
+                  placeholder="Search users by Name, Email, Role..."
+                  value={userSearchQuery}
+                  onChange={(e) => setUserSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-white border border-slate-300 text-xs text-neutral-900 placeholder:text-slate-400 focus:outline-none focus:border-teal-500"
+                />
+              </div>
+              <span className="text-[11px] font-mono text-slate-500 font-bold hidden sm:inline">
+                Live SQLite Records
+              </span>
+            </div>
+
+            {/* List */}
+            <div className="p-6 overflow-y-auto space-y-3 flex-1 custom-scrollbar">
+              {filteredUsers.length === 0 ? (
+                <div className="text-center py-12 text-slate-500 font-medium">
+                  <Layers className="w-12 h-12 text-slate-300 mx-auto mb-3" />
+                  <p>No user profiles matching query.</p>
+                </div>
+              ) : (
+                filteredUsers.map((usr) => (
+                  <div key={usr.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-teal-300 transition shadow-2xs">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-800 font-bold flex items-center justify-center uppercase font-manrope shrink-0">
+                        {usr.name ? usr.name.substring(0, 2) : 'US'}
+                      </div>
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <h4 className="font-extrabold text-neutral-900 text-sm">{usr.name || 'AI KLUB User'}</h4>
+                          <span className="px-2 py-0.5 rounded bg-teal-100 text-teal-900 text-[10px] font-mono font-bold uppercase">{usr.role || 'customer'}</span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-0.5 font-mono">{usr.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3 text-xs justify-between sm:justify-end">
+                      <span className="text-slate-400 font-mono text-[11px]">{usr.id}</span>
+                      <a
+                        href={`/profile/john`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3.5 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition flex items-center space-x-1"
+                      >
+                        <span>View Digital Card</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            <div className="p-4 bg-slate-100 border-t border-slate-200 text-right">
+              <button
+                onClick={() => setProfilesModalOpen(false)}
+                className="px-6 py-2.5 rounded-xl bg-slate-900 text-white font-bold text-xs cursor-pointer hover:bg-slate-800"
+              >
+                Close Profiles Registry
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
       <Footer />
     </div>

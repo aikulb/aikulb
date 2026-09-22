@@ -3,6 +3,7 @@ import { AnnouncementBar } from '../components/AnnouncementBar';
 import { Navbar } from '../components/Navbar';
 import { HeroSection } from '../components/HeroSection';
 import { TrustMarquee } from '../components/TrustMarquee';
+import { HomePageVideoSection } from '../components/HomePageVideoSection';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
 import { ProductPortfolioSection } from '../components/ProductPortfolioSection';
@@ -23,9 +24,10 @@ export const HomePage = () => {
       </header>
 
       {/* Dedicated Homepage Content Assembly */}
-      <main className="flex-grow pt-24 sm:pt-28">
+      <main className="flex-grow pt-16 sm:pt-20">
         <HeroSection />
         <TrustMarquee />
+        <HomePageVideoSection />
         <ValueProp />
         <HowItWorks />
         <ProductPortfolioSection />

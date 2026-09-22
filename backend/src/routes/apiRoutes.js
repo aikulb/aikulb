@@ -67,7 +67,9 @@ router.put('/leads/:id/status', authenticateToken, (req, res) => leadCtrl.update
 // E-commerce Orders Routes
 router.post('/orders', optionalAuth, (req, res) => orderCtrl.createOrder(req, res));
 router.get('/orders/my', authenticateToken, (req, res) => orderCtrl.getMyOrders(req, res));
+router.put('/orders/:id/status', optionalAuth, (req, res) => orderCtrl.updateOrderStatus(req, res));
 router.post('/coupons/validate', (req, res) => orderCtrl.validateCoupon(req, res));
+
 
 // Business Team Management Routes
 router.get('/teams/my', authenticateToken, (req, res) => teamCtrl.getMyTeam(req, res));

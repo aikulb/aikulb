@@ -31,7 +31,7 @@ export class AuthController extends BaseController {
       const profileId = 'prof-' + userId;
       await executeQuery(
         `INSERT INTO profiles (id, user_id, username, full_name, title, bio) VALUES (?, ?, ?, ?, ?, ?)`,
-        [profileId, userId, username, name, 'AIKULB Member', 'Member of AIKULB smart networking community.']
+        [profileId, userId, username, name, 'AI KLUB Member', 'Member of AI KLUB smart networking community.']
       );
 
       const token = jwt.sign(

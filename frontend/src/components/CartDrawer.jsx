@@ -72,7 +72,7 @@ export const CartDrawer = () => {
                       <ShoppingBag className="w-10 h-10 text-[#00DC82]" />
                     </div>
                     <h3 className="text-lg font-bold text-white font-manrope">Your cart is empty</h3>
-                    <p className="text-sm text-slate-400 max-w-xs mx-auto">Explore aikulb NFC Cards and smart business identity products.</p>
+                    <p className="text-sm text-slate-400 max-w-xs mx-auto">Explore ai klub NFC Cards and smart business identity products.</p>
                     <button
                       onClick={() => {
                         setIsCartOpen(false);

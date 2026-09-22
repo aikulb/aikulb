@@ -12,6 +12,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import confetti from 'canvas-confetti';
 import { api } from '../services/apiClient';
 import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual } from './ProductVisuals';
+import { silverTrishul, goldTrishul, silverWorld, blueWorld, blueTrishul } from '../assets/cardAssets';
 
 export const CustomCardDesignerSection = () => {
   // Main Card Details State
@@ -51,7 +52,7 @@ export const CustomCardDesignerSection = () => {
   const similarProducts = [
     {
       id: 'sim-black-silver',
-      name: 'aikulb Metal NFC Business Card – Black with Silver Laser Engraving',
+      name: 'ai klub Metal NFC Business Card – Black with Silver Laser Engraving',
       weight: '20g',
       price: 1999,
       original_price: 2899,
@@ -71,7 +72,7 @@ export const CustomCardDesignerSection = () => {
     },
     {
       id: 'sim-black-gold',
-      name: 'aikulb Metal NFC Business Card - Gold Laser Engraving',
+      name: 'ai klub Metal NFC Business Card - Gold Laser Engraving',
       weight: '20g',
       price: 2399,
       original_price: 2899,
@@ -97,23 +98,23 @@ export const CustomCardDesignerSection = () => {
       a: 'NFC (Near Field Communication) is a wireless data technology that allows short-range communication between your smart card and any NFC-enabled smartphone with a single tap, without requiring Bluetooth pairing or apps.'
     },
     {
-      q: 'What is the aikulb Business Card and how does it work?',
-      a: 'An aikulb Business Card is a smart business card embedded with an NTAG216 NFC chip and dynamic QR code. Tapping it against a smartphone instantly transfers your complete contact profile, social links, portfolio, and VCF contact card to the recipient phone.'
+      q: 'What is the ai klub Business Card and how does it work?',
+      a: 'An ai klub Business Card is a smart business card embedded with an NTAG216 NFC chip and dynamic QR code. Tapping it against a smartphone instantly transfers your complete contact profile, social links, portfolio, and VCF contact card to the recipient phone.'
     },
     {
-      q: 'Is the aikulb business card compatible with non-nfc smartphones?',
-      a: 'Yes! Every aikulb card includes a high-definition dynamic QR code printed on the back. Older or non-NFC smartphones can simply scan the QR code with their camera to instantly view your profile.'
+      q: 'Is the ai klub business card compatible with non-nfc smartphones?',
+      a: 'Yes! Every ai klub card includes a high-definition dynamic QR code printed on the back. Older or non-NFC smartphones can simply scan the QR code with their camera to instantly view your profile.'
     },
     {
       q: 'Is it compatible with Android or iOS phones?',
       a: 'Yes, 100% compatible! It works seamlessly with iPhones (iPhone XS and newer) and all NFC-enabled Android devices from Samsung, Google, OnePlus, Xiaomi, and Vivo.'
     },
     {
-      q: 'Where can I tap the aikulb Card on an iPhone?',
+      q: 'Where can I tap the ai klub Card on an iPhone?',
       a: 'For iPhones (iPhone XS, 11, 12, 13, 14, 15, 16), tap the top edge of the card against the very top edge of the back of the iPhone near the camera module.'
     },
     {
-      q: 'What are the benefits of the smart business card and aikulb Digital card?',
+      q: 'What are the benefits of the smart business card and ai klub Digital card?',
       a: 'Key benefits include: 1-tap contact saving, lifetime reusable card (no paper waste), instant updates from your admin dashboard anytime, zero app download required for recipients, and automated lead capture analytics.'
     }
   ];
@@ -133,64 +134,69 @@ export const CustomCardDesignerSection = () => {
   // Material Finishes Dataset
   const materials = [
     {
-      id: 'black_metal',
-      name: 'Matte Black Metal',
+      id: 'gold_trishul',
+      name: '24K Gold Trishul Emblem Edition',
       price: 1999,
-      badge: 'Bestseller',
+      badge: 'Flagship 3D',
+      image: goldTrishul,
+      bgClass: 'bg-metallic-gold',
+      glowColor: 'rgba(255, 215, 0, 0.4)',
+      desc: 'Brushed 24K Gold Metal with 3D Engraved Trishul Emblem & QR',
+      textureBorder: 'border-yellow-500/50'
+    },
+    {
+      id: 'silver_trishul',
+      name: 'Platinum Silver Trishul Edition',
+      price: 1899,
+      badge: 'Executive',
+      image: silverTrishul,
+      bgClass: 'bg-metallic-silver',
+      glowColor: 'rgba(226, 232, 240, 0.4)',
+      desc: 'Platinum Silver Stainless Steel with Trishul Emblem Accent',
+      textureBorder: 'border-slate-400/50'
+    },
+    {
+      id: 'blue_world',
+      name: 'Sapphire Blue World Map Edition',
+      price: 2199,
+      badge: 'Global Series',
+      image: blueWorld,
+      bgClass: 'bg-[#0B1E3D]',
+      glowColor: 'rgba(0, 150, 255, 0.4)',
+      desc: 'Electric Sapphire Blue Alloy with Etched Dot-Matrix World Map',
+      textureBorder: 'border-blue-500/50'
+    },
+    {
+      id: 'blue_trishul',
+      name: 'Sapphire Blue Trishul Edition',
+      price: 2099,
+      badge: 'Best Seller',
+      image: blueTrishul,
+      bgClass: 'bg-[#07132B]',
+      glowColor: 'rgba(108, 76, 255, 0.4)',
+      desc: 'Metallic Sapphire Blue with Chrome Trishul Emblem',
+      textureBorder: 'border-indigo-500/50'
+    },
+    {
+      id: 'silver_world',
+      name: 'Platinum Silver World Map Edition',
+      price: 1999,
+      badge: 'World Series',
+      image: silverWorld,
+      bgClass: 'bg-metallic-silver',
+      glowColor: 'rgba(200, 210, 225, 0.4)',
+      desc: 'Brushed Platinum Silver with Etched World Map & 5 Pillars',
+      textureBorder: 'border-slate-300/50'
+    },
+    {
+      id: 'black_metal',
+      name: 'Matte Obsidian Black Metal',
+      price: 1999,
+      badge: 'Stealth Edition',
       bgClass: 'bg-metallic-black',
       glowColor: 'rgba(108, 76, 255, 0.3)',
       desc: 'Aerospace Grade Stainless Steel with Matte Obsidian Finish',
       textureBorder: 'border-neutral-700/60'
-    },
-    {
-      id: 'gold_metal',
-      name: '24K Mirror Gold',
-      price: 2499,
-      badge: 'Ultra Luxury',
-      bgClass: 'bg-metallic-gold',
-      glowColor: 'rgba(255, 215, 0, 0.4)',
-      desc: 'Polished 24K Gold Mirror Electroplate Finish',
-      textureBorder: 'border-yellow-500/50'
-    },
-    {
-      id: 'silver_metal',
-      name: 'Brushed Steel Silver',
-      price: 1999,
-      badge: 'Executive',
-      bgClass: 'bg-metallic-silver',
-      glowColor: 'rgba(226, 232, 240, 0.4)',
-      desc: 'Brushed Metallic Silver Steel with Micro-grain Finish',
-      textureBorder: 'border-slate-400/50'
-    },
-    {
-      id: 'rosegold_metal',
-      name: 'Rose Gold Edition',
-      price: 2299,
-      badge: 'Premium',
-      bgClass: 'bg-metallic-rosegold',
-      glowColor: 'rgba(232, 180, 184, 0.4)',
-      desc: 'Anodized Warm Copper & Rose Gold Metallic Alloy',
-      textureBorder: 'border-rose-400/50'
-    },
-    {
-      id: 'emerald_metal',
-      name: 'Stealth Emerald',
-      price: 2199,
-      badge: 'Limited',
-      bgClass: 'bg-metallic-emerald',
-      glowColor: 'rgba(13, 59, 46, 0.5)',
-      desc: 'Deep Metallic Emerald Green Anodized Titanium Steel',
-      textureBorder: 'border-emerald-700/50'
-    },
-    {
-      id: 'walnut_wood',
-      name: 'Organic Walnut Wood',
-      price: 1499,
-      badge: 'Eco Friendly',
-      bgClass: 'bg-organic-wood',
-      glowColor: 'rgba(90, 58, 41, 0.4)',
-      desc: 'Sustainably Sourced Natural American Dark Walnut Wood',
-      textureBorder: 'border-amber-900/50'
     }
   ];
 
@@ -331,7 +337,7 @@ export const CustomCardDesignerSection = () => {
   const handleAddToCart = async () => {
     const customProduct = {
       id: `custom-card-${material}-${Date.now()}`,
-      name: `Custom aikulb ${currentMat.name}`,
+      name: `Custom ai klub ${currentMat.name}`,
       price: totalPrice,
       original_price: totalPrice + 1000,
       material: currentMat.name,
@@ -344,7 +350,7 @@ export const CustomCardDesignerSection = () => {
         fontStyle: currentFont.name,
         inlayColor: currentInlay.name,
         chipFinish: currentChip.name,
-        qrUrl: `https://aikulb.com/p/${qrHandle}`,
+        qrUrl: `https://aiklub.com/p/${qrHandle}`,
         qrPosition,
         addons: addons.map(id => addonOptions.find(a => a.id === id)?.name)
       }
@@ -381,7 +387,7 @@ export const CustomCardDesignerSection = () => {
 
   // Copy Specifications Text
   const handleCopySpecs = () => {
-    const specsText = `aikulb Card Specs:\n- Name: ${name}\n- Title: ${title}\n- Company: ${company}\n- Material: ${currentMat.name}\n- Font: ${currentFont.name}\n- Inlay: ${currentInlay.name}\n- Chip: ${currentChip.name}\n- QR URL: https://aikulb.com/p/${qrHandle}\n- Price: ₹${totalPrice}`;
+    const specsText = `ai klub Card Specs:\n- Name: ${name}\n- Title: ${title}\n- Company: ${company}\n- Material: ${currentMat.name}\n- Font: ${currentFont.name}\n- Inlay: ${currentInlay.name}\n- Chip: ${currentChip.name}\n- QR URL: https://aiklub.com/p/${qrHandle}\n- Price: ₹${totalPrice}`;
     navigator.clipboard.writeText(specsText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
@@ -395,7 +401,7 @@ export const CustomCardDesignerSection = () => {
     if (logoType === 'ak') {
       return (
         <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
-          <img src="/assets/logo.png" alt="Official Aikulb Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+          <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
         </div>
       );
     }
@@ -406,7 +412,7 @@ export const CustomCardDesignerSection = () => {
     }
     return (
       <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
-        <img src="/assets/logo.png" alt="Official Aikulb Logo" className="w-full h-full object-contain" />
+        <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain" />
       </div>
     );
   };
@@ -433,7 +439,7 @@ export const CustomCardDesignerSection = () => {
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white font-manrope tracking-tight leading-tight drop-shadow-md">
-            Design Your Custom aikulb Smart Card
+            Design Your Custom ai klub Smart Card
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 font-inter font-medium max-w-2xl mx-auto leading-relaxed drop-shadow">
@@ -489,16 +495,23 @@ export const CustomCardDesignerSection = () => {
 
                 {/* FRONT SIDE VIEW */}
                 <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden`}>
+                  {currentMat.image && (
+                    <img 
+                      src={currentMat.image} 
+                      alt={currentMat.name} 
+                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-90"
+                    />
+                  )}
                   
                   {/* Top Header Row: Logo & Material Label */}
                   <div className="flex justify-between items-center z-10">
-                    <div className="flex items-center space-x-2 text-white">
+                    <div className="flex items-center space-x-2 text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-xl border border-white/10">
                       {renderCardLogo()}
                       <span className="font-extrabold text-white text-base tracking-tight font-manrope lowercase">
-                        {logoType === 'ak' ? 'aikulb' : (company.split(' ')[0] || 'brand')}
+                        {logoType === 'ak' ? 'ai klub' : (company.split(' ')[0] || 'brand')}
                       </span>
                     </div>
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-white/80 border border-white/25 px-2.5 py-0.5 rounded-full backdrop-blur-sm bg-black/20">
+                    <span className="text-[10px] uppercase font-mono tracking-widest text-white/90 border border-white/25 px-2.5 py-0.5 rounded-full backdrop-blur-md bg-black/40">
                       {currentMat.name}
                     </span>
                   </div>
@@ -506,7 +519,7 @@ export const CustomCardDesignerSection = () => {
                   {/* Middle Row: Microchip Visual & NFC Signal */}
                   <div className="my-2 z-10 flex items-center justify-between">
                     {/* Dynamic Microchip */}
-                    <svg className="w-11 h-9 shadow-lg" viewBox="0 0 40 32" fill="none">
+                    <svg className="w-11 h-9 shadow-lg drop-shadow-md" viewBox="0 0 40 32" fill="none">
                       <rect width="40" height="32" rx="5" fill="url(#chip-dynamic-grad)" stroke="#D4AF37" strokeWidth="1" />
                       <path d="M0 10H14V22H0" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
                       <path d="M40 10H26V22H40" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
@@ -522,15 +535,15 @@ export const CustomCardDesignerSection = () => {
                       </defs>
                     </svg>
 
-                    <div className="flex items-center space-x-1.5 text-white/90 bg-black/30 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
+                    <div className="flex items-center space-x-1.5 text-white/90 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 shadow">
                       <Zap className="w-3.5 h-3.5 text-[#00DC82]" />
                       <span className="text-[9px] font-mono font-bold tracking-widest text-emerald-300">NTAG216 NFC</span>
                     </div>
                   </div>
 
                   {/* Bottom Laser Engraving Area */}
-                  <div className="border-t border-white/20 pt-3 z-10 space-y-0.5">
-                    <h3 className={`font-black text-base sm:text-lg tracking-tight uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300 leading-snug`}>
+                  <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-white/15 z-10 space-y-0.5 shadow-xl">
+                    <h3 className={`font-black text-base sm:text-lg tracking-tight uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300 leading-snug drop-shadow-md`}>
                       {name || 'YOUR NAME HERE'}
                     </h3>
                     <p className="text-xs font-medium tracking-normal uppercase text-white/90 font-inter">
@@ -546,9 +559,9 @@ export const CustomCardDesignerSection = () => {
                   <div className="flex justify-between items-center text-[10px] font-mono text-white/90 uppercase tracking-widest font-bold z-10">
                     <div className="flex items-center space-x-2">
                       <div className="w-6 h-6 rounded-md bg-[#070A0F] border border-[#10B981]/50 p-0.5 flex items-center justify-center">
-                        <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                        <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
                       </div>
-                      <span className="font-extrabold text-white text-xs font-manrope lowercase">aikulb</span>
+                      <span className="font-extrabold text-white text-xs font-manrope lowercase">ai klub</span>
                     </div>
                     <span className="text-emerald-400 bg-black/40 px-2 py-0.5 rounded border border-emerald-900/40 font-mono text-[9px]">TAP / SCAN PHONE</span>
                   </div>
@@ -1043,7 +1056,7 @@ export const CustomCardDesignerSection = () => {
                 <div className="w-40 h-24 bg-slate-900 rounded-2xl border border-slate-700 p-3 shadow-2xl flex flex-col justify-between items-start text-left">
                   <div className="flex items-center space-x-1.5">
                     <div className="w-5 h-5 rounded bg-gradient-to-tr from-[#6C4CFF] to-[#3B82F6] text-[9px] font-black flex items-center justify-center text-white">ak</div>
-                    <span className="text-[10px] font-extrabold text-white font-manrope lowercase">aikulb</span>
+                    <span className="text-[10px] font-extrabold text-white font-manrope lowercase">ai klub</span>
                   </div>
                   <div className="flex items-center space-x-1 text-[8px] text-cyan-300 font-mono font-bold bg-black/40 px-2 py-0.5 rounded border border-cyan-500/30">
                     <Zap className="w-2.5 h-2.5 text-cyan-400" />
@@ -1076,7 +1089,7 @@ export const CustomCardDesignerSection = () => {
               <div className="space-y-3 max-w-sm">
                 <h3 className="text-2xl font-extrabold text-slate-900 font-manrope">Your Online Profile</h3>
                 <p className="text-sm text-slate-600 font-inter leading-relaxed">
-                  Our platform generates free online profile/website associated with your NFC card. You can alter and update the content at any time by utilizing your aikulb dashboard.
+                  Our platform generates free online profile/website associated with your NFC card. You can alter and update the content at any time by utilizing your ai klub dashboard.
                 </p>
               </div>
             </div>

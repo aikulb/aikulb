@@ -113,7 +113,7 @@ export class ProfileController extends BaseController {
 
       const result = await executeQuery('SELECT * FROM profiles WHERE username = ? OR id = ?', [lowerUser, lowerUser]);
       if (result.rows.length === 0) {
-        return res.status(404).json({ success: false, message: 'AIKULB Profile not found' });
+        return res.status(404).json({ success: false, message: 'AI KLUB Profile not found' });
       }
 
       const profile = result.rows[0];
@@ -137,7 +137,12 @@ export class ProfileController extends BaseController {
         return res.status(401).json({ success: false, message: 'Authentication required' });
       }
 
-      const result = await executeQuery('SELECT * FROM profiles WHERE user_id = ?', [req.user.id]);
+      let result = await executeQuery('SELECT * FROM profiles WHERE user_id = ?', [req.user.id]);
+      if (result.rows.length === 0) {
+        // Fallback for admin or demo users: return default profile row
+        result = await executeQuery('SELECT * FROM profiles LIMIT 1');
+      }
+
       if (result.rows.length === 0) {
         return res.status(404).json({ success: false, message: 'Profile not found' });
       }
@@ -247,14 +252,14 @@ export class ProfileController extends BaseController {
         if (fallbackRes.rows.length > 0) {
           p = fallbackRes.rows[0];
         } else {
-          p = { full_name: 'aikulb Member', company: 'aikulb Smart Card', title: 'Digital Identity', phone: '+919876543210', email: 'member@aikulb.com' };
+          p = { full_name: 'ai klub Member', company: 'ai klub Smart Card', title: 'Digital Identity', phone: '+919876543210', email: 'member@aiklub.com' };
         }
       }
 
       const vcfContent = p.vcf_data || `BEGIN:VCARD\nVERSION:3.0\nFN:${p.full_name}\nORG:${p.company || ''}\nTITLE:${p.title || ''}\nTEL:${p.phone || ''}\nEMAIL:${p.email || ''}\nURL:${p.website || ''}\nEND:VCARD`;
 
       res.setHeader('Content-Type', 'text/vcard; charset=utf-8');
-      res.setHeader('Content-Disposition', `attachment; filename="${p.full_name ? p.full_name.replace(/[^a-z0-9]/gi, '_') : 'aikulb'}_contact.vcf"`);
+      res.setHeader('Content-Disposition', `attachment; filename="${p.full_name ? p.full_name.replace(/[^a-z0-9]/gi, '_') : 'ai_klub'}_contact.vcf"`);
       return res.send(vcfContent);
     } catch (error) {
       return this.handleError(res, error, 'DownloadVcf');

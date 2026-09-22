@@ -84,7 +84,7 @@ export const ShippingDeliverySection = () => {
   };
 
   const openLiveChat = () => {
-    window.open('https://wa.me/919999999999?text=Hi!%20I%20have%20a%20question%20about%20aikulb%20shipping%20and%20delivery.', '_blank');
+    window.open('https://wa.me/919999999999?text=Hi!%20I%20have%20a%20question%20about%20ai%20klub%20shipping%20and%20delivery.', '_blank');
   };
 
   return (
@@ -100,7 +100,7 @@ export const ShippingDeliverySection = () => {
             <div className="relative rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl group">
               <img 
                 src="/assets/shipping_delivery.jpg" 
-                alt="aikulb Fast & Secure Shipping" 
+                alt="ai klub Fast & Secure Shipping" 
                 className="w-full h-[380px] sm:h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -118,7 +118,7 @@ export const ShippingDeliverySection = () => {
             </div>
 
             <p className="text-base sm:text-lg text-slate-400 font-inter leading-relaxed">
-              We ship aikulb smart cards across India and internationally with trusted partners like Blue Dart, Delhivery, FedEx, and DHL. Every card is custom laser engraved, quality tested, and dispatched in executive protective packaging.
+              We ship ai klub smart cards across India and internationally with trusted partners like Blue Dart, Delhivery, FedEx, and DHL. Every card is custom laser engraved, quality tested, and dispatched in executive protective packaging.
             </p>
 
             {/* Logistics Partner Badges */}
@@ -191,7 +191,7 @@ export const ShippingDeliverySection = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-bold font-manrope text-white">Shipping & Delivery Info</h3>
-                    <p className="text-xs text-slate-400 font-mono uppercase tracking-wider">aikulb Global Express Network</p>
+                    <p className="text-xs text-slate-400 font-mono uppercase tracking-wider">ai klub Global Express Network</p>
                   </div>
                 </div>
                 <button
@@ -288,7 +288,7 @@ export const ShippingDeliverySection = () => {
                         <span>What's Included In Every Package:</span>
                       </div>
                       <ul className="space-y-1 text-[11px] pl-6 list-disc text-slate-300">
-                        <li>Custom Laser Engraved aikulb Smart Business Card</li>
+                        <li>Custom Laser Engraved ai klub Smart Business Card</li>
                         <li>Protective Executive Leatherette Sleeve & Box</li>
                         <li>NFC Chip Pre-programmed + Dynamic QR Backup</li>
                         <li>1-Tap Setup Guide & Lifetime Cloud Profile Access</li>

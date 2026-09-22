@@ -11,7 +11,7 @@ export const HowItWorks = () => {
         {/* Section Header with Scroll Reveal */}
         <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-20">
           <h2 className="section-h2 text-slate-900 font-extrabold">
-            How aikulb Works
+            How ai klub Works
           </h2>
           <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
             From unboxing your custom engraved NFC smart card to growing your business network in seconds.
@@ -33,7 +33,7 @@ export const HowItWorks = () => {
               </p>
             </div>
             <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200">
-              <BlackMetalCardVisual name="EXECUTIVE CUSTOM" title="aikulb PASSPORT" />
+              <BlackMetalCardVisual name="EXECUTIVE CUSTOM" title="ai klub PASSPORT" />
             </div>
           </StaggerItem>
 
@@ -74,7 +74,7 @@ export const HowItWorks = () => {
               <span className="text-[10px] uppercase font-mono tracking-widest text-[#6C4CFF] font-bold">STEP 3</span>
               <h3 className="text-2xl font-bold text-slate-900 font-manrope mt-1">Tap. Share. Connect.</h3>
               <p className="text-sm text-slate-600 font-inter mt-2 leading-relaxed font-medium">
-                Someone taps the aikulb card on their smartphone. The digital profile opens instantly. No recipient app installation required!
+                Someone taps the ai klub card on their smartphone. The digital profile opens instantly. No recipient app installation required!
               </p>
             </div>
 

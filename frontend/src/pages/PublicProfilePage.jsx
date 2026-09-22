@@ -66,8 +66,8 @@ export const PublicProfilePage = () => {
     return (
       <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col items-center justify-center p-4 font-manrope">
         <h2 className="text-2xl font-bold mb-2">Profile Not Found</h2>
-        <p className="text-sm text-neutral-600 mb-4">The requested aikulb digital profile does not exist.</p>
-        <Link to="/" className="px-6 py-3 rounded-xl bg-[#FF3838] hover:bg-[#e62e2e] text-white font-bold transition">Go to aikulb Home</Link>
+        <p className="text-sm text-neutral-600 mb-4">The requested ai klub digital profile does not exist.</p>
+        <Link to="/" className="px-6 py-3 rounded-xl bg-[#FF3838] hover:bg-[#e62e2e] text-white font-bold transition">Go to ai klub Home</Link>
       </div>
     );
   }
@@ -77,128 +77,170 @@ export const PublicProfilePage = () => {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col items-center justify-start pb-16 font-sans">
       {/* Mobile Container Frame */}
-      <div className="w-full max-w-md bg-neutral-50 min-h-screen border-x border-neutral-200 shadow-2xl relative flex flex-col justify-between">
+      <div className="w-full max-w-md bg-[#080B11] text-white min-h-screen border-x border-neutral-800 shadow-2xl relative flex flex-col justify-between overflow-hidden">
         <div>
-          {/* Banner Image */}
-          <div className="h-44 w-full relative bg-gradient-to-r from-neutral-800 via-neutral-900 to-black overflow-hidden">
-            {profile.banner_url && (
-              <img src={profile.banner_url} alt="Banner" className="w-full h-full object-cover opacity-60" />
-            )}
-            <div className="absolute top-4 right-4 flex space-x-2">
-              <button
-                onClick={() => setShowShareModal(true)}
-                className="p-2 rounded-full bg-white/80 text-neutral-900 hover:text-black backdrop-blur-md border border-neutral-200 shadow"
-                title="Share Profile & QR"
+          {/* Top Curved Red Banner */}
+          <div className="h-28 w-full bg-gradient-to-r from-[#FF4D4D] via-[#FF3838] to-[#E62E2E] relative overflow-hidden flex items-start justify-between p-4">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.25),transparent_70%)] pointer-events-none" />
+            
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white font-manrope text-xs font-bold border border-white/20">
+              <img src="/assets/logo.png" alt="ai klub" className="w-4 h-4 object-contain" />
+              <span>ai klub Smart Card</span>
+            </div>
+
+            <button
+              onClick={() => setShowShareModal(true)}
+              className="p-2 rounded-full bg-black/40 text-white hover:bg-black/60 backdrop-blur-md border border-white/20 shadow transition"
+              title="Share Profile & QR"
+            >
+              <Share2 className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Split Profile Header Card */}
+          <div className="px-4 relative -mt-10">
+            <div className="rounded-2xl bg-[#0F1420] border border-neutral-800 shadow-2xl overflow-hidden flex items-stretch">
+              {/* Left Photo Avatar */}
+              <div className="w-32 bg-neutral-900 relative shrink-0 overflow-hidden border-r border-neutral-800">
+                <img
+                  src={profile.avatar_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'}
+                  alt={profile.full_name}
+                  className="w-full h-full object-cover object-center min-h-[120px]"
+                />
+              </div>
+
+              {/* Right Dark Info Box */}
+              <div className="flex-1 p-3.5 bg-[#0B0E17] flex flex-col justify-between">
+                <div>
+                  <h1 className="font-extrabold text-white text-lg font-heading leading-tight">{profile.full_name}</h1>
+                  <p className="text-xs text-slate-300 font-medium font-inter mt-1">
+                    {profile.title} {profile.company ? `• ${profile.company}` : ''}
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-[#FF4D4D]/15 border border-[#FF4D4D]/30 text-[#FF4D4D] text-xs font-bold">
+                    <Sparkles className="w-3 h-3" />
+                    <span>Verified Profile</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Save Contact & Share Pill Buttons */}
+            <div className="grid grid-cols-2 gap-3 mt-4">
+              <a
+                href={`/api/profile/vcf/${profile.username}`}
+                download
+                onClick={() => api.trackInteraction(profile.id, 'vcf')}
+                className="w-full py-3 rounded-full bg-gradient-to-r from-[#FF4D4D] to-[#FF3838] hover:from-[#e63939] hover:to-[#d92626] text-white font-extrabold text-xs font-manrope shadow-lg flex items-center justify-center space-x-2 transition cursor-pointer"
               >
-                <Share2 className="w-4 h-4" />
+                <Download className="w-4 h-4 text-white" />
+                <span>Save Contact</span>
+              </a>
+
+              <button
+                onClick={() => {
+                  api.trackInteraction(profile.id, 'share');
+                  if (navigator.share) {
+                    navigator.share({ title: profile.full_name, url: window.location.href }).catch(() => setShowShareModal(true));
+                  } else {
+                    setShowShareModal(true);
+                  }
+                }}
+                className="w-full py-3 rounded-full bg-[#E2E8F0] hover:bg-[#CBD5E1] text-[#0F172A] font-extrabold text-xs font-manrope shadow-md flex items-center justify-center space-x-2 transition cursor-pointer"
+              >
+                <Share2 className="w-4 h-4 text-[#0F172A]" />
+                <span>Share</span>
               </button>
             </div>
           </div>
 
-          {/* Profile Avatar & Identity */}
-          <div className="px-6 relative -mt-16 text-center space-y-3">
-            <div className="relative w-28 h-28 mx-auto rounded-full p-1.5 bg-gradient-to-tr from-[#FF3838] via-purple-600 to-blue-600 shadow-xl">
-              <img
-                src={profile.avatar_url || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'}
-                alt={profile.full_name}
-                className="w-full h-full rounded-full object-cover"
-              />
-              <div className="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white">
-                ✓
-              </div>
+          {/* ABOUT Section */}
+          <div className="px-4 mt-5 space-y-1.5">
+            <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400">ABOUT</h3>
+            <div className="p-3.5 rounded-2xl bg-[#0F1420] border border-neutral-800 text-xs text-slate-300 leading-relaxed font-inter">
+              {profile.bio || 'With the smart business cards and digital cards, you will be able to reach your clients very easily and hassle-free.'}
             </div>
+          </div>
 
-            <div>
-              <h1 className="text-2xl font-extrabold text-neutral-900 font-heading">{profile.full_name}</h1>
-              <p className="text-xs text-[#FF3838] font-bold tracking-wide mt-0.5">
-                {profile.title} {profile.company ? `• ${profile.company}` : ''}
-              </p>
-            </div>
-
-            {profile.bio && (
-              <p className="text-xs text-neutral-600 leading-relaxed px-2 font-medium">
-                {profile.bio}
-              </p>
-            )}
-
-            {/* Primary 4 Quick Contact Actions */}
-            <div className="grid grid-cols-4 gap-2 pt-2">
+          {/* CONTACT ME Section */}
+          <div className="px-4 mt-5 space-y-2">
+            <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400">CONTACT ME</h3>
+            <div className="space-y-2 font-inter text-xs">
               {profile.phone && (
                 <a
                   href={`tel:${profile.phone}`}
-                  className="p-3 rounded-2xl bg-white border border-neutral-200 hover:border-[#FF3838] text-neutral-900 flex flex-col items-center shadow-sm transition"
+                  className="flex items-center justify-between p-3 rounded-2xl bg-[#0F1420] border border-neutral-800 hover:border-[#FF4D4D]/50 text-slate-200 transition group"
                 >
-                  <Phone className="w-5 h-5 mb-1 text-[#FF3838]" />
-                  <span className="text-[10px] font-bold">Call</span>
-                </a>
-              )}
-
-              {profile.whatsapp && (
-                <a
-                  href={`https://wa.me/${profile.whatsapp.replace(/[^0-9]/g, '')}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-3 rounded-2xl bg-white border border-neutral-200 hover:border-emerald-500 text-neutral-900 flex flex-col items-center shadow-sm transition"
-                >
-                  <MessageSquare className="w-5 h-5 mb-1 text-emerald-600" />
-                  <span className="text-[10px] font-bold">WhatsApp</span>
+                  <div className="flex items-center space-x-3 overflow-hidden">
+                    <div className="w-7 h-7 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold text-slate-200 truncate">{profile.phone}</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-[#FF4D4D] transition-colors" />
                 </a>
               )}
 
               {profile.email && (
                 <a
                   href={`mailto:${profile.email}`}
-                  className="p-3 rounded-2xl bg-white border border-neutral-200 hover:border-purple-500 text-neutral-900 flex flex-col items-center shadow-sm transition"
+                  className="flex items-center justify-between p-3 rounded-2xl bg-[#0F1420] border border-neutral-800 hover:border-[#FF4D4D]/50 text-slate-200 transition group"
                 >
-                  <Mail className="w-5 h-5 mb-1 text-purple-600" />
-                  <span className="text-[10px] font-bold">Email</span>
+                  <div className="flex items-center space-x-3 overflow-hidden">
+                    <div className="w-7 h-7 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold text-slate-200 truncate">{profile.email}</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-[#FF4D4D] transition-colors" />
                 </a>
               )}
 
-              <a
-                href={`/api/profile/vcf/${profile.username}`}
-                download
-                className="p-3 rounded-2xl bg-[#FF3838] hover:bg-[#e62e2e] text-white font-extrabold flex flex-col items-center shadow-md transition"
-              >
-                <Download className="w-5 h-5 mb-1" />
-                <span className="text-[10px]">Save VCF</span>
-              </a>
+              {profile.website && (
+                <a
+                  href={profile.website.startsWith('http') ? profile.website : `https://${profile.website}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-between p-3 rounded-2xl bg-[#0F1420] border border-neutral-800 hover:border-[#FF4D4D]/50 text-slate-200 transition group"
+                >
+                  <div className="flex items-center space-x-3 overflow-hidden">
+                    <div className="w-7 h-7 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                      <Globe className="w-4 h-4" />
+                    </div>
+                    <span className="font-semibold text-slate-200 truncate">{profile.website}</span>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-[#FF4D4D] transition-colors" />
+                </a>
+              )}
             </div>
-
-            {/* Connect With Me Lead Button */}
-            <button
-              onClick={() => setShowLeadModal(true)}
-              className="w-full py-3.5 rounded-2xl bg-white hover:bg-neutral-100 text-neutral-900 font-bold text-xs flex items-center justify-center space-x-2 border border-neutral-300 shadow-sm mt-3 transition"
-            >
-              <UserPlus className="w-4 h-4 text-[#FF3838]" />
-              <span>Connect & Share Your Details</span>
-            </button>
           </div>
 
-          {/* Social Links Row */}
-          <div className="px-6 mt-6 space-y-3">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">Social Channels</h3>
+          {/* ON THE SOCIAL Section */}
+          <div className="px-4 mt-5 space-y-2">
+            <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400">ON THE SOCIAL</h3>
             <div className="flex flex-wrap gap-2">
               {profile.linkedin && (
-                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-white border border-neutral-200 text-blue-600 flex items-center space-x-2 text-xs font-bold shadow-sm">
+                <a href={profile.linkedin} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-blue-400 flex items-center space-x-2 text-xs font-bold shadow-sm hover:border-blue-500 transition">
                   <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
                 </a>
               )}
               {profile.instagram && (
-                <a href={profile.instagram} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-white border border-neutral-200 text-pink-600 flex items-center space-x-2 text-xs font-bold shadow-sm">
+                <a href={profile.instagram} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-pink-400 flex items-center space-x-2 text-xs font-bold shadow-sm hover:border-pink-500 transition">
                   <Instagram className="w-4 h-4" />
                   <span>Instagram</span>
                 </a>
               )}
               {profile.youtube && (
-                <a href={profile.youtube} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-white border border-neutral-200 text-red-600 flex items-center space-x-2 text-xs font-bold shadow-sm">
+                <a href={profile.youtube} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-red-400 flex items-center space-x-2 text-xs font-bold shadow-sm hover:border-red-500 transition">
                   <Youtube className="w-4 h-4" />
                   <span>YouTube</span>
                 </a>
               )}
               {profile.github && (
-                <a href={profile.github} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-white border border-neutral-200 text-neutral-900 flex items-center space-x-2 text-xs font-bold shadow-sm">
+                <a href={profile.github} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-slate-200 flex items-center space-x-2 text-xs font-bold shadow-sm hover:border-slate-300 transition">
                   <Github className="w-4 h-4" />
                   <span>GitHub</span>
                 </a>
@@ -206,10 +248,21 @@ export const PublicProfilePage = () => {
             </div>
           </div>
 
+          {/* Lead Capture Action Button */}
+          <div className="px-4 mt-6">
+            <button
+              onClick={() => setShowLeadModal(true)}
+              className="w-full py-3.5 rounded-2xl bg-[#0F1420] hover:bg-[#151C2C] text-white font-bold text-xs flex items-center justify-center space-x-2 border border-[#FF4D4D]/30 shadow-md transition"
+            >
+              <UserPlus className="w-4 h-4 text-[#FF4D4D]" />
+              <span>Connect & Exchange Details</span>
+            </button>
+          </div>
+
           {/* Custom Links & Services Section */}
           {(profile.custom_links || []).length > 0 && (
-            <div className="px-6 mt-6 space-y-3">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">Featured Links & Documents</h3>
+            <div className="px-4 mt-5 space-y-2">
+              <h3 className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-400">FEATURED LINKS & DOCUMENTS</h3>
               <div className="space-y-2">
                 {profile.custom_links.map((link, idx) => (
                   <a
@@ -217,13 +270,13 @@ export const PublicProfilePage = () => {
                     href={link.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="p-3.5 rounded-2xl bg-white border border-neutral-200 hover:border-[#FF3838] flex justify-between items-center text-xs font-bold text-neutral-900 shadow-sm transition"
+                    className="p-3.5 rounded-2xl bg-[#0F1420] border border-neutral-800 hover:border-[#FF4D4D] flex justify-between items-center text-xs font-bold text-white shadow-sm transition"
                   >
                     <div className="flex items-center space-x-3">
-                      <FileText className="w-4 h-4 text-[#FF3838]" />
+                      <FileText className="w-4 h-4 text-[#FF4D4D]" />
                       <span>{link.title}</span>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-neutral-400" />
+                    <ArrowRight className="w-4 h-4 text-slate-500" />
                   </a>
                 ))}
               </div>
@@ -245,11 +298,11 @@ export const PublicProfilePage = () => {
           )}
         </div>
 
-        {/* aikulb Footer Branding */}
+        {/* ai klub Footer Branding */}
         <div className="p-6 text-center border-t border-neutral-200 mt-12 bg-white">
           <Link to="/" className="inline-flex items-center space-x-2 text-xs text-neutral-600 hover:text-[#FF3838] font-mono">
             <div className="w-5 h-5 rounded bg-[#FF3838] text-white font-black text-[10px] flex items-center justify-center">ak</div>
-            <span>Powered by aikulb Smart Identity Engine</span>
+            <span>Powered by ai klub Smart Identity Engine</span>
           </Link>
         </div>
       </div>

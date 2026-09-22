@@ -236,7 +236,7 @@ export const Navbar = () => {
             {/* User Auth state */}
             {user ? (
               <div className="flex items-center space-x-2.5">
-                {(user.email === 'admin@aikulb.com' || user.role === 'admin') && (
+                {(user.email === 'admin@aiklub.com' || user.email === 'admin@aikulb.com' || user.role === 'admin') && (
                   <Link
                     to="/admin"
                     className="px-4 py-2 rounded-full bg-[#00DC82] text-black hover:brightness-110 transition text-xs font-black font-manrope flex items-center space-x-1.5 shadow-md shadow-[#00DC82]/20"

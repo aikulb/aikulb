@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -9,10 +9,11 @@ import {
 import { useCart } from '../context/CartContext';
 import { api } from '../services/apiClient';
 import { ScrollReveal, Card3DTilt, MagneticButton } from './AnimatedComponents';
-import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual } from './ProductVisuals';
+import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, GoldTrishulCardVisual, SilverTrishulCardVisual, BlueWorldCardVisual, BlueTrishulCardVisual, SilverWorldCardVisual } from './ProductVisuals';
+import metalPageVideo from '../videos/MetalPage.mp4';
 
 export const MetalCardSection = () => {
-  const [selectedFinish, setSelectedFinish] = useState('black');
+  const [selectedFinish, setSelectedFinish] = useState('gold_trishul');
   const [metalProducts, setMetalProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState('');
@@ -23,10 +24,11 @@ export const MetalCardSection = () => {
     {
       id: 'reel-unboxing',
       title: 'Luxury Box Unboxing',
-      subtitle: 'Most people forget standard paper cards. AIKULB Metal leaves an indelible impression.',
+      subtitle: 'Most people forget standard paper cards. AI KLUB Metal leaves an indelible impression.',
       badge: 'LUXURY UNBOXING',
       badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-      videoUrl: '/videos/Untitled_Scene_09-21_08_58_48_20260921143742.mp4',
+      videoUrl: metalPageVideo,
+      startTime: 0,
       posterImg: '/assets/store_hero_bg.jpg',
       tagline: 'PREMIUM MAGNETIC BOX',
     },
@@ -36,7 +38,8 @@ export const MetalCardSection = () => {
       subtitle: 'Aerospace-grade 316L stainless steel carved with high-precision fiber laser.',
       badge: 'TACTILE ENGRAVING',
       badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-      videoUrl: '/videos/Hand_tapping_smartphone_with_card_20260921162344.mp4',
+      videoUrl: metalPageVideo,
+      startTime: 3.5,
       posterImg: '/assets/shipping_delivery.jpg',
       tagline: 'INSTANT PHONE CONNECT',
     },
@@ -46,7 +49,8 @@ export const MetalCardSection = () => {
       subtitle: 'Matte Black Steel, 24K Mirror Gold, Brushed Silver, and Walnut Wood finishes.',
       badge: 'EXECUTIVE COLLECTION',
       badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-      videoUrl: '/videos/AIKULB_card_logo_sweep_animation_20260921164557.mp4',
+      videoUrl: metalPageVideo,
+      startTime: 7.0,
       posterImg: '/assets/store_hero_bg.jpg',
       tagline: 'GOLD • BLACK • SILVER',
     }
@@ -81,9 +85,69 @@ export const MetalCardSection = () => {
 
   const finishes = [
     {
+      id: 'gold_trishul',
+      name: '24K Gold Trishul Emblem Edition',
+      tag: 'MOST POPULAR',
+      badgeColor: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
+      price: 1999,
+      originalPrice: 3499,
+      discount: '42% OFF',
+      desc: 'Executive 24K Gold Brushed Stainless Steel NFC card featuring the iconic 3D engraved Trishul-AK Emblem, "PEOPLE | IDEAS | TECHNOLOGY" tagline, and "TAP TO CONNECT" QR code.',
+      visual: <GoldTrishulCardVisual name="ALEXANDER VANCE" title="CHIEF EXECUTIVE OFFICER" />,
+      productId: 'prod-metal-gold-trishul',
+    },
+    {
+      id: 'silver_trishul',
+      name: 'Platinum Silver Trishul Emblem Edition',
+      tag: 'FLAGSHIP EDITION',
+      badgeColor: 'bg-slate-200/20 text-slate-100 border-slate-300/40',
+      price: 1899,
+      originalPrice: 3199,
+      discount: '40% OFF',
+      desc: 'Ultra-sleek Platinum Silver brushed metal NFC smart card with precision 3D engraved Trishul emblem, "CONNECT / COLLABORATE / CREATE / GROW" corner accent, and high-contrast QR code.',
+      visual: <SilverTrishulCardVisual name="NICHOLAS PERRY" title="FOUNDER & DESIGNER" />,
+      productId: 'prod-metal-silver-trishul',
+    },
+    {
+      id: 'blue_world',
+      name: 'Sapphire Blue World Map Edition',
+      tag: 'EXECUTIVE CHOICE',
+      badgeColor: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
+      price: 2199,
+      originalPrice: 3799,
+      discount: '42% OFF',
+      desc: 'Stunning Electric Sapphire Blue brushed metal NFC card featuring an intricate Silver Dot-Matrix World Map design, 5 core pillars (People, Ideas, Technology, Opportunities, Global Network), and neon wave lines.',
+      visual: <BlueWorldCardVisual name="VICTORIA CHEN" title="MANAGING DIRECTOR" />,
+      productId: 'prod-metal-blue-world',
+    },
+    {
+      id: 'blue_trishul',
+      name: 'Sapphire Blue Trishul Emblem Edition',
+      tag: 'BEST SELLER',
+      badgeColor: 'bg-[#6C4CFF]/20 text-[#a38fff] border-[#6C4CFF]/40',
+      price: 2099,
+      originalPrice: 3599,
+      discount: '41% OFF',
+      desc: 'Bold Metallic Sapphire Blue NFC card accented with a polished silver chrome Trishul-AK Emblem and sharp high-definition QR code for effortless networking.',
+      visual: <BlueTrishulCardVisual name="MARCUS VANCE" title="CREATIVE DIRECTOR" />,
+      productId: 'prod-metal-blue-trishul',
+    },
+    {
+      id: 'silver_world',
+      name: 'Platinum Silver World Map Edition',
+      tag: 'GLOBAL SERIES',
+      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
+      price: 1999,
+      originalPrice: 3399,
+      discount: '41% OFF',
+      desc: 'Pure Brushed Silver metal smart card with dot-matrix world map, centered "A SMARTER TOMORROW TOGETHER" tagline, and "TAP . CONNECT . GROW." footer.',
+      visual: <SilverWorldCardVisual name="SOPHIA ALVAREZ" title="HEAD OF GLOBAL NETWORK" />,
+      productId: 'prod-metal-silver-world',
+    },
+    {
       id: 'black',
-      name: 'Matte Black Steel',
-      tag: 'Executive CXO Choice',
+      name: 'Matte Obsidian Black Metal',
+      tag: 'STEALTH EDITION',
       badgeColor: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
       price: 1999,
       originalPrice: 2999,
@@ -91,30 +155,6 @@ export const MetalCardSection = () => {
       desc: 'Aerospace-grade 316L stainless steel with ultra-smooth matte black PVD coating and high-precision laser engraved branding.',
       visual: <BlackMetalCardVisual name="NICHOLAS PERRY" title="FOUNDER & CEO" />,
       productId: 'prod-metal-black',
-    },
-    {
-      id: 'gold',
-      name: '24K Mirror Gold',
-      tag: 'Luxurious Mirror Finish',
-      badgeColor: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40',
-      price: 2399,
-      originalPrice: 3499,
-      discount: '31% OFF',
-      desc: 'Electroplated 24K gold metallic mirror finish card. Radiates executive elegance and creates an unforgettable impression.',
-      visual: <GoldMetalCardVisual name="VICTORIA CHEN" title="MANAGING DIRECTOR" />,
-      productId: 'prod-metal-gold',
-    },
-    {
-      id: 'silver',
-      name: 'Brushed Silver Steel',
-      tag: 'Classic Stainless Steel',
-      badgeColor: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40',
-      price: 1999,
-      originalPrice: 2799,
-      discount: '28% OFF',
-      desc: 'Minimalist brushed silver stainless steel business card featuring custom laser etching and lifetime NFC cloud profile sync.',
-      visual: <SilverMetalCardVisual name="MARCUS VANCE" title="CREATIVE DIRECTOR" />,
-      productId: 'prod-metal-silver',
     }
   ];
 
@@ -155,8 +195,8 @@ export const MetalCardSection = () => {
 
   const metalFaqs = [
     {
-      q: 'How does the aikulb Metal NFC Business Card work?',
-      a: 'When you tap your aikulb Metal card near any smartphone, your digital profile opens instantly in the browser. The recipient can save your VCF contact into their address book with 1-click, view your portfolio, WhatsApp, social links, and submit inquiries.',
+      q: 'How does the ai klub Metal NFC Business Card work?',
+      a: 'When you tap your ai klub Metal card near any smartphone, your digital profile opens instantly in the browser. The recipient can save your VCF contact into their address book with 1-click, view your portfolio, WhatsApp, social links, and submit inquiries.',
     },
     {
       q: 'Can I print or engrave my company logo on the metal card?',
@@ -348,7 +388,7 @@ export const MetalCardSection = () => {
                     <button
                       onClick={() => handleAddToCartWithToast({
                         id: currentFinishObj.productId,
-                        name: `aikulb ${currentFinishObj.name} NFC Card`,
+                        name: `ai klub ${currentFinishObj.name} NFC Card`,
                         price: currentFinishObj.price,
                         material: currentFinishObj.name,
                         image_url: '/assets/products/metal_black.svg'
@@ -382,10 +422,10 @@ export const MetalCardSection = () => {
               <span>LIVE IN ACTION • FULL BLEED REELS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 font-manrope tracking-tight">
-              Experience AIKULB Metal Cards in Motion
+              Experience AI KLUB Metal Cards in Motion
             </h2>
             <p className="text-sm sm:text-base text-slate-600 font-inter max-w-2xl mx-auto">
-              Watch how AIKULB aerospace metal cards unbox, tap onto smartphones, and showcase precision laser-carved finishes.
+              Watch how AI KLUB aerospace metal cards unbox, tap onto smartphones, and showcase precision laser-carved finishes.
             </p>
           </div>
 
@@ -396,16 +436,29 @@ export const MetalCardSection = () => {
                 key={reel.id}
                 className="relative group rounded-[28px] overflow-hidden bg-[#070A0F] border border-neutral-800 shadow-2xl h-[580px] sm:h-[640px] lg:h-[680px] flex flex-col justify-between transition-all duration-500 hover:scale-[1.015] hover:border-[#6C4CFF]/60 hover:shadow-[#6C4CFF]/20 select-none"
               >
-                {/* Background Full-Size Looping Video */}
+                {/* Background Full-Size Looping Video (Single MetalPage.mp4 with Offset Start Times) */}
                 <video
                   autoPlay
                   loop
                   muted={reelsMuted}
                   playsInline
                   poster={reel.posterImg}
+                  onLoadedMetadata={(e) => {
+                    if (reel.startTime) {
+                      e.target.currentTime = reel.startTime;
+                    }
+                  }}
+                  onEnded={(e) => {
+                    if (reel.startTime) {
+                      e.target.currentTime = reel.startTime;
+                    } else {
+                      e.target.currentTime = 0;
+                    }
+                    e.target.play();
+                  }}
                   className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-95 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
                 >
-                  <source src={reel.videoUrl} type="video/mp4" />
+                  <source src={`${reel.videoUrl}#t=${reel.startTime}`} type="video/mp4" />
                 </video>
 
                 {/* Subtle Dark Gradient Overlay for Readability */}
@@ -444,7 +497,7 @@ export const MetalCardSection = () => {
               Engineering Excellence
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope">
-              Why Leaders Choose aikulb Metal Smart Cards
+              Why Leaders Choose ai klub Metal Smart Cards
             </h2>
           </div>
 
@@ -538,7 +591,7 @@ export const MetalCardSection = () => {
               Design Your Metal Card
             </Link>
             <a
-              href="https://wa.me/919999999999?text=Hi%20aikulb!%20I%20have%20a%20question%20about%20Metal%20NFC%20Cards."
+              href="https://wa.me/919999999999?text=Hi%20ai%20klub!%20I%20have%20a%20question%20about%20Metal%20NFC%20Cards."
               target="_blank"
               rel="noreferrer"
               className="px-8 py-4 rounded-full bg-black/30 hover:bg-black/40 text-white font-bold text-sm border border-white/30 transition hover:scale-105 flex items-center justify-center space-x-2"

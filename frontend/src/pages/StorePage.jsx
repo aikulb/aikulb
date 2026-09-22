@@ -175,7 +175,7 @@ export const StorePage = () => {
 
         <div id="catalog-content">
 
-        {/* View Mode 1: Rich Portfolio Catalog (TapMo Inspired Layout with specs & 3D tilt) */}
+        {/* View Mode 1: Rich Portfolio Catalog (ai klub Inspired Layout with specs & 3D tilt) */}
         {viewMode === 'portfolio' ? (
           <ProductPortfolioSection />
         ) : (

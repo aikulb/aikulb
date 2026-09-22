@@ -29,17 +29,19 @@ export class OrderController extends BaseController {
       const totalAmount = Math.max(0, subtotal - discountAmount);
       const orderId = 'ord-' + Date.now();
       const orderNumber = 'AIK-' + Math.floor(100000 + Math.random() * 900000);
+      const initialPaymentStatus = payment_method === 'Cash on Delivery' ? 'Cash on Delivery' : 'Paid';
 
       await executeQuery(
         `INSERT INTO orders (
           id, order_number, user_id, total_amount, discount_amount, status, payment_status, payment_method, shipping_address_json, items_json
-        ) VALUES (?, ?, ?, ?, ?, 'Processing', 'Paid', ?, ?, ?)`,
+        ) VALUES (?, ?, ?, ?, ?, 'Processing', ?, ?, ?, ?)`,
         [
           orderId,
           orderNumber,
           userId,
           totalAmount,
           discountAmount,
+          initialPaymentStatus,
           payment_method,
           JSON.stringify(shipping_address || {}),
           JSON.stringify(items),
@@ -52,8 +54,10 @@ export class OrderController extends BaseController {
         total_amount: totalAmount,
         discount_amount: discountAmount,
         status: 'Processing',
-        payment_status: 'Paid',
+        payment_status: initialPaymentStatus,
+        payment_method: payment_method,
       }, 'Order placed successfully!', 201);
+
     } catch (error) {
       return this.handleError(res, error, 'CreateOrder');
     }
@@ -99,4 +103,24 @@ export class OrderController extends BaseController {
       return this.handleError(res, error, 'ValidateCoupon');
     }
   }
+
+  async updateOrderStatus(req, res) {
+    try {
+      const { id } = req.params;
+      const { status, payment_status } = req.body;
+
+      await executeQuery(
+        `UPDATE orders SET 
+          status = COALESCE(?, status),
+          payment_status = COALESCE(?, payment_status)
+        WHERE id = ? OR order_number = ?`,
+        [status || null, payment_status || null, id, id]
+      );
+
+      return this.handleSuccess(res, { id, status, payment_status }, 'Order status updated in database');
+    } catch (error) {
+      return this.handleError(res, error, 'UpdateOrderStatus');
+    }
+  }
 }
+

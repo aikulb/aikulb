@@ -33,7 +33,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] pt-8 sm:pt-14 pb-20 flex items-center justify-center bg-black text-white overflow-hidden">
+    <section className="relative min-h-[80vh] pt-1 sm:pt-3 pb-16 flex items-center justify-center bg-black text-white overflow-hidden">
       {/* Subtle Luxury Dark Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.05),rgba(255,255,255,0))]" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370a_1px,transparent_1px),linear-gradient(to_bottom,#1f29370a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />

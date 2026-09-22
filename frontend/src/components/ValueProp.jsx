@@ -25,7 +25,7 @@ export const ValueProp = () => {
     {
       icon: UserPlus,
       title: 'Lead Capture Form',
-      description: 'Collect visitor names, emails, phone numbers, and custom inquiries directly into your aikulb CRM database.',
+      description: 'Collect visitor names, emails, phone numbers, and custom inquiries directly into your ai klub CRM database.',
       badge: 'Lead Gen',
     },
     {
@@ -51,7 +51,7 @@ export const ValueProp = () => {
             More Than a Business Card.
           </h2>
           <p className="text-base sm:text-lg text-slate-600 font-inter">
-            aikulb combines smart hardware with a powerful cloud digital identity software stack.
+            ai klub combines smart hardware with a powerful cloud digital identity software stack.
           </p>
         </ScrollReveal>
 

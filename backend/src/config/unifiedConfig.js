@@ -15,5 +15,10 @@ export const config = {
   payments: {
     razorpayKeyId: process.env.RAZORPAY_KEY_ID || 'rzp_test_aikulb_key',
     razorpayKeySecret: process.env.RAZORPAY_KEY_SECRET || 'rzp_test_secret',
+  },
+  contact: {
+    whatsappNumber: process.env.WHATSAPP_NUMBER || '+91 77995 29358',
+    whatsappRaw: process.env.WHATSAPP_RAW || '917799529358',
+    whatsappLink: `https://wa.me/${process.env.WHATSAPP_RAW || '917799529358'}`,
   }
 };

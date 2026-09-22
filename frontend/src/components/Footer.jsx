@@ -24,7 +24,7 @@ export const Footer = () => {
           <div className="lg:col-span-5 space-y-5">
             <AikulbLogo size="lg" />
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              aikulb is the next-generation smart networking platform offering NFC-enabled digital business cards, smart stands, QR products, digital profiles, lead capture, and team networking solutions.
+              ai klub is the next-generation smart networking platform offering NFC-enabled digital business cards, smart stands, QR products, digital profiles, lead capture, and team networking solutions.
             </p>
             <div className="flex items-center space-x-5 text-xs text-slate-400 pt-1">
               <div className="flex items-center space-x-1.5">
@@ -45,7 +45,7 @@ export const Footer = () => {
                 <Zap className="w-3.5 h-3.5" />
                 <span>Stay Connected</span>
               </div>
-              <h4 className="text-xl font-heading font-extrabold text-white tracking-tight">Get the Latest aikulb Updates</h4>
+              <h4 className="text-xl font-heading font-extrabold text-white tracking-tight">Get the Latest ai klub Updates</h4>
               <p className="text-xs text-slate-400 mt-1">
                 Subscribe for exclusive smart hardware drops, platform features, and networking insights.
               </p>
@@ -53,7 +53,7 @@ export const Footer = () => {
             {subscribed ? (
               <div className="mt-4 p-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-800 text-[#00DC82] text-sm font-semibold flex items-center space-x-2 animate-in fade-in duration-200">
                 <CheckCircle2 className="w-5 h-5 text-[#00DC82]" />
-                <span>Thank you! You are subscribed to aikulb Insider updates.</span>
+                <span>Thank you! You are subscribed to ai klub Insider updates.</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="mt-5 flex flex-col sm:flex-row gap-3">
@@ -105,7 +105,7 @@ export const Footer = () => {
           <StaggerItem>
             <h5 className="font-heading font-bold text-white uppercase tracking-wider text-xs mb-4">Company</h5>
             <ul className="space-y-2.5">
-              <li><Link to="/" className="hover:text-[#00DC82] transition">About aikulb</Link></li>
+              <li><Link to="/" className="hover:text-[#00DC82] transition">About ai klub</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Careers</Link></li>
               <li><Link to="/store" className="hover:text-[#00DC82] transition">Blog & Insights</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Press Kit</Link></li>
@@ -113,11 +113,21 @@ export const Footer = () => {
           </StaggerItem>
 
           <StaggerItem>
-            <h5 className="font-heading font-bold text-white uppercase tracking-wider text-xs mb-4">Support</h5>
+            <h5 className="font-heading font-bold text-white uppercase tracking-wider text-xs mb-4">Support & WhatsApp</h5>
             <ul className="space-y-2.5">
+              <li>
+                <a 
+                  href="https://wa.me/917799529358?text=Hi%20ai%20klub!%20I%20have%20a%20question%20about%20NFC%20cards." 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-[#00DC82] font-extrabold hover:underline flex items-center gap-1.5"
+                >
+                  <span>WhatsApp: +91 77995 29358</span>
+                </a>
+              </li>
+              <li><a href="tel:+917799529358" className="hover:text-[#00DC82] transition font-mono font-bold text-white">+91 77995 29358</a></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Help Center & FAQ</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Shipping & Delivery</Link></li>
-              <li><Link to="/contact" className="hover:text-[#00DC82] transition">Returns Policy</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Contact Support</Link></li>
             </ul>
           </StaggerItem>
@@ -135,7 +145,8 @@ export const Footer = () => {
 
         {/* Bottom Copyright */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 space-y-4 md:space-y-0">
-          <p>© {new Date().getFullYear()} aikulb Inc. All rights reserved. Your Identity. One Tap.</p>
+          <p>© {new Date().getFullYear()} ai klub Inc. All rights reserved. Your Identity. One Tap.</p>
+
           <div className="flex items-center space-x-6">
             <span className="flex items-center space-x-1.5"><Globe className="w-3.5 h-3.5 text-[#00DC82]" /> <span>Global Edition</span></span>
             <span>Made with precision for modern professionals.</span>

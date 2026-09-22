@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 import { Card3DTilt, OriginalNfcSignal } from './AnimatedComponents';
-import { RotateCw, Check, Share2, Download } from 'lucide-react';
+import { RotateCw, Check, Share2, Download, Phone, Mail, Globe, ChevronRight, Linkedin, Instagram, Twitter, Github, ExternalLink } from 'lucide-react';
+import { api } from '../services/apiClient';
+import { silverTrishul, goldTrishul, silverWorld, blueWorld, blueTrishul } from '../assets/cardAssets';
 
 export const NfcIcon = ({ className = "w-6 h-6" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -85,7 +87,7 @@ export const FlipCardContainer = ({ childrenFront, childrenBack }) => {
 /**
  * Floating Hero Card
  */
-export const FloatingHeroCard = ({ name = "JOHN DOE", title = "Founder & CEO", company = "aikulb TECH" }) => (
+export const FloatingHeroCard = ({ name = "JOHN DOE", title = "Founder & CEO", company = "ai klub TECH" }) => (
   <Card3DTilt maxRotateX={4} maxRotateY={6}>
     <motion.div
       animate={{
@@ -102,9 +104,9 @@ export const FloatingHeroCard = ({ name = "JOHN DOE", title = "Founder & CEO", c
       <div className="flex justify-between items-center z-10">
         <div className="flex items-center space-x-2.5">
           <div className="w-8 h-8 rounded-lg bg-black border border-neutral-700 p-0.5 shadow-md flex items-center justify-center">
-            <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+            <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
           </div>
-          <span className="font-extrabold tracking-tight text-white text-lg font-manrope lowercase">aikulb</span>
+          <span className="font-extrabold tracking-tight text-white text-lg font-manrope lowercase">ai klub</span>
         </div>
         <div className="flex items-center space-x-2 text-[#00DC82]">
           <span className="text-[10px] uppercase tracking-widest font-mono text-emerald-400 font-bold">NFC PASS</span>
@@ -133,7 +135,7 @@ export const FloatingHeroCard = ({ name = "JOHN DOE", title = "Founder & CEO", c
  * 4K Black Metal Card Visual
  */
 export const BlackMetalCardVisual = ({ name = "BLACK METAL NFC CARD", title = "FOUNDER & CEO", cardId = "AK-BLACK-METAL-001", qrValue }) => {
-  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aikulb.com/card/${cardId}`);
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   return (
     <FlipCardContainer
       childrenFront={
@@ -144,9 +146,9 @@ export const BlackMetalCardVisual = ({ name = "BLACK METAL NFC CARD", title = "F
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 rounded-lg bg-black border border-neutral-700 p-0.5 shadow flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-white tracking-tight text-sm font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-white tracking-tight text-sm font-manrope lowercase">ai klub</span>
             </div>
             <div className="text-[#00DC82] font-mono text-[9px] font-extrabold tracking-wider border border-[#00DC82]/30 bg-black/80 px-2 py-0.5 rounded shadow-sm">
               MATTE BLACK METAL
@@ -170,9 +172,9 @@ export const BlackMetalCardVisual = ({ name = "BLACK METAL NFC CARD", title = "F
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-md bg-black border border-neutral-700 p-0.5 flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-white text-xs font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-white text-xs font-manrope lowercase">ai klub</span>
             </div>
             <span className="text-[#00DC82] bg-black/80 px-2 py-0.5 rounded border border-neutral-800 font-mono text-[8px] font-bold">1-TAP NFC & QR</span>
           </div>
@@ -196,7 +198,7 @@ export const BlackMetalCardVisual = ({ name = "BLACK METAL NFC CARD", title = "F
  * 4K Gold Metal Card Visual
  */
 export const GoldMetalCardVisual = ({ name = "24K GOLD NFC CARD", cardId = "AK-GOLD-24K-002", qrValue }) => {
-  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aikulb.com/card/${cardId}`);
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   return (
     <FlipCardContainer
       childrenFront={
@@ -207,9 +209,9 @@ export const GoldMetalCardVisual = ({ name = "24K GOLD NFC CARD", cardId = "AK-G
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 rounded-lg bg-black border border-amber-400/60 p-0.5 shadow flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-neutral-900 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-neutral-900 tracking-tight text-sm font-manrope lowercase">ai klub</span>
             </div>
             <div className="text-amber-100 font-mono text-[9px] font-extrabold tracking-wider border border-amber-300/60 bg-black/80 px-2 py-0.5 rounded shadow-sm">
               24K GOLD METAL
@@ -231,9 +233,9 @@ export const GoldMetalCardVisual = ({ name = "24K GOLD NFC CARD", cardId = "AK-G
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-md bg-black border border-amber-400/60 p-0.5 flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-neutral-950 text-xs font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-neutral-950 text-xs font-manrope lowercase">ai klub</span>
             </div>
             <span className="text-amber-300 bg-black/80 px-2 py-0.5 rounded border border-amber-400/60 font-mono text-[8px] font-bold">1-TAP NFC & QR</span>
           </div>
@@ -257,7 +259,7 @@ export const GoldMetalCardVisual = ({ name = "24K GOLD NFC CARD", cardId = "AK-G
  * 4K Silver Metal Card Visual
  */
 export const SilverMetalCardVisual = ({ name = "SILVER METAL CARD", cardId = "AK-SILVER-STEEL-003", qrValue }) => {
-  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aikulb.com/card/${cardId}`);
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   return (
     <FlipCardContainer
       childrenFront={
@@ -267,9 +269,9 @@ export const SilverMetalCardVisual = ({ name = "SILVER METAL CARD", cardId = "AK
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 rounded-lg bg-black border border-slate-400 p-0.5 shadow flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-slate-900 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-slate-900 tracking-tight text-sm font-manrope lowercase">ai klub</span>
             </div>
             <div className="text-slate-100 font-mono text-[9px] font-bold tracking-wider border border-slate-400 bg-black/80 px-2 py-0.5 rounded shadow-sm">
               BRUSHED STEEL
@@ -291,9 +293,9 @@ export const SilverMetalCardVisual = ({ name = "SILVER METAL CARD", cardId = "AK
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-md bg-black border border-slate-400 p-0.5 flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-slate-900 text-xs font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-slate-900 text-xs font-manrope lowercase">ai klub</span>
             </div>
             <span className="text-slate-200 bg-black/80 px-2 py-0.5 rounded border border-slate-400 font-mono text-[8px] font-bold">1-TAP NFC & QR</span>
           </div>
@@ -314,10 +316,64 @@ export const SilverMetalCardVisual = ({ name = "SILVER METAL CARD", cardId = "AK
 };
 
 /**
+ * Generic Authentic Photo Card Visual Component
+ */
+export const PhotoCardVisual = ({ imageSrc, name = "ALEXANDER VANCE", title, cardId = "AK-PHOTO-001", qrValue, badge = "PREMIUM NFC CARD" }) => {
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
+  return (
+    <FlipCardContainer
+      childrenFront={
+        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group border border-neutral-700/80 bg-black">
+          <img src={imageSrc} alt={name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          {name && (
+            <div className="absolute bottom-3 left-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 flex justify-between items-center">
+              <div>
+                <div className="text-white font-extrabold text-xs font-manrope uppercase tracking-wider">{name}</div>
+                {title && <div className="text-[9px] text-[#00DC82] font-mono font-bold uppercase">{title}</div>}
+              </div>
+              <span className="text-[8px] font-mono text-slate-300 font-bold px-2 py-0.5 rounded bg-white/10 border border-white/20">{badge}</span>
+            </div>
+          )}
+        </div>
+      }
+      childrenBack={
+        <div className="relative w-full h-full p-5 bg-gradient-to-br from-[#1C1D22] via-[#0E0F12] to-[#040405] border border-neutral-700/90 rounded-2xl shadow-2xl flex flex-col justify-between select-none overflow-hidden">
+          <div className="flex justify-between items-center z-10">
+            <div className="flex items-center space-x-2">
+              <div className="w-6 h-6 rounded-md bg-black border border-neutral-700 p-0.5 flex items-center justify-center">
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
+              </div>
+              <span className="font-extrabold text-white text-xs font-manrope lowercase">ai klub</span>
+            </div>
+            <span className="text-[#00DC82] bg-black/80 px-2 py-0.5 rounded border border-neutral-800 font-mono text-[8px] font-bold">1-TAP NFC & QR</span>
+          </div>
+
+          <div className="flex-1 flex items-center justify-center my-1 z-10">
+            <div className="p-2.5 bg-white rounded-xl shadow-2xl flex flex-col items-center">
+              <QRCodeSVG value={finalQr} size={58} level="H" />
+            </div>
+          </div>
+
+          <div className="text-center text-[9px] font-mono text-slate-200 uppercase tracking-wider font-extrabold border-t border-neutral-800 pt-2 z-10">
+            TAP OR SCAN TO CONNECT
+          </div>
+        </div>
+      }
+    />
+  );
+};
+
+export const GoldTrishulCardVisual = (props) => <PhotoCardVisual imageSrc={goldTrishul} badge="24K GOLD TRISHUL" {...props} />;
+export const SilverTrishulCardVisual = (props) => <PhotoCardVisual imageSrc={silverTrishul} badge="PLATINUM SILVER TRISHUL" {...props} />;
+export const BlueWorldCardVisual = (props) => <PhotoCardVisual imageSrc={blueWorld} badge="SAPPHIRE BLUE WORLD MAP" {...props} />;
+export const BlueTrishulCardVisual = (props) => <PhotoCardVisual imageSrc={blueTrishul} badge="SAPPHIRE BLUE TRISHUL" {...props} />;
+export const SilverWorldCardVisual = (props) => <PhotoCardVisual imageSrc={silverWorld} badge="SILVER WORLD MAP" {...props} />;
+
+/**
  * 4K Organic Walnut Wood Card Visual
  */
 export const WoodCardVisual = ({ name = "WOODEN NFC CARD", cardId = "AK-WOOD-WALNUT-004", qrValue }) => {
-  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aikulb.com/card/${cardId}`);
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   return (
     <FlipCardContainer
       childrenFront={
@@ -325,9 +381,9 @@ export const WoodCardVisual = ({ name = "WOODEN NFC CARD", cardId = "AK-WOOD-WAL
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-7 h-7 rounded-lg bg-black border border-amber-600/60 p-0.5 shadow flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-amber-200 tracking-tight text-sm font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-amber-200 tracking-tight text-sm font-manrope lowercase">ai klub</span>
             </div>
             <div className="text-amber-300 font-mono text-[9px] font-bold tracking-wider border border-amber-600/60 bg-black/80 px-2 py-0.5 rounded shadow-sm">
               ORGANIC WALNUT
@@ -349,9 +405,9 @@ export const WoodCardVisual = ({ name = "WOODEN NFC CARD", cardId = "AK-WOOD-WAL
           <div className="flex justify-between items-center z-10">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-md bg-black border border-amber-600/60 p-0.5 flex items-center justify-center">
-                <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-extrabold text-amber-200 text-xs font-manrope lowercase">aikulb</span>
+              <span className="font-extrabold text-amber-200 text-xs font-manrope lowercase">ai klub</span>
             </div>
             <span className="text-amber-300 bg-black/80 px-2 py-0.5 rounded border border-amber-600/60 font-mono text-[8px] font-bold">1-TAP NFC & QR</span>
           </div>
@@ -372,15 +428,15 @@ export const WoodCardVisual = ({ name = "WOODEN NFC CARD", cardId = "AK-WOOD-WAL
 };
 
 export const SmartStandVisual = ({ cardId = "AK-STAND-005", qrValue }) => {
-  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aikulb.com/card/${cardId}`);
+  const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   return (
     <div className="relative w-full max-w-[400px] mx-auto aspect-square rounded-3xl p-6 bg-gradient-to-b from-[#1E293B] via-[#0F172A] to-[#090D16] border border-neutral-800 shadow-2xl flex flex-col items-center justify-between select-none">
       <div className="w-full flex justify-between items-center">
         <div className="flex items-center space-x-1.5">
           <div className="w-5 h-5 rounded bg-black border border-neutral-700 p-0.5 flex items-center justify-center">
-            <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+            <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
           </div>
-          <span className="text-xs font-bold text-[#00DC82] tracking-wider uppercase font-manrope">aikulb STAND</span>
+          <span className="text-xs font-bold text-[#00DC82] tracking-wider uppercase font-manrope">ai klub STAND</span>
         </div>
         <span className="px-2.5 py-0.5 text-[10px] bg-black text-[#00DC82] rounded-full border border-neutral-800 font-mono font-bold">NFC + QR</span>
       </div>
@@ -400,177 +456,208 @@ export const SmartStandVisual = ({ cardId = "AK-STAND-005", qrValue }) => {
 };
 
 /**
- * Interactive Hand Tapping Card Phone Visual with Fully Working Buttons
+ * Photorealistic Studio Hand Mockup Visual matching Reference Images 1, 2 & 3:
+ * - Real photorealistic studio human hands holding the smartphone frame
+ * - Real photorealistic studio human hand holding/pinching the black NFC card
+ * - Static presentation graphic (NO pointer-events, NO interactive click triggers inside the mockup image)
+ * - 100% static & crisp display with ZERO scrolling & NO scrollbars
  */
-export const HandTappingCardPhoneVisual = () => {
-  const [toastMessage, setToastMessage] = useState('');
+export const HandTappingCardPhoneVisual = ({ initialUsername = 'nicholas' }) => {
+  const [profile, setProfile] = useState(null);
 
-  const handleSaveContact = () => {
-    const vcardString = `BEGIN:VCARD\nVERSION:3.0\nN:Perry;Nicholas;;;\nFN:Nicholas Perry\nORG:aikulb\nTITLE:Founder @ aikulb\nTEL;TYPE=CELL:+14155552671\nEMAIL:nicholas@aikulb.com\nURL:https://aikulb.com\nEND:VCARD`;
-    const blob = new Blob([vcardString], { type: 'text/vcard;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `Nicholas_Perry_Contact.vcf`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    setToastMessage('✓ Contact saved to phone address book!');
-    setTimeout(() => setToastMessage(''), 3000);
-  };
-
-  const handleShareProfile = async () => {
-    const profileUrl = window.location.origin + '/profile/nicholas';
-    if (navigator.share) {
+  useEffect(() => {
+    let isMounted = true;
+    const loadProfile = async () => {
       try {
-        await navigator.share({
-          title: 'Nicholas Perry - aikulb Profile',
-          text: 'Connect with Nicholas Perry on aikulb',
-          url: profileUrl,
-        });
+        const res = await api.getPublicProfile(initialUsername);
+        if (res && res.success && res.data && isMounted) {
+          setProfile(res.data);
+        }
       } catch {
-        navigator.clipboard.writeText(profileUrl);
-        setToastMessage('✓ Profile link copied to clipboard!');
-        setTimeout(() => setToastMessage(''), 3000);
+        // Fall back gracefully
       }
-    } else {
-      navigator.clipboard.writeText(profileUrl);
-      setToastMessage('✓ Profile link copied to clipboard!');
-      setTimeout(() => setToastMessage(''), 3000);
-    }
-  };
+    };
+    loadProfile();
+    return () => { isMounted = false; };
+  }, [initialUsername]);
+
+  // Display values matching Reference Image 2
+  const name = profile?.full_name || 'Nicholas Perry';
+  const title = profile?.title || 'Designer @ ai klub';
+  const bio = profile?.bio || 'With the smart business cards and digital cards, you will be able to reach your clients very easily and hassle-free.';
+  const phone = profile?.phone || '149-219-4462';
+  const email = profile?.email || 'nicholas@aiklub.com';
+  const website = profile?.website || 'www.aiklub.com';
+  const avatarUrl = profile?.avatar_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400';
 
   return (
-    <div className="relative w-full max-w-lg mx-auto flex items-center justify-center py-6 select-none">
-      {/* Toast Notification */}
-      <AnimatePresence>
-        {toastMessage && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute -top-4 z-50 bg-[#00DC82] text-black font-extrabold text-xs px-4 py-2 rounded-full shadow-2xl font-manrope flex items-center space-x-1.5"
-          >
-            <Check className="w-4 h-4 text-black" />
-            <span>{toastMessage}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="relative w-full max-w-lg mx-auto flex flex-col items-center justify-center py-4 select-none pointer-events-none">
+      
+      {/* Outer Container Wrapper */}
+      <div className="relative z-10 flex flex-col items-center justify-center w-full">
 
-      <div className="relative w-64 sm:w-72 h-[480px] bg-[#0A0A0A] rounded-[42px] border-4 border-neutral-800 p-3 shadow-2xl overflow-hidden flex flex-col justify-between">
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-5 bg-[#000000] rounded-full z-30 flex items-center justify-center space-x-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#111]" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#1e1e2d]" />
+        {/* 1. SINGLE TOP REAL STUDIO HUMAN HAND HOLDING MATTE BLACK NFC CARD (FULL MOBILE SCREEN VISIBLE, NO BLACK OVERLAY) */}
+        <div className="relative z-20 -mb-2 sm:-mb-3 pointer-events-none flex items-center justify-center">
+          <div className="w-72 sm:w-80 h-[260px] sm:h-[295px] relative flex items-center justify-center overflow-hidden">
+            <img
+              src="/assets/real_hand_holding_card_hero.jpg"
+              alt="Real studio hand holding ai klub NFC card"
+              className="w-full h-auto object-cover object-top mix-blend-screen opacity-100 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.95)]"
+            />
+          </div>
         </div>
 
-        <div className="w-full h-full bg-[#0D121B] rounded-[32px] pt-8 px-4 pb-4 overflow-hidden flex flex-col justify-between text-white relative z-10 border border-neutral-800">
-          <div className="bg-[#070A0F] border border-neutral-800 rounded-2xl p-4 text-center space-y-3 relative overflow-hidden shadow-lg">
-            <div className="w-16 h-16 rounded-full mx-auto bg-neutral-800 border border-neutral-700 p-0.5 shadow-md">
-              <div className="w-full h-full bg-[#0D121B] rounded-full flex items-center justify-center overflow-hidden p-1">
-                <img src="/assets/logo.png" alt="Profile Logo" className="w-full h-full object-contain" />
-              </div>
-            </div>
+        {/* 2. FOREGROUND SMARTPHONE DISPLAY (100% BRIGHT & VISIBLE - TOUCHING NFC CARD FOR SCANNING) */}
+        <div className="relative w-60 sm:w-66 h-[440px] sm:h-[460px] bg-[#0A0A0C] rounded-[40px] border-4 border-neutral-800 p-1.5 shadow-[0_30px_70px_rgba(0,0,0,0.98)] overflow-hidden flex flex-col justify-between z-30 pointer-events-none select-none">
+          
+          {/* Hardware Notch Pill */}
+          <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-4 bg-[#000000] rounded-full z-40 flex items-center justify-center space-x-1.5 border border-neutral-800">
+            <div className="w-2 h-2 rounded-full bg-[#15151b]" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#20202d]" />
+          </div>
+
+          {/* Screen Viewport - OVERFLOW-HIDDEN with ZERO scrollbars */}
+          <div className="w-full h-full bg-[#080B11] rounded-[32px] overflow-hidden text-white relative z-10 border border-neutral-800/80 flex flex-col justify-between pointer-events-none select-none">
+            
             <div>
-              <h3 className="font-extrabold text-base text-white font-manrope">Nicholas Perry</h3>
-              <p className="text-xs text-slate-400 font-inter">Founder @ <span className="text-white font-bold">aikulb</span></p>
-            </div>
+              {/* Top Red/Coral Curved Header Cap */}
+              <div className="h-12 w-full bg-gradient-to-r from-[#FF4D4D] via-[#FF3838] to-[#E62E2E] rounded-b-[22px] relative overflow-hidden flex items-end justify-center pb-0.5">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.25),transparent_70%)] pointer-events-none" />
+              </div>
 
-            <div className="inline-flex items-center space-x-1.5 bg-[#00DC82]/10 text-[#00DC82] border border-[#00DC82]/30 px-3 py-1 rounded-full text-[10px] font-bold font-manrope">
-              <NfcIcon className="w-3 h-3 text-[#00DC82]" />
-              <span>aikulb Verified</span>
-            </div>
+              {/* Split Profile Header Card */}
+              <div className="-mt-6 mx-2 rounded-xl bg-[#0F1420] border border-neutral-800/90 shadow-lg overflow-hidden flex items-stretch">
+                {/* Left Photo Avatar */}
+                <div className="w-20 sm:w-22 bg-neutral-900 relative shrink-0 overflow-hidden border-r border-neutral-800">
+                  <img
+                    src={avatarUrl}
+                    alt={name}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
 
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <button 
-                type="button"
-                onClick={handleSaveContact}
-                className="w-full py-2.5 rounded-xl bg-[#00DC82] hover:bg-[#00c975] text-black font-extrabold text-xs font-manrope shadow-md transition-all cursor-pointer flex items-center justify-center space-x-1"
-              >
-                <Download className="w-3.5 h-3.5 text-black" />
-                <span>Save Contact</span>
-              </button>
-              <button 
-                type="button"
-                onClick={handleShareProfile}
-                className="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-neutral-200 font-bold text-xs font-manrope transition-all cursor-pointer flex items-center justify-center space-x-1"
-              >
-                <Share2 className="w-3.5 h-3.5 text-slate-300" />
-                <span>Share</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-[#070A0F] border border-neutral-800 rounded-xl p-3 text-[11px] text-slate-400 space-y-1">
-            <p className="font-bold text-[#00DC82] uppercase tracking-wider text-[9px] font-mono">ABOUT</p>
-            <p className="leading-tight">With aikulb smart business cards, share contact info, custom links & services with 1 tap.</p>
-          </div>
-
-          <div className="bg-[#070A0F] rounded-xl p-2.5 flex items-center justify-between text-xs text-slate-300 border border-neutral-800">
-            <span className="font-bold font-manrope text-[11px]">Direct Contact</span>
-            <span className="w-2 h-2 rounded-full bg-[#00DC82]" />
-          </div>
-        </div>
-
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-          <OriginalNfcSignal className="w-16 h-16" />
-        </div>
-      </div>
-
-      <div className="absolute -top-12 -right-6 sm:-right-4 z-40 transform rotate-[-8deg]">
-        <motion.div
-          animate={{
-            y: [0, -10, 0],
-            rotate: [-8, -6, -8],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="relative"
-        >
-          <Card3DTilt maxRotateX={5} maxRotateY={7}>
-            <div className="relative w-56 sm:w-64 h-36 rounded-2xl bg-gradient-to-br from-[#1C1D22] via-[#0E0F12] to-[#040405] border border-neutral-700/80 shadow-2xl p-4 flex flex-col justify-between z-20 overflow-hidden group select-none">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-card-shimmer pointer-events-none" />
-
-              <div className="flex justify-between items-center z-10">
-                <div className="flex items-center space-x-2">
-                  <div className="w-6 h-6 rounded-md bg-black border border-neutral-700 p-0.5 flex items-center justify-center">
-                    <img src="/assets/logo.png" alt="aikulb Logo" className="w-full h-full object-contain" />
+                {/* Right Dark Info Box */}
+                <div className="flex-1 p-2 bg-[#0B0E17] flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-extrabold text-white text-[11px] sm:text-xs font-manrope leading-tight">
+                      {name}
+                    </h3>
+                    <p className="text-[9px] text-slate-300 font-inter font-medium mt-0.5">
+                      {title}
+                    </p>
                   </div>
-                  <span className="font-extrabold text-white text-xs font-manrope lowercase tracking-tight">aikulb</span>
-                </div>
-                <div className="flex items-center space-x-1.5 text-[#00DC82]">
-                  <span className="text-[8px] font-mono font-bold tracking-widest uppercase">NFC ACTIVE</span>
-                  <NfcIcon className="w-3.5 h-3.5" />
+
+                  {/* ai klub Logo Emblem */}
+                  <div className="pt-1">
+                    <div className="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded bg-[#FF4D4D]/10 border border-[#FF4D4D]/30">
+                      <img src="/assets/logo.png" alt="ai klub" className="w-2.5 h-2.5 object-contain" />
+                      <span className="text-[8px] font-bold font-manrope text-[#FF4D4D] lowercase">ai klub</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="my-1 flex items-center justify-between z-10">
-                <CardChip className="w-9 h-7 shadow-xs" />
-                <div className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[8px] font-mono text-slate-300 font-bold tracking-widest">
-                  VERIFIED PASS
+              {/* Static Action Buttons Row */}
+              <div className="grid grid-cols-2 gap-1.5 mt-2 px-2">
+                <div className="w-full py-1.5 rounded-full bg-gradient-to-r from-[#FF4D4D] to-[#FF3838] text-white font-extrabold text-[10px] font-manrope shadow flex items-center justify-center space-x-1">
+                  <Download className="w-3 h-3 text-white" />
+                  <span>Save Contact</span>
+                </div>
+
+                <div className="w-full py-1.5 rounded-full bg-[#E2E8F0] text-[#0F172A] font-extrabold text-[10px] font-manrope shadow flex items-center justify-center space-x-1">
+                  <Share2 className="w-3 h-3 text-[#0F172A]" />
+                  <span>Share</span>
                 </div>
               </div>
 
-              <div className="border-t border-white/10 pt-2 z-10 flex justify-between items-end">
-                <div>
-                  <p className="font-black text-white text-xs font-manrope uppercase tracking-tight leading-snug">
-                    Nicholas Perry
-                  </p>
-                  <p className="text-[9px] text-[#00DC82] font-medium font-inter tracking-normal mt-0.5">
-                    Founder @ aikulb
-                  </p>
-                </div>
-                <span className="text-[8px] text-[#00DC82] font-mono font-bold tracking-wider uppercase">
-                  SMART NFC PASS
+              {/* ABOUT Section */}
+              <div className="mt-2 px-2">
+                <span className="text-[8px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  ABOUT
                 </span>
+                <div className="p-2 rounded-lg bg-[#0F1420]/90 border border-neutral-800/80 text-[9px] text-slate-300 leading-tight font-inter">
+                  {bio}
+                </div>
               </div>
+
+              {/* CONTACT ME Section */}
+              <div className="mt-2 px-2">
+                <span className="text-[8px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  CONTACT ME
+                </span>
+
+                <div className="space-y-1 font-inter text-[9px]">
+                  {/* Phone Item */}
+                  <div className="flex items-center justify-between p-1.5 rounded-lg bg-[#0F1420]/90 border border-neutral-800/80 text-slate-200">
+                    <div className="flex items-center space-x-1.5 overflow-hidden">
+                      <div className="w-4 h-4 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                        <Phone className="w-2.5 h-2.5" />
+                      </div>
+                      <span className="font-medium text-slate-200 truncate">{phone}</span>
+                    </div>
+                    <ChevronRight className="w-3 h-3 text-slate-500" />
+                  </div>
+
+                  {/* Email Item */}
+                  <div className="flex items-center justify-between p-1.5 rounded-lg bg-[#0F1420]/90 border border-neutral-800/80 text-slate-200">
+                    <div className="flex items-center space-x-1.5 overflow-hidden">
+                      <div className="w-4 h-4 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                        <Mail className="w-2.5 h-2.5" />
+                      </div>
+                      <span className="font-medium text-slate-200 truncate">{email}</span>
+                    </div>
+                    <ChevronRight className="w-3 h-3 text-slate-500" />
+                  </div>
+
+                  {/* Website Item */}
+                  <div className="flex items-center justify-between p-1.5 rounded-lg bg-[#0F1420]/90 border border-neutral-800/80 text-slate-200">
+                    <div className="flex items-center space-x-1.5 overflow-hidden">
+                      <div className="w-4 h-4 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center shrink-0">
+                        <Globe className="w-2.5 h-2.5" />
+                      </div>
+                      <span className="font-medium text-slate-200 truncate">{website}</span>
+                    </div>
+                    <ChevronRight className="w-3 h-3 text-slate-500" />
+                  </div>
+                </div>
+              </div>
+
+              {/* ON THE SOCIAL Section */}
+              <div className="mt-2 px-2">
+                <span className="text-[8px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
+                  ON THE SOCIAL
+                </span>
+
+                <div className="flex items-center space-x-1.5">
+                  <div className="p-1 rounded bg-[#0F1420]/90 border border-neutral-800/80 text-blue-400 flex items-center justify-center">
+                    <Linkedin className="w-3 h-3" />
+                  </div>
+                  <div className="p-1 rounded bg-[#0F1420]/90 border border-neutral-800/80 text-pink-400 flex items-center justify-center">
+                    <Instagram className="w-3 h-3" />
+                  </div>
+                  <div className="p-1 rounded bg-[#0F1420]/90 border border-neutral-800/80 text-cyan-400 flex items-center justify-center">
+                    <Twitter className="w-3 h-3" />
+                  </div>
+                  <div className="p-1 rounded bg-[#0F1420]/90 border border-neutral-800/80 text-slate-200 flex items-center justify-center">
+                    <Github className="w-3 h-3" />
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </Card3DTilt>
-        </motion.div>
+
+            {/* Footer Powered By Branding */}
+            <div className="p-1 text-center border-t border-neutral-800/80 bg-[#06080D]">
+              <span className="text-[7.5px] font-mono text-slate-400 uppercase tracking-wider">
+                1-Tap NFC & Dynamic Digital Identity
+              </span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
+
     </div>
   );
 };

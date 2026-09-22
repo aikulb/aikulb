@@ -9,7 +9,7 @@ export const BusinessTeamsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
             <h2 className="section-h2 text-slate-900 font-extrabold">
-              aikulb for Teams & Enterprises
+              ai klub for Teams & Enterprises
             </h2>
             <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
               Equip your sales team, executives, and employees with standardized NFC smart cards, central identity management, and team-wide lead capture analytics.

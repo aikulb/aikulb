@@ -45,7 +45,7 @@ export const CreateProfilePage = () => {
     github: '',
     custom_links: [
       { title: 'Book a Meeting', url: 'https://calendly.com', icon: 'Calendar' },
-      { title: 'Company Portfolio', url: 'https://aikulb.com', icon: 'Globe' }
+      { title: 'Company Portfolio', url: 'https://aiklub.com', icon: 'Globe' }
     ]
   });
 
@@ -162,7 +162,7 @@ export const CreateProfilePage = () => {
             Create Your Dynamic Digital Profile
           </h1>
           <p className="text-base text-neutral-600 font-inter font-medium leading-relaxed">
-            Set up your tap-ready digital profile in minutes. Syncs instantly with all your aikulb NFC cards & QR codes.
+            Set up your tap-ready digital profile in minutes. Syncs instantly with all your ai klub NFC cards & QR codes.
           </p>
 
           {/* Stepper Progress Bar */}

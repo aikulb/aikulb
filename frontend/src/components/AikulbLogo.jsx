@@ -29,7 +29,7 @@ export const AikulbLogo = ({
         <div className="w-full h-full bg-[#070A0F] rounded-[13px] flex items-center justify-center overflow-hidden p-0.5">
           <img
             src="/assets/logo.png"
-            alt="AIKULB Logo"
+            alt="AI KLUB Logo"
             className={`${currentSize.img} object-contain rounded-lg filter drop-shadow-[0_0_8px_rgba(16,185,129,0.3)] group-hover:brightness-110 transition-all`}
             onError={(e) => {
               e.target.onerror = null;
@@ -46,10 +46,11 @@ export const AikulbLogo = ({
       {showText && (
         <div className="flex items-center">
           <span className={`font-black tracking-tight ${darkText ? 'text-slate-900' : 'text-white'} font-manrope lowercase ${currentSize.text} leading-none`}>
-            aikulb
+            ai klub
           </span>
         </div>
       )}
+
     </div>
   );
 

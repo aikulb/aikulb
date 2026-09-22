@@ -8,7 +8,8 @@ import { api } from '../services/apiClient';
 import {
   User, Eye, EyeOff, Users, Zap, QrCode, BarChart2, CheckCircle2, Phone, Mail, Sparkles, Building2,
   ShoppingBag, Layout, Download, FileText, Globe, ArrowRight, Bot, Lock, Key, CreditCard, LogOut,
-  Check, Copy, MapPin, Share2, Linkedin, Instagram, Youtube, RefreshCw, ExternalLink, Layers, Radio, ShieldCheck
+  Check, Copy, MapPin, Share2, Linkedin, Instagram, Youtube, RefreshCw, ExternalLink, Layers, Radio, ShieldCheck,
+  Plus, Trash2, Edit3, Save, X, Search, ChevronRight
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { SkeletonLoader, ScrollReveal } from '../components/AnimatedComponents';
@@ -42,12 +43,12 @@ export const UserDashboardPage = () => {
   const [youtube, setYoutube] = useState('');
   const [saved, setSaved] = useState(false);
 
-  // Classic Card Portal states (card.tapmo.in style)
+  // Classic Card Portal states (card.aiklub.com style)
   const [cardType, setCardType] = useState('classic_matte');
   const [cardFont, setCardFont] = useState('syne');
   const [cardSide, setCardSide] = useState('front');
   const [classicSubTab, setClassicSubTab] = useState(user ? 'profile' : 'auth'); // 'profile' | 'auth' | 'card_type'
-  const [authEmail, setAuthEmail] = useState(user?.email || 'john@aikulb.com');
+  const [authEmail, setAuthEmail] = useState(user?.email || 'john@aiklub.com');
   const [authPassword, setAuthPassword] = useState('password123');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -198,7 +199,7 @@ export const UserDashboardPage = () => {
     setLoginToast('📥 Downloading VCF Contact Card...');
     const link = document.createElement('a');
     link.href = `/api/profile/vcf/${targetUsername}`;
-    link.setAttribute('download', `${fullName ? fullName.replace(/[^a-z0-9]/gi, '_') : 'aikulb'}_contact.vcf`);
+    link.setAttribute('download', `${fullName ? fullName.replace(/[^a-z0-9]/gi, '_') : 'ai_klub'}_contact.vcf`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -213,7 +214,7 @@ export const UserDashboardPage = () => {
 
     // If user account is not found, automatically register them so login succeeds seamlessly
     if (!res.success) {
-      const defaultName = authEmail.split('@')[0].replace(/[^a-zA-Z0-9]/g, ' ') || 'aikulb Member';
+      const defaultName = authEmail.split('@')[0].replace(/[^a-zA-Z0-9]/g, ' ') || 'ai klub Member';
       const regRes = await register(defaultName, authEmail, authPassword);
       if (regRes.success) {
         res = { success: true };
@@ -305,7 +306,7 @@ export const UserDashboardPage = () => {
           <div>
             <div className="flex items-center space-x-3 mb-1">
               <h1 className="text-3xl font-black text-neutral-900 font-manrope">
-                {user ? user.name : 'aikulb Member'}
+                {user ? user.name : 'ai klub Member'}
               </h1>
               <span className={`px-3.5 py-1 rounded-full text-xs font-mono font-bold ${
                 dashboardMode === 'new' ? 'bg-[#6C4CFF]/10 text-[#6C4CFF] border border-[#6C4CFF]/30' : 'bg-neutral-100 text-neutral-700 border border-neutral-300'
@@ -344,7 +345,7 @@ export const UserDashboardPage = () => {
               </button>
             </div>
 
-            {(user?.email === 'admin@aikulb.com' || user?.role === 'admin') && (
+            {(user?.email === 'admin@aiklub.com' || user?.email === 'admin@aikulb.com' || user?.role === 'admin') && (
               <button
                 onClick={() => navigate('/admin')}
                 className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] hover:brightness-110 text-black font-black text-xs font-manrope flex items-center space-x-1.5 transition shadow-md shadow-[#00DC82]/20 cursor-pointer"
@@ -371,7 +372,7 @@ export const UserDashboardPage = () => {
         </ScrollReveal>
 
         {/* ========================================================================= */}
-        {/* MODE 1: CLASSIC DASHBOARD VIEW (card.tapmo.in inspired) */}
+        {/* MODE 1: CLASSIC DASHBOARD VIEW (card.aikulb.com inspired) */}
         {/* ========================================================================= */}
         {dashboardMode === 'classic' ? (
           <div className="space-y-8">
@@ -475,7 +476,7 @@ export const UserDashboardPage = () => {
                       </div>
 
                       <div className={`mt-6 p-4 rounded-xl text-xs font-mono flex items-center justify-between ${ct.bgClass}`}>
-                        <span className="font-bold tracking-wider">AIKULB // AK-{ct.id.toUpperCase()}</span>
+                        <span className="font-bold tracking-wider">AI KLUB // AK-{ct.id.toUpperCase()}</span>
                         <Radio className="w-4 h-4 opacity-70" />
                       </div>
                     </div>
@@ -723,7 +724,7 @@ export const UserDashboardPage = () => {
 
                         <div className="flex justify-between items-center text-[10px] font-space-grotesk font-bold tracking-widest opacity-70 border-t border-current/20 pt-2">
                           <span>NFC DIGITAL IDENTITY</span>
-                          <span>AIKULB // CLASSIC</span>
+                          <span>AI KLUB // CLASSIC</span>
                         </div>
                       </>
                     ) : (
@@ -749,7 +750,7 @@ export const UserDashboardPage = () => {
                         </div>
 
                         <div className="text-[9px] font-mono opacity-50 text-center">
-                          aikulb India • Classic Smart Identity Platform
+                          ai klub India • Classic Smart Identity Platform
                         </div>
                       </>
                     )}
@@ -800,7 +801,7 @@ export const UserDashboardPage = () => {
               </div>
             </div>
 
-            {/* Forgot Password Modal (Matching card.tapmo.in #modal-forgot-password-part) */}
+            {/* Forgot Password Modal (Matching card.aikulb.com #modal-forgot-password-part) */}
             {showForgotModal && (
               <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
                 <div className="bg-white rounded-3xl p-8 max-w-md w-full space-y-6 shadow-2xl relative border border-neutral-200">
@@ -869,7 +870,7 @@ export const UserDashboardPage = () => {
             <div className="flex space-x-2 border-b border-neutral-200 pb-2 overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview & Analytics', icon: BarChart2 },
-                ...((user?.email === 'admin@aikulb.com' || user?.role === 'admin')
+                ...((user?.email === 'admin@aiklub.com' || user?.email === 'admin@aikulb.com' || user?.role === 'admin')
                   ? [{ id: 'admin_cards', label: '⚡ Add & Manage Cards (Admin)', icon: ShieldCheck }]
                   : []),
                 { id: 'qr_api', label: 'QR API & Card Sync', icon: QrCode },
@@ -1108,7 +1109,7 @@ export const UserDashboardPage = () => {
                       <h4 className="font-extrabold text-neutral-900 text-sm font-manrope">vCard Direct Contact QR</h4>
                       <div className="p-4 bg-white rounded-2xl border border-neutral-200 shadow-inner flex items-center justify-center">
                         <QRCodeSVG
-                          value={`BEGIN:VCARD\nVERSION:3.0\nFN:${profile?.full_name || 'aikulb Member'}\nTEL:${profile?.phone || ''}\nEMAIL:${profile?.email || ''}\nEND:VCARD`}
+                          value={`BEGIN:VCARD\nVERSION:3.0\nFN:${profile?.full_name || 'ai klub Member'}\nTEL:${profile?.phone || ''}\nEMAIL:${profile?.email || ''}\nEND:VCARD`}
                           size={150}
                           level="M"
                           includeMargin={false}

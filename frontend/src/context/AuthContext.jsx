@@ -67,10 +67,10 @@ export const AuthProvider = ({ children }) => {
     }
 
     // Live Netlify / Offline Fallback Authentication
-    if (cleanEmail === 'admin@aikulb.com' || cleanEmail === 'admin@alkulb.com') {
+    if (cleanEmail === 'admin@aiklub.com' || cleanEmail === 'admin@aikulb.com' || cleanEmail === 'admin@alkulb.com') {
       const demoAdminUser = {
         id: 'user-admin-1',
-        name: 'AIKULB Admin',
+        name: 'AI KLUB Admin',
         email: cleanEmail,
         role: 'admin',
         username: 'admin',
@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
       return { success: true };
     }
 
-    if (cleanEmail === 'john@aikulb.com' || cleanEmail === 'john@alkulb.com') {
+    if (cleanEmail === 'john@aiklub.com' || cleanEmail === 'john@aikulb.com' || cleanEmail === 'john@alkulb.com') {
       const demoCustomerUser = {
         id: 'user-john-1',
         name: 'John Doe',
@@ -186,11 +186,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const loginAsDemoUser = () => {
-    return login('john@aikulb.com', 'password123');
+    return login('john@aiklub.com', 'password123');
   };
 
   const loginAsDemoAdmin = () => {
-    return login('admin@aikulb.com', 'password123');
+    return login('admin@aiklub.com', 'password123');
   };
 
   const logout = () => {

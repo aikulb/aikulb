@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Health Check
 app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', brand: 'AIKULB', timestamp: new Date().toISOString() });
+  res.json({ status: 'healthy', brand: 'AI KLUB', timestamp: new Date().toISOString() });
 });
 
 // API Routes

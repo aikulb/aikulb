@@ -5,7 +5,7 @@ export class LeadController extends BaseController {
   async captureLead(req, res) {
     try {
       const { profile_id = 'support-hq', name, email, phone, company, message, source = 'NFC Profile Tap' } = req.body;
-      const finalEmail = email || (phone ? `${phone.replace(/[^0-9]/g, '')}@lead.aikulb.com` : '');
+      const finalEmail = email || (phone ? `${phone.replace(/[^0-9]/g, '')}@lead.aiklub.com` : '');
       if (!name || !finalEmail) {
         return res.status(400).json({ success: false, message: 'Name and Email or Phone are required' });
       }

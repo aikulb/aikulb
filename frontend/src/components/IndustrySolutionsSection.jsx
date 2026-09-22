@@ -31,7 +31,7 @@ export const IndustrySolutionsSection = () => {
             Built for Your Profession
           </h2>
           <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
-            Select your industry to see recommended aikulb products and profile configurations.
+            Select your industry to see recommended ai klub products and profile configurations.
           </p>
         </div>
 

@@ -98,7 +98,7 @@ export class ProductController extends BaseController {
         [
           id,
           userId,
-          card_name || 'Custom AIKULB Card',
+          card_name || 'Custom AI KLUB Card',
           material || 'Matte Black Stainless Steel',
           color || '#111827',
           text_line1 || 'John Doe',

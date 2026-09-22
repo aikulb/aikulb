@@ -11,7 +11,7 @@ export class QrController extends BaseController {
    */
   async generateQr(req, res) {
     try {
-      const text = req.query.text || req.body?.text || req.query.url || req.body?.url || 'https://aikulb.com';
+      const text = req.query.text || req.body?.text || req.query.url || req.body?.url || 'https://aiklub.com';
       const format = (req.query.format || req.body?.format || 'json').toLowerCase();
       const width = parseInt(req.query.width || req.body?.width || 300, 10);
       const darkColor = req.query.darkColor || req.body?.darkColor || '#0F172A';
@@ -74,7 +74,7 @@ export class QrController extends BaseController {
         if (fallbackRes.rows.length > 0) {
           profile = fallbackRes.rows[0];
         } else {
-          profile = { username: lowerUser, full_name: 'aikulb Member', phone: '+919876543210' };
+          profile = { username: lowerUser, full_name: 'ai klub Member', phone: '+919876543210' };
         }
       }
 
@@ -135,8 +135,8 @@ export class QrController extends BaseController {
       const format = (req.query.format || 'json').toLowerCase();
 
       // Check if custom design or product
-      let targetUrl = 'https://aikulb.com';
-      let cardTitle = 'AIKULB Smart Card';
+      let targetUrl = 'https://aiklub.com';
+      let cardTitle = 'AI KLUB Smart Card';
 
       const customRes = await executeQuery('SELECT * FROM custom_card_designs WHERE id = ?', [cardId]);
       if (customRes.rows.length > 0) {
@@ -196,7 +196,7 @@ export class QrController extends BaseController {
         p = profileRes.rows[0];
       } else {
         const fallbackRes = await executeQuery('SELECT * FROM profiles LIMIT 1', []);
-        p = fallbackRes.rows[0] || { username, full_name: 'aikulb Member', phone: '+919876543210' };
+        p = fallbackRes.rows[0] || { username, full_name: 'ai klub Member', phone: '+919876543210' };
       }
 
       const vcfContent = p.vcf_data || `BEGIN:VCARD\nVERSION:3.0\nFN:${p.full_name}\nORG:${p.company || ''}\nTITLE:${p.title || ''}\nTEL:${p.phone || ''}\nEMAIL:${p.email || ''}\nURL:${p.website || ''}\nEND:VCARD`;

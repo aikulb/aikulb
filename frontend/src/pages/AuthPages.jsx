@@ -74,7 +74,7 @@ export const AuthPages = () => {
                     <input
                       type="email"
                       required
-                      placeholder="john@aikulb.com"
+                      placeholder="john@aiklub.com"
                       value={forgotEmail}
                       onChange={(e) => setForgotEmail(e.target.value)}
                       className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#070A0F] border border-emerald-900/60 text-white font-medium focus:outline-none focus:border-[#00DC82]"
@@ -103,7 +103,7 @@ export const AuthPages = () => {
           <div className="text-center space-y-3 flex flex-col items-center">
             <AikulbLogo size="lg" darkText={false} />
             <h2 className="text-2xl font-extrabold text-white font-manrope pt-2">
-              {isRegister ? 'Create Digital Profile' : 'Sign in to aikulb'}
+              {isRegister ? 'Create Digital Profile' : 'Sign in to ai klub'}
             </h2>
             <p className="text-xs text-emerald-400 font-mono">Your Identity. One Tap.</p>
           </div>
@@ -145,7 +145,7 @@ export const AuthPages = () => {
                 <input
                   type="email"
                   required
-                  placeholder="john@aikulb.com"
+                  placeholder="john@aiklub.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-2xl bg-[#070A0F] border border-emerald-900/60 text-white font-medium focus:outline-none focus:border-[#00DC82]"
@@ -200,7 +200,7 @@ export const AuthPages = () => {
             {isRegister ? (
               <div>Already have an account? <button type="button" onClick={() => setIsRegister(false)} className="text-[#00DC82] font-bold hover:underline cursor-pointer">Login</button></div>
             ) : (
-              <div>New to aikulb? <button type="button" onClick={() => navigate('/create-profile')} className="text-[#00DC82] font-bold hover:underline cursor-pointer">Create Profile</button></div>
+              <div>New to ai klub? <button type="button" onClick={() => navigate('/create-profile')} className="text-[#00DC82] font-bold hover:underline cursor-pointer">Create Profile</button></div>
             )}
             <div className="pt-2 border-t border-emerald-950">
               <Link to="/create-profile" className="inline-flex items-center space-x-1.5 text-xs text-[#00DC82] font-extrabold hover:underline font-manrope">
