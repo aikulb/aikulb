@@ -590,7 +590,7 @@ export const ProductPortfolioSection = () => {
             const isEven = index % 2 === 0;
 
             return (
-              <ScrollReveal key={item.id} yOffset={35} className={`rounded-[36px] bg-white border border-slate-200 p-8 sm:p-12 shadow-xl relative overflow-hidden group`}>
+              <ScrollReveal key={item.id} yOffset={35} className={`rounded-[24px] sm:rounded-[36px] bg-white border border-slate-200 p-4 sm:p-8 lg:p-12 shadow-xl relative overflow-hidden group`}>
                 {/* Subtle Ambient Background Gradient */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-[#6C4CFF]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#6C4CFF]/15 transition-all duration-700" />
 

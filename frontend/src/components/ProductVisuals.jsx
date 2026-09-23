@@ -57,20 +57,20 @@ export const DotMatrixWorldMap = ({ className = "w-full h-full opacity-20 text-s
 );
 
 export const FivePillarsGrid = ({ className = "text-slate-300 border-t border-slate-500/30 pt-1.5" }) => (
-  <div className={`grid grid-cols-5 gap-1 text-center font-mono uppercase text-[7px] sm:text-[8px] font-bold ${className}`}>
-    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5">
+  <div className={`grid grid-cols-5 gap-0.5 sm:gap-1 text-center font-mono uppercase text-[5.5px] xs:text-[6.5px] sm:text-[8px] font-bold ${className}`}>
+    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5 truncate">
       <span>PEOPLE</span>
     </div>
-    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5">
+    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5 truncate">
       <span>IDEAS</span>
     </div>
-    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5">
+    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5 truncate">
       <span>TECH</span>
     </div>
-    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5">
+    <div className="flex flex-col items-center space-y-0.5 border-r border-current/30 px-0.5 truncate">
       <span>OPPORTUNITY</span>
     </div>
-    <div className="flex flex-col items-center space-y-0.5 px-0.5">
+    <div className="flex flex-col items-center space-y-0.5 px-0.5 truncate">
       <span>GLOBAL</span>
     </div>
   </div>
@@ -141,24 +141,24 @@ export const CardFrontTemplate = ({
   const finalQr = qrValue || (typeof window !== 'undefined' ? `${window.location.origin}/card/${cardId}` : `https://aiklub.com/card/${cardId}`);
   
   return (
-    <div className={`relative w-full h-full p-4 sm:p-4.5 ${bgClass} rounded-2xl shadow-2xl flex flex-col justify-between select-none overflow-hidden transition-all duration-300`}>
+    <div className={`relative w-full h-full p-3 sm:p-4.5 ${bgClass} rounded-2xl shadow-2xl flex flex-col justify-between select-none overflow-hidden transition-all duration-300`}>
       {shimmer && (
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_0%,rgba(255,255,255,0.35),transparent)] pointer-events-none z-0" />
       )}
 
       {/* TOP ROW: 4-Pillars Corner Accent (Top Left) & NFC ))) Wave Signal (Top Right) */}
       <div className="flex justify-between items-start z-10 w-full">
-        <div className={`flex flex-col items-start font-mono text-[7px] sm:text-[7.5px] tracking-[0.18em] leading-[1.3] uppercase ${pillarsClass}`}>
+        <div className={`flex flex-col items-start font-mono text-[6.5px] xs:text-[7px] sm:text-[7.5px] tracking-[0.14em] sm:tracking-[0.18em] leading-[1.2] uppercase ${pillarsClass}`}>
           <span>CONNECT</span>
           <span>COLLABORATE</span>
           <span>CREATE</span>
           <span>GROW</span>
-          <div className="w-4.5 h-[1.5px] bg-current mt-0.5 opacity-75" />
+          <div className="w-3.5 sm:w-4.5 h-[1.5px] bg-current mt-0.5 opacity-75" />
         </div>
 
-        <div className={`flex items-center space-x-1 font-mono text-[9px] sm:text-[10px] font-black tracking-wider ${nfcClass}`}>
+        <div className={`flex items-center space-x-1 font-mono text-[8.5px] sm:text-[10px] font-black tracking-wider ${nfcClass}`}>
           <span>NFC</span>
-          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <path d="M12 8a4 4 0 0 1 4 4" />
             <path d="M12 5a7 7 0 0 1 7 7" />
             <path d="M12 2a10 10 0 0 1 10 10" />
@@ -168,26 +168,26 @@ export const CardFrontTemplate = ({
 
       {/* CENTER AREA: 3D AK Monogram Trishul Emblem + Brand Title + Tagline */}
       <div className="flex flex-col items-center justify-center z-10 my-auto text-center">
-        <TrishulAkEmblem className={`w-10 h-10 sm:w-11 sm:h-11 ${emblemClass}`} />
-        <h3 className={`text-lg sm:text-xl font-black font-manrope tracking-tight mt-0.5 ${titleClass}`}>Ai Klub</h3>
-        <p className={`text-[6.5px] sm:text-[7.5px] font-mono tracking-[0.22em] uppercase font-bold mt-0.5 ${subtitleClass}`}>PEOPLE | IDEAS | TECHNOLOGY</p>
+        <TrishulAkEmblem className={`w-8 h-8 sm:w-11 sm:h-11 ${emblemClass}`} />
+        <h3 className={`text-base sm:text-xl font-black font-manrope tracking-tight mt-0.5 ${titleClass}`}>Ai Klub</h3>
+        <p className={`text-[6px] sm:text-[7.5px] font-mono tracking-[0.18em] sm:tracking-[0.22em] uppercase font-bold mt-0.5 ${subtitleClass}`}>PEOPLE | IDEAS | TECHNOLOGY</p>
       </div>
 
       {/* ABSOLUTE BOTTOM LEFT WAVY LINES MOTIF */}
       <div className="absolute bottom-0 left-0 pointer-events-none opacity-40 z-0">
-        <WavyAccentLines className={`w-20 h-20 sm:w-24 sm:h-24 ${wavyClass}`} />
+        <WavyAccentLines className={`w-16 h-16 sm:w-24 sm:h-24 ${wavyClass}`} />
       </div>
 
       {/* ABSOLUTE BOTTOM LEFT USER NAME & TITLE OVERLAY */}
       {(name || title) && (
-        <div className="absolute bottom-2.5 left-3.5 z-20 max-w-[190px] sm:max-w-[220px] pointer-events-none">
+        <div className="absolute bottom-2 left-2.5 sm:bottom-2.5 sm:left-3.5 z-20 max-w-[150px] sm:max-w-[220px] pointer-events-none">
           {name && (
-            <h4 className={`font-black text-xs sm:text-sm tracking-tight uppercase transition-all duration-300 leading-snug drop-shadow-md truncate ${titleClass}`}>
+            <h4 className={`font-black text-[10.5px] sm:text-sm tracking-tight uppercase transition-all duration-300 leading-snug drop-shadow-md truncate ${titleClass}`}>
               {name}
             </h4>
           )}
           {title && (
-            <p className={`text-[7.5px] sm:text-[8.5px] font-extrabold uppercase tracking-wide opacity-95 font-inter mt-0.5 truncate ${subtitleClass}`}>
+            <p className={`text-[7px] sm:text-[8.5px] font-extrabold uppercase tracking-wide opacity-95 font-inter mt-0.5 truncate ${subtitleClass}`}>
               {title}
             </p>
           )}
@@ -195,11 +195,11 @@ export const CardFrontTemplate = ({
       )}
 
       {/* ABSOLUTE BOTTOM RIGHT QR CODE + TAP TO CONNECT */}
-      <div className="absolute bottom-2.5 right-3 flex flex-col items-center z-20">
-        <div className="p-1 bg-white rounded-lg shadow-md border border-black/10">
-          <QRCodeSVG value={finalQr} size={36} level="H" />
+      <div className="absolute bottom-2 right-2.5 sm:bottom-2.5 sm:right-3 flex flex-col items-center z-20">
+        <div className="p-0.5 sm:p-1 bg-white rounded-md sm:rounded-lg shadow-md border border-black/10">
+          <QRCodeSVG value={finalQr} size={28} className="sm:w-[36px] sm:h-[36px]" level="H" />
         </div>
-        <span className={`text-[6px] sm:text-[6.5px] font-mono font-bold tracking-wider mt-0.5 uppercase ${qrTextClass}`}>TAP TO CONNECT</span>
+        <span className={`text-[5.5px] sm:text-[6.5px] font-mono font-bold tracking-wider mt-0.5 uppercase ${qrTextClass}`}>TAP TO CONNECT</span>
       </div>
     </div>
   );
@@ -212,28 +212,28 @@ export const CardBackTemplate = ({
   cardId = "AK-CARD",
   bgClass = "bg-gradient-to-br from-[#1C1D22] via-[#0E0F12] to-[#040405] text-white",
 }) => (
-  <div className={`relative w-full h-full p-5 ${bgClass} rounded-2xl shadow-2xl flex flex-col justify-between select-none overflow-hidden`}>
+  <div className={`relative w-full h-full p-3 sm:p-5 ${bgClass} rounded-2xl shadow-2xl flex flex-col justify-between select-none overflow-hidden`}>
     <div className="absolute inset-0 pointer-events-none opacity-20">
       <DotMatrixWorldMap className="w-full h-full" />
     </div>
 
     <div className="flex justify-between items-start z-10">
       <div className="flex items-center space-x-2">
-        <span className="font-extrabold text-sm font-manrope">Ai Klub</span>
+        <span className="font-extrabold text-xs sm:text-sm font-manrope">Ai Klub</span>
       </div>
-      <div className="text-right text-[8px] font-mono opacity-80 tracking-wider">
+      <div className="text-right text-[7px] sm:text-[8px] font-mono opacity-80 tracking-wider">
         MORE<br />THAN A CARD<br />A COMMUNITY
       </div>
     </div>
 
-    <div className="text-center z-10 my-1">
-      <h3 className="text-lg font-black font-manrope tracking-tight">Ai Klub</h3>
-      <p className="text-[9px] font-mono tracking-widest opacity-85 border-b border-current/30 pb-1 inline-block">A SMARTER TOMORROW TOGETHER</p>
+    <div className="text-center z-10 my-0.5 sm:my-1">
+      <h3 className="text-base sm:text-lg font-black font-manrope tracking-tight">Ai Klub</h3>
+      <p className="text-[7.5px] sm:text-[9px] font-mono tracking-widest opacity-85 border-b border-current/30 pb-0.5 sm:pb-1 inline-block">A SMARTER TOMORROW TOGETHER</p>
     </div>
 
-    <div className="z-10 space-y-1">
-      <FivePillarsGrid className="border-t border-current/30 pt-1.5" />
-      <div className="flex justify-between items-center text-[8px] font-mono opacity-70 pt-1">
+    <div className="z-10 space-y-0.5 sm:space-y-1">
+      <FivePillarsGrid className="border-t border-current/30 pt-1 sm:pt-1.5" />
+      <div className="flex justify-between items-center text-[7px] sm:text-[8px] font-mono opacity-70 pt-0.5 sm:pt-1">
         <span>TAP . CONNECT . GROW.</span>
         <span>1-TAP NFC & QR</span>
       </div>

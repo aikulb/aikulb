@@ -620,7 +620,7 @@ export const CustomCardDesignerSection = () => {
           </div>
 
           {/* RIGHT: Studio Controls Tabs Column */}
-          <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xl space-y-6 text-slate-900">
+          <div className="lg:col-span-6 bg-white p-4 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xl space-y-6 text-slate-900">
             
             {/* Studio Navigation Tabs */}
             <div className="flex bg-slate-100/90 border border-slate-200 p-1.5 rounded-2xl space-x-1 font-manrope font-bold text-xs overflow-x-auto">

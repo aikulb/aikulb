@@ -312,7 +312,7 @@ export const MetalCardSection = () => {
           </div>
 
           {/* Active Metal Card Spotlight Box */}
-          <div className="rounded-[36px] bg-white border border-slate-200 p-8 sm:p-12 shadow-xl relative overflow-hidden group">
+          <div className="rounded-[24px] sm:rounded-[36px] bg-white border border-slate-200 p-4 sm:p-8 lg:p-12 shadow-xl relative overflow-hidden group">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               
               {/* Visual Preview Column */}
@@ -531,7 +531,7 @@ export const MetalCardSection = () => {
         </ScrollReveal>
 
         {/* Specifications Table */}
-        <ScrollReveal className="p-8 sm:p-12 rounded-[36px] bg-white border border-slate-200 shadow-xl space-y-8">
+        <ScrollReveal className="p-4 sm:p-8 lg:p-12 rounded-[24px] sm:rounded-[36px] bg-white border border-slate-200 shadow-xl space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#6C4CFF]">
               Technical Data Sheet
