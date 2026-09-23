@@ -464,6 +464,13 @@ export const MetalCardSection = () => {
                 {/* Subtle Dark Gradient Overlay for Readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#070A0F]/95 via-black/25 to-black/40 z-10 pointer-events-none" />
 
+                {/* AK Trishul Neon Green Badge Overlay (Moved up and slightly right) */}
+                <div className="absolute bottom-10 right-3.5 sm:bottom-12 sm:right-4 z-30 pointer-events-none">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#070A0F]/95 border-2 border-[#00DC82] shadow-[0_0_15px_#00DC82] flex items-center justify-center p-2 backdrop-blur-md">
+                    <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain filter brightness-125" />
+                  </div>
+                </div>
+
                 {/* Top Audio Control Overlay (Badges Removed) */}
                 <div className="relative z-20 p-5 sm:p-6 flex items-center justify-end">
                   <button
@@ -477,7 +484,7 @@ export const MetalCardSection = () => {
                 </div>
 
                 {/* Bottom Card Info Overlay */}
-                <div className="relative z-20 p-6 sm:p-7 space-y-1.5 text-white font-manrope">
+                <div className="relative z-20 p-6 sm:p-7 space-y-1.5 text-white font-manrope max-w-[80%]">
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight drop-shadow-md">
                     {reel.title}
                   </h3>

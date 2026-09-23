@@ -178,6 +178,22 @@ export const CardFrontTemplate = ({
         <WavyAccentLines className={`w-20 h-20 sm:w-24 sm:h-24 ${wavyClass}`} />
       </div>
 
+      {/* ABSOLUTE BOTTOM LEFT USER NAME & TITLE OVERLAY */}
+      {(name || title) && (
+        <div className="absolute bottom-2.5 left-3.5 z-20 max-w-[190px] sm:max-w-[220px] pointer-events-none">
+          {name && (
+            <h4 className={`font-black text-xs sm:text-sm tracking-tight uppercase transition-all duration-300 leading-snug drop-shadow-md truncate ${titleClass}`}>
+              {name}
+            </h4>
+          )}
+          {title && (
+            <p className={`text-[7.5px] sm:text-[8.5px] font-extrabold uppercase tracking-wide opacity-95 font-inter mt-0.5 truncate ${subtitleClass}`}>
+              {title}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* ABSOLUTE BOTTOM RIGHT QR CODE + TAP TO CONNECT */}
       <div className="absolute bottom-2.5 right-3 flex flex-col items-center z-20">
         <div className="p-1 bg-white rounded-lg shadow-md border border-black/10">

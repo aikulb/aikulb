@@ -114,6 +114,13 @@ export const HomePageVideoSection = () => {
                   {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00DC82]" />}
                 </button>
               </div>
+
+              {/* AK Trishul Neon Green Badge Overlay (Moved left and size increased) */}
+              <div className="absolute bottom-9 right-8 sm:bottom-11 sm:right-10 z-30 pointer-events-none">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#090C12]/95 border-2 border-[#00DC82] shadow-[0_0_18px_#00DC82] flex items-center justify-center p-2 backdrop-blur-md">
+                  <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain filter brightness-125" />
+                </div>
+              </div>
             </div>
           </ScrollReveal>
 

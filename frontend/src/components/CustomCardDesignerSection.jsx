@@ -472,9 +472,11 @@ export const CustomCardDesignerSection = () => {
 
             {/* 3D Perspective Flip Container */}
             <div 
-              className="w-full max-w-[460px] aspect-[1.586] perspective-1000 cursor-grab active:cursor-grabbing"
+              onClick={() => setIsFlipped(!isFlipped)}
+              className="w-full max-w-[460px] aspect-[1.586] perspective-1000 cursor-pointer select-none"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
+              title="Click card to flip (Front / Back)"
             >
               <div 
                 className="w-full h-full relative transform-style-3d transition-transform duration-700 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
@@ -1047,17 +1049,12 @@ export const CustomCardDesignerSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {/* Step 1 */}
             <div className="space-y-6 flex flex-col items-center group">
-              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#F1F5F9] via-[#F8FAFC] to-white border-2 border-purple-500/30 p-5 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-purple-500 transition-all duration-300 relative overflow-hidden">
-                <div className="w-40 h-24 bg-slate-900 rounded-2xl border border-slate-700 p-3 shadow-2xl flex flex-col justify-between items-start text-left">
-                  <div className="flex items-center space-x-1.5">
-                    <div className="w-5 h-5 rounded bg-gradient-to-tr from-[#6C4CFF] to-[#3B82F6] text-[9px] font-black flex items-center justify-center text-white">ak</div>
-                    <span className="text-[10px] font-extrabold text-white font-manrope lowercase">ai klub</span>
-                  </div>
-                  <div className="flex items-center space-x-1 text-[8px] text-cyan-300 font-mono font-bold bg-black/40 px-2 py-0.5 rounded border border-cyan-500/30">
-                    <Zap className="w-2.5 h-2.5 text-cyan-400" />
-                    <span>NTAG216 CHIP</span>
-                  </div>
-                </div>
+              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#F1F5F9] via-[#F8FAFC] to-white border-2 border-purple-500/30 p-2 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-purple-500 transition-all duration-300 relative overflow-hidden">
+                <img 
+                  src="/assets/smart_nfc_card_step.jpg" 
+                  alt="Smart NFC Card" 
+                  className="w-full h-full object-cover rounded-full filter brightness-105 transition-transform duration-500 group-hover:scale-110" 
+                />
               </div>
               <div className="space-y-3 max-w-sm">
                 <h3 className="text-2xl font-extrabold text-slate-900 font-manrope">Smart NFC Card</h3>
@@ -1069,17 +1066,12 @@ export const CustomCardDesignerSection = () => {
 
             {/* Step 2 */}
             <div className="space-y-6 flex flex-col items-center group">
-              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#F1F5F9] via-[#F8FAFC] to-white border-2 border-blue-500/30 p-5 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300 relative overflow-hidden">
-                <div className="w-28 h-40 bg-slate-900 rounded-2xl border border-slate-700 p-2.5 shadow-2xl flex flex-col items-center justify-between text-center">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#6C4CFF] to-purple-400 p-0.5 mt-1 shadow-md">
-                    <div className="w-full h-full rounded-full bg-black flex items-center justify-center text-white text-xs font-black">ak</div>
-                  </div>
-                  <div className="space-y-1 w-full flex flex-col items-center">
-                    <div className="w-14 h-1.5 bg-slate-600 rounded-full"></div>
-                    <div className="w-18 h-1 bg-slate-700 rounded-full"></div>
-                  </div>
-                  <div className="w-20 h-5 bg-[#6C4CFF] rounded-lg text-[8px] font-extrabold text-white flex items-center justify-center shadow-md">Save Contact</div>
-                </div>
+              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#F1F5F9] via-[#F8FAFC] to-white border-2 border-blue-500/30 p-2 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300 relative overflow-hidden">
+                <img 
+                  src="/assets/online_profile_step.jpg" 
+                  alt="Your Online Profile" 
+                  className="w-full h-full object-cover rounded-full filter brightness-105 transition-transform duration-500 group-hover:scale-110" 
+                />
               </div>
               <div className="space-y-3 max-w-sm">
                 <h3 className="text-2xl font-extrabold text-slate-900 font-manrope">Your Online Profile</h3>
@@ -1091,11 +1083,12 @@ export const CustomCardDesignerSection = () => {
 
             {/* Step 3 */}
             <div className="space-y-6 flex flex-col items-center group">
-              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#ECFDF5] via-[#F8FAFC] to-white border-2 border-emerald-500/30 p-5 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 relative overflow-hidden">
-                <div className="relative flex items-center justify-center">
-                  <Smartphone className="w-28 h-28 text-slate-800" />
-                  <Zap className="w-10 h-10 text-[#6C4CFF] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                </div>
+              <div className="w-60 h-60 rounded-full bg-gradient-to-tr from-[#ECFDF5] via-[#F8FAFC] to-white border-2 border-emerald-500/30 p-2 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 relative overflow-hidden">
+                <img 
+                  src="/assets/tap_share_save_step.jpg" 
+                  alt="Tap, Share & Save" 
+                  className="w-full h-full object-cover rounded-full filter brightness-105 transition-transform duration-500 group-hover:scale-110" 
+                />
               </div>
               <div className="space-y-3 max-w-sm">
                 <h3 className="text-2xl font-extrabold text-slate-900 font-manrope">Tap, Share & Save</h3>
