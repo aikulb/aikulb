@@ -199,7 +199,7 @@ export const CreateProfilePage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* LEFT: Builder Input Form */}
-          <div className="lg:col-span-7 bg-neutral-50 p-6 sm:p-8 rounded-3xl border border-neutral-200 shadow-sm space-y-6">
+          <div className="lg:col-span-7 bg-neutral-50 p-4 sm:p-8 rounded-3xl border border-neutral-200 shadow-sm space-y-6">
             
             {error && (
               <div className="p-4 rounded-2xl bg-red-100 border border-red-200 text-red-700 text-xs font-semibold flex items-center space-x-2">

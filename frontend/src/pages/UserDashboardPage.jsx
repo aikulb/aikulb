@@ -317,7 +317,7 @@ export const UserDashboardPage = () => {
           </div>
 
           {/* Mode Switcher & Logout Controls */}
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <div className="flex items-center bg-neutral-100 p-1.5 rounded-full border border-neutral-300 space-x-2">
               <button
                 onClick={() => {
@@ -900,41 +900,41 @@ export const UserDashboardPage = () => {
             {/* OVERVIEW & ANALYTICS TAB */}
             {activeTab === 'overview' && (
               <div className="space-y-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="p-6 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+                  <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
                     <div className="flex justify-between items-center text-[#6C4CFF] mb-2">
-                      <span className="text-xs font-mono font-bold uppercase">Total Views</span>
-                      <Eye className="w-5 h-5" />
+                      <span className="text-[10px] sm:text-xs font-mono font-bold uppercase">Total Views</span>
+                      <Eye className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.views_count : 2840}</div>
-                    <div className="text-[11px] text-emerald-600 font-bold mt-1">+18% this week</div>
+                    <div className="text-2xl sm:text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.views_count : 2840}</div>
+                    <div className="text-[10px] sm:text-[11px] text-emerald-600 font-bold mt-1">+18% this week</div>
                   </div>
 
-                  <div className="p-6 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+                  <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
                     <div className="flex justify-between items-center text-purple-600 mb-2">
-                      <span className="text-xs font-mono font-bold uppercase">NFC Taps</span>
-                      <Zap className="w-5 h-5" />
+                      <span className="text-[10px] sm:text-xs font-mono font-bold uppercase">NFC Taps</span>
+                      <Zap className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.nfc_taps : 1420}</div>
-                    <div className="text-[11px] text-purple-600 font-bold mt-1">High Intent Taps</div>
+                    <div className="text-2xl sm:text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.nfc_taps : 1420}</div>
+                    <div className="text-[10px] sm:text-[11px] text-purple-600 font-bold mt-1">High Intent Taps</div>
                   </div>
 
-                  <div className="p-6 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+                  <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
                     <div className="flex justify-between items-center text-blue-600 mb-2">
-                      <span className="text-xs font-mono font-bold uppercase">QR Scans</span>
-                      <QrCode className="w-5 h-5" />
+                      <span className="text-[10px] sm:text-xs font-mono font-bold uppercase">QR Scans</span>
+                      <QrCode className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.qr_scans : 1420}</div>
-                    <div className="text-[11px] text-neutral-500 font-mono mt-1">Universal QR</div>
+                    <div className="text-2xl sm:text-3xl font-black text-neutral-900 font-manrope">{profile ? profile.qr_scans : 1420}</div>
+                    <div className="text-[10px] sm:text-[11px] text-neutral-500 font-mono mt-1">Universal QR</div>
                   </div>
 
-                  <div className="p-6 rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
+                  <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-50 border border-neutral-200 shadow-xs">
                     <div className="flex justify-between items-center text-emerald-600 mb-2">
-                      <span className="text-xs font-mono font-bold uppercase">Captured Leads</span>
-                      <Users className="w-5 h-5" />
+                      <span className="text-[10px] sm:text-xs font-mono font-bold uppercase">Captured Leads</span>
+                      <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="text-3xl font-black text-neutral-900 font-manrope">{leads.length}</div>
-                    <div className="text-[11px] text-emerald-600 font-bold mt-1">Active Pipeline</div>
+                    <div className="text-2xl sm:text-3xl font-black text-neutral-900 font-manrope">{leads.length}</div>
+                    <div className="text-[10px] sm:text-[11px] text-emerald-600 font-bold mt-1">Active Pipeline</div>
                   </div>
                 </div>
 

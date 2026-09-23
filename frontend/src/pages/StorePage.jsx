@@ -162,10 +162,10 @@ export const StorePage = () => {
 
               {/* Catalog View Toggle Buttons */}
               <div className="pt-8 flex justify-center">
-                <div className="inline-flex p-1.5 rounded-full bg-slate-900/80 border border-neutral-700/80 backdrop-blur-xl shadow-2xl">
+                <div className="inline-flex flex-col xs:flex-row p-1.5 rounded-2xl xs:rounded-full bg-slate-900/80 border border-neutral-700/80 backdrop-blur-xl shadow-2xl gap-1">
                   <button
                     onClick={() => setViewMode('portfolio')}
-                    className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
+                    className={`px-4 sm:px-6 py-2.5 rounded-xl xs:rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer ${
                       viewMode === 'portfolio'
                         ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
                         : 'text-slate-400 hover:text-white'
@@ -176,7 +176,7 @@ export const StorePage = () => {
                   </button>
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`px-6 py-2.5 rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center space-x-2 cursor-pointer ${
+                    className={`px-4 sm:px-6 py-2.5 rounded-xl xs:rounded-full text-xs font-bold font-manrope transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer ${
                       viewMode === 'grid'
                         ? 'aikulb-gradient-bg text-white shadow-lg scale-105'
                         : 'text-slate-400 hover:text-white'

@@ -124,7 +124,7 @@ export const CheckoutPage = () => {
           {/* Left Address & Payment Form */}
           <div className="lg:col-span-7 space-y-6">
             {/* Address Box */}
-            <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs">
+            <div className="p-4 sm:p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs">
               <h3 className="text-lg font-extrabold text-neutral-900 font-manrope">Shipping Address</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-inter">
                 <div>
@@ -182,7 +182,7 @@ export const CheckoutPage = () => {
             </div>
 
             {/* Payment Method Box */}
-            <div className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs">
+            <div className="p-4 sm:p-8 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xs">
               <h3 className="text-lg font-extrabold text-neutral-900 font-manrope">Payment Gateway Selection</h3>
               <div className="space-y-2 text-xs font-manrope">
                 {['UPI / Razorpay', 'Credit or Debit Card', 'Cash on Delivery'].map((m) => (

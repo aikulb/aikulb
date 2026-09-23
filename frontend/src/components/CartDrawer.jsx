@@ -22,7 +22,7 @@ export const CartDrawer = () => {
             onClick={() => setIsCartOpen(false)}
           />
 
-          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10 z-[10000]">
+          <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10 z-[10000]">
             {/* Drawer Slide-In Container */}
             <motion.div
               initial={{ x: "100%" }}
