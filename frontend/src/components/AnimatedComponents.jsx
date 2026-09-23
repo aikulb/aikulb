@@ -7,19 +7,7 @@ import { useAnimationAccessibility, calculateTilt } from '../utils/animationUtil
  * 2-3px progress bar at top of website using aikulb gradient
  */
 export const ScrollProgress = () => {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  return (
-    <motion.div
-      style={{ scaleX }}
-      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#6C4CFF] via-[#8B5CF6] to-[#3B82F6] z-[100] origin-left shadow-[0_0_10px_rgba(108,76,255,0.8)] pointer-events-none"
-    />
-  );
+  return null;
 };
 
 /**

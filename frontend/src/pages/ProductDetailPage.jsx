@@ -6,7 +6,7 @@ import { CartDrawer } from '../components/CartDrawer';
 import { useCart } from '../context/CartContext';
 import { api } from '../services/apiClient';
 import { Star, ShieldCheck, Cpu, Truck, ShoppingBag, Zap, Check, ArrowLeft } from 'lucide-react';
-import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WoodCardVisual, SmartStandVisual } from '../components/ProductVisuals';
+import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, BlueMetalCardVisual, RoseGoldMetalCardVisual, WoodCardVisual, SmartStandVisual } from '../components/ProductVisuals';
 import confetti from 'canvas-confetti';
 
 export const ProductDetailPage = () => {
@@ -48,11 +48,16 @@ export const ProductDetailPage = () => {
 
   const renderVisual = () => {
     if (!product) return null;
+    const slug = (product.slug || '').toLowerCase();
+    const name = (product.name || '').toLowerCase();
     const cardId = product.id || product.slug || 'AK-CARD';
-    if (product.slug?.includes('gold')) return <GoldMetalCardVisual name={product.name} cardId={cardId} />;
-    if (product.slug?.includes('silver')) return <SilverMetalCardVisual name={product.name} cardId={cardId} />;
-    if (product.slug?.includes('wood') || product.slug?.includes('bamboo')) return <WoodCardVisual name={product.name} cardId={cardId} />;
-    if (product.slug?.includes('stand')) return <SmartStandVisual cardId={cardId} />;
+    
+    if (slug.includes('gold') || name.includes('gold')) return <GoldMetalCardVisual name={product.name} cardId={cardId} />;
+    if (slug.includes('silver') || name.includes('silver') || slug.includes('platinum')) return <SilverMetalCardVisual name={product.name} cardId={cardId} />;
+    if (slug.includes('blue') || name.includes('blue') || slug.includes('sapphire')) return <BlueMetalCardVisual name={product.name} cardId={cardId} />;
+    if (slug.includes('rose') || name.includes('rose')) return <RoseGoldMetalCardVisual name={product.name} cardId={cardId} />;
+    if (slug.includes('wood') || slug.includes('bamboo') || name.includes('wood')) return <WoodCardVisual name={product.name} cardId={cardId} />;
+    if (slug.includes('stand') || name.includes('stand')) return <SmartStandVisual cardId={cardId} />;
     return <BlackMetalCardVisual name={product.name} cardId={cardId} />;
   };
 

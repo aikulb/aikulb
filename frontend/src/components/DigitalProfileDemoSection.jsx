@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MessageSquare, Download, Globe, Linkedin, ArrowRight, Eye, Touchpad as Touch, QrCode, UserCheck } from 'lucide-react';
+import { 
+  Phone, Mail, Download, Globe, Linkedin, ArrowRight, Eye, 
+  Touchpad as Touch, QrCode, UserCheck, Twitter, Facebook, 
+  Instagram, Paperclip, ChevronRight 
+} from 'lucide-react';
 import { ScrollReveal } from './AnimatedComponents';
 
 export const DigitalProfileDemoSection = () => {
@@ -53,179 +57,135 @@ export const DigitalProfileDemoSection = () => {
             </div>
           </ScrollReveal>
 
-          {/* Right Interactive Mobile Phone Showcase Mockup (Requirement 12: opacity 0->1, scale 0.9->1, y 30px->0) */}
-          <div className="lg:col-span-6 flex justify-center relative">
-            
-            {/* Surrounding Floating Analytics Widgets (Requirement 12) */}
-            {/* Widget 1: Profile Views */}
-            <motion.div
-              initial={{ opacity: 0, x: -30, y: -20 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              animate={{ y: [0, -6, 0] }}
-              /* repeat floating animation */
-              style={{ animation: 'floatWidget 4s ease-in-out infinite' }}
-              className="absolute -top-6 -left-4 sm:left-2 z-20 bg-[#161618]/90 border border-purple-500/40 backdrop-blur-md px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center space-x-2 text-xs font-inter"
-            >
-              <div className="p-1.5 rounded-xl bg-purple-500/20 text-purple-300">
-                <Eye className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase font-mono">PROFILE VIEWS</p>
-                <p className="font-black text-white font-manrope text-xs">1,480 Taps</p>
-              </div>
-            </motion.div>
-
-            {/* Widget 2: NFC Taps */}
-            <motion.div
-              initial={{ opacity: 0, x: 30, y: -10 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute top-20 -right-4 sm:right-0 z-20 bg-[#161618]/90 border border-cyan-500/40 backdrop-blur-md px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center space-x-2 text-xs font-inter"
-            >
-              <div className="p-1.5 rounded-xl bg-cyan-500/20 text-cyan-300">
-                <Touch className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase font-mono">INSTANT TAP</p>
-                <p className="font-black text-white font-manrope text-xs">100% Verified</p>
-              </div>
-            </motion.div>
-
-            {/* Widget 3: QR Scans */}
-            <motion.div
-              initial={{ opacity: 0, x: -30, y: 30 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute bottom-24 -left-4 sm:left-4 z-20 bg-[#161618]/90 border border-blue-500/40 backdrop-blur-md px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center space-x-2 text-xs font-inter"
-            >
-              <div className="p-1.5 rounded-xl bg-blue-500/20 text-blue-300">
-                <QrCode className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase font-mono">DYNAMIC QR</p>
-                <p className="font-black text-white font-manrope text-xs">Scan & Save</p>
-              </div>
-            </motion.div>
-
-            {/* Widget 4: Leads Captured */}
-            <motion.div
-              initial={{ opacity: 0, x: 30, y: 30 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute -bottom-4 -right-2 sm:right-6 z-20 bg-[#161618]/90 border border-emerald-500/40 backdrop-blur-md px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center space-x-2 text-xs font-inter"
-            >
-              <div className="p-1.5 rounded-xl bg-emerald-500/20 text-emerald-300">
-                <UserCheck className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase font-mono">LEADS CAPTURED</p>
-                <p className="font-black text-white font-manrope text-xs">+342 CRM Contacts</p>
-              </div>
-            </motion.div>
-
-            {/* Main Phone Mockup Element */}
+          {/* Right Interactive Mobile Phone Showcase Mockup */}
+          <div className="lg:col-span-6 flex justify-center relative py-4">
+            {/* Main Phone Mockup Element (Light Theme matching 1st Reference Image) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] }}
-              className="w-full max-w-sm rounded-[42px] p-3 bg-[#0A0A0C] border-4 border-neutral-800 shadow-[0_25px_60px_rgba(108,76,255,0.3)] relative overflow-hidden z-10 select-none text-white"
+              className="w-full max-w-sm rounded-[42px] p-3 bg-[#0A0A0C] border-4 border-neutral-800 shadow-[0_25px_60px_rgba(0,0,0,0.4)] relative overflow-hidden z-10 select-none"
             >
               {/* Mobile Screen Header Notch */}
               <div className="w-28 h-4 bg-[#000000] rounded-b-xl mx-auto mb-2 border-x border-b border-neutral-800 flex items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-black" />
               </div>
 
-              {/* Screen Container */}
-              <div className="w-full bg-[#080B11] rounded-[32px] overflow-hidden border border-neutral-800 pb-3">
-                {/* Red Curved Header Cap */}
-                <div className="h-14 w-full bg-gradient-to-r from-[#FF4D4D] via-[#FF3838] to-[#E62E2E] rounded-b-[24px] relative overflow-hidden" />
+              {/* Screen Container - Pure White Theme */}
+              <div className="w-full bg-[#FFFFFF] rounded-[32px] overflow-hidden border border-neutral-200 p-2.5 text-slate-900 space-y-2.5">
+                {/* Header Red Curve Cap */}
+                <div className="h-14 w-full bg-[#FF4545] rounded-b-[22px] relative overflow-hidden" />
 
                 {/* Split Profile Header Card */}
-                <div className="-mt-7 mx-3 rounded-2xl bg-[#0F1420] border border-neutral-800 shadow-xl overflow-hidden flex items-stretch">
+                <div className="-mt-9 mx-1 rounded-2xl bg-[#090C15] border border-neutral-800 shadow-xl overflow-hidden flex items-stretch text-white">
                   <div className="w-24 bg-neutral-900 relative shrink-0 overflow-hidden border-r border-neutral-800">
                     <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
+                      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400"
                       alt="Nicholas Perry"
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
-                  <div className="flex-1 p-2.5 bg-[#0B0E17] flex flex-col justify-between">
+                  <div className="flex-1 p-2.5 bg-[#0A0D17] flex flex-col justify-between">
                     <div>
-                      <h3 className="font-extrabold text-white text-sm font-manrope leading-snug">Nicholas Perry</h3>
-                      <p className="text-[10px] text-slate-300 font-inter mt-0.5">Designer @ aikulb</p>
+                      <h3 className="font-extrabold text-white text-sm font-manrope leading-tight">Nicholas<br />Perry</h3>
+                      <p className="text-[10px] text-slate-300 font-inter mt-0.5 font-medium">Designer @ aiklub</p>
                     </div>
-                    <div className="pt-2">
-                      <div className="inline-flex items-center space-x-1 px-2 py-0.5 rounded bg-[#FF4D4D]/15 border border-[#FF4D4D]/30 text-[#FF4D4D] text-[9px] font-bold">
-                        <img src="/assets/logo.png" alt="aikulb" className="w-3 h-3 object-contain" />
-                        <span>aikulb</span>
+                    <div className="pt-1.5">
+                      <div className="inline-flex items-center space-x-1 px-2 py-0.5 rounded bg-red-500/15 border border-red-500/30 text-[#FF4545] text-[9px] font-bold">
+                        <img src="/assets/logo.png" alt="aiklub" className="w-3 h-3 object-contain" />
+                        <span>aiklub</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="grid grid-cols-2 gap-2 mt-3 px-3">
-                  <a
-                    href="/api/profile/vcf/john"
-                    download
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-[#FF4D4D] to-[#FF3838] text-white font-extrabold text-[11px] font-manrope shadow flex items-center justify-center space-x-1"
-                  >
-                    <Download className="w-3.5 h-3.5" />
+                <div className="grid grid-cols-2 gap-2 px-1 pt-0.5">
+                  <div className="w-full py-2 rounded-full bg-[#FF4545] hover:bg-[#e03838] text-white font-extrabold text-[11px] font-manrope shadow-xs flex items-center justify-center space-x-1 cursor-pointer">
                     <span>Save Contact</span>
-                  </a>
-                  <Link
-                    to="/profile/john"
-                    target="_blank"
-                    className="w-full py-2 rounded-full bg-[#E2E8F0] text-[#0F172A] font-extrabold text-[11px] font-manrope shadow flex items-center justify-center space-x-1"
-                  >
-                    <Globe className="w-3.5 h-3.5 text-[#0F172A]" />
+                  </div>
+                  <div className="w-full py-2 rounded-full bg-[#EAEFEF] text-[#1E293B] font-extrabold text-[11px] font-manrope shadow-xs flex items-center justify-center space-x-1 cursor-pointer">
                     <span>Share</span>
-                  </Link>
+                  </div>
                 </div>
 
                 {/* ABOUT Section */}
-                <div className="mt-3 px-3">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1">ABOUT</span>
-                  <p className="p-2.5 rounded-xl bg-[#0F1420] border border-neutral-800 text-[10px] text-slate-300 leading-snug font-inter">
+                <div className="px-1">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-0.5">ABOUT</span>
+                  <p className="text-[10px] text-slate-700 leading-relaxed font-inter font-medium">
                     With the smart business cards and digital cards, you will be able to reach your clients very easily and hassle-free.
                   </p>
                 </div>
 
+                <div className="border-b border-slate-100 my-1 mx-1" />
+
                 {/* CONTACT ME Section */}
-                <div className="mt-3 px-3 space-y-1 font-inter text-[11px]">
-                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1">CONTACT ME</span>
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+                <div className="px-1 space-y-1.5 font-inter text-[10px]">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-0.5">CONTACT ME</span>
+                  
+                  <div className="flex items-center justify-between py-1">
                     <div className="flex items-center space-x-2">
-                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
+                      <div className="w-5 h-5 rounded-full border border-red-400/50 text-[#FF4545] flex items-center justify-center bg-red-50/50">
                         <Phone className="w-3 h-3" />
                       </div>
-                      <span>149-219-4462</span>
+                      <span className="text-slate-800 font-semibold">149-219-4462</span>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+
+                  <div className="flex items-center justify-between py-1">
                     <div className="flex items-center space-x-2">
-                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
+                      <div className="w-5 h-5 rounded-full border border-red-400/50 text-[#FF4545] flex items-center justify-center bg-red-50/50">
                         <Mail className="w-3 h-3" />
                       </div>
-                      <span>nicholas@aikulb.com</span>
+                      <span className="text-slate-800 font-semibold truncate max-w-[150px]">nicholas@aiklub.com</span>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded-xl bg-[#0F1420] border border-neutral-800">
+
+                  <div className="flex items-center justify-between py-1">
                     <div className="flex items-center space-x-2">
-                      <div className="w-5 h-5 rounded-full bg-[#FF4D4D]/15 text-[#FF4D4D] flex items-center justify-center">
-                        <Globe className="w-3 h-3" />
+                      <div className="w-5 h-5 rounded-full border border-red-400/50 text-[#FF4545] flex items-center justify-center bg-red-50/50">
+                        <Paperclip className="w-3 h-3" />
                       </div>
-                      <span>www.aikulb.com</span>
+                      <span className="text-slate-800 font-semibold">www.aiklub.com</span>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                  </div>
+                </div>
+
+                <div className="border-b border-slate-100 my-1 mx-1" />
+
+                {/* ON THE SOCIAL Section */}
+                <div className="px-1">
+                  <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 block mb-1.5">ON THE SOCIAL</span>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-7 h-7 rounded-full bg-[#FF4545] text-white flex items-center justify-center shadow-xs">
+                      <Linkedin className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="w-7 h-7 rounded-full bg-[#FF4545] text-white flex items-center justify-center shadow-xs">
+                      <Twitter className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="w-7 h-7 rounded-full bg-[#FF4545] text-white flex items-center justify-center shadow-xs">
+                      <Facebook className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="w-7 h-7 rounded-full bg-[#FF4545] text-white flex items-center justify-center shadow-xs">
+                      <Instagram className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Tab Navigation Pills */}
+                <div className="pt-2 px-1 pb-1 flex items-center justify-between gap-1.5">
+                  <div className="flex-1 py-1.5 px-1 rounded-full bg-[#FF4545] text-white text-[9px] font-bold text-center shadow-xs">
+                    SERVICES
+                  </div>
+                  <div className="flex-1 py-1.5 px-1 rounded-full bg-[#EAEFEF] text-slate-700 text-[9px] font-bold text-center">
+                    GALLERY
+                  </div>
+                  <div className="flex-1 py-1.5 px-1 rounded-full bg-[#EAEFEF] text-slate-700 text-[9px] font-bold text-center">
+                    TESTIMONIALS
                   </div>
                 </div>
               </div>

@@ -122,10 +122,10 @@ export const Footer = () => {
                   rel="noopener noreferrer" 
                   className="text-[#00DC82] font-extrabold hover:underline flex items-center gap-1.5"
                 >
-                  <span>WhatsApp: +91 77995 29358</span>
+                  <span>Chat on WhatsApp</span>
                 </a>
               </li>
-              <li><a href="tel:+917799529358" className="hover:text-[#00DC82] transition font-mono font-bold text-white">+91 77995 29358</a></li>
+              <li><Link to="/contact" className="hover:text-[#00DC82] transition font-semibold text-white">Instant 24/7 Support Desk</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Help Center & FAQ</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Shipping & Delivery</Link></li>
               <li><Link to="/contact" className="hover:text-[#00DC82] transition">Contact Support</Link></li>

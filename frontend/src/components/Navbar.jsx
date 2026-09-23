@@ -36,7 +36,7 @@ export const Navbar = () => {
       <nav
         className={`w-full transition-all duration-300 z-50 ${
           isScrolled
-            ? 'bg-black/95 backdrop-blur-xl py-3 border-b border-neutral-900 shadow-2xl shadow-black/90'
+            ? 'bg-black py-3 border-b border-neutral-900'
             : 'bg-black py-3.5 border-b border-neutral-900'
         }`}
       >

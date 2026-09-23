@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Sparkles, Check, ArrowRight, ShieldCheck, Zap, QrCode, Cpu, Layers, ExternalLink, MessageCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { api } from '../services/apiClient';
 import { ScrollReveal, Card3DTilt, MagneticButton } from './AnimatedComponents';
 import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WoodCardVisual, SmartStandVisual, GoldTrishulCardVisual, SilverTrishulCardVisual, BlueWorldCardVisual, BlueTrishulCardVisual, SilverWorldCardVisual } from './ProductVisuals';
 
 export const ProductPortfolioSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [toastMessage, setToastMessage] = useState('');
+  const [dbProducts, setDbProducts] = useState([]);
   const { addToCart } = useCart();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchDbProducts = async () => {
+      const res = await api.getProducts();
+      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+        setDbProducts(res.data);
+      }
+    };
+    fetchDbProducts();
+  }, []);
 
   const handleAddToCart = (item) => {
     addToCart(item, 1);
@@ -481,9 +493,22 @@ export const ProductPortfolioSection = () => {
     },
   ];
 
+  const displayItems = portfolioItems.map(item => {
+    const matchedDb = dbProducts.find(dbP => dbP.id === item.id || dbP.slug === item.id || (dbP.name && item.name && dbP.name.toLowerCase() === item.name.toLowerCase()));
+    if (matchedDb) {
+      return {
+        ...item,
+        price: matchedDb.price || item.price,
+        originalPrice: matchedDb.original_price || item.originalPrice,
+        description: matchedDb.description || item.description,
+      };
+    }
+    return item;
+  });
+
   const filteredItems = selectedCategory === 'all'
-    ? portfolioItems
-    : portfolioItems.filter(item => item.category === selectedCategory);
+    ? displayItems
+    : displayItems.filter(item => item.category === selectedCategory);
 
   const renderVisual = (item) => {
     switch (item.visualType) {
@@ -533,11 +558,6 @@ export const ProductPortfolioSection = () => {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Module */}
         <ScrollReveal className="text-center max-w-4xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#6C4CFF]/10 border border-[#6C4CFF]/20 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Official Smart Hardware Portfolio</span>
-          </div>
-          
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 font-manrope tracking-tight leading-tight">
             ai klub NFC Product Portfolio
           </h2>

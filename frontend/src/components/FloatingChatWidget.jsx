@@ -96,7 +96,7 @@ export const FloatingChatWidget = () => {
                 </h4>
                 <p className="text-[10px] sm:text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  +91 77995 29358 • Instant Chat
+                  Instant Chat Support
                 </p>
               </div>
             </div>
@@ -120,7 +120,7 @@ export const FloatingChatWidget = () => {
               className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-black text-xs py-2.5 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-md shadow-emerald-600/20 transition hover:scale-[1.01] group cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 text-slate-950 fill-slate-950" />
-              <span>Chat on WhatsApp (+91 77995 29358)</span>
+              <span>Chat on WhatsApp</span>
             </a>
 
             <div className="relative flex items-center justify-center my-1">

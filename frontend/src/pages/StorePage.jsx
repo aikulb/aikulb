@@ -9,7 +9,7 @@ import { api } from '../services/apiClient';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, ShoppingBag, Heart, Star, Sparkles, Check, LayoutGrid } from 'lucide-react';
-import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WoodCardVisual, SmartStandVisual } from '../components/ProductVisuals';
+import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, BlueMetalCardVisual, RoseGoldMetalCardVisual, WoodCardVisual, SmartStandVisual } from '../components/ProductVisuals';
 import { ScrollReveal, StaggerContainer, StaggerItem, SkeletonLoader } from '../components/AnimatedComponents';
 
 export const StorePage = () => {
@@ -68,11 +68,29 @@ export const StorePage = () => {
   };
 
   const renderProductVisual = (p) => {
-    if (p.slug.includes('gold')) return <GoldMetalCardVisual name={p.name} />;
-    if (p.slug.includes('silver')) return <SilverMetalCardVisual name={p.name} />;
-    if (p.slug.includes('wood') || p.slug.includes('bamboo')) return <WoodCardVisual name={p.name} />;
-    if (p.slug.includes('stand')) return <SmartStandVisual />;
-    return <BlackMetalCardVisual name={p.name} />;
+    const slug = (p.slug || '').toLowerCase();
+    const name = (p.name || '').toLowerCase();
+    const cardId = p.id || p.slug || 'AK-CARD';
+    
+    if (slug.includes('gold') || name.includes('gold')) {
+      return <GoldMetalCardVisual name={p.name} cardId={cardId} />;
+    }
+    if (slug.includes('silver') || name.includes('silver') || slug.includes('platinum')) {
+      return <SilverMetalCardVisual name={p.name} cardId={cardId} />;
+    }
+    if (slug.includes('blue') || name.includes('blue') || slug.includes('sapphire')) {
+      return <BlueMetalCardVisual name={p.name} cardId={cardId} />;
+    }
+    if (slug.includes('rose') || name.includes('rose')) {
+      return <RoseGoldMetalCardVisual name={p.name} cardId={cardId} />;
+    }
+    if (slug.includes('wood') || slug.includes('bamboo') || name.includes('wood')) {
+      return <WoodCardVisual name={p.name} cardId={cardId} />;
+    }
+    if (slug.includes('stand') || name.includes('stand')) {
+      return <SmartStandVisual cardId={cardId} />;
+    }
+    return <BlackMetalCardVisual name={p.name} cardId={cardId} />;
   };
 
   return (
@@ -278,23 +296,19 @@ export const StorePage = () => {
                       <div className="group rounded-3xl bg-white border border-slate-200 hover:border-[#10B981] p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl flex flex-col justify-between h-full">
                         <div>
                           {/* Visual Render Header */}
-                          <div className="relative mb-6 rounded-2xl overflow-hidden p-2 bg-[#F8F9FA] border border-slate-200 transition-transform duration-300 group-hover:scale-[1.02]">
+                          <div className="relative mb-5 rounded-2xl p-2 bg-[#F8F9FA] border border-slate-200 transition-transform duration-300 group-hover:scale-[1.01]">
                             {renderProductVisual(p)}
 
                             {/* Wishlist Button Micro-bounce */}
                             <motion.button
                               whileTap={{ scale: 1.25 }}
                               onClick={() => toggleWishlist(p)}
-                              className={`absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-md transition ${
-                                inWish ? 'bg-red-500/20 text-red-500 border border-red-500/40' : 'bg-white/90 text-slate-700 border border-slate-200 hover:text-slate-900'
+                              className={`absolute top-4 right-4 z-20 p-2.5 rounded-full backdrop-blur-md transition ${
+                                inWish ? 'bg-red-500/20 text-red-500 border border-red-500/40' : 'bg-white/90 text-slate-700 border border-slate-200 hover:text-slate-900 shadow-md'
                               }`}
                             >
                               <Heart className={`w-4 h-4 ${inWish ? 'fill-red-500' : ''}`} />
                             </motion.button>
-
-                            <div className="absolute bottom-4 left-4 bg-slate-900/90 border border-slate-800 text-white px-3 py-0.5 rounded-full text-[10px] font-mono font-bold">
-                              {p.material}
-                            </div>
                           </div>
 
                           {/* Details */}

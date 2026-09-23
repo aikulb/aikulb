@@ -11,7 +11,7 @@ import {
 import { QRCodeSVG } from 'qrcode.react';
 import confetti from 'canvas-confetti';
 import { api } from '../services/apiClient';
-import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual } from './ProductVisuals';
+import { BlackMetalCardVisual, GoldMetalCardVisual, SilverMetalCardVisual, WavyAccentLines, TrishulAkEmblem, DotMatrixWorldMap, FivePillarsGrid } from './ProductVisuals';
 import { silverTrishul, goldTrishul, silverWorld, blueWorld, blueTrishul } from '../assets/cardAssets';
 
 export const CustomCardDesignerSection = () => {
@@ -138,8 +138,7 @@ export const CustomCardDesignerSection = () => {
       name: '24K Gold Trishul Emblem Edition',
       price: 1999,
       badge: 'Flagship 3D',
-      image: goldTrishul,
-      bgClass: 'bg-metallic-gold',
+      bgClass: 'bg-gradient-to-br from-[#FCE8A6] via-[#D4AF37] to-[#8A6711] text-neutral-950',
       glowColor: 'rgba(255, 215, 0, 0.4)',
       desc: 'Brushed 24K Gold Metal with 3D Engraved Trishul Emblem & QR',
       textureBorder: 'border-yellow-500/50'
@@ -149,8 +148,7 @@ export const CustomCardDesignerSection = () => {
       name: 'Platinum Silver Trishul Edition',
       price: 1899,
       badge: 'Executive',
-      image: silverTrishul,
-      bgClass: 'bg-metallic-silver',
+      bgClass: 'bg-gradient-to-br from-[#F1F3F5] via-[#D8DCF0] to-[#B0B7C6] text-slate-950',
       glowColor: 'rgba(226, 232, 240, 0.4)',
       desc: 'Platinum Silver Stainless Steel with Trishul Emblem Accent',
       textureBorder: 'border-slate-400/50'
@@ -160,8 +158,7 @@ export const CustomCardDesignerSection = () => {
       name: 'Sapphire Blue World Map Edition',
       price: 2199,
       badge: 'Global Series',
-      image: blueWorld,
-      bgClass: 'bg-[#0B1E3D]',
+      bgClass: 'bg-gradient-to-br from-[#0F2847] via-[#0A192F] to-[#040D1A] text-white',
       glowColor: 'rgba(0, 150, 255, 0.4)',
       desc: 'Electric Sapphire Blue Alloy with Etched Dot-Matrix World Map',
       textureBorder: 'border-blue-500/50'
@@ -171,8 +168,7 @@ export const CustomCardDesignerSection = () => {
       name: 'Sapphire Blue Trishul Edition',
       price: 2099,
       badge: 'Best Seller',
-      image: blueTrishul,
-      bgClass: 'bg-[#07132B]',
+      bgClass: 'bg-gradient-to-br from-[#0B1E3D] via-[#07132B] to-[#020714] text-white',
       glowColor: 'rgba(108, 76, 255, 0.4)',
       desc: 'Metallic Sapphire Blue with Chrome Trishul Emblem',
       textureBorder: 'border-indigo-500/50'
@@ -182,8 +178,7 @@ export const CustomCardDesignerSection = () => {
       name: 'Platinum Silver World Map Edition',
       price: 1999,
       badge: 'World Series',
-      image: silverWorld,
-      bgClass: 'bg-metallic-silver',
+      bgClass: 'bg-gradient-to-br from-[#E2E8F0] via-[#CBD5E1] to-[#94A3B8] text-slate-950',
       glowColor: 'rgba(200, 210, 225, 0.4)',
       desc: 'Brushed Platinum Silver with Etched World Map & 5 Pillars',
       textureBorder: 'border-slate-300/50'
@@ -193,7 +188,7 @@ export const CustomCardDesignerSection = () => {
       name: 'Matte Obsidian Black Metal',
       price: 1999,
       badge: 'Stealth Edition',
-      bgClass: 'bg-metallic-black',
+      bgClass: 'bg-gradient-to-br from-[#1F242D] via-[#0F1217] to-[#050608] text-white',
       glowColor: 'rgba(108, 76, 255, 0.3)',
       desc: 'Aerospace Grade Stainless Steel with Matte Obsidian Finish',
       textureBorder: 'border-neutral-700/60'
@@ -493,102 +488,104 @@ export const CustomCardDesignerSection = () => {
                   <div className="w-[120%] h-[200%] bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-[150%] rotate-[25deg] animate-card-shimmer"></div>
                 </div>
 
-                {/* FRONT SIDE VIEW */}
-                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden`}>
-                  {currentMat.image && (
-                    <img 
-                      src={currentMat.image} 
-                      alt={currentMat.name} 
-                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-90"
-                    />
-                  )}
+                {/* FRONT SIDE VIEW (Matching 2nd Reference Image) */}
+                <div className={`absolute inset-0 w-full h-full p-4.5 sm:p-5 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden select-none`}>
                   
-                  {/* Top Header Row: Logo & Material Label */}
-                  <div className="flex justify-between items-center z-10">
-                    <div className="flex items-center space-x-2 text-white bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-xl border border-white/10">
-                      {renderCardLogo()}
-                      <span className="font-extrabold text-white text-base tracking-tight font-manrope lowercase">
-                        {logoType === 'ak' ? 'ai klub' : (company.split(' ')[0] || 'brand')}
-                      </span>
+                  {/* Top Header Row: 4-Pillars Corner Accent (Top Left) & NFC Signal (Top Right) */}
+                  <div className="flex justify-between items-start z-10 w-full">
+                    <div className="flex flex-col items-start font-mono text-[7.5px] tracking-[0.18em] leading-[1.3] uppercase font-bold text-current">
+                      <span>CONNECT</span>
+                      <span>COLLABORATE</span>
+                      <span>CREATE</span>
+                      <span>GROW</span>
+                      <div className="w-5 h-[1.5px] bg-current mt-0.5 opacity-75" />
                     </div>
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-white/90 border border-white/25 px-2.5 py-0.5 rounded-full backdrop-blur-md bg-black/40">
-                      {currentMat.name}
-                    </span>
-                  </div>
-
-                  {/* Middle Row: Microchip Visual & NFC Signal */}
-                  <div className="my-2 z-10 flex items-center justify-between">
-                    {/* Dynamic Microchip */}
-                    <svg className="w-11 h-9 shadow-lg drop-shadow-md" viewBox="0 0 40 32" fill="none">
-                      <rect width="40" height="32" rx="5" fill="url(#chip-dynamic-grad)" stroke="#D4AF37" strokeWidth="1" />
-                      <path d="M0 10H14V22H0" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
-                      <path d="M40 10H26V22H40" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
-                      <path d="M14 0V32" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
-                      <path d="M26 0V32" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" />
-                      <rect x="15" y="11" width="10" height="10" rx="2" fill="#E6CA65" />
-                      <defs>
-                        <linearGradient id="chip-dynamic-grad" x1="0" y1="0" x2="40" y2="32" gradientUnits="userSpaceOnUse">
-                          <stop stopColor={currentChip.chipGrad[0]} />
-                          <stop offset="0.5" stopColor={currentChip.chipGrad[1]} />
-                          <stop offset="1" stopColor={currentChip.chipGrad[2]} />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-
-                    <div className="flex items-center space-x-1.5 text-white/90 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 shadow">
-                      <Zap className="w-3.5 h-3.5 text-[#00DC82]" />
-                      <span className="text-[9px] font-mono font-bold tracking-widest text-emerald-300">NTAG216 NFC</span>
+                    <div className="flex items-center space-x-1 font-mono text-[10px] font-black tracking-wider text-current">
+                      <span>NFC</span>
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                        <path d="M12 8a4 4 0 0 1 4 4" />
+                        <path d="M12 5a7 7 0 0 1 7 7" />
+                        <path d="M12 2a10 10 0 0 1 10 10" />
+                      </svg>
                     </div>
                   </div>
 
-                  {/* Bottom Laser Engraving Area */}
-                  <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-white/15 z-10 space-y-0.5 shadow-xl">
-                    <h3 className={`font-black text-base sm:text-lg tracking-tight uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300 leading-snug drop-shadow-md`}>
-                      {name || 'YOUR NAME HERE'}
+                  {/* Center Area: Logo / Trishul Emblem & Brand Name */}
+                  <div className="flex flex-col items-center justify-center z-10 my-auto text-center">
+                    {logoType === 'ak' ? (
+                      <TrishulAkEmblem className="w-11 h-11 text-current drop-shadow-md" />
+                    ) : (
+                      renderCardLogo()
+                    )}
+                    <h3 className="text-xl sm:text-2xl font-black font-manrope tracking-tight mt-0.5 text-current">
+                      {logoType === 'ak' ? 'Ai Klub' : (company.split(' ')[0] || 'brand')}
                     </h3>
-                    <p className="text-xs font-medium tracking-normal uppercase text-white/90 font-inter">
-                      {title || 'TITLE'} • {company || 'COMPANY'}
+                    <p className="text-[7.5px] font-mono tracking-[0.22em] uppercase font-bold mt-0.5 opacity-85 text-current">
+                      PEOPLE | IDEAS | TECHNOLOGY
                     </p>
                   </div>
-                </div>
 
-                {/* BACK SIDE VIEW (Flipped 180deg) */}
-                <div className={`absolute inset-0 w-full h-full p-6 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rotate-y-180 rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden`}>
-                  
-                  {/* Top Bar: Official Logo & NFC Pass Label */}
-                  <div className="flex justify-between items-center text-[10px] font-mono text-white/90 uppercase tracking-widest font-bold z-10">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 rounded-md bg-[#070A0F] border border-[#10B981]/50 p-0.5 flex items-center justify-center">
-                        <img src="/assets/logo.png" alt="ai klub Logo" className="w-full h-full object-contain" />
-                      </div>
-                      <span className="font-extrabold text-white text-xs font-manrope lowercase">ai klub</span>
-                    </div>
-                    <span className="text-emerald-400 bg-black/40 px-2 py-0.5 rounded border border-emerald-900/40 font-mono text-[9px]">TAP / SCAN PHONE</span>
+                  {/* User Laser Engraved Name & Title (Bottom Left Overlay) */}
+                  <div className="z-10 max-w-[200px] sm:max-w-[240px] mb-1">
+                    <h4 className={`font-black text-xs sm:text-sm tracking-tight uppercase ${currentFont.fontClass} ${currentInlay.colorClass} transition-all duration-300 leading-snug drop-shadow-md truncate`}>
+                      {name || 'YOUR NAME HERE'}
+                    </h4>
+                    <p className="text-[9px] font-bold uppercase opacity-90 font-inter mt-0.5 truncate text-current">
+                      {title || 'TITLE'} {company ? `• ${company}` : ''}
+                    </p>
                   </div>
 
-                  {/* Dynamic QR Code Container */}
-                  <div className={`w-full flex-1 flex ${
-                    qrPosition === 'full-center' || qrPosition === 'center'
-                      ? 'items-center justify-center'
-                      : qrPosition === 'top-right'
-                      ? 'items-start justify-end'
-                      : qrPosition === 'bottom-center'
-                      ? 'items-end justify-center'
-                      : 'items-end justify-end'
-                  } my-2 z-10`}>
-                    <div className="p-1.5 bg-white rounded-xl shadow-2xl border border-slate-200 flex flex-col items-center group/qr relative">
+                  {/* Bottom Left Metallic Wavy Accent Lines */}
+                  <div className="absolute bottom-0 left-0 pointer-events-none opacity-40 z-0">
+                    <WavyAccentLines className="w-22 h-22 sm:w-24 sm:h-24 text-current" />
+                  </div>
+
+                  {/* Bottom Right Framed QR Code + TAP TO CONNECT */}
+                  <div className="absolute bottom-2.5 right-3.5 flex flex-col items-center z-20">
+                    <div className="p-1 bg-white rounded-lg shadow-md border border-black/10">
                       <QRCodeSVG 
                         value={`${window.location.origin}/profile/${qrHandle || 'custom-card'}`}
-                        size={60}
+                        size={36}
                         level="H"
                         includeMargin={false}
                       />
                     </div>
+                    <span className="text-[6px] sm:text-[6.5px] font-mono font-bold tracking-wider mt-0.5 uppercase text-current">TAP TO CONNECT</span>
+                  </div>
+                </div>
+
+                {/* BACK SIDE VIEW (Matching 3rd Reference Image) */}
+                <div className={`absolute inset-0 w-full h-full p-4.5 sm:p-5 ${currentMat.bgClass} flex flex-col justify-between backface-hidden rotate-y-180 rounded-3xl border ${currentMat.textureBorder} shadow-2xl overflow-hidden select-none`}>
+                  {/* Background Laser-Etched Dot Matrix World Map */}
+                  <div className="absolute inset-0 pointer-events-none opacity-20">
+                    <DotMatrixWorldMap className="w-full h-full text-current" />
                   </div>
 
-                  {/* Tagline Footer */}
-                  <div className="text-center text-[10px] font-mono text-white/90 uppercase tracking-wider font-bold border-t border-white/15 pt-2 z-10">
-                    {tagline || 'TAP OR SCAN TO CONNECT'}
+                  {/* Top Bar: Brand Logo (Top Left) & Top Right Accent */}
+                  <div className="flex justify-between items-start z-10 w-full">
+                    <div className="flex items-center space-x-2">
+                      <span className="font-extrabold text-sm sm:text-base font-manrope text-current">Ai Klub</span>
+                    </div>
+                    <div className="text-right text-[8px] font-mono text-current opacity-85 font-bold tracking-wider">
+                      MORE<br />THAN A CARD<br />A COMMUNITY
+                    </div>
+                  </div>
+
+                  {/* Center Area: Brand Slogan */}
+                  <div className="text-center z-10 my-auto">
+                    <h3 className="text-lg sm:text-xl font-black font-manrope tracking-tight text-current drop-shadow">Ai Klub</h3>
+                    <p className="text-[8.5px] sm:text-[9.5px] font-mono tracking-[0.2em] text-current opacity-90 font-bold border-b border-current/40 pb-1 inline-block">
+                      A SMARTER TOMORROW TOGETHER
+                    </p>
+                  </div>
+
+                  {/* Bottom Area: 5 Strategic Pillars Grid & Footer Accent */}
+                  <div className="z-10 space-y-1 w-full">
+                    <FivePillarsGrid className="text-current border-t border-current/40 pt-1.5" />
+                    <div className="flex justify-between items-center text-[7.5px] sm:text-[8.5px] font-mono opacity-80 font-bold pt-1 text-current">
+                      <span>{tagline || 'TAP . CONNECT . GROW.'}</span>
+                      <span>1-TAP NFC & QR</span>
+                    </div>
                   </div>
                 </div>
 
@@ -621,55 +618,55 @@ export const CustomCardDesignerSection = () => {
           </div>
 
           {/* RIGHT: Studio Controls Tabs Column */}
-          <div className="lg:col-span-6 bg-[#0E0E12] p-6 sm:p-8 rounded-3xl border border-neutral-800 shadow-xl space-y-6 text-white">
+          <div className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/90 shadow-2xl space-y-6 text-slate-900">
             
             {/* Studio Navigation Tabs */}
-            <div className="flex border-b border-neutral-800 pb-2 space-x-2 font-manrope font-bold text-xs overflow-x-auto">
+            <div className="flex bg-slate-100/90 border border-slate-200 p-1.5 rounded-2xl space-x-1 font-manrope font-bold text-xs overflow-x-auto">
               <button
                 onClick={() => setActiveTab('material')}
-                className={`pb-2 px-3 flex items-center space-x-1.5 border-b-2 transition whitespace-nowrap ${
+                className={`py-2.5 px-3.5 rounded-xl flex items-center space-x-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === 'material'
-                    ? 'border-[#6C4CFF] text-[#6C4CFF]'
-                    : 'border-transparent text-slate-400 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-md border border-slate-200/80 font-extrabold'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-semibold'
                 }`}
               >
-                <Palette className="w-3.5 h-3.5" />
+                <Palette className="w-3.5 h-3.5 text-[#6C4CFF]" />
                 <span>1. Material & Finish</span>
               </button>
 
               <button
                 onClick={() => setActiveTab('engraving')}
-                className={`pb-2 px-3 flex items-center space-x-1.5 border-b-2 transition whitespace-nowrap ${
+                className={`py-2.5 px-3.5 rounded-xl flex items-center space-x-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === 'engraving'
-                    ? 'border-[#6C4CFF] text-[#6C4CFF]'
-                    : 'border-transparent text-slate-400 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-md border border-slate-200/80 font-extrabold'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-semibold'
                 }`}
               >
-                <Type className="w-3.5 h-3.5" />
+                <Type className="w-3.5 h-3.5 text-[#6C4CFF]" />
                 <span>2. Front Engraving</span>
               </button>
 
               <button
                 onClick={() => setActiveTab('backside')}
-                className={`pb-2 px-3 flex items-center space-x-1.5 border-b-2 transition whitespace-nowrap ${
+                className={`py-2.5 px-3.5 rounded-xl flex items-center space-x-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === 'backside'
-                    ? 'border-[#6C4CFF] text-[#6C4CFF]'
-                    : 'border-transparent text-slate-400 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-md border border-slate-200/80 font-extrabold'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-semibold'
                 }`}
               >
-                <QrCode className="w-3.5 h-3.5" />
+                <QrCode className="w-3.5 h-3.5 text-[#6C4CFF]" />
                 <span>3. Back & QR</span>
               </button>
 
               <button
                 onClick={() => setActiveTab('addons')}
-                className={`pb-2 px-3 flex items-center space-x-1.5 border-b-2 transition whitespace-nowrap ${
+                className={`py-2.5 px-3.5 rounded-xl flex items-center space-x-2 transition-all whitespace-nowrap cursor-pointer ${
                   activeTab === 'addons'
-                    ? 'border-[#6C4CFF] text-[#6C4CFF]'
-                    : 'border-transparent text-slate-400 hover:text-white'
+                    ? 'bg-white text-slate-950 shadow-md border border-slate-200/80 font-extrabold'
+                    : 'text-slate-600 hover:text-slate-950 hover:bg-white/60 font-semibold'
                 }`}
               >
-                <Sliders className="w-3.5 h-3.5" />
+                <Sliders className="w-3.5 h-3.5 text-[#6C4CFF]" />
                 <span>4. Extras</span>
               </button>
             </div>
@@ -679,10 +676,10 @@ export const CustomCardDesignerSection = () => {
               <div className="space-y-6 animate-in fade-in duration-200">
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-widest font-mono">
+                    <label className="text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono">
                       Select Card Material & Texture
                     </label>
-                    <span className="text-xs text-[#6C4CFF] font-bold font-mono">
+                    <span className="text-xs text-[#6C4CFF] font-extrabold font-mono">
                       Selected: {currentMat.name}
                     </span>
                   </div>
@@ -692,32 +689,32 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={m.id}
                         onClick={() => setMaterial(m.id)}
-                        className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all duration-200 relative overflow-hidden ${
+                        className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all duration-200 cursor-pointer ${
                           material === m.id
-                            ? 'border-[#6C4CFF] ring-2 ring-[#6C4CFF]/30 bg-[#6C4CFF]/20 text-white shadow-md'
-                            : 'border-neutral-800 bg-[#14141A] text-slate-300 hover:border-slate-500'
+                            ? 'border-[#6C4CFF] ring-2 ring-[#6C4CFF]/20 bg-[#6C4CFF]/5 text-slate-950 shadow-md'
+                            : 'border-slate-200 bg-slate-50/80 text-slate-800 hover:border-slate-400 hover:bg-white'
                         }`}
                       >
-                        {m.badge && (
-                          <span className="absolute top-2 right-2 text-[9px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded bg-black/40 text-[#6C4CFF]">
-                            {m.badge}
-                          </span>
-                        )}
-                        <div className="space-y-1 mt-1">
-                          <span className="text-xs font-bold block font-manrope">{m.name}</span>
-                          <span className="text-[11px] font-mono font-bold text-[#6C4CFF]">₹{m.price}</span>
+                        <div className="flex justify-between items-start gap-1 w-full mb-1">
+                          <span className="text-[11px] font-mono font-extrabold text-[#6C4CFF]">₹{m.price}</span>
+                          {m.badge && (
+                            <span className="text-[8px] font-mono font-extrabold uppercase px-1.5 py-0.5 rounded bg-slate-200 text-slate-800 shrink-0">
+                              {m.badge}
+                            </span>
+                          )}
                         </div>
+                        <span className="text-xs font-extrabold block font-manrope text-slate-950 leading-snug">{m.name}</span>
                       </button>
                     ))}
                   </div>
-                  <p className="text-[11px] text-slate-400 mt-2 italic font-inter">
+                  <p className="text-[11px] text-slate-600 mt-2.5 italic font-inter font-medium">
                     {currentMat.desc}
                   </p>
                 </div>
 
                 {/* Laser Inlay Options */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-3">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-3">
                     Laser Engraving Inlay Finish
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -725,14 +722,14 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={inl.id}
                         onClick={() => setInlayColor(inl.id)}
-                        className={`p-2.5 rounded-xl border flex items-center space-x-2 text-xs font-bold font-manrope transition ${
+                        className={`p-2.5 rounded-xl border flex items-center space-x-2 text-xs font-bold font-manrope transition cursor-pointer ${
                           inlayColor === inl.id
-                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/20 text-white'
-                            : 'border-neutral-800 bg-[#14141A] text-slate-300 hover:border-slate-500'
+                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/10 text-slate-950 shadow-sm'
+                            : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400 hover:bg-white'
                         }`}
                       >
-                        <span className={`w-3.5 h-3.5 rounded-full border border-black/20 ${inl.dotBg}`}></span>
-                        <span>{inl.name}</span>
+                        <span className={`w-3.5 h-3.5 rounded-full border border-slate-300 shadow-xs ${inl.dotBg}`}></span>
+                        <span className="text-slate-950 font-extrabold">{inl.name}</span>
                       </button>
                     ))}
                   </div>
@@ -740,7 +737,7 @@ export const CustomCardDesignerSection = () => {
 
                 {/* Microchip Finish */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-3">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-3">
                     NFC Microchip Metal Electroplate
                   </label>
                   <div className="grid grid-cols-3 gap-3">
@@ -748,10 +745,10 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={ch.id}
                         onClick={() => setChipFinish(ch.id)}
-                        className={`p-2.5 rounded-xl border text-xs font-bold font-manrope transition ${
+                        className={`p-2.5 rounded-xl border text-xs font-extrabold font-manrope transition cursor-pointer ${
                           chipFinish === ch.id
-                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/20 text-white'
-                            : 'border-neutral-800 bg-[#14141A] text-slate-300 hover:border-slate-500'
+                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/10 text-slate-950 shadow-sm'
+                            : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400 hover:bg-white'
                         }`}
                       >
                         {ch.name}
@@ -766,7 +763,7 @@ export const CustomCardDesignerSection = () => {
             {activeTab === 'engraving' && (
               <div className="space-y-5 animate-in fade-in duration-200">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-2">
                     Card Holder Name
                   </label>
                   <input
@@ -775,13 +772,13 @@ export const CustomCardDesignerSection = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value.toUpperCase())}
                     placeholder="E.G. ALEXANDER VANCE"
-                    className="w-full px-4 py-3 rounded-2xl bg-[#14141A] border border-neutral-700 text-white font-bold tracking-wider uppercase text-sm focus:outline-none focus:border-[#6C4CFF] focus:ring-1 focus:ring-[#6C4CFF]"
+                    className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-300 text-slate-950 font-extrabold tracking-wider uppercase text-sm focus:outline-none focus:bg-white focus:border-[#6C4CFF] focus:ring-2 focus:ring-[#6C4CFF]/20 transition shadow-xs"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
+                    <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-2">
                       Job Designation
                     </label>
                     <input
@@ -790,11 +787,11 @@ export const CustomCardDesignerSection = () => {
                       value={title}
                       onChange={(e) => setTitle(e.target.value.toUpperCase())}
                       placeholder="CHIEF EXECUTIVE OFFICER"
-                      className="w-full px-4 py-3 rounded-2xl bg-[#14141A] border border-neutral-700 text-white text-xs font-inter font-medium focus:outline-none focus:border-[#6C4CFF] focus:ring-1 focus:ring-[#6C4CFF]"
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-inter font-bold focus:outline-none focus:bg-white focus:border-[#6C4CFF] focus:ring-2 focus:ring-[#6C4CFF]/20 transition shadow-xs"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
+                    <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-2">
                       Company / Brand Name
                     </label>
                     <input
@@ -803,14 +800,14 @@ export const CustomCardDesignerSection = () => {
                       value={company}
                       onChange={(e) => setCompany(e.target.value.toUpperCase())}
                       placeholder="NEURAL DYNAMICS"
-                      className="w-full px-4 py-3 rounded-2xl bg-[#14141A] border border-neutral-700 text-white text-xs font-inter font-medium focus:outline-none focus:border-[#6C4CFF] focus:ring-1 focus:ring-[#6C4CFF]"
+                      className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-300 text-slate-950 text-xs font-inter font-bold focus:outline-none focus:bg-white focus:border-[#6C4CFF] focus:ring-2 focus:ring-[#6C4CFF]/20 transition shadow-xs"
                     />
                   </div>
                 </div>
 
                 {/* Font Typography Selector */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-3">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-3">
                     Laser Engraving Font Style
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -818,14 +815,14 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={f.id}
                         onClick={() => setFontStyle(f.id)}
-                        className={`p-3 rounded-2xl border text-center flex flex-col items-center justify-center transition ${
+                        className={`p-3 rounded-2xl border text-center flex flex-col items-center justify-center transition cursor-pointer ${
                           fontStyle === f.id
-                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/20 text-white font-bold'
-                            : 'border-neutral-800 bg-[#14141A] text-slate-300 hover:border-slate-500'
+                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/10 text-slate-950 font-extrabold shadow-sm'
+                            : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400 hover:bg-white'
                         }`}
                       >
-                        <span className={`text-xl mb-1 ${f.fontClass}`}>{f.sample}</span>
-                        <span className="text-[11px] font-manrope">{f.name}</span>
+                        <span className={`text-xl mb-1 text-slate-950 ${f.fontClass}`}>{f.sample}</span>
+                        <span className="text-[11px] font-manrope font-extrabold text-slate-900">{f.name}</span>
                       </button>
                     ))}
                   </div>
@@ -834,12 +831,12 @@ export const CustomCardDesignerSection = () => {
                 {/* Logo & Symbol Selector */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <label className="text-xs font-bold text-slate-300 uppercase tracking-widest font-mono">
+                    <label className="text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono">
                       Card Logo / Symbol Inlay
                     </label>
                     <button
                       onClick={() => fileInputRef.current?.click()}
-                      className="text-xs text-[#6C4CFF] font-bold flex items-center space-x-1 hover:underline"
+                      className="text-xs text-[#6C4CFF] font-extrabold flex items-center space-x-1 hover:underline cursor-pointer"
                     >
                       <Upload className="w-3.5 h-3.5" />
                       <span>Upload Custom Logo</span>
@@ -858,15 +855,15 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={ic.id}
                         onClick={() => setLogoType(ic.id)}
-                        className={`p-2.5 rounded-xl border flex items-center justify-center transition ${
+                        className={`p-2.5 rounded-xl border flex items-center justify-center transition cursor-pointer ${
                           logoType === ic.id
-                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/20 text-[#8B5CF6]'
-                            : 'border-neutral-800 bg-[#14141A] text-slate-400 hover:text-white hover:border-neutral-600'
+                            ? 'border-[#6C4CFF] bg-[#6C4CFF]/15 text-[#6C4CFF] font-extrabold shadow-sm'
+                            : 'border-slate-200 bg-slate-50 text-slate-600 hover:text-slate-950 hover:border-slate-400 hover:bg-white'
                         }`}
                         title={ic.label}
                       >
                         {ic.id === 'ak' ? (
-                          <span className="font-extrabold text-xs font-manrope">ak</span>
+                          <span className="font-extrabold text-xs font-manrope text-slate-950">ak</span>
                         ) : (
                           React.createElement(ic.icon, { className: "w-4 h-4" })
                         )}
@@ -874,10 +871,10 @@ export const CustomCardDesignerSection = () => {
                     ))}
                   </div>
                   {customLogoUrl && logoType === 'custom' && (
-                    <div className="mt-2 flex items-center space-x-2 text-xs text-emerald-400 font-mono">
+                    <div className="mt-2 flex items-center space-x-2 text-xs text-emerald-600 font-mono font-bold">
                       <Check className="w-4 h-4" />
                       <span>Custom uploaded logo selected</span>
-                      <button onClick={() => { setCustomLogoUrl(null); setLogoType('ak'); }} className="text-rose-400 ml-2 hover:underline">
+                      <button onClick={() => { setCustomLogoUrl(null); setLogoType('ak'); }} className="text-rose-600 ml-2 hover:underline cursor-pointer">
                         <Trash2 className="w-3.5 h-3.5 inline" /> Remove
                       </button>
                     </div>
@@ -889,10 +886,8 @@ export const CustomCardDesignerSection = () => {
             {/* TAB 3: Back & QR Customization */}
             {activeTab === 'backside' && (
               <div className="space-y-5 animate-in fade-in duration-200">
-
-
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-2">
                     QR Code Placement
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -905,10 +900,10 @@ export const CustomCardDesignerSection = () => {
                       <button
                         key={pos.id}
                         onClick={() => { setQrPosition(pos.id); setIsFlipped(true); }}
-                        className={`p-2.5 rounded-xl text-xs font-bold border font-manrope capitalize ${
+                        className={`p-2.5 rounded-xl text-xs font-extrabold border font-manrope capitalize cursor-pointer ${
                           qrPosition === pos.id
-                            ? 'bg-[#6C4CFF] text-white border-transparent'
-                            : 'bg-[#14141A] border-neutral-800 text-slate-300 hover:border-neutral-600'
+                            ? 'bg-[#6C4CFF] text-white border-transparent shadow-sm'
+                            : 'bg-slate-50 border-slate-200 text-slate-800 hover:border-slate-400 hover:bg-white'
                         }`}
                       >
                         {pos.label}
@@ -918,7 +913,7 @@ export const CustomCardDesignerSection = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-2">
+                  <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-2">
                     Back Card Tagline
                   </label>
                   <input
@@ -926,7 +921,7 @@ export const CustomCardDesignerSection = () => {
                     maxLength={36}
                     value={tagline}
                     onChange={(e) => setTagline(e.target.value.toUpperCase())}
-                    className="w-full px-4 py-3 rounded-2xl bg-[#14141A] border border-neutral-700 text-white font-mono text-xs focus:outline-none focus:border-[#6C4CFF] focus:ring-1 focus:ring-[#6C4CFF]"
+                    className="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-300 text-slate-950 font-mono text-xs font-bold focus:outline-none focus:bg-white focus:border-[#6C4CFF] focus:ring-2 focus:ring-[#6C4CFF]/20"
                   />
                 </div>
               </div>
@@ -935,7 +930,7 @@ export const CustomCardDesignerSection = () => {
             {/* TAB 4: Extras & Add-ons */}
             {activeTab === 'addons' && (
               <div className="space-y-4 animate-in fade-in duration-200">
-                <label className="block text-xs font-bold text-slate-300 uppercase tracking-widest font-mono mb-1">
+                <label className="block text-xs font-extrabold text-slate-900 uppercase tracking-widest font-mono mb-1">
                   Enhance Your Card Package
                 </label>
 
@@ -945,8 +940,8 @@ export const CustomCardDesignerSection = () => {
                     onClick={() => toggleAddon(opt.id)}
                     className={`p-4 rounded-2xl border flex items-start justify-between cursor-pointer transition ${
                       addons.includes(opt.id)
-                        ? 'border-[#6C4CFF] bg-[#6C4CFF]/20 text-white'
-                        : 'border-neutral-800 bg-[#14141A] text-slate-300 hover:border-slate-600'
+                        ? 'border-[#6C4CFF] bg-[#6C4CFF]/10 text-slate-950 shadow-sm'
+                        : 'border-slate-200 bg-slate-50 text-slate-800 hover:border-slate-400 hover:bg-white'
                     }`}
                   >
                     <div className="flex items-start space-x-3">
@@ -957,11 +952,11 @@ export const CustomCardDesignerSection = () => {
                         className="mt-1 rounded text-[#6C4CFF] focus:ring-[#6C4CFF]"
                       />
                       <div>
-                        <h4 className="text-xs font-bold font-manrope">{opt.name}</h4>
-                        <p className="text-[11px] text-slate-400 mt-0.5 font-inter">{opt.desc}</p>
+                        <h4 className="text-xs font-extrabold font-manrope text-slate-950">{opt.name}</h4>
+                        <p className="text-[11px] text-slate-600 mt-0.5 font-inter font-medium">{opt.desc}</p>
                       </div>
                     </div>
-                    <span className="text-xs font-mono font-bold text-[#6C4CFF] whitespace-nowrap ml-2">
+                    <span className="text-xs font-mono font-extrabold text-[#6C4CFF] whitespace-nowrap ml-2">
                       +₹{opt.price}
                     </span>
                   </div>
@@ -970,20 +965,20 @@ export const CustomCardDesignerSection = () => {
             )}
 
             {/* Total Price Summary & Checkout Action */}
-            <div className="pt-6 border-t border-neutral-800 space-y-4">
+            <div className="pt-6 border-t border-slate-200 space-y-4">
               <div className="flex justify-between items-end">
                 <div>
-                  <span className="text-[11px] text-slate-400 font-mono font-bold uppercase tracking-wider block">
-                    Total Card Investment
+                  <span className="text-[11px] text-slate-600 font-mono font-bold uppercase tracking-wider block">
+                    TOTAL CARD INVESTMENT
                   </span>
-                  <span className="text-2xl sm:text-3xl font-black text-white font-manrope tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-black text-slate-950 font-manrope tracking-tight">
                     ₹{totalPrice}
                   </span>
                   <span className="text-xs text-slate-400 line-through ml-2 font-mono">
                     ₹{totalPrice + 1000}
                   </span>
                 </div>
-                <div className="text-right text-[11px] text-emerald-400 font-mono font-bold">
+                <div className="text-right text-[11px] text-emerald-600 font-mono font-extrabold">
                   ✓ Free Shipping Across India
                 </div>
               </div>
@@ -991,23 +986,23 @@ export const CustomCardDesignerSection = () => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={handleAddToCart}
-                  className="btn-pill-gradient flex-1 py-4 flex items-center justify-center space-x-2 shadow-xl hover:scale-[1.01] transition"
+                  className="w-full py-4 rounded-2xl bg-[#00DC82] hover:bg-[#00c975] text-slate-950 font-extrabold text-sm sm:text-base font-manrope uppercase tracking-wider flex items-center justify-center space-x-2 shadow-xl hover:scale-[1.01] transition cursor-pointer"
                 >
-                  {added ? <Check className="w-5 h-5 text-emerald-300" /> : <ShoppingBag className="w-5 h-5" />}
-                  <span className="text-sm tracking-wide">
+                  {added ? <Check className="w-5 h-5 text-slate-950" /> : <ShoppingBag className="w-5 h-5 text-slate-950" />}
+                  <span className="text-slate-950">
                     {added ? 'Added to Cart!' : `Add Custom Card to Order (₹${totalPrice})`}
                   </span>
                 </button>
               </div>
 
-              <div className="flex items-center justify-center space-x-4 text-[11px] text-slate-400 font-inter">
+              <div className="flex items-center justify-center space-x-4 text-[11px] text-slate-600 font-inter font-semibold">
                 <span className="flex items-center space-x-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Lifetime Chip Warranty</span>
                 </span>
                 <span>•</span>
                 <span className="flex items-center space-x-1">
-                  <Award className="w-3.5 h-3.5 text-amber-400" />
+                  <Award className="w-3.5 h-3.5 text-amber-600" />
                   <span>Sub-Millimeter Precision</span>
                 </span>
               </div>

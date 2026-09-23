@@ -18,9 +18,6 @@ export const SmartStandSection = () => {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-block px-3.5 py-1 rounded-full bg-[#6C4CFF]/10 text-[#6C4CFF] text-xs font-mono font-bold uppercase tracking-wider shadow-sm">
-              Smart Countertop Hardware
-            </div>
             <h2 className="section-h2 text-slate-900 font-extrabold">
               ai klub Smart Standee
             </h2>

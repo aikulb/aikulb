@@ -6,8 +6,6 @@ import { TrustMarquee } from '../components/TrustMarquee';
 import { HomePageVideoSection } from '../components/HomePageVideoSection';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
-import { ProductPortfolioSection } from '../components/ProductPortfolioSection';
-import { DigitalProfileDemoSection } from '../components/DigitalProfileDemoSection';
 import { ShippingDeliverySection } from '../components/ShippingDeliverySection';
 import { BusinessTeamsSection } from '../components/BusinessTeamsSection';
 import { TestimonialsAndFaqSection } from '../components/TestimonialsAndFaqSection';
@@ -30,8 +28,6 @@ export const HomePage = () => {
         <HomePageVideoSection />
         <ValueProp />
         <HowItWorks />
-        <ProductPortfolioSection />
-        <DigitalProfileDemoSection />
         <ShippingDeliverySection />
         <BusinessTeamsSection />
         <TestimonialsAndFaqSection />

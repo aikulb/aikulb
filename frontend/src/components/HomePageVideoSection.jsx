@@ -44,11 +44,6 @@ export const HomePageVideoSection = () => {
           
           {/* LEFT COLUMN: Text Context & Benefits Checklist */}
           <ScrollReveal className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-slate-900 text-xs font-mono font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-[#00DC82]" />
-              <span>AI KLUB IN ACTION • 4K DEMO</span>
-            </div>
-
             <div className="space-y-3">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-manrope text-slate-900 tracking-tight leading-[1.1]">
                 How ai klub Card Works
@@ -85,41 +80,39 @@ export const HomePageVideoSection = () => {
             </div>
           </ScrollReveal>
 
-          {/* RIGHT COLUMN: Video Player (Outlier border line removed) */}
+          {/* RIGHT COLUMN: Video Player (Only video visible, black sidebars removed) */}
           <ScrollReveal className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[420px] rounded-[32px] overflow-hidden bg-black shadow-2xl group">
-              <div className="relative w-full flex items-center justify-center bg-black overflow-hidden">
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted={isMuted}
-                  playsInline
-                  className="w-full h-auto object-contain max-h-[620px] filter brightness-95"
+            <div className="relative w-fit mx-auto rounded-3xl overflow-hidden shadow-2xl group">
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+                className="block max-w-full sm:max-w-[380px] h-auto object-cover rounded-3xl filter brightness-95"
+              >
+                <source src={homePageVideo} type="video/mp4" />
+              </video>
+
+              {/* Floating Video Controls */}
+              <div className="absolute top-4 right-4 z-20 flex items-center space-x-2.5">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="w-9 h-9 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white hover:text-[#00DC82] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
+                  title={isPlaying ? 'Pause Video' : 'Play Video'}
                 >
-                  <source src={homePageVideo} type="video/mp4" />
-                </video>
+                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                </button>
 
-                {/* Floating Video Controls */}
-                <div className="absolute top-4 right-4 z-20 flex items-center space-x-2.5">
-                  <button
-                    type="button"
-                    onClick={togglePlay}
-                    className="w-9 h-9 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white hover:text-[#00DC82] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                    title={isPlaying ? 'Pause Video' : 'Play Video'}
-                  >
-                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={toggleMute}
-                    className="w-9 h-9 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white hover:text-[#00DC82] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                    title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-                  >
-                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00DC82]" />}
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className="w-9 h-9 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white hover:text-[#00DC82] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
+                  title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+                >
+                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00DC82]" />}
+                </button>
               </div>
             </div>
           </ScrollReveal>
