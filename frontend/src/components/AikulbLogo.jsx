@@ -45,8 +45,8 @@ export const AikulbLogo = ({
       {/* Brand Text Name */}
       {showText && (
         <div className="flex items-center">
-          <span className={`font-black tracking-tight ${darkText ? 'text-slate-900' : 'text-white'} font-manrope lowercase ${currentSize.text} leading-none`}>
-            ai klub
+          <span className={`font-black tracking-tight ${darkText ? 'text-slate-900' : 'text-white'} font-manrope ${currentSize.text} leading-none`}>
+            AI Klub
           </span>
         </div>
       )}

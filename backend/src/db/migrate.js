@@ -1,11 +1,14 @@
-import { db } from './connection.js';
+import { executeQuery } from './connection.js';
 import bcrypt from 'bcryptjs';
 
 async function migrate() {
   console.log('🚀 Starting AI KLUB Database Migration & Seeding...');
 
+  // Helper execution function
+  const exec = (sql, args = []) => executeQuery(sql, args);
+
   // 1. Users Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS users (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -18,7 +21,7 @@ async function migrate() {
   `);
 
   // 2. Categories Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS categories (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -28,7 +31,7 @@ async function migrate() {
   `);
 
   // 3. Products Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS products (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -53,7 +56,7 @@ async function migrate() {
   `);
 
   // 4. Profiles Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS profiles (
       id TEXT PRIMARY KEY,
       user_id TEXT,
@@ -87,13 +90,13 @@ async function migrate() {
   `);
 
   try {
-    await db.execute(`ALTER TABLE profiles ADD COLUMN address TEXT;`);
+    await exec(`ALTER TABLE profiles ADD COLUMN address TEXT;`);
   } catch (e) {
     // Column may already exist
   }
 
   // 5. Leads Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS leads (
       id TEXT PRIMARY KEY,
       profile_id TEXT NOT NULL,
@@ -109,7 +112,7 @@ async function migrate() {
   `);
 
   // 6. Orders Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS orders (
       id TEXT PRIMARY KEY,
       order_number TEXT UNIQUE NOT NULL,
@@ -126,7 +129,7 @@ async function migrate() {
   `);
 
   // 7. Custom Card Designs Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS custom_card_designs (
       id TEXT PRIMARY KEY,
       user_id TEXT,
@@ -144,7 +147,7 @@ async function migrate() {
   `);
 
   // 8. Teams & Team Members Tables
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS teams (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -154,7 +157,7 @@ async function migrate() {
     );
   `);
 
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS team_members (
       id TEXT PRIMARY KEY,
       team_id TEXT NOT NULL,
@@ -167,7 +170,7 @@ async function migrate() {
   `);
 
   // 9. Reviews Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS reviews (
       id TEXT PRIMARY KEY,
       product_id TEXT NOT NULL,
@@ -180,7 +183,7 @@ async function migrate() {
   `);
 
   // 10. Coupons Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS coupons (
       id TEXT PRIMARY KEY,
       code TEXT UNIQUE NOT NULL,
@@ -193,7 +196,7 @@ async function migrate() {
   `);
 
   // 11. Homepage Content Table
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS homepage_content (
       key TEXT PRIMARY KEY,
       value_json TEXT NOT NULL,
@@ -202,7 +205,7 @@ async function migrate() {
   `);
 
   // 12. User Carts Table for Database Synchronization
-  await db.execute(`
+  await exec(`
     CREATE TABLE IF NOT EXISTS user_carts (
       user_id TEXT PRIMARY KEY,
       items_json TEXT NOT NULL,
@@ -223,7 +226,7 @@ async function migrate() {
   ];
 
   for (const cat of categories) {
-    await db.execute({
+    await exec({
       sql: `INSERT OR REPLACE INTO categories (id, name, slug, description) VALUES (?, ?, ?, ?)`,
       args: [cat.id, cat.name, cat.slug, cat.description],
     });
@@ -494,7 +497,7 @@ async function migrate() {
   ];
 
   for (const p of products) {
-    await db.execute({
+    await exec({
       sql: `INSERT OR REPLACE INTO products (id, name, slug, description, short_description, price, original_price, discount, rating, material, nfc_enabled, qr_enabled, category_id, sku, stock, is_featured, image_url, images_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       args: [
         p.id, p.name, p.slug, p.description, p.short_description, p.price, p.original_price, p.discount, p.rating, p.material, p.nfc_enabled, p.qr_enabled, p.category_id, p.sku, p.stock, p.is_featured, p.image_url, p.images_json
@@ -502,24 +505,34 @@ async function migrate() {
     });
   }
 
-  // Seed Demo Admin & Demo User
+  // Seed Demo Admin & Demo User (with both aiklub.com and aikulb.com domain aliases)
   const salt = await bcrypt.genSalt(10);
   const passwordHash = await bcrypt.hash('password123', salt);
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
     args: ['user-admin-1', 'AI KLUB Admin', 'admin@aiklub.com', passwordHash, 'admin'],
   });
 
-  await db.execute({
+  await exec({
+    sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
+    args: ['user-admin-2', 'AI KLUB Admin', 'admin@aikulb.com', passwordHash, 'admin'],
+  });
+
+  await exec({
     sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
     args: ['user-john-1', 'John Doe', 'john@aiklub.com', passwordHash, 'customer'],
+  });
+
+  await exec({
+    sql: `INSERT OR REPLACE INTO users (id, name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
+    args: ['user-john-2', 'John Doe', 'john@aikulb.com', passwordHash, 'customer'],
   });
 
   // Seed Demo Profile `/profile/john`
   const sampleVcf = `BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;;\nFN:John Doe\nORG:ABC Technologies\nTITLE:Founder & CEO\nTEL;TYPE=CELL:+1234567890\nEMAIL:john@abctechnologies.com\nURL:https://abctechnologies.com\nEND:VCARD`;
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO profiles (
       id, user_id, username, full_name, title, company, bio, avatar_url, banner_url, theme, phone, email, whatsapp, website, linkedin, instagram, youtube, github, vcf_data, custom_links_json, services_json, portfolio_json, views_count, nfc_taps, qr_scans
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -564,7 +577,7 @@ async function migrate() {
   // Seed Reference Profile `/profile/nicholas` matching Reference Design
   const nicholasVcf = `BEGIN:VCARD\nVERSION:3.0\nN:Perry;Nicholas;;;\nFN:Nicholas Perry\nORG:ai klub\nTITLE:Designer @ ai klub\nTEL;TYPE=CELL:149-219-4462\nEMAIL:nicholas@aiklub.com\nURL:https://www.aiklub.com\nEND:VCARD`;
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO profiles (
       id, user_id, username, full_name, title, company, bio, avatar_url, banner_url, theme, phone, email, whatsapp, website, linkedin, instagram, youtube, github, vcf_data, custom_links_json, services_json, portfolio_json, views_count, nfc_taps, qr_scans
     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -613,18 +626,18 @@ async function migrate() {
   ];
 
   for (const l of sampleLeads) {
-    await db.execute({
+    await exec({
       sql: `INSERT OR REPLACE INTO leads (id, profile_id, name, email, phone, company, message, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       args: [l.id, l.profile_id, l.name, l.email, l.phone, l.company, l.message, l.status],
     });
   }
 
   // Seed Sample Coupons
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO coupons (id, code, discount_percent, max_uses, current_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)`,
     args: ['coup-1', 'AIKLUB10', 10, 1000, 42, 1],
   });
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO coupons (id, code, discount_percent, max_uses, current_uses, is_active) VALUES (?, ?, ?, ?, ?, ?)`,
     args: ['coup-2', 'TAPSMART', 15, 500, 18, 1],
   });
@@ -660,17 +673,17 @@ async function migrate() {
     ]
   };
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO homepage_content (key, value_json) VALUES (?, ?)`,
     args: ['hero_section', JSON.stringify(homepageContent.hero)],
   });
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO homepage_content (key, value_json) VALUES (?, ?)`,
     args: ['platform_stats', JSON.stringify(homepageContent.platformStats)],
   });
 
-  await db.execute({
+  await exec({
     sql: `INSERT OR REPLACE INTO homepage_content (key, value_json) VALUES (?, ?)`,
     args: ['trusted_brands', JSON.stringify(homepageContent.trustedBrands)],
   });

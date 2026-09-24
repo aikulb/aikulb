@@ -30,8 +30,130 @@ import {
   Phone,
   MessageSquare,
   ExternalLink,
-  UserCheck
+  UserCheck,
+  Copy,
+  Sliders
 } from 'lucide-react';
+import {
+  BlackMetalCardVisual,
+  GoldMetalCardVisual,
+  SilverMetalCardVisual,
+  BlueMetalCardVisual,
+  RoseGoldMetalCardVisual,
+  WoodCardVisual,
+  SmartStandVisual,
+  GoldTrishulCardVisual,
+  SilverTrishulCardVisual,
+  BlueWorldCardVisual
+} from '../components/ProductVisuals';
+
+const getSpecValue = (item, key) => {
+  if (!item) return null;
+  const specs = item.custom_specs || item.customConfig || item.custom_config || {};
+  if (typeof specs === 'object' && specs !== null) {
+    return specs[key] || null;
+  }
+  return null;
+};
+
+const renderCardVisualThumbnail = (item) => {
+  if (!item) return null;
+  const specsName = getSpecValue(item, 'name') || item.name || 'ALEXANDER VANCE';
+  const slug = (item.slug || item.id || item.name || item.material || '').toLowerCase();
+
+  if (item.image_url && typeof item.image_url === 'string' && (item.image_url.startsWith('/') || item.image_url.startsWith('http') || item.image_url.startsWith('data:'))) {
+    return (
+      <div className="w-12 h-12 rounded-xl bg-[#070A0F] border border-emerald-900/60 p-1 flex items-center justify-center shrink-0 shadow-md group-hover:border-[#00DC82] transition-colors">
+        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain rounded-lg" />
+      </div>
+    );
+  }
+
+  if (slug.includes('gold') || slug.includes('24k')) {
+    return (
+      <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-amber-700 via-yellow-500 to-amber-300 border border-amber-300/60 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-slate-950 font-syne select-none">
+        <div className="flex justify-between items-center"><span className="text-[5px]">ak</span><span className="text-[5px]">NFC</span></div>
+        <div className="truncate font-extrabold uppercase leading-none">{specsName.split(' ')[0]}</div>
+      </div>
+    );
+  }
+
+  if (slug.includes('silver') || slug.includes('platinum')) {
+    return (
+      <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-slate-400 via-slate-200 to-slate-500 border border-slate-300/80 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-slate-900 font-syne select-none">
+        <div className="flex justify-between items-center"><span className="text-[5px]">ak</span><span className="text-[5px]">NFC</span></div>
+        <div className="truncate font-extrabold uppercase leading-none">{specsName.split(' ')[0]}</div>
+      </div>
+    );
+  }
+
+  if (slug.includes('blue') || slug.includes('sapphire')) {
+    return (
+      <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-blue-900 via-sky-600 to-blue-950 border border-sky-400/80 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-white font-syne select-none">
+        <div className="flex justify-between items-center"><span className="text-[5px]">ak</span><span className="text-[5px]">NFC</span></div>
+        <div className="truncate font-extrabold uppercase leading-none">{specsName.split(' ')[0]}</div>
+      </div>
+    );
+  }
+
+  if (slug.includes('wood') || slug.includes('bamboo') || slug.includes('walnut')) {
+    return (
+      <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-[#3D261A] via-[#5A3A29] to-[#281810] border border-[#C29B38]/50 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-[#F3E5AB] font-syne select-none">
+        <div className="flex justify-between items-center"><span className="text-[5px]">ak</span><span className="text-[5px]">NFC</span></div>
+        <div className="truncate font-extrabold uppercase leading-none">{specsName.split(' ')[0]}</div>
+      </div>
+    );
+  }
+
+  if (slug.includes('stand') || slug.includes('acrylic')) {
+    return (
+      <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-cyan-900 via-teal-800 to-slate-900 border border-cyan-400/60 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-cyan-200 font-syne select-none">
+        <div className="flex justify-between items-center"><span className="text-[5px]">STAND</span><span className="text-[5px]">★ 5.0</span></div>
+        <div className="truncate font-extrabold uppercase leading-none">Google Review</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-12 h-8 rounded-lg bg-gradient-to-tr from-[#0D0D11] via-[#1A1A22] to-[#0D0D11] border border-emerald-500/40 p-1 flex flex-col justify-between shrink-0 shadow-md text-[6px] font-bold text-white font-syne select-none">
+      <div className="flex justify-between items-center"><span className="text-[5px] text-[#00DC82]">ak</span><span className="text-[5px] text-[#00DC82]">NFC</span></div>
+      <div className="truncate font-extrabold uppercase leading-none text-slate-100">{specsName.split(' ')[0]}</div>
+    </div>
+  );
+};
+
+const renderCardVisualDetail = (item) => {
+  if (!item) return null;
+  const name = getSpecValue(item, 'name') || item.name || 'ALEXANDER VANCE';
+  const title = getSpecValue(item, 'title') || item.material || 'CHIEF EXECUTIVE OFFICER';
+  const slug = (item.slug || item.id || item.name || item.material || '').toLowerCase();
+
+  if (item.image_url && typeof item.image_url === 'string' && (item.image_url.startsWith('/') || item.image_url.startsWith('http') || item.image_url.startsWith('data:'))) {
+    return (
+      <div className="w-full aspect-[1.586/1] max-w-[280px] rounded-2xl bg-[#070A0F] border border-emerald-900/60 p-2 flex items-center justify-center shadow-2xl relative overflow-hidden mx-auto">
+        <img src={item.image_url} alt={item.name} className="w-full h-full object-contain rounded-xl" />
+      </div>
+    );
+  }
+
+  if (slug.includes('gold') || slug.includes('24k')) {
+    return <GoldMetalCardVisual name={name} title={title} cardId={item.id || 'AK-GOLD'} />;
+  }
+  if (slug.includes('silver') || slug.includes('platinum')) {
+    return <SilverMetalCardVisual name={name} title={title} cardId={item.id || 'AK-SILVER'} />;
+  }
+  if (slug.includes('blue') || slug.includes('sapphire')) {
+    return <BlueMetalCardVisual name={name} title={title} cardId={item.id || 'AK-BLUE'} />;
+  }
+  if (slug.includes('wood') || slug.includes('bamboo') || slug.includes('walnut')) {
+    return <WoodCardVisual name={name} title={title} cardId={item.id || 'AK-WOOD'} />;
+  }
+  if (slug.includes('stand') || slug.includes('acrylic')) {
+    return <SmartStandVisual cardId={item.id || 'AK-STAND'} />;
+  }
+
+  return <BlackMetalCardVisual name={name} title={title} cardId={item.id || 'AK-BLACK'} />;
+};
 
 const PRESET_CARDS = [
   { label: 'Matte Black Steel', material: 'Matte Black Stainless Steel', category_id: 'cat-metal', image_url: '/assets/products/metal_black.svg', defaultPrice: 1999, defaultOrig: 2999 },
@@ -104,6 +226,37 @@ export const AdminDashboardPage = () => {
   const [recentUsers, setRecentUsers] = useState([]);
   const [orderSearchQuery, setOrderSearchQuery] = useState('');
   const [userSearchQuery, setUserSearchQuery] = useState('');
+
+  // Interactive Item Visual Modal state
+  const [selectedOrderItem, setSelectedOrderItem] = useState(null);
+  const [selectedOrderContext, setSelectedOrderContext] = useState(null);
+  const [copiedSpecs, setCopiedSpecs] = useState(false);
+
+  const handleCopyProductionSpecs = (item, order) => {
+    const specsName = getSpecValue(item, 'name') || item.name || 'N/A';
+    const specsTitle = getSpecValue(item, 'title') || item.title || 'N/A';
+    const specsCompany = getSpecValue(item, 'company') || 'N/A';
+    const material = item.material || getSpecValue(item, 'material') || 'Matte Black Stainless Steel';
+    const fontStyle = getSpecValue(item, 'fontStyle') || 'Syne Modern';
+    const inlayColor = getSpecValue(item, 'inlayColor') || 'Standard Engrave';
+    const targetUrl = getSpecValue(item, 'qrUrl') || getSpecValue(item, 'profileUrl') || 'https://aiklub.com/profile';
+
+    const text = `=== AI KLUB PRODUCTION LASER ENGRAVING BLUEPRINT ===
+Order ID: ${order?.order_number || order?.id || 'N/A'}
+Item: ${item.name || item.title || 'Smart Card'}
+Material: ${material}
+Engraved Name: ${specsName}
+Engraved Title: ${specsTitle}
+Company: ${specsCompany}
+Font Style: ${fontStyle}
+Inlay Color: ${inlayColor}
+NFC / QR Link: ${targetUrl}
+===================================================`;
+
+    navigator.clipboard.writeText(text);
+    setCopiedSpecs(true);
+    setTimeout(() => setCopiedSpecs(false), 3000);
+  };
 
   useEffect(() => {
     fetchAdminData();
@@ -1112,30 +1265,59 @@ export const AdminDashboardPage = () => {
 
                         {/* Right Column: Ordered Smart Items */}
                         <div>
-                          <span className="font-bold text-slate-700 block mb-1.5 flex items-center space-x-1">
+                          <span className="font-bold text-slate-700 block mb-1.5 flex items-center space-x-1 font-manrope">
                             <Package className="w-3.5 h-3.5 text-purple-600" />
-                            <span>Ordered Smart Items:</span>
+                            <span>Ordered Smart Items ({items.length || 1}):</span>
                           </span>
-                          <div className="bg-white p-3.5 rounded-2xl border border-slate-200 space-y-2 text-slate-700 shadow-2xs">
+                          <div className="bg-white p-3 rounded-2xl border border-slate-200 space-y-2 text-slate-700 shadow-2xs">
                             {items.length === 0 ? (
-                              <div>
-                                <div className="font-bold text-neutral-900">1x AI KLUB Custom NFC Business Card</div>
-                                <div className="text-[11px] text-slate-500">Matte Black Stainless Steel • NFC + QR Hardware Core</div>
+                              <div
+                                onClick={() => {
+                                  const fallbackItem = { name: 'Custom aikulb Matte Black Metal', material: 'Matte Black Stainless Steel', price: ord.total_amount || 2298, quantity: 1 };
+                                  setSelectedOrderItem(fallbackItem);
+                                  setSelectedOrderContext(ord);
+                                }}
+                                className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-purple-500 hover:shadow-xs transition-all cursor-pointer flex items-center justify-between gap-3 group"
+                              >
+                                <div className="flex items-center space-x-2.5 min-w-0">
+                                  {renderCardVisualThumbnail({ name: 'Custom aikulb Matte Black Metal', material: 'Matte Black Stainless Steel' })}
+                                  <div className="min-w-0">
+                                    <div className="font-extrabold text-neutral-900 text-xs font-manrope group-hover:text-purple-700 transition-colors truncate">
+                                      Custom aikulb Matte Black Metal
+                                    </div>
+                                    <div className="text-[10px] text-slate-500 truncate">
+                                      Matte Black Metal • Click to view exact photo
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="text-right shrink-0">
+                                  <span className="font-extrabold text-emerald-600 font-mono text-xs">1x ₹{ord.total_amount || 2298}</span>
+                                </div>
                               </div>
                             ) : (
                               items.map((it, idx) => (
-                                <div key={idx} className="flex items-center justify-between gap-2 pb-1.5 border-b last:border-b-0 last:pb-0 border-slate-100">
-                                  <div className="flex items-center space-x-2">
-                                    <div className="w-7 h-7 rounded-md bg-slate-900 text-[#00DC82] flex items-center justify-center font-bold text-[9px] font-mono shrink-0">
-                                      NFC
-                                    </div>
-                                    <div>
-                                      <div className="font-bold text-neutral-900 text-xs">{it.name || it.title || 'AI KLUB Smart Card'}</div>
-                                      <div className="text-[10px] text-slate-500">{it.material || it.style || 'NFC Embedded'}</div>
+                                <div
+                                  key={idx}
+                                  onClick={() => {
+                                    setSelectedOrderItem(it);
+                                    setSelectedOrderContext(ord);
+                                  }}
+                                  className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-purple-500 hover:shadow-xs transition-all cursor-pointer flex items-center justify-between gap-3 group"
+                                >
+                                  <div className="flex items-center space-x-2.5 min-w-0">
+                                    {renderCardVisualThumbnail(it)}
+                                    <div className="min-w-0">
+                                      <div className="font-extrabold text-neutral-900 text-xs font-manrope group-hover:text-purple-700 transition-colors truncate">
+                                        {it.name || it.title || 'AI KLUB Smart Card'}
+                                      </div>
+                                      <div className="text-[10px] text-slate-500 truncate">
+                                        {it.material || getSpecValue(it, 'material') || 'NFC Embedded'}
+                                        {getSpecValue(it, 'name') ? ` • ${getSpecValue(it, 'name')}` : ''}
+                                      </div>
                                     </div>
                                   </div>
                                   <div className="text-right shrink-0">
-                                    <span className="font-extrabold text-emerald-600 font-mono">{it.quantity || it.qty || 1}x ₹{it.price || (ord.total_amount || 1999)}</span>
+                                    <span className="font-extrabold text-emerald-600 font-mono text-xs">{it.quantity || it.qty || 1}x ₹{it.price || (ord.total_amount || 1999)}</span>
                                   </div>
                                 </div>
                               ))
@@ -1271,6 +1453,138 @@ export const AdminDashboardPage = () => {
         </div>
       )}
 
+
+      {/* Interactive Item Specification & Visual Details Modal */}
+      {selectedOrderItem && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200 font-sans text-neutral-900">
+            
+            {/* Modal Header */}
+            <div className="p-5 bg-[#0D0D11] text-white flex items-center justify-between shrink-0 border-b border-slate-800">
+              <div className="flex items-center space-x-3">
+                <div className="w-9 h-9 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-purple-400">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-extrabold font-manrope text-white">Production & Card Visual Details</h3>
+                  <p className="text-[11px] text-purple-300 font-mono">Order {selectedOrderContext?.order_number || selectedOrderContext?.id || 'N/A'}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedOrderItem(null)}
+                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-[#F8FAFC]">
+              {/* Card Visual Photo Frame */}
+              <div className="p-6 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl flex flex-col items-center justify-center space-y-3 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-purple-600/15 rounded-full blur-3xl"></div>
+                <div className="text-[11px] font-mono text-emerald-400 font-bold tracking-widest uppercase flex items-center space-x-1.5">
+                  <Zap className="w-3.5 h-3.5 text-[#00DC82]" />
+                  <span>EXACT 3D SMART CARD PHOTO PREVIEW</span>
+                </div>
+                <div className="w-full flex justify-center py-2">
+                  {renderCardVisualDetail(selectedOrderItem)}
+                </div>
+                <div className="text-[11px] text-slate-400 font-mono text-center">
+                  {selectedOrderItem.material || getSpecValue(selectedOrderItem, 'material') || 'Matte Black Stainless Steel Hardware'}
+                </div>
+              </div>
+
+              {/* Laser Engraving Specifications */}
+              <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-xs space-y-4 text-xs">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <h4 className="font-extrabold text-neutral-900 font-manrope text-sm flex items-center space-x-2">
+                    <Sliders className="w-4 h-4 text-purple-600" />
+                    <span>Laser Engraving & Core Specifications</span>
+                  </h4>
+                  <span className="px-2.5 py-1 rounded-full bg-purple-100 text-purple-800 font-bold font-mono text-[10px]">
+                    Ready for Production
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 font-inter">
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Engraved Name</span>
+                    <div className="font-black text-neutral-900 text-xs">
+                      {getSpecValue(selectedOrderItem, 'name') || selectedOrderItem.name || 'ALEXANDER VANCE'}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Engraved Title / Role</span>
+                    <div className="font-extrabold text-neutral-900 text-xs">
+                      {getSpecValue(selectedOrderItem, 'title') || selectedOrderItem.title || 'CHIEF EXECUTIVE OFFICER'}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Company / Org</span>
+                    <div className="font-bold text-neutral-900 text-xs">
+                      {getSpecValue(selectedOrderItem, 'company') || 'AI KLUB GLOBAL'}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Metal Finish</span>
+                    <div className="font-bold text-neutral-900 text-xs">
+                      {selectedOrderItem.material || getSpecValue(selectedOrderItem, 'material') || 'Matte Black Stainless Steel'}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Typography Font</span>
+                    <div className="font-bold text-neutral-900 text-xs">
+                      {getSpecValue(selectedOrderItem, 'fontStyle') || 'Syne Modern Bold'}
+                    </div>
+                  </div>
+
+                  <div className="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <span className="text-[10px] font-mono text-slate-500 font-bold uppercase block mb-1">Inlay Color</span>
+                    <div className="font-bold text-neutral-900 text-xs">
+                      {getSpecValue(selectedOrderItem, 'inlayColor') || '24K Gold Foil Accent'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* NFC Hardware Chip Info */}
+                <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200 text-emerald-900 font-mono text-[11px] space-y-1">
+                  <div className="font-bold flex items-center justify-between">
+                    <span>⚡ NFC Hardware Core: NTAG216 High Speed</span>
+                    <span className="text-emerald-700">888 Bytes</span>
+                  </div>
+                  <div className="text-[10px] text-emerald-800">
+                    Encoded profile link: {getSpecValue(selectedOrderItem, 'qrUrl') || getSpecValue(selectedOrderItem, 'profileUrl') || 'https://aiklub.com/profile/demo'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Actions Footer */}
+            <div className="p-4 bg-white border-t border-slate-200 flex items-center justify-between gap-3 shrink-0">
+              <button
+                onClick={() => handleCopyProductionSpecs(selectedOrderItem, selectedOrderContext)}
+                className="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center space-x-2 shadow-sm transition cursor-pointer"
+              >
+                <Copy className="w-4 h-4" />
+                <span>{copiedSpecs ? '✓ Copied Production Specs!' : 'Copy Production Specs'}</span>
+              </button>
+
+              <button
+                onClick={() => setSelectedOrderItem(null)}
+                className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs cursor-pointer transition"
+              >
+                Close Preview
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

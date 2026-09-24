@@ -1,9 +1,10 @@
 import React from 'react';
 import { AnnouncementBar } from '../components/AnnouncementBar';
 import { Navbar } from '../components/Navbar';
+import { DarkHeroSection } from '../components/DarkHeroSection';
 import { HeroSection } from '../components/HeroSection';
+import { RedFeatureBanner } from '../components/RedFeatureBanner';
 import { TrustMarquee } from '../components/TrustMarquee';
-import { HomePageVideoSection } from '../components/HomePageVideoSection';
 import { ValueProp } from '../components/ValueProp';
 import { HowItWorks } from '../components/HowItWorks';
 import { ShippingDeliverySection } from '../components/ShippingDeliverySection';
@@ -23,13 +24,31 @@ export const HomePage = () => {
 
       {/* Dedicated Homepage Content Assembly */}
       <main className="flex-grow pt-24 sm:pt-28 lg:pt-32">
+        {/* 1st Image Reference: Dark Futuristic Hero Section */}
+        <DarkHeroSection />
+        
+        {/* 2nd Image Reference: Light TapMo Smart Card Hero Section */}
         <HeroSection />
+
+        {/* Full-width Crimson Feature Banner */}
+        <RedFeatureBanner />
+
+        {/* Social Proof & Trust Marquee */}
         <TrustMarquee />
-        <HomePageVideoSection />
+
+        {/* Value Proposition Grid */}
         <ValueProp />
+
+        {/* How It Works Step Guide */}
         <HowItWorks />
+
+        {/* Express Delivery & Setup Guarantee */}
         <ShippingDeliverySection />
+
+        {/* Business & Corporate Teams */}
         <BusinessTeamsSection />
+
+        {/* Reviews & FAQ */}
         <TestimonialsAndFaqSection />
       </main>
 
@@ -41,3 +60,4 @@ export const HomePage = () => {
     </div>
   );
 };
+

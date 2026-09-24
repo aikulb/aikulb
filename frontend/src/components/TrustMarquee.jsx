@@ -53,26 +53,26 @@ export const TrustMarquee = () => {
   const marqueeItems = [...brands, ...brands, ...brands];
 
   return (
-    <section className="py-16 bg-white border-y border-slate-200 overflow-hidden transition-colors duration-300 relative">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center flex flex-col items-center justify-center space-y-2">
-        <h3 className="text-sm font-extrabold uppercase tracking-widest text-slate-800 font-manrope">
-          Trusted by Professionals Building the Future
+    <section className="py-16 bg-white border-y border-slate-200/90 overflow-hidden relative transition-colors duration-300 text-slate-900">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center flex flex-col items-center justify-center space-y-2 relative z-10">
+        <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-[#FF3B3B] font-manrope">
+          ⚡ Trusted by Executives, Sales Teams & Industry Leaders
         </h3>
       </div>
 
-      {/* Auto-Scrolling Marquee Container with Left & Right Gradient Edges */}
-      <div className="relative w-full flex overflow-hidden py-2 select-none group">
+      {/* Auto-Scrolling Marquee Container */}
+      <div className="relative w-full flex overflow-hidden py-3 select-none group z-10">
         {/* Left Fading Edge Mask */}
-        <div className="absolute top-0 left-0 bottom-0 w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 left-0 bottom-0 w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
         
         {/* Continuous Auto-Scrolling Ribbon */}
         <div className="animate-marquee flex items-center space-x-6 whitespace-nowrap px-4">
           {marqueeItems.map((b, i) => (
             <div
               key={`${b.name}-${i}`}
-              className="flex items-center space-x-3.5 px-6 py-3.5 rounded-2xl bg-[#F8FAFC] hover:bg-white border border-slate-200/90 hover:border-[#6C4CFF]/40 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
+              className="flex items-center space-x-3.5 px-6 py-3.5 rounded-2xl bg-[#F8FAFC] hover:bg-white border border-slate-200/90 hover:border-[#FF3B3B]/40 shadow-xs hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#6C4CFF]/15 to-[#3B82F6]/15 border border-[#6C4CFF]/30 flex items-center justify-center font-black text-[#6C4CFF] text-xs font-mono shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-[#FF3B3B]/10 border border-[#FF3B3B]/20 flex items-center justify-center font-black text-[#FF3B3B] text-xs font-mono shadow-xs">
                 {b.code || b.name.substring(0, 2)}
               </div>
               <div>
@@ -84,34 +84,34 @@ export const TrustMarquee = () => {
         </div>
 
         {/* Right Fading Edge Mask */}
-        <div className="absolute top-0 right-0 bottom-0 w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 bottom-0 w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
       </div>
 
       {/* High Contrast Live Statistics Section */}
-      <div className="mt-16 bg-[#F8F9FA] border-t border-slate-200 text-slate-900 py-16">
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="text-4xl sm:text-5xl font-black text-slate-900 font-manrope tracking-tight mb-2">{stats.profiles}</div>
-            <div className="text-xs font-bold uppercase tracking-wider text-[#6C4CFF] font-manrope">Digital Profiles</div>
-            <div className="text-[11px] text-slate-600 mt-1 font-inter font-medium">Active global accounts</div>
+      <div className="mt-16 bg-[#F8FAFC] border-t border-slate-200/90 text-slate-900 py-16 relative z-10">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
+          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300">
+            <div className="text-4xl sm:text-5xl font-black text-[#FF3B3B] font-manrope tracking-tight mb-2">{stats.profiles}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-800 font-manrope">Digital Profiles</div>
+            <div className="text-[11px] text-slate-500 mt-1 font-inter font-medium">Active global accounts</div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="text-4xl sm:text-5xl font-black text-[#6C4CFF] font-manrope tracking-tight mb-2">{stats.connections}</div>
-            <div className="text-xs font-bold uppercase tracking-wider text-purple-600 font-manrope">Connections</div>
-            <div className="text-[11px] text-slate-600 mt-1 font-inter font-medium">NFC Taps & QR Scans</div>
+          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300">
+            <div className="text-4xl sm:text-5xl font-black text-[#FF3B3B] font-manrope tracking-tight mb-2">{stats.connections}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-800 font-manrope">Connections</div>
+            <div className="text-[11px] text-slate-500 mt-1 font-inter font-medium">NFC Taps & QR Scans</div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="text-4xl sm:text-5xl font-black text-[#3B82F6] font-manrope tracking-tight mb-2">{stats.teams}</div>
-            <div className="text-xs font-bold uppercase tracking-wider text-blue-600 font-manrope">Business Teams</div>
-            <div className="text-[11px] text-slate-600 mt-1 font-inter font-medium">Corporate enterprise accounts</div>
+          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300">
+            <div className="text-4xl sm:text-5xl font-black text-[#FF3B3B] font-manrope tracking-tight mb-2">{stats.teams}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-800 font-manrope">Business Teams</div>
+            <div className="text-[11px] text-slate-500 mt-1 font-inter font-medium">Corporate enterprise accounts</div>
           </div>
 
-          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="text-4xl sm:text-5xl font-black text-emerald-600 font-manrope tracking-tight mb-2">{stats.reliability}</div>
-            <div className="text-xs font-bold uppercase tracking-wider text-emerald-700 font-manrope">Platform Reliability</div>
-            <div className="text-[11px] text-slate-600 mt-1 font-inter font-medium">Uptime SLA guarantee</div>
+          <div className="p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-red-300 transition-all duration-300">
+            <div className="text-4xl sm:text-5xl font-black text-[#FF3B3B] font-manrope tracking-tight mb-2">{stats.reliability}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-800 font-manrope">Platform Reliability</div>
+            <div className="text-[11px] text-slate-500 mt-1 font-inter font-medium">Uptime SLA guarantee</div>
           </div>
         </div>
       </div>

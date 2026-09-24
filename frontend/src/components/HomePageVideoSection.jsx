@@ -37,44 +37,47 @@ export const HomePageVideoSection = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-white text-slate-900 relative overflow-hidden border-b border-slate-200 transition-colors duration-300">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-[#0D1220] via-[#090D16] to-[#0B0F19] text-white relative overflow-hidden border-b border-slate-800/80 transition-colors duration-300">
+      {/* Subtle ambient radial glow */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#00DC82]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* 2-Column Side-by-Side Layout matching Reference Image */}
+        {/* 2-Column Side-by-Side Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* LEFT COLUMN: Text Context & Benefits Checklist */}
           <ScrollReveal className="lg:col-span-7 space-y-6">
             <div className="space-y-3">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-manrope text-slate-900 tracking-tight leading-[1.1]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-manrope text-white tracking-tight leading-[1.1]">
                 How ai klub Card Works
               </h2>
-              <p className="text-base sm:text-lg text-slate-700 font-inter font-medium leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-300 font-inter font-medium leading-relaxed max-w-2xl">
                 Share your contact details, website, social media profiles, portfolio, brochures and more with a single tap. No app required.
               </p>
             </div>
 
             {/* Checklist items */}
-            <div className="space-y-2.5 pt-2">
+            <div className="space-y-3 pt-2">
               {checklistItems.map((item, idx) => (
-                <div key={idx} className="flex items-center space-x-3 text-sm sm:text-base text-slate-900 font-inter font-semibold">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center shrink-0">
-                    <Check className="w-3.5 h-3.5 text-[#00B068]" />
+                <div key={idx} className="flex items-center space-x-3 text-sm sm:text-base text-slate-200 font-inter font-semibold">
+                  <div className="w-5 h-5 rounded-full bg-[#00DC82]/15 border border-[#00DC82]/40 flex items-center justify-center shrink-0">
+                    <Check className="w-3.5 h-3.5 text-[#00DC82]" />
                   </div>
                   <span>{item}</span>
                 </div>
               ))}
             </div>
 
-            {/* Bottom Highlight Callout Box matching Reference Image 2 */}
-            <div className="mt-6 p-5 rounded-2xl bg-[#FFF5F5] border border-[#FFD0D0] space-y-1.5 shadow-sm">
-              <h4 className="font-extrabold text-sm sm:text-base text-[#E53E3E] font-manrope flex items-center space-x-2">
-                <span>Tap</span>
-                <span>→</span>
-                <span>Open Profile</span>
-                <span>→</span>
-                <span>Save Contact</span>
+            {/* Bottom Highlight Callout Box */}
+            <div className="mt-6 p-5 rounded-2xl bg-[#0E1524] border border-slate-800/90 space-y-1.5 shadow-xl">
+              <h4 className="font-extrabold text-sm sm:text-base text-[#00DC82] font-manrope flex items-center space-x-2">
+                <span>Tap Card</span>
+                <span className="text-slate-500">→</span>
+                <span>Open Digital Profile</span>
+                <span className="text-slate-500">→</span>
+                <span>Save Contact VCF</span>
               </h4>
-              <p className="text-xs sm:text-sm text-slate-700 font-inter font-medium leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 font-inter font-medium leading-relaxed">
                 Instantly share your professional identity and stay connected without exchanging paper business cards.
               </p>
             </div>
