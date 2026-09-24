@@ -185,11 +185,11 @@ export const HeroSection = () => {
         >
           {/* Step 2: Hero Headline - "Your Identity. One Tap." */}
           <motion.div variants={itemVariants}>
-            <h1 className="hero-h1 font-extrabold text-white font-manrope tracking-tight leading-[1.02]">
+            <h1 className="hero-h1 font-extrabold text-white font-manrope tracking-tight leading-[1.05] text-3xl sm:text-5xl lg:text-6xl">
               Your Identity. <br />
               <span className="text-[#00DC82] drop-shadow-[0_0_20px_rgba(0,220,130,0.2)] font-extrabold">One Tap.</span>
             </h1>
-            <p className="mt-3 text-lg font-bold text-slate-300 font-manrope">
+            <p className="mt-2.5 sm:mt-3 text-base sm:text-lg font-bold text-slate-300 font-manrope">
               The Future of Business Cards & Digital Identity
             </p>
           </motion.div>
@@ -197,7 +197,7 @@ export const HeroSection = () => {
           {/* Step 3: Supporting Text */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg text-slate-400 font-inter font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            className="text-sm sm:text-lg text-slate-400 font-inter font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed"
           >
             Instantly share your contact details, social links, custom services, and lead forms with a single touch. No recipient app required.
           </motion.p>
@@ -205,12 +205,12 @@ export const HeroSection = () => {
           {/* Step 4: CTA Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2 w-full"
           >
             <MagneticButton strength={4} className="w-full sm:w-auto">
               <Link
                 to="/create-profile"
-                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-[#00DC82] hover:bg-[#00c975] text-black font-extrabold text-sm px-8 py-4 rounded-full shadow-lg transition-all font-manrope uppercase tracking-wide transform hover:scale-[1.02]"
+                className="w-full sm:w-auto text-center block cursor-pointer bg-[#00DC82] hover:bg-[#00c975] text-black font-extrabold text-xs sm:text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-lg transition-all font-manrope uppercase tracking-wide transform hover:scale-[1.02]"
               >
                 CREATE YOUR DIGITAL PROFILE
               </Link>
@@ -219,7 +219,7 @@ export const HeroSection = () => {
             <MagneticButton strength={4} className="w-full sm:w-auto">
               <Link
                 to="/customize"
-                className="w-full sm:w-auto text-center inline-block cursor-pointer bg-white/5 hover:bg-white/10 text-white font-bold text-sm px-8 py-4 rounded-full shadow-lg border border-white/15 hover:border-white/30 transition-all font-manrope uppercase tracking-wide backdrop-blur-md"
+                className="w-full sm:w-auto text-center block cursor-pointer bg-white/5 hover:bg-white/10 text-white font-bold text-xs sm:text-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-full shadow-lg border border-white/15 hover:border-white/30 transition-all font-manrope uppercase tracking-wide backdrop-blur-md"
               >
                 DESIGN YOUR CARD
               </Link>
@@ -229,18 +229,18 @@ export const HeroSection = () => {
           {/* Step 6: Floating Analytics & Feature Badges */}
           <motion.div
             variants={itemVariants}
-            className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-400 font-inter font-medium border-t border-neutral-900"
+            className="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-slate-400 font-inter font-medium border-t border-neutral-900"
           >
             <div className="flex items-center space-x-2">
-              <ShieldCheck className="w-4 h-4 text-[#00DC82]" />
+              <ShieldCheck className="w-4 h-4 text-[#00DC82] shrink-0" />
               <span>100% Smartphone Compatible</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Zap className="w-4 h-4 text-[#00DC82]" />
+              <Zap className="w-4 h-4 text-[#00DC82] shrink-0" />
               <span>No App Download Needed</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-4 h-4 text-[#00DC82]" />
+              <Sparkles className="w-4 h-4 text-[#00DC82] shrink-0" />
               <span>50,000+ Profiles Active</span>
             </div>
           </motion.div>

@@ -281,7 +281,7 @@ export const UserDashboardPage = () => {
     return (
       <div className="min-h-screen bg-[#FFFFFF] flex flex-col font-sans">
         <Navbar />
-        <div className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-6">
+        <div className="flex-grow pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-6">
           <SkeletonLoader className="h-16 w-1/2 rounded-2xl" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <SkeletonLoader className="h-28 w-full rounded-3xl" />
@@ -300,7 +300,7 @@ export const UserDashboardPage = () => {
     <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Top Header & Dashboard Mode Switcher */}
         <ScrollReveal className="flex flex-col md:flex-row md:items-center justify-between mb-8 pb-6 border-b border-neutral-200 gap-4">
           <div>

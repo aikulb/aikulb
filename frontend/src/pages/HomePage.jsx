@@ -22,7 +22,7 @@ export const HomePage = () => {
       </header>
 
       {/* Dedicated Homepage Content Assembly */}
-      <main className="flex-grow pt-16 sm:pt-20">
+      <main className="flex-grow pt-24 sm:pt-28 lg:pt-32">
         <HeroSection />
         <TrustMarquee />
         <HomePageVideoSection />

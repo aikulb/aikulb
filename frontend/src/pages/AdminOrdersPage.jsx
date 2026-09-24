@@ -161,7 +161,7 @@ export const AdminOrdersPage = () => {
     <div className="min-h-screen bg-[#F8FAFC] text-neutral-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Toast Notification */}
         {toastMessage && (
           <div className="fixed top-24 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl text-xs font-bold font-mono border border-slate-700 flex items-center space-x-2 animate-bounce">

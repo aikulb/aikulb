@@ -87,7 +87,7 @@ export const ProductDetailPage = () => {
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Breadcrumb Navigation */}
         <div className="text-xs text-slate-500 font-inter mb-8 flex items-center space-x-2 font-medium">
           <Link to="/" className="hover:text-emerald-600 transition">Home</Link>

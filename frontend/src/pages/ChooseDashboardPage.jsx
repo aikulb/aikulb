@@ -29,7 +29,7 @@ export const ChooseDashboardPage = () => {
     <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center text-center">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center text-center">
         {/* Header */}
         <div className="space-y-4 mb-16 max-w-2xl">
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#00875A] text-xs font-manrope font-bold uppercase tracking-wider">

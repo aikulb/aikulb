@@ -233,7 +233,7 @@ export const MetalCardSection = () => {
       </AnimatePresence>
 
       {/* Hero Banner with Executive Photographic Background Attached Directly to Navbar */}
-      <div className="relative w-full pt-28 sm:pt-36 pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 shadow-2xl">
+      <div className="relative w-full pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 shadow-2xl">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105 opacity-40"
           style={{ backgroundImage: `url('/assets/store_hero_bg.jpg')` }}

@@ -75,10 +75,10 @@ export const FloatingChatWidget = () => {
   )}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-manrope">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-manrope">
       {/* Floating Popup Chat Box - Dynamically Sized with Top Safety Margin (No Cutoff, No Overlap) */}
       {isOpen && (
-        <div className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-32px)] sm:w-96 bg-white border border-slate-200/90 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[calc(100vh-100px)] sm:max-h-[520px] animate-in fade-in slide-in-from-bottom-3 duration-200">
+        <div className="fixed bottom-16 sm:bottom-20 right-3 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-96 bg-white border border-slate-200/90 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[calc(100vh-90px)] sm:max-h-[520px] animate-in fade-in slide-in-from-bottom-3 duration-200">
           
           {/* 1. Header - Always Fixed at Top of Box (Dark Slate with Crisp White Typography & Online Status) */}
           <div className="bg-[#0D121F] px-4 py-3.5 border-b border-slate-800 flex items-center justify-between shrink-0 shadow-sm z-10">

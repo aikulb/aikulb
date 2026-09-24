@@ -68,7 +68,7 @@ export const CheckoutPage = () => {
     return (
       <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col font-sans">
         <Navbar />
-        <main className="flex-grow pt-36 pb-24 max-w-2xl mx-auto px-4 w-full text-center space-y-6">
+        <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-2xl mx-auto px-4 w-full text-center space-y-6">
           <div className="p-10 rounded-3xl bg-neutral-50 border border-neutral-200 space-y-4 shadow-xl">
             <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-10 h-10" />
@@ -101,7 +101,7 @@ export const CheckoutPage = () => {
     return (
       <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col font-sans">
         <Navbar />
-        <main className="flex-grow pt-36 pb-24 text-center space-y-4 font-manrope">
+        <main className="flex-grow pt-24 sm:pt-32 pb-24 text-center space-y-4 font-manrope">
           <ShoppingBag className="w-16 h-16 text-neutral-400 mx-auto" />
           <h2 className="text-2xl font-bold text-neutral-900">Your Cart is Empty</h2>
           <Link to="/store" className="inline-block px-6 py-3 rounded-full bg-[#FF3838] text-white font-bold text-xs shadow-md">
@@ -117,7 +117,7 @@ export const CheckoutPage = () => {
     <div className="min-h-screen bg-[#FFFFFF] text-neutral-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 font-manrope mb-8">Checkout & Shipping</h1>
 
         <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-12">

@@ -57,7 +57,7 @@ export const AuthPages = () => {
     <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-grow pt-36 pb-24 flex items-center justify-center px-4">
+      <main className="flex-grow pt-24 sm:pt-32 pb-24 flex items-center justify-center px-4">
         <div className="w-full max-w-md p-5 sm:p-8 rounded-3xl bg-[#0D121B] border border-emerald-900/50 space-y-6 shadow-2xl relative shadow-black/80">
           {/* Forgot Password Modal */}
           {showForgotModal && (
