@@ -43,14 +43,19 @@ export const ValueProp = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#FAFAFC] border-t border-slate-200/90 relative text-slate-900 transition-colors duration-300 overflow-hidden">
+    <section className="py-24 bg-white border-t border-slate-200/80 relative text-slate-900 transition-colors duration-300 overflow-hidden">
+      
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
         <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <h2 className="section-h2 text-slate-900">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-700 text-[10px] font-mono font-bold tracking-widest uppercase">
+            <span>SMART HARDWARE + CLOUD DIGITAL PLATFORM</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 font-manrope tracking-tight">
             More Than a Business Card.
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 font-inter font-medium">
+          <p className="text-base sm:text-lg text-slate-700 font-inter font-medium leading-relaxed">
             AI Klub combines smart hardware with a powerful cloud digital identity software stack.
           </p>
         </ScrollReveal>
@@ -61,21 +66,21 @@ export const ValueProp = () => {
             const IconComponent = f.icon;
             return (
               <StaggerItem key={i}>
-                <div className="group relative p-8 rounded-3xl bg-white border border-slate-200/90 hover:border-red-400/50 transition-all duration-300 flex flex-col justify-between h-full shadow-sm hover:shadow-xl hover:-translate-y-1">
+                <div className="group relative p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-400/50 transition-all duration-300 flex flex-col justify-between h-full hover:-translate-y-1">
                   <div>
                     <div className="flex justify-between items-center mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-[#FF3B3B]/10 text-[#FF3B3B] border border-[#FF3B3B]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="w-6 h-6 text-[#FF3B3B]" />
+                      <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 border border-amber-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="w-6 h-6 text-amber-600" />
                       </div>
-                      <span className="text-[10px] uppercase font-mono font-bold tracking-widest px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                      <span className="text-[10px] uppercase font-mono font-bold tracking-widest px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
                         {f.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 font-manrope mb-3 group-hover:text-[#FF3B3B] transition">
+                    <h3 className="text-xl font-bold text-slate-900 font-manrope mb-3 group-hover:text-amber-700 transition-colors">
                       {f.title}
                     </h3>
-                    <p className="text-sm text-slate-600 font-inter leading-relaxed">
+                    <p className="text-sm text-slate-700 font-inter leading-relaxed font-medium">
                       {f.description}
                     </p>
                   </div>
@@ -86,43 +91,44 @@ export const ValueProp = () => {
         </StaggerContainer>
 
         {/* Animated Key Statistics Counter Strip */}
-        <ScrollReveal yOffset={25} className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-xl grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <ScrollReveal yOffset={25} className="p-8 sm:p-10 rounded-3xl bg-[#F8FAFC] border border-slate-200/90 shadow-md grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="text-3xl sm:text-4xl font-black text-[#FF3B3B] font-manrope">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-manrope">
               <AnimatedCounter from={0} to={50} suffix="K+" />
             </div>
-            <p className="text-xs sm:text-sm text-slate-500 font-inter font-semibold mt-1 uppercase tracking-wider">
+            <p className="text-xs sm:text-sm text-slate-700 font-inter font-semibold mt-1 uppercase tracking-wider">
               Profiles Active
             </p>
           </div>
 
           <div>
-            <div className="text-3xl sm:text-4xl font-black text-[#FF3B3B] font-manrope">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-manrope">
               <AnimatedCounter from={0} to={120} suffix="K+" />
             </div>
-            <p className="text-xs sm:text-sm text-slate-500 font-inter font-semibold mt-1 uppercase tracking-wider">
+            <p className="text-xs sm:text-sm text-slate-700 font-inter font-semibold mt-1 uppercase tracking-wider">
               NFC Taps & Scans
             </p>
           </div>
 
           <div>
-            <div className="text-3xl sm:text-4xl font-black text-[#FF3B3B] font-manrope">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-manrope">
               <AnimatedCounter from={0} to={45} suffix="K+" />
             </div>
-            <p className="text-xs sm:text-sm text-slate-500 font-inter font-semibold mt-1 uppercase tracking-wider">
+            <p className="text-xs sm:text-sm text-slate-700 font-inter font-semibold mt-1 uppercase tracking-wider">
               Leads Captured
             </p>
           </div>
 
           <div>
-            <div className="text-3xl sm:text-4xl font-black text-[#FF3B3B] font-manrope">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 font-manrope">
               <AnimatedCounter from={0} to={99} suffix=".9%" />
             </div>
-            <p className="text-xs sm:text-sm text-slate-500 font-inter font-semibold mt-1 uppercase tracking-wider">
+            <p className="text-xs sm:text-sm text-slate-700 font-inter font-semibold mt-1 uppercase tracking-wider">
               Uptime Reliability
             </p>
           </div>
         </ScrollReveal>
+
       </div>
     </section>
   );

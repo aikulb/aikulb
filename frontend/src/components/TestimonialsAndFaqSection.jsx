@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronDown } from 'lucide-react';
+import { Star, ChevronDown, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './AnimatedComponents';
 
 export const TestimonialsAndFaqSection = () => {
@@ -54,14 +54,19 @@ export const TestimonialsAndFaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-black text-white relative transition-colors duration-300 border-t border-neutral-900">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-24 bg-white text-slate-900 relative transition-colors duration-300 border-t border-slate-200/90 overflow-hidden select-none">
+      
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Testimonials Sub-section */}
-        <ScrollReveal className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-manrope tracking-tight">
+        <ScrollReveal className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-700 text-[10px] font-mono font-bold tracking-widest uppercase">
+            <span>VERIFIED CUSTOMER REVIEWS</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 font-manrope tracking-tight">
             Loved by Executives & Teams
           </h2>
-          <p className="text-slate-400 text-base font-inter">
+          <p className="text-slate-700 text-base font-inter font-medium">
             See what founders, sales leaders, and executive teams say about networking with ai klub.
           </p>
         </ScrollReveal>
@@ -69,20 +74,26 @@ export const TestimonialsAndFaqSection = () => {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 font-inter">
           {testimonials.map((t, i) => (
             <StaggerItem key={i}>
-              <div className="p-8 rounded-3xl bg-neutral-950 border border-neutral-800 shadow-xl space-y-4 flex flex-col justify-between h-full hover:border-neutral-700 transition-all duration-300">
-                <div className="space-y-3">
-                  <div className="flex space-x-1 text-amber-400">
-                    {[...Array(t.rating)].map((_, r) => (
-                      <Star key={r} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
+              <div className="p-8 rounded-3xl bg-[#F8FAFC] border border-slate-200/90 shadow-sm space-y-5 flex flex-col justify-between h-full hover:border-amber-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex space-x-1 text-amber-500">
+                      {[...Array(t.rating)].map((_, r) => (
+                        <Star key={r} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                      ))}
+                    </div>
+                    <div className="flex items-center space-x-1 text-[10px] font-mono font-bold text-emerald-700 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      <span>Verified Client</span>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-300 italic leading-relaxed">"{t.text}"</p>
+                  <p className="text-sm text-slate-700 leading-relaxed font-medium italic">"{t.text}"</p>
                 </div>
-                <div className="flex items-center space-x-3 pt-4 border-t border-neutral-900">
-                  <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-neutral-700" />
+                <div className="flex items-center space-x-3 pt-4 border-t border-slate-200/90">
+                  <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-amber-400/50 shadow-xs" />
                   <div>
-                    <h4 className="font-bold text-white text-sm font-manrope">{t.name}</h4>
-                    <p className="text-xs text-slate-400">{t.role}</p>
+                    <h4 className="font-bold text-slate-900 text-sm font-manrope group-hover:text-amber-700 transition-colors">{t.name}</h4>
+                    <p className="text-xs text-slate-600 font-medium">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -91,12 +102,12 @@ export const TestimonialsAndFaqSection = () => {
         </StaggerContainer>
 
         {/* FAQ Section */}
-        <ScrollReveal className="max-w-3xl mx-auto space-y-6 pt-8 border-t border-neutral-900">
-          <div className="text-center space-y-2 mb-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-manrope tracking-tight">
+        <ScrollReveal className="max-w-3xl mx-auto space-y-6 pt-12 border-t border-slate-200/90">
+          <div className="text-center space-y-3 mb-10">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope tracking-tight">
               Frequently Asked Questions
             </h2>
-            <p className="text-slate-400 text-sm font-inter">
+            <p className="text-slate-700 text-sm font-inter font-medium">
               Everything you need to know about ai klub NFC smart cards and cloud profiles.
             </p>
           </div>
@@ -107,17 +118,17 @@ export const TestimonialsAndFaqSection = () => {
               return (
                 <div
                   key={index}
-                  className="rounded-2xl bg-neutral-950 border border-neutral-800 overflow-hidden transition-colors"
+                  className="rounded-2xl bg-[#F8FAFC] border border-slate-200/90 overflow-hidden transition-all duration-300 hover:border-amber-400/40"
                 >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : index)}
-                    className="w-full px-6 py-5 text-left font-manrope font-bold text-base text-white flex items-center justify-between gap-4 cursor-pointer hover:text-[#00DC82] transition-colors"
+                    className="w-full px-6 py-5 text-left font-manrope font-bold text-base text-slate-900 flex items-center justify-between gap-4 cursor-pointer hover:text-amber-700 transition-colors"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown
-                      className={`w-5 h-5 text-slate-400 transition-transform duration-300 flex-shrink-0 ${
-                        isOpen ? 'rotate-180 text-[#00DC82]' : ''
+                      className={`w-5 h-5 text-slate-500 transition-transform duration-300 flex-shrink-0 ${
+                        isOpen ? 'rotate-180 text-amber-600' : ''
                       }`}
                     />
                   </button>
@@ -130,7 +141,7 @@ export const TestimonialsAndFaqSection = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <div className="px-6 pb-5 pt-1 text-sm text-slate-300 font-inter leading-relaxed border-t border-neutral-900">
+                        <div className="px-6 pb-5 pt-2 text-sm text-slate-700 font-inter leading-relaxed border-t border-slate-200/90 font-medium">
                           {faq.a}
                         </div>
                       </motion.div>
@@ -141,6 +152,7 @@ export const TestimonialsAndFaqSection = () => {
             })}
           </div>
         </ScrollReveal>
+
       </div>
     </section>
   );

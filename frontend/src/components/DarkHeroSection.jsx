@@ -1,155 +1,129 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Play, Pause, Volume2, VolumeX, Check, Zap, Sparkles } from 'lucide-react';
+import { 
+  Play, ChevronRight, Wifi, QrCode, Zap
+} from 'lucide-react';
 import { MagneticButton, ScrollReveal } from './AnimatedComponents';
+import { TrishulAkEmblem } from './ProductVisuals';
 import homePageVideo from '../videos/HomePage.mp4';
 
 export const DarkHeroSection = () => {
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef(null);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
   return (
-    <section className="relative min-h-[85vh] pt-8 sm:pt-12 pb-16 sm:pb-20 flex items-center justify-center bg-gradient-to-b from-[#0B0F17] via-[#0D121E] to-[#0A0E17] text-white border-b border-slate-800/80 overflow-hidden">
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#00E676]/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
+    <section className="relative min-h-[90vh] pt-10 sm:pt-14 pb-16 sm:pb-24 flex items-center justify-center bg-[#07090E] text-white border-b border-slate-800/80 overflow-hidden select-none">
+      
+      {/* 1. DYNAMIC BACKGROUND VIDEO (Positioned on Right Side) */}
+      <div className="absolute top-0 right-0 bottom-0 w-full lg:w-3/5 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center filter brightness-95 contrast-105 opacity-90 transition-all duration-700"
+        >
+          <source src={homePageVideo} type="video/mp4" />
+        </video>
 
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        {/* Black Gradient Overlay on top from Right to Left (Transparent on Right -> Black on Left) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07090E] via-[#07090E]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07090E] via-transparent to-[#07090E]/40" />
+      </div>
+
+      {/* 2. AMBIENT WARM GOLDEN RADIAL GLOWS */}
+      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-[#E8BD85]/12 rounded-full blur-[160px] pointer-events-none z-0" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-amber-600/8 rounded-full blur-[140px] pointer-events-none z-0" />
+
+      {/* 3. HERO CONTENT CONTAINER (Shifted Left) */}
+      <div className="max-w-[1320px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* LEFT COLUMN: Dark Hero Typography matching Image 1 */}
-        <ScrollReveal className="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <ScrollReveal className="max-w-2xl space-y-6 text-left flex flex-col items-start">
           
-          {/* Main Title: Your Identity. One Tap. */}
-          <div className="space-y-2">
-            <h1 className="font-black text-white font-manrope tracking-tight leading-[1.05] text-4xl sm:text-6xl lg:text-7xl">
-              Your Identity. <br />
-              <span className="text-[#00E676] drop-shadow-[0_0_25px_rgba(0,230,118,0.35)] font-extrabold">
-                One Tap.
+          {/* Top Tagline matching Image 4 (Left line + Tagline text) */}
+          <div className="flex items-center justify-start space-x-3 text-[#E8BD85] text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase">
+            <span className="w-8 h-[2px] bg-[#E8BD85] rounded-full shrink-0"></span>
+            <span>PREMIUM NFC SMART BUSINESS & DIGITAL IDENTITY PLATFORM</span>
+          </div>
+
+          {/* Main Title: Your Digital Identity. One Tap Away. */}
+          <div className="space-y-2 text-left">
+            <h1 className="font-black text-white font-manrope tracking-tight leading-[1.04] text-4xl sm:text-6xl lg:text-7xl">
+              Your Digital Identity. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FCE5BF] via-[#E8BD85] to-[#C99855] drop-shadow-[0_0_35px_rgba(232,189,133,0.35)] font-black">
+                One Tap Away.
               </span>
             </h1>
-            
-            {/* Sub-header matching Image 1 */}
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold font-manrope text-slate-200 pt-2 tracking-wide">
-              The Future of Business Cards & Digital Identity
-            </h2>
           </div>
 
-          {/* Description Paragraph matching Image 1 */}
-          <p className="text-base sm:text-lg text-slate-300 font-inter font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
-            Instantly share your contact details, social links, custom services, and lead forms with a single touch. No recipient app required.
+          {/* Description Paragraph */}
+          <p className="text-base sm:text-lg text-slate-300 font-inter font-medium leading-relaxed max-w-xl text-left">
+            Share your contact details, social profiles and professional identity instantly with NFC + QR.
           </p>
 
-          {/* Action Buttons matching Image 1 */}
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-3 w-full">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-start gap-3 sm:gap-4 pt-2 w-full sm:w-auto font-manrope">
             <MagneticButton strength={4} className="w-full sm:w-auto">
               <Link
-                to="/create-profile"
-                className="w-full sm:w-auto text-center block cursor-pointer bg-[#00E676] hover:bg-[#00C853] text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-[0_0_30px_rgba(0,230,118,0.4)] transition-all font-manrope uppercase tracking-wider transform hover:scale-105"
+                to="/store"
+                className="w-full sm:w-auto text-center cursor-pointer bg-gradient-to-r from-[#F0C58A] via-[#E8BD85] to-[#D8A360] hover:brightness-110 text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-[0_0_30px_rgba(232,189,133,0.35)] transition-all uppercase tracking-wider inline-flex items-center justify-center space-x-2 transform hover:scale-105"
               >
-                CREATE YOUR DIGITAL PROFILE
+                <span>Get Your Card</span>
+                <ChevronRight className="w-4 h-4 text-slate-950 stroke-[3]" />
               </Link>
             </MagneticButton>
 
             <MagneticButton strength={4} className="w-full sm:w-auto">
-              <Link
-                to="/customize"
-                className="w-full sm:w-auto text-center block cursor-pointer bg-slate-900/90 hover:bg-slate-800 text-white border border-slate-700/80 font-bold text-xs sm:text-sm px-8 py-4 rounded-full shadow-md transition-all font-manrope uppercase tracking-wider"
+              <button
+                type="button"
+                onClick={() => {
+                  const el = document.getElementById('how-it-works');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto text-center cursor-pointer bg-slate-900/80 hover:bg-slate-800/90 text-white border border-[#E8BD85]/40 font-bold text-xs sm:text-sm px-8 py-4 rounded-full shadow-md transition-all uppercase tracking-wider inline-flex items-center justify-center space-x-2 backdrop-blur-md"
               >
-                DESIGN YOUR CARD
-              </Link>
+                <span>See How It Works</span>
+                <Play className="w-3.5 h-3.5 text-[#E8BD85] fill-[#E8BD85]" />
+              </button>
             </MagneticButton>
           </div>
 
-          {/* 3 Trust Indicator Badges matching Image 1 */}
-          <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-300">
-            <div className="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 px-3.5 py-2 rounded-full backdrop-blur-md">
-              <div className="w-4 h-4 rounded-full bg-[#00E676]/20 text-[#00E676] flex items-center justify-center shrink-0">
-                <Check className="w-3 h-3 stroke-[3]" />
-              </div>
-              <span>100% Smartphone Compatible</span>
-            </div>
-
-            <div className="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 px-3.5 py-2 rounded-full backdrop-blur-md">
-              <Zap className="w-4 h-4 text-[#00E676]" />
-              <span>No App Download Needed</span>
-            </div>
-
-            <div className="flex items-center space-x-2 bg-slate-900/60 border border-slate-800 px-3.5 py-2 rounded-full backdrop-blur-md">
-              <Sparkles className="w-4 h-4 text-[#00E676]" />
-              <span>50,000+ Profiles Active</span>
-            </div>
-          </div>
-
-        </ScrollReveal>
-
-        {/* RIGHT COLUMN: Video Visual Container Patched with Background Gradient Colors */}
-        <ScrollReveal className="lg:col-span-5 flex justify-center">
-          {/* Gradient Border Frame Patched with Section Background Colors (#0B0F17 / #0D121E / slate-800) */}
-          <div className="relative w-fit mx-auto p-[2px] rounded-[26px] bg-gradient-to-br from-slate-700/80 via-[#162032] to-slate-800/90 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(15,23,42,0.8)] border border-slate-700/50 transition-all duration-500">
+          {/* 3 Bottom Features matching Image 3 (Minimal divided layout) */}
+          <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-6 sm:gap-0 sm:divide-x sm:divide-slate-800/90 text-left">
             
-            <div className="relative rounded-[24px] overflow-hidden bg-[#070A0F] group">
-              
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                className="block max-w-full sm:max-w-[360px] lg:max-w-[380px] h-auto object-cover rounded-[24px] filter brightness-95"
-              >
-                <source src={homePageVideo} type="video/mp4" />
-              </video>
-
-              {/* Video Controls (Pause / Mute Buttons) */}
-              <div className="absolute top-4 right-4 z-20 flex items-center space-x-2">
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-emerald-400 flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                  title={isPlaying ? 'Pause Video' : 'Play Video'}
-                >
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={toggleMute}
-                  className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-emerald-400 flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                  title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-                >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00E676]" />}
-                </button>
+            {/* Feature 1: NFC */}
+            <div className="flex items-center space-x-3 sm:pr-6">
+              <div className="text-[#E8BD85]">
+                <Wifi className="w-7 h-7 rotate-90" />
               </div>
-
-              {/* AK Trishul Logo Badge */}
-              <div className="absolute bottom-8 right-8 sm:bottom-9 sm:right-9 z-30 pointer-events-none">
-                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-black/30 border border-white/15 shadow-xl flex items-center justify-center p-2.5 backdrop-blur-md">
-                  <img src="/assets/logo.png" alt="AK Logo" className="w-full h-full object-contain mix-blend-screen filter brightness-125" />
-                </div>
+              <div>
+                <span className="font-mono text-xs font-bold text-white block uppercase tracking-wide">NFC</span>
+                <span className="text-[11px] text-slate-400 font-medium">Tap & Connect</span>
               </div>
-
             </div>
+
+            {/* Feature 2: QR */}
+            <div className="flex items-center space-x-3 sm:px-6">
+              <div className="text-[#E8BD85]">
+                <QrCode className="w-7 h-7" />
+              </div>
+              <div>
+                <span className="font-mono text-xs font-bold text-white block uppercase tracking-wide">QR</span>
+                <span className="text-[11px] text-slate-400 font-medium">Scan & Share</span>
+              </div>
+            </div>
+
+            {/* Feature 3: Tap to Connect */}
+            <div className="flex items-center space-x-3 sm:pl-6">
+              <div className="w-8 h-8 rounded-full border border-[#E8BD85]/60 text-[#E8BD85] flex items-center justify-center shrink-0">
+                <Zap className="w-4 h-4 fill-[#E8BD85]" />
+              </div>
+              <div>
+                <span className="font-mono text-xs font-bold text-white block uppercase tracking-wide">Tap to Connect</span>
+                <span className="text-[11px] text-slate-400 font-medium">Instant Access</span>
+              </div>
+            </div>
+
           </div>
+
         </ScrollReveal>
 
       </div>

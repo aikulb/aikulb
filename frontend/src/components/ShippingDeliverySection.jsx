@@ -88,16 +88,13 @@ export const ShippingDeliverySection = () => {
   };
 
   return (
-    <section className="py-24 bg-black text-white relative overflow-hidden border-t border-neutral-900">
-      {/* Background Subtle Tech Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
-
+    <section className="py-24 bg-[#F8FAFC] text-slate-900 relative overflow-hidden border-t border-slate-200/90">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Side: High Quality Logistics Delivery Photo */}
           <ScrollReveal className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl group">
+            <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl group">
               <img 
                 src="/assets/shipping_delivery.jpg" 
                 alt="ai klub Fast & Secure Shipping" 
@@ -109,30 +106,30 @@ export const ShippingDeliverySection = () => {
           {/* Right Side: Text & Actions matching design */}
           <ScrollReveal className="lg:col-span-6 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold font-manrope text-[#00DC82] uppercase tracking-wider block">
-                Free Shipping in India
+              <span className="text-xs font-bold font-manrope text-amber-700 uppercase tracking-wider block">
+                Free Express Shipping in India
               </span>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-manrope tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-5xl font-black text-slate-900 font-manrope tracking-tight leading-tight">
                 Fast & Secure Worldwide Delivery
               </h2>
             </div>
 
-            <p className="text-base sm:text-lg text-slate-400 font-inter leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-700 font-inter leading-relaxed font-medium">
               We ship ai klub smart cards across India and internationally with trusted partners like Blue Dart, Delhivery, FedEx, and DHL. Every card is custom laser engraved, quality tested, and dispatched in executive protective packaging.
             </p>
 
             {/* Logistics Partner Badges */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
-              <div className="px-3.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-mono font-bold text-slate-300">
+              <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200/90 text-xs font-mono font-bold text-slate-800 shadow-xs">
                 Blue Dart Express
               </div>
-              <div className="px-3.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-mono font-bold text-slate-300">
+              <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200/90 text-xs font-mono font-bold text-slate-800 shadow-xs">
                 DHL Express
               </div>
-              <div className="px-3.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-mono font-bold text-slate-300">
+              <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200/90 text-xs font-mono font-bold text-slate-800 shadow-xs">
                 FedEx Priority
               </div>
-              <div className="px-3.5 py-1.5 rounded-xl bg-neutral-900 border border-neutral-800 text-xs font-mono font-bold text-slate-300">
+              <div className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200/90 text-xs font-mono font-bold text-slate-800 shadow-xs">
                 Delhivery Air
               </div>
             </div>
@@ -142,19 +139,19 @@ export const ShippingDeliverySection = () => {
               <button
                 type="button"
                 onClick={() => setModalOpen(true)}
-                className="w-full sm:w-auto btn-pill-coral text-white font-extrabold text-xs sm:text-sm px-8 py-4 rounded-full shadow-lg hover:scale-105 transition-all font-manrope uppercase tracking-wider cursor-pointer inline-flex items-center justify-center space-x-2"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#F0C58A] via-[#E8BD85] to-[#D8A360] hover:brightness-110 text-slate-950 font-black text-xs sm:text-sm px-8 py-4 rounded-full shadow-lg hover:scale-105 transition-all font-manrope uppercase tracking-wider cursor-pointer inline-flex items-center justify-center space-x-2"
               >
                 <span>GET MORE INFO</span>
-                <ArrowRight className="w-4 h-4 text-white" />
+                <ArrowRight className="w-4 h-4 text-slate-950 stroke-[3]" />
               </button>
 
               <button
                 type="button"
                 onClick={openLiveChat}
-                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 hover:text-white transition cursor-pointer"
+                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 border border-slate-200 text-xs font-bold text-slate-800 transition cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-[#00DC82]" />
-                <span>Need any Help? <strong className="text-white underline">Chat with us</strong></span>
+                <MessageCircle className="w-4 h-4 text-emerald-600" />
+                <span>Need any Help? <strong className="text-slate-950 underline">Chat with us</strong></span>
               </button>
             </div>
           </ScrollReveal>
