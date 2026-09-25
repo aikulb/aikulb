@@ -395,8 +395,8 @@ export const CustomCardDesignerSection = () => {
     }
     if (logoType === 'ak') {
       return (
-        <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
-          <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain filter drop-shadow-[0_0_4px_rgba(16,185,129,0.5)]" />
+        <div className="w-7 h-7 flex items-center justify-center">
+          <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain mix-blend-screen filter drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]" />
         </div>
       );
     }
@@ -406,8 +406,8 @@ export const CustomCardDesignerSection = () => {
       return <IconComponent className="w-6 h-6 text-current" />;
     }
     return (
-      <div className="w-7 h-7 rounded-lg bg-[#070A0F] border border-[#10B981]/50 p-0.5 shadow flex items-center justify-center">
-        <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain" />
+      <div className="w-7 h-7 flex items-center justify-center">
+        <img src="/assets/logo.png" alt="Official ai klub Logo" className="w-full h-full object-contain mix-blend-screen" />
       </div>
     );
   };
@@ -421,7 +421,7 @@ export const CustomCardDesignerSection = () => {
       ></div>
 
       {/* Full-width Studio Hero Header Banner attached directly to dark Navbar */}
-      <div className="relative w-full pt-24 sm:pt-32 lg:pt-36 pb-14 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
+      <div className="relative w-full pt-8 sm:pt-14 lg:pt-16 pb-14 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
         {/* Executive Photographic Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"

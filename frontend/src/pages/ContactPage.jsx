@@ -6,10 +6,10 @@ import { ContactHelpSection } from '../components/ContactHelpSection';
 
 export const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-[#070A0F] text-white flex flex-col font-sans relative">
+    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 flex flex-col font-sans relative">
       <Navbar />
 
-      <main className="flex-grow pt-28 sm:pt-32">
+      <main className="flex-grow pt-0">
         <ContactHelpSection />
       </main>
 

@@ -11,6 +11,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
   const { user, logout } = useAuth();
   const { totalCount, setIsCartOpen } = useCart();
   const location = useLocation();
@@ -300,81 +301,241 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#070A0F] border-b border-emerald-950 px-6 py-6 space-y-4 font-manrope animate-in fade-in duration-200 shadow-2xl">
-            <Link
-              to="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-white font-semibold text-base hover:text-[#00DC82]"
+        {/* Mobile Menu Dropdown with Interactive Shop Accordion */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25 }}
+              className="lg:hidden bg-[#070A0F]/98 backdrop-blur-2xl border-b border-emerald-950 px-6 py-6 space-y-3.5 font-manrope shadow-2xl overflow-hidden"
             >
-              Home
-            </Link>
+              {/* 1. Home */}
+              <Link
+                to="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block font-semibold text-base transition ${location.pathname === '/' ? 'text-[#00DC82] font-extrabold' : 'text-white hover:text-[#00DC82]'}`}
+              >
+                Home
+              </Link>
 
-            <Link
-              to="/customize"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-white font-semibold text-base hover:text-[#00DC82]"
-            >
-              Design Your Card
-            </Link>
-            <Link
-              to="/store"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-white font-semibold text-base hover:text-[#00DC82]"
-            >
-              Shop Product Catalog
-            </Link>
-            <Link
-              to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-white font-semibold text-base hover:text-[#00DC82]"
-            >
-              Help & FAQ
-            </Link>
-            <Link
-              to="/create-profile"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-[#00DC82] font-bold text-base"
-            >
-              Create Profile
-            </Link>
+              {/* 2. Design Card */}
+              <Link
+                to="/customize"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block font-semibold text-base transition ${location.pathname === '/customize' ? 'text-[#00DC82] font-extrabold' : 'text-white hover:text-[#00DC82]'}`}
+              >
+                Design Card
+              </Link>
 
-            {user ? (
-              <div className="pt-4 border-t border-emerald-950 space-y-3">
-                <Link
-                  to="/dashboard"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full py-3 text-center rounded-xl bg-[#0D121B] border border-emerald-900/60 text-white font-bold text-sm"
-                >
-                  Dashboard
-                </Link>
+              {/* 3. Shop Dropdown Accordion (Matching Desktop 2nd Image) */}
+              <div className="border-y border-emerald-900/40 py-2.5 my-1">
                 <button
                   type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    logout();
-                    navigate('/auth?mode=login');
-                  }}
-                  className="w-full py-3 text-center rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-sm flex items-center justify-center space-x-2"
+                  onClick={() => setMobileShopOpen(!mobileShopOpen)}
+                  className="w-full flex items-center justify-between text-white font-semibold text-base py-1 focus:outline-none cursor-pointer"
                 >
-                  <LogOut className="w-4 h-4 text-red-400" />
-                  <span>Logout</span>
+                  <span className="flex items-center space-x-2">
+                    <span className="w-2 h-2 rounded-full bg-[#00DC82]"></span>
+                    <span>Shop</span>
+                  </span>
+                  <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${mobileShopOpen ? 'rotate-180 text-[#00DC82]' : ''}`} />
                 </button>
+
+                <AnimatePresence>
+                  {mobileShopOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden pl-3 pt-3 space-y-4 text-xs font-inter"
+                    >
+                      {/* Column 1: By Product Type */}
+                      <div className="space-y-2 pt-1">
+                        <div className="text-[11px] font-extrabold font-manrope text-[#00DC82] uppercase tracking-wider flex items-center space-x-1.5">
+                          <span className="w-1.5 h-3 bg-[#00DC82] rounded-full inline-block"></span>
+                          <span>By Product Type</span>
+                        </div>
+                        <ul className="space-y-2 pl-3 border-l border-emerald-900/60 text-slate-300">
+                          <li>
+                            <Link to="/store?cat=cat-metal" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Metal NFC Business Card
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?cat=cat-wood" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Wooden NFC Business Card
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?cat=cat-pvc" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              PVC NFC Business Card
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?cat=cat-stand" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Smart Standees & NFC Tags
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Column 2: By Industry */}
+                      <div className="space-y-2">
+                        <div className="text-[11px] font-extrabold font-manrope text-emerald-400 uppercase tracking-wider flex items-center space-x-1.5">
+                          <span className="w-1.5 h-3 bg-emerald-400 rounded-full inline-block"></span>
+                          <span>By Industry</span>
+                        </div>
+                        <ul className="space-y-2 pl-3 border-l border-emerald-900/60 text-slate-300">
+                          <li>
+                            <Link to="/store?search=Event" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Event & Management
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=Hospitality" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Hospitality
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=Health" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Health Care
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=IT" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              IT & Security Firms
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Column 3: By Profession */}
+                      <div className="space-y-2">
+                        <div className="text-[11px] font-extrabold font-manrope text-teal-400 uppercase tracking-wider flex items-center space-x-1.5">
+                          <span className="w-1.5 h-3 bg-teal-400 rounded-full inline-block"></span>
+                          <span>By Profession</span>
+                        </div>
+                        <ul className="space-y-2 pl-3 border-l border-emerald-900/60 text-slate-300">
+                          <li>
+                            <Link to="/store?search=Doctor" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Doctors & Surgeons
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=Lawyer" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Lawyers & Advocates
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=Sales" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Sales Executives
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/store?search=Freelancer" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#00DC82] block py-0.5 font-medium">
+                              Freelancers & Creators
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Promo Google Review Card */}
+                      <div className="pt-1">
+                        <Link
+                          to="/store?cat=cat-review"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="block p-3.5 rounded-xl bg-[#0D121B] border border-emerald-900/60 hover:border-[#00DC82] transition shadow-md"
+                        >
+                          <div className="flex items-center space-x-2 text-white text-xs font-bold font-manrope">
+                            <span className="text-[#4285F4] font-extrabold text-sm">G</span>
+                            <span className="text-amber-400 text-[10px]">★★★★★</span>
+                            <span className="text-slate-200">Google Review Card</span>
+                          </div>
+                          <p className="text-[10px] text-slate-400 mt-1 font-inter">Boost Google Reviews 10x with 1-Tap NFC</p>
+                        </Link>
+                      </div>
+
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            ) : (
-              <div className="pt-4 border-t border-emerald-950">
-                <Link
-                  to="/auth?mode=login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full py-3 text-center rounded-xl bg-gradient-to-r from-[#00DC82] to-[#059669] text-black font-black text-sm uppercase tracking-wider"
-                >
-                  Login / Register
-                </Link>
-              </div>
-            )}
-          </div>
-        )}
+
+              {/* 4. Metal Card */}
+              <Link
+                to="/metal-card"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block font-semibold text-base transition ${location.pathname === '/metal-card' ? 'text-[#00DC82] font-extrabold' : 'text-white hover:text-[#00DC82]'}`}
+              >
+                Metal Card
+              </Link>
+
+              {/* 5. Store Catalog */}
+              <Link
+                to="/store"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block font-semibold text-base transition ${location.pathname === '/store' ? 'text-[#00DC82] font-extrabold' : 'text-white hover:text-[#00DC82]'}`}
+              >
+                Store Catalog
+              </Link>
+
+              {/* 6. Help & FAQ */}
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block font-semibold text-base transition ${location.pathname === '/contact' ? 'text-[#00DC82] font-extrabold' : 'text-white hover:text-[#00DC82]'}`}
+              >
+                Help & FAQ
+              </Link>
+
+              {/* 7. Create Profile */}
+              <Link
+                to="/create-profile"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-[#00DC82] font-bold text-base hover:brightness-125"
+              >
+                Create Profile
+              </Link>
+
+              {/* Auth state / User Dashboard */}
+              {user ? (
+                <div className="pt-4 border-t border-emerald-950 space-y-3">
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full py-3 text-center rounded-xl bg-[#0D121B] border border-emerald-900/60 text-white font-bold text-sm"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      logout();
+                      navigate('/auth?mode=login');
+                    }}
+                    className="w-full py-3 text-center rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-sm flex items-center justify-center space-x-2"
+                  >
+                    <LogOut className="w-4 h-4 text-red-400" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="pt-4 border-t border-emerald-950">
+                  <Link
+                    to="/auth?mode=login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full py-3.5 text-center rounded-xl bg-gradient-to-r from-[#00DC82] via-[#10B981] to-[#059669] text-black font-black text-sm uppercase tracking-wider shadow-lg shadow-[#10B981]/25 hover:brightness-110 transition"
+                  >
+                    LOGIN / REGISTER
+                  </Link>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );

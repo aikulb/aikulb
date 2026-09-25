@@ -2,7 +2,6 @@ import React from 'react';
 import { AnnouncementBar } from '../components/AnnouncementBar';
 import { Navbar } from '../components/Navbar';
 import { DarkHeroSection } from '../components/DarkHeroSection';
-import { HeroSection } from '../components/HeroSection';
 import { RedFeatureBanner } from '../components/RedFeatureBanner';
 import { TrustMarquee } from '../components/TrustMarquee';
 import { ValueProp } from '../components/ValueProp';
@@ -23,12 +22,9 @@ export const HomePage = () => {
       </header>
 
       {/* Dedicated Homepage Content Assembly */}
-      <main className="flex-grow pt-24 sm:pt-28 lg:pt-32">
-        {/* 1st Image Reference: Dark Futuristic Hero Section */}
+      <main className="flex-grow pt-[88px] sm:pt-[96px]">
+        {/* Dark Futuristic Hero Section */}
         <DarkHeroSection />
-        
-        {/* 2nd Image Reference: Light TapMo Smart Card Hero Section */}
-        <HeroSection />
 
         {/* Full-width Crimson Feature Banner */}
         <RedFeatureBanner />

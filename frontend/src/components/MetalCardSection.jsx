@@ -233,7 +233,7 @@ export const MetalCardSection = () => {
       </AnimatePresence>
 
       {/* Hero Banner with Executive Photographic Background Attached Directly to Navbar */}
-      <div className="relative w-full pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 shadow-2xl">
+      <div className="relative w-full pt-8 sm:pt-14 lg:pt-16 pb-16 sm:pb-20 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 shadow-2xl">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105 opacity-40"
           style={{ backgroundImage: `url('/assets/store_hero_bg.jpg')` }}
@@ -466,8 +466,8 @@ export const MetalCardSection = () => {
 
                 {/* AK Trishul Neon Green Badge Overlay (Moved up and slightly right) */}
                 <div className="absolute bottom-10 right-3.5 sm:bottom-12 sm:right-4 z-30 pointer-events-none">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-[#070A0F]/95 border-2 border-[#00DC82] shadow-[0_0_15px_#00DC82] flex items-center justify-center p-2 backdrop-blur-md">
-                    <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain filter brightness-125" />
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-black/30 border border-white/15 shadow-lg flex items-center justify-center p-2 backdrop-blur-md">
+                    <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain mix-blend-screen filter brightness-125" />
                   </div>
                 </div>
 

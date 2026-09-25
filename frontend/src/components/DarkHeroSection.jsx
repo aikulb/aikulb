@@ -29,7 +29,7 @@ export const DarkHeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] pt-6 sm:pt-10 pb-16 sm:pb-20 flex items-center justify-center bg-gradient-to-b from-[#0B0F17] via-[#0D121E] to-[#0A0E17] text-white border-b border-slate-800/80 overflow-hidden">
+    <section className="relative min-h-[85vh] pt-8 sm:pt-12 pb-16 sm:pb-20 flex items-center justify-center bg-gradient-to-b from-[#0B0F17] via-[#0D121E] to-[#0A0E17] text-white border-b border-slate-800/80 overflow-hidden">
       {/* Background Ambient Glows */}
       <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#00E676]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />
@@ -102,49 +102,53 @@ export const DarkHeroSection = () => {
 
         </ScrollReveal>
 
-        {/* RIGHT COLUMN: Video Visual Container matching Image 1 */}
+        {/* RIGHT COLUMN: Video Visual Container Patched with Background Gradient Colors */}
         <ScrollReveal className="lg:col-span-5 flex justify-center">
-          <div className="relative w-fit mx-auto rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.7)] border-2 border-slate-800/80 bg-slate-900 group">
+          {/* Gradient Border Frame Patched with Section Background Colors (#0B0F17 / #0D121E / slate-800) */}
+          <div className="relative w-fit mx-auto p-[2px] rounded-[26px] bg-gradient-to-br from-slate-700/80 via-[#162032] to-slate-800/90 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_30px_rgba(15,23,42,0.8)] border border-slate-700/50 transition-all duration-500">
             
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted={isMuted}
-              playsInline
-              className="block max-w-full sm:max-w-[360px] lg:max-w-[380px] h-auto object-cover rounded-3xl filter brightness-95"
-            >
-              <source src={homePageVideo} type="video/mp4" />
-            </video>
-
-            {/* Video Controls (Pause / Mute Buttons matching top right in Image 1) */}
-            <div className="absolute top-4 right-4 z-20 flex items-center space-x-2">
-              <button
-                type="button"
-                onClick={togglePlay}
-                className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-[#00E676] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                title={isPlaying ? 'Pause Video' : 'Play Video'}
+            <div className="relative rounded-[24px] overflow-hidden bg-[#070A0F] group">
+              
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted={isMuted}
+                playsInline
+                className="block max-w-full sm:max-w-[360px] lg:max-w-[380px] h-auto object-cover rounded-[24px] filter brightness-95"
               >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-              </button>
+                <source src={homePageVideo} type="video/mp4" />
+              </video>
 
-              <button
-                type="button"
-                onClick={toggleMute}
-                className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-[#00E676] flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
-                title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00E676]" />}
-              </button>
-            </div>
+              {/* Video Controls (Pause / Mute Buttons) */}
+              <div className="absolute top-4 right-4 z-20 flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={togglePlay}
+                  className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-emerald-400 flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
+                  title={isPlaying ? 'Pause Video' : 'Play Video'}
+                >
+                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                </button>
 
-            {/* AK Trishul Logo Badge (Bottom Right matching Image 1) */}
-            <div className="absolute bottom-6 right-6 z-30 pointer-events-none">
-              <div className="w-11 h-11 rounded-2xl bg-[#090C12]/95 border-2 border-[#00E676] shadow-[0_0_20px_#00E676] flex items-center justify-center p-2 backdrop-blur-md">
-                <img src="/assets/logo.png" alt="AK Logo" className="w-full h-full object-contain filter brightness-125" />
+                <button
+                  type="button"
+                  onClick={toggleMute}
+                  className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white hover:text-emerald-400 flex items-center justify-center transition hover:scale-110 cursor-pointer shadow-lg"
+                  title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+                >
+                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-[#00E676]" />}
+                </button>
               </div>
-            </div>
 
+              {/* AK Trishul Logo Badge */}
+              <div className="absolute bottom-8 right-8 sm:bottom-9 sm:right-9 z-30 pointer-events-none">
+                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-black/30 border border-white/15 shadow-xl flex items-center justify-center p-2.5 backdrop-blur-md">
+                  <img src="/assets/logo.png" alt="AK Logo" className="w-full h-full object-contain mix-blend-screen filter brightness-125" />
+                </div>
+              </div>
+
+            </div>
           </div>
         </ScrollReveal>
 

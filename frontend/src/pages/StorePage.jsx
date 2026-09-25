@@ -117,7 +117,7 @@ export const StorePage = () => {
 
       <main className="flex-grow pt-0 pb-24 w-full">
         {/* Store Catalog Hero Section with Executive Photographic Background (Inspired by Reference Image 1) */}
-        <section className="relative w-full pt-24 sm:pt-32 lg:pt-36 pb-16 sm:pb-28 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
+        <section className="relative w-full pt-8 sm:pt-14 lg:pt-16 pb-16 sm:pb-28 bg-[#0B0F17] text-white overflow-hidden border-b border-neutral-800 mb-12 shadow-2xl">
           {/* Executive Photographic Background Image */}
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"

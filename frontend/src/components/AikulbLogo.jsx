@@ -20,26 +20,20 @@ export const AikulbLogo = ({
 
   const logoContent = (
     <div className={`flex items-center space-x-3 group shrink-0 ${className}`}>
-      {/* Official AK Trident Logo Emblem Container */}
-      <div
-        className={`relative ${currentSize.container} bg-gradient-to-tr from-[#059669] via-[#10B981] to-[#00DC82] ${
-          glow ? 'shadow-lg shadow-[#10B981]/25 group-hover:shadow-[#00DC82]/40' : ''
-        } group-hover:scale-105 transition-all duration-300`}
-      >
-        <div className="w-full h-full bg-[#070A0F] rounded-[13px] flex items-center justify-center overflow-hidden p-0.5">
-          <img
-            src="/assets/logo.png"
-            alt="AI KLUB Logo"
-            className={`${currentSize.img} object-contain rounded-lg filter drop-shadow-[0_0_8px_rgba(16,185,129,0.3)] group-hover:brightness-110 transition-all`}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.style.display = 'none';
-              if (e.target.parentNode) {
-                e.target.parentNode.innerHTML = `<span class="font-black text-white text-xs font-manrope">AK</span>`;
-              }
-            }}
-          />
-        </div>
+      {/* Official AK Trident Logo Emblem */}
+      <div className="relative flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+        <img
+          src="/assets/logo.png"
+          alt="AI KLUB Logo"
+          className={`${currentSize.img} object-contain mix-blend-screen filter brightness-125 group-hover:brightness-150 transition-all`}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.style.display = 'none';
+            if (e.target.parentNode) {
+              e.target.parentNode.innerHTML = `<span class="font-black text-white text-xs font-manrope">AK</span>`;
+            }
+          }}
+        />
       </div>
 
       {/* Brand Text Name */}

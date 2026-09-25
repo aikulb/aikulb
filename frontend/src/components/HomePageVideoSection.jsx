@@ -118,10 +118,10 @@ export const HomePageVideoSection = () => {
                 </button>
               </div>
 
-              {/* AK Trishul Neon Green Badge Overlay (Moved left and size increased) */}
+              {/* AK Trishul Logo Badge */}
               <div className="absolute bottom-9 right-8 sm:bottom-11 sm:right-10 z-30 pointer-events-none">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#090C12]/95 border-2 border-[#00DC82] shadow-[0_0_18px_#00DC82] flex items-center justify-center p-2 backdrop-blur-md">
-                  <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain filter brightness-125" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-black/30 border border-white/15 shadow-xl flex items-center justify-center p-2 backdrop-blur-md">
+                  <img src="/assets/logo.png" alt="AK Trishul Logo" className="w-full h-full object-contain mix-blend-screen filter brightness-125" />
                 </div>
               </div>
             </div>

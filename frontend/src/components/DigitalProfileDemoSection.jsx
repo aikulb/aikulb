@@ -93,7 +93,7 @@ export const DigitalProfileDemoSection = () => {
                     </div>
                     <div className="pt-1.5">
                       <div className="inline-flex items-center space-x-1 px-2 py-0.5 rounded bg-red-500/15 border border-red-500/30 text-[#FF4545] text-[9px] font-bold">
-                        <img src="/assets/logo.png" alt="aiklub" className="w-3 h-3 object-contain" />
+                        <img src="/assets/logo.png" alt="aiklub" className="w-3 h-3 object-contain mix-blend-screen" />
                         <span>aiklub</span>
                       </div>
                     </div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Phone, Mail, MessageCircle, MapPin, Calendar, Search, Plus, 
-  Send, Check, Clock, ShieldCheck, Truck, HelpCircle, FileText, X, User, Building, AlertCircle 
+  MessageCircle, Calendar, Search, Plus, 
+  Send, Check, Truck, FileText, X, AlertCircle 
 } from 'lucide-react';
 import { api } from '../services/apiClient';
-import { ScrollReveal, StaggerContainer, StaggerItem, Card3DTilt } from './AnimatedComponents';
+import { ScrollReveal } from './AnimatedComponents';
 
 export const ContactHelpSection = () => {
   // Support Form State
@@ -33,43 +33,6 @@ export const ContactHelpSection = () => {
   const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
   const [meetingData, setMeetingData] = useState({ name: '', email: '', phone: '', date: '', time: '11:00 AM' });
   const [meetingSuccess, setMeetingSuccess] = useState(false);
-
-  // Department Support Cards Data (aikulb layout)
-  const departments = [
-    {
-      title: 'WhatsApp Customer Support & Sales',
-      person: 'aikulb WhatsApp Helpline',
-      role: 'Official Instant WhatsApp Support',
-      phone: '+91 77995 29358',
-      email: 'support@aikulb.com',
-      whatsapp: 'https://wa.me/917799529358?text=Hello%20aikulb!%20I%20have%20a%20query%20regarding%20NFC%20smart%20cards%20and%20digital%20profiles.',
-      timing: 'Mon - Sun: 24/7 WhatsApp Support',
-      color: 'from-emerald-50 via-white to-emerald-50/40',
-      badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
-    },
-    {
-      title: 'Sales & Enterprise Bulk Orders',
-      person: 'Gaurav Singh',
-      role: 'Head of Sales & Operations',
-      phone: '+91 77995 29358',
-      email: 'hello@aikulb.com',
-      whatsapp: 'https://wa.me/917799529358?text=Hi!%20I%20want%20to%20inquire%20about%20aikulb%20NFC%20cards.',
-      timing: 'Mon - Sat: 9:30 AM - 7:30 PM',
-      color: 'from-purple-50 via-white to-purple-50/40',
-      badgeColor: 'bg-purple-100 text-purple-800 border-purple-300',
-    },
-    {
-      title: 'Technical Support & Order Status',
-      person: 'aikulb Tech Desk',
-      role: 'Lead Support Specialist',
-      phone: '+91 77995 29358',
-      email: 'tracking@aikulb.com',
-      whatsapp: 'https://wa.me/917799529358?text=Hi!%20I%20need%20assistance%20with%20my%20order%20or%20profile.',
-      timing: 'Mon - Sun: 9:00 AM - 9:00 PM',
-      color: 'from-blue-50 via-white to-blue-50/40',
-      badgeColor: 'bg-blue-100 text-blue-800 border-blue-300',
-    },
-  ];
 
   // Comprehensive FAQ Database
   const faqCategories = [
@@ -250,99 +213,9 @@ export const ContactHelpSection = () => {
           </div>
         </ScrollReveal>
 
-        {/* 1. Multi-Department Support Team Contact Cards (aikulb layout) */}
-        <div className="space-y-8">
-          <ScrollReveal className="text-center space-y-2">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-manrope">
-              Direct Contact Support Desks
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-500 font-inter">
-              Connect directly with our dedicated department managers for fast resolution.
-            </p>
-          </ScrollReveal>
-
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 font-inter">
-            {departments.map((dept, idx) => (
-              <StaggerItem key={idx}>
-                <Card3DTilt maxRotateX={4} maxRotateY={5}>
-                  <div className={`p-8 rounded-[32px] bg-gradient-to-b ${dept.color} border border-slate-200 shadow-xl space-y-6 flex flex-col justify-between h-full relative group`}>
-                    
-                    <div className="space-y-4">
-                      {/* Badge */}
-                      <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-mono font-bold border ${dept.badgeColor}`}>
-                        {dept.title}
-                      </span>
-
-                      <div>
-                        <h4 className="text-xl font-bold text-slate-900 font-manrope">{dept.person}</h4>
-                        <p className="text-xs text-slate-500 font-inter">{dept.role}</p>
-                      </div>
-
-                      {/* Contact Info List */}
-                      <div className="space-y-3 pt-2 text-xs font-inter text-slate-600">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-[#6C4CFF] shrink-0">
-                            <Phone className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 block font-mono">DIRECT CALL</span>
-                            <a href={`tel:${dept.phone.replace(/\s+/g, '')}`} className="font-bold text-slate-900 hover:text-[#6C4CFF] transition font-mono">
-                              {dept.phone}
-                            </a>
-                            {dept.altPhone && (
-                              <span className="text-slate-400 text-[10px] block font-mono">Alt: {dept.altPhone}</span>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-[#6C4CFF] shrink-0">
-                            <Mail className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 block font-mono">OFFICIAL EMAIL</span>
-                            <a href={`mailto:${dept.email}`} className="font-semibold text-slate-800 hover:text-black transition">
-                              {dept.email}
-                            </a>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-amber-600 shrink-0">
-                            <Clock className="w-4 h-4 text-amber-600" />
-                          </div>
-                          <div>
-                            <span className="text-[10px] text-slate-400 block font-mono">SUPPORT HOURS</span>
-                            <span className="text-slate-700">{dept.timing}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* WhatsApp Action Button */}
-                    <div className="pt-4 border-t border-slate-200">
-                      <a
-                        href={dept.whatsapp}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="w-full py-3 px-4 rounded-2xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/40 text-[#1da851] font-manrope font-bold text-xs flex items-center justify-center space-x-2 transition shadow-sm cursor-pointer"
-                      >
-                        <MessageCircle className="w-4 h-4 fill-[#1da851]" />
-                        <span>Chat on WhatsApp</span>
-                      </a>
-                    </div>
-                  </div>
-                </Card3DTilt>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-
-        {/* 2. Interactive Support Inquiry Form & Office Info Split Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start font-inter">
-          
-          {/* Form Column (Synced with Backend Database /leads) */}
-          <ScrollReveal yOffset={30} className="lg:col-span-7 p-8 sm:p-10 rounded-[36px] bg-white border border-slate-200 shadow-xl space-y-6">
+        {/* Support Inquiry Form */}
+        <div className="max-w-4xl mx-auto font-inter">
+          <ScrollReveal yOffset={30} className="p-8 sm:p-10 rounded-[36px] bg-white border border-slate-200 shadow-xl space-y-6">
             <div>
               <div className="inline-flex items-center space-x-1.5 text-xs font-mono font-bold text-[#6C4CFF] uppercase tracking-wider mb-2">
                 <FileText className="w-4 h-4" />
@@ -468,46 +341,6 @@ export const ContactHelpSection = () => {
                 </button>
               </form>
             )}
-          </ScrollReveal>
-
-          {/* Office Info & GST Details Column (aikulb layout) */}
-          <ScrollReveal yOffset={30} className="lg:col-span-5 space-y-6">
-            {/* Delhi NCR Office Card */}
-            <div className="p-7 rounded-[32px] bg-white border border-slate-200 shadow-md space-y-3">
-              <div className="flex items-center space-x-2 text-[#6C4CFF]">
-                <MapPin className="w-5 h-5 shrink-0" />
-                <h4 className="font-extrabold text-slate-900 font-manrope text-base">Delhi NCR (Sales & Operations)</h4>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed font-inter pl-7">
-                aikulb India Pvt. Ltd. (aikulb Operations), H-143 Sector 63, Noida, Uttar Pradesh 201301, India.
-              </p>
-            </div>
-
-            {/* Bengaluru Tech Hub Card */}
-            <div className="p-7 rounded-[32px] bg-white border border-slate-200 shadow-md space-y-3">
-              <div className="flex items-center space-x-2 text-blue-600">
-                <Building className="w-5 h-5 shrink-0" />
-                <h4 className="font-extrabold text-slate-900 font-manrope text-base">Bengaluru (Backend & Tech Hub)</h4>
-              </div>
-              <p className="text-xs text-slate-600 leading-relaxed font-inter pl-7">
-                aikulb Tech Labs, #40/41 CNR Layout, 3rd Cross Rd, Marathahalli, Bengaluru, Karnataka 560037, India.
-              </p>
-            </div>
-
-            {/* Corporate GST & Invoice Banner */}
-            <div className="p-7 rounded-[32px] bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 shadow-md space-y-3 font-inter">
-              <div className="flex items-center space-x-2 text-purple-700">
-                <ShieldCheck className="w-5 h-5 shrink-0" />
-                <h4 className="font-extrabold text-slate-900 font-manrope text-sm">18% GST Tax Input Available</h4>
-              </div>
-              <p className="text-xs text-slate-700 leading-relaxed">
-                We provide official GST invoices for business buyers. After completing your payment, enter your company GSTIN to receive instant 18% tax credit input.
-              </p>
-              <div className="pt-2 text-[11px] font-mono text-slate-600 space-y-1 border-t border-purple-200">
-                <div>GST No: <span className="text-slate-900 font-bold">09AAKCT7079B1Z0</span></div>
-                <div>CIN No: <span className="text-slate-900 font-bold">U58200UP2024PTC195984</span></div>
-              </div>
-            </div>
           </ScrollReveal>
         </div>
 

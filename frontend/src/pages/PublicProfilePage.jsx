@@ -84,7 +84,7 @@ export const PublicProfilePage = () => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.25),transparent_70%)] pointer-events-none" />
             
             <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white font-manrope text-xs font-bold border border-white/20">
-              <img src="/assets/logo.png" alt="ai klub" className="w-4 h-4 object-contain" />
+              <img src="/assets/logo.png" alt="ai klub" className="w-4 h-4 object-contain mix-blend-screen" />
               <span>ai klub Smart Card</span>
             </div>
 
